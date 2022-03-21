@@ -28,6 +28,13 @@ Solving `life_exp_getdata.R` takes around *5-10 minutes* as it builds on [lectur
 
 Solving `life_exp_analysis.R` introduces the main material, and takes *40-60 minutes* depends on the student's backgroud. This lecture is mainly a theory based lecture (practice via case study) and includes easy, but many new commands in a repetative way. 
 
+## Homework
+
+*Type*: quick practice
+  - Use the model $lifeexp_i = \alpha + \beta_1 ( log( gdppc ) < 50 ) + \beta_2 ( log( gdppc \geq 50 )$ and get the largest and positive and negative 5 errors. Create a scatter graph with the regression line. Color the largest errors with different color. Extra: annotate the largest positive and negative country within the graph.
+
+## Further material
+
 ## Folder structure
   
   - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
