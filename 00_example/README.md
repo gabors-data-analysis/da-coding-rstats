@@ -30,8 +30,15 @@ Solving `life_exp_analysis.R` introduces the main material, and takes *40-60 min
 
 ## Homework
 
-*Type*: quick practice
-  - Use the model $lifeexp_i = \alpha + \beta_1 ( log( gdppc ) < 50 ) + \beta_2 ( log( gdppc \geq 50 )$ and get the largest and positive and negative 5 errors. Create a scatter graph with the regression line. Color the largest errors with different color. Extra: annotate the largest positive and negative country within the graph.
+*Type*: quick practice, approx 15 mins
+
+Use the linear spline model:
+
+lifeexp<sub>i</sub> = &alpha; + &beta;<sub>1</sub> ( log( gdppc<sub>i</sub> ) < 50 ) + &beta;<sub>2</sub> ( log( gdppc<sub>i</sub> &ge; 50 )
+
+  and get the largest and positive and negative 5 errors. Create a scatter graph with the regression line. Color the largest errors with different color. 
+  
+Extra: annotate the largest positive and negative country within the graph.
 
 ## Further material
 
