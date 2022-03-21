@@ -124,7 +124,7 @@ ggplot( df , aes(x = gdppc, y = lifeexp ))  +
 #   4) taking log for life-expectancy does not matter -> use levels!
 #       - Substantive: it does not give better interpretation
 #       - Statistical: you can compare models with the same y, no better fit
-#       - Remember: simplest the better!
+#       - Remember: the simpler the better!
 
 ####
 # Create new variables: 
