@@ -46,7 +46,7 @@ Extra: annotate the largest positive and negative country within the graph.
 
   - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income)
   - Partially related is Chapter 3 from [James-Witten-Hastie-Tibshirani (2013) - An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
-  - 
+
 
 ## Folder structure
   
