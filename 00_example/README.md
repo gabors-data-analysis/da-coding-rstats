@@ -18,7 +18,7 @@ After succesfully compliting codes in *raw_codes* you should be able:
     - higher order polynomial, or
     - piecewise linear spline
   - Be able to estimate heteroscedastic robust SEs and compare specific model results with `etable` in one output.
-  - Get model residuals and find the top or bottom largest *n* errors. 
+  - Get model residuals and find the top or bottom largest *(n)* error(s). 
 
 ## Folder structure
   
