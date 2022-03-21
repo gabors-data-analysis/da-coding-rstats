@@ -5,7 +5,12 @@ This is an example for a coding lecture, which provides materials for students a
 
 ## Learning outcomes
 After succesfully compliting codes in *raw_codes* you should be able:
-  - Solid ground for importing and exporting data from World Bank's website via API. (`life_exp_getdata.R`)
+
+`life_exp_getdata.R`
+  - Solid ground for importing and exporting data from World Bank's website via API.
+
+
+`life_exp_analysis.R`
   - Create scatter-plots for competing models.
   - Transform variables from level to log in a ggplot and scale the axis for proper interpretation.
   - Run and plot multiple single variable regressions with:
