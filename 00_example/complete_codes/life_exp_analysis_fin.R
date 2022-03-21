@@ -299,12 +299,5 @@ df %>% top_n( -5 , reg4_res ) %>%
 df %>% top_n( 5 , reg4_res ) %>% 
        select( country , lifeexp , reg4_y_pred , reg4_res )
 
-# Extra HW: create a graph with highlighting the best and worst 5 countries!
-#   Use annotation with the names of the countries.
-
-
-
-
-
 
   
