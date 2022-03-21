@@ -28,7 +28,7 @@ Ideal overall time: **60 mins**.
 
 Solving `life_exp_getdata.R` takes around *5-10 minutes* as it builds on [lecture01-data-imp_n_exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-data-imp_n_exp). In principle it should be a quick reminder and practice.
 
-Solving `life_exp_analysis.R` introduces the main material, and takes *40-60 minutes* depends on the student's backgroud. This lecture is mainly a theory based lecture (practice via case study) and includes easy, but many new commands in a repetative way. 
+Solving `life_exp_analysis.R` introduces the main material, and takes *40-60 minutes* depending on the student's background. This lecture is mainly a theory-based lecture (practice via case study) and includes easy, but many new commands in a repetitive way. 
 
 ## Homework
 
@@ -38,9 +38,8 @@ Use the linear spline model:
 
 lifeexp<sub>i</sub> = &alpha; + &beta;<sub>1</sub> ( log( gdppc<sub>i</sub> ) < 50 ) + &beta;<sub>2</sub> ( log( gdppc<sub>i</sub> &ge; 50 )
 
-  and get the largest and positive and negative 5 errors. Create a scatter graph with the regression line. Color the largest errors with different color. 
-  
-Extra: annotate the largest positive and negative country within the graph.
+  and get the 5 largest positive and negative errors. Create a scatter graph with the regression line. Color these largest errors with a different color. 
+ Finally, annotate the largest positive and negative country within the graph.
 
 ## Further material
 
