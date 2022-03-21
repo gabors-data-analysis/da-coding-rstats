@@ -20,6 +20,14 @@ After successfully completing codes in *raw_codes* you should be able:
   - Be able to estimate heteroscedastic robust SEs and compare specific model results with `etable` in one output.
   - Get model residuals and find the top or bottom largest *(n)* error(s). 
 
+## Time
+
+Ideal overall time: **60 mins**.
+
+Solving `life_exp_getdata.R` takes around *5-10 minutes* as it builds on [lecture01-data-imp_n_exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-data-imp_n_exp). In principle it should be a quick reminder and practice.
+
+Solving `life_exp_analysis.R` introduces the main material, and takes *40-60 minutes* depends on the student's backgroud. This lecture is mainly a theory based lecture (practice via case study) and includes easy, but many new commands in a repetative way. 
+
 ## Folder structure
   
   - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
