@@ -3,6 +3,8 @@
 
 This is an example of a coding lecture, which provides materials for students and lecturers to analyze the association between life expectancy and GDP measures for various countries in 2019.
 
+This lecture is based on Chapter 08, B: *How is life expectancy related to the average income of a country?*
+
 ## Learning outcomes
 After successfully completing codes in *raw_codes* you should be able:
 
@@ -18,9 +20,9 @@ After successfully completing codes in *raw_codes* you should be able:
     - higher-order polynomial, or
     - piecewise linear spline
   - Be able to estimate heteroscedastic robust SEs and compare specific model results with `etable` in one output.
-  - Get model residuals and find the top or bottom largest *(n)* error(s). 
+  - Get model residuals and find the top or bottom largest (n) error(s). 
 
-## Time
+## Lecture Time
 
 Ideal overall time: **60 mins**.
 
@@ -41,6 +43,10 @@ lifeexp<sub>i</sub> = &alpha; + &beta;<sub>1</sub> ( log( gdppc<sub>i</sub> ) < 
 Extra: annotate the largest positive and negative country within the graph.
 
 ## Further material
+
+  - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income)
+  - Partially related is Chapter 3 from [James-Witten-Hastie-Tibshirani (2013) - An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
+  - 
 
 ## Folder structure
   
