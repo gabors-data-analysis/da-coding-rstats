@@ -210,8 +210,6 @@ ggplot(data = df, aes(x = ln_gdppc, y = lifeexp)) +
 # Find countries with largest positive errors
 
 
-# Extra HW: create a graph with highlighting the best and worst 5 countries!
-#   Use annotation with the names of the countries.
 
 
 
