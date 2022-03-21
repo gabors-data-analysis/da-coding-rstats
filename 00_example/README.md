@@ -57,6 +57,6 @@ lifeexp<sub>i</sub> = &alpha; + &beta;<sub>1</sub> ( log( gdppc<sub>i</sub> ) < 
     - `life_exp_analysis.R` as `life_exp_analysis_fin.R`.
     - furthermore, it includes `life_exp_clean.R`, which is an auxiliary file. It shows how to create clean data from the raw data, produced by *life_exp_getdata.R*. Usually, this code is skipped during the lecture as it is already known, but tedious material. If needed it can be given as extra homework.
   - [data](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/data) includes [raw](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/data/raw) and [clean](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/data/clean) data which are produced by codes in [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/complete_codes).
-    - helps lagging students to catch up, without complete codes as files in [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/raw_codes) uses data from this source.
+    - helps lagging students to catch up, without complete codes as files in [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/raw_codes) load data from this source.
 
 
