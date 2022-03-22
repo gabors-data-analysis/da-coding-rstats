@@ -15,12 +15,13 @@ Published on 6 May 2021 by Cambridge University Press*
 
 ## Organization
 
-## Relation to the book: Case-study - R lectures correspondence
+## Relation to the book: R lectures and Case-study
 
 ### Relate learning outcomes to lectures and case-studies
 
-| Learning outcomes | Lecture | Case-study |
-| ----------------  | ------- | ---------- |
+| Lecture  | Learning outcomes | Case-study |
+| -------  | ----------------- | ---------- |
+| [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) | Run and plot single variable regressions with transformations and residual analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
 
 ### Relate case-studies to specific lecture
 Or one can relate each case-study from the book to specific lectures.
