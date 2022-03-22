@@ -13,11 +13,9 @@ Published on 6 May 2021 by Cambridge University Press*
 ## How to use
 
 
-## Organization
+## Learning outcomes and relation to the book
 
-## Relation to the book: R lectures and Case-study
-
-### Relate learning outcomes to lectures and case-studies
+### Lectures, learning outcomes and case-studies
 
 | Lecture  | Learning outcomes | Case-study |
 | -------  | ----------------- | ---------- |
