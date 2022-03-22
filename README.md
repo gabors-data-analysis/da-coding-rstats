@@ -12,17 +12,26 @@ Published on 6 May 2021 by Cambridge University Press*
 
 ## How to use
 
+### Folder structure within lectures
+
+Within each lecture there is the following folder structure:
+  - `raw_codes`: includes codes, which are ready to use during the course but require some live coding in class.
+  - `complete_codes`: includes codes with suggested solutions to codes in `raw_codes`
+  - `data`: in some cases, there is a data folder, which includes data files (typically in '.csv'). I have found it crucial during live-coding classes to make sure everybody has the same data.
+  - if there are no folders then:
+    a) lecture has a notebook format, which implies complete live-coding class (mostly introduction or technical ''hard-core coding'' lectures)
+    b) lecture has a complete R-script. In this case, the lecturer should pay attention to the interpretation of the material itself rather than to coding. Typically this is for more advanced case studies (chapters 13-18), where there is no new coding technique, but interpreting the results might be challenging.
 
 ## Learning outcomes and relation to the book
 
-### Lectures, learning outcomes and case-studies
+### Lectures, learning outcomes, and case-studies
 
 | Lecture  | Learning outcomes | Case-study |
 | -------  | ----------------- | ---------- |
 | [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) | Run and plot single variable regressions with transformations and residual analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
 
 ### Relate case-studies to specific lecture
-Or one can relate each case-study from the book to specific lectures.
+Or one can relate each case study from the book to specific lectures.
 
 |Chapter | Case-study | Lecture |
 | ------ | ---------  | ------- |
@@ -63,4 +72,4 @@ Or one can relate each case-study from the book to specific lectures.
 
 Awesome, we know there are errors and bugs. Or just much better ways to do a procedure.
 
-To make a suggestion, please open a `github issue` here with a title containing the case study name. You may also contact us directctly.
+To make a suggestion, please open a `GitHub issue` here with a title containing the case study name. You may also contact us directly.
