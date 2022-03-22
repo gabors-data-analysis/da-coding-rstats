@@ -19,8 +19,8 @@ Within each lecture there is the following folder structure:
   - `complete_codes`: includes codes with suggested solutions to codes in `raw_codes`
   - `data`: in some cases, there is a data folder, which includes data files (typically in '.csv'). I have found it crucial during live-coding classes to make sure everybody has the same data.
   - if there are no folders then:
-    a) lecture has a notebook format, which implies complete live-coding class (mostly introduction or technical ''hard-core coding'' lectures)
-    b) lecture has a complete R-script. In this case, the lecturer should pay attention to the interpretation of the material itself rather than to coding. Typically this is for more advanced case studies (chapters 13-18), where there is no new coding technique, but interpreting the results might be challenging.
+    - lecture has a notebook format, which implies complete live-coding class (mostly introduction or technical ''hard-core coding'' lectures)
+    - lecture has a complete R-script. In this case, the lecturer should pay attention to the interpretation of the material itself rather than to coding. Typically this is for more advanced case studies (chapters 13-18), where there is no new coding technique, but interpreting the results might be challenging.
 
 ## Learning outcomes and relation to the book
 
