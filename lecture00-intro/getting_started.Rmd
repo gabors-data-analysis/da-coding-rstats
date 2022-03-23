@@ -80,16 +80,16 @@ myString
 
 ***Good to know: *** Naming convention in programming broadly speaking has two big branch. One is utilizing capital letters, the other one the underscore. Both of them are good, but try not to mix them. You are completely free to use any variable name, but always keep in mind the three requirements:
 
-1 human-readable: 
+1. human-readable: 
   * good: `myString` or `my_string` refers to a variable which includes a string, but
   * bad: `m3st96k` does not reveal much about the possible content
-2 computer-readable:
+2. computer-readable:
   * good: `myString`
   * bad: `1-my-string!` as it uses invalid characters. E.g. never start with a number and avoid special characters such as -,.!~=&^%$ etc.
-3 short names
+3. short names
   * good: `myStr`, `my_string` , `m_string`
   * bad: `my_new_string_i_will_use`, this is just hard to write out every time and the probability of making coding mistakes are getting larger
-4 (+1) try to avoid already defined *function names* or already *existing variables*. We will see what are they and it is always advised not to re-define variables. It just sources of confusion and will make de-bugging much harder.
+4. (+1) try to avoid already defined *function names* or already *existing variables*. We will see what are they and it is always advised not to re-define variables. It just sources of confusion and will make de-bugging much harder.
 
 ### Numeric operations
 

@@ -120,18 +120,29 @@ underscore. Both of them are good, but try not to mix them. You are
 completely free to use any variable name, but always keep in mind the
 three requirements:
 
-1 human-readable: \* good: `myString` or `my_string` refers to a
-variable which includes a string, but \* bad: `m3st96k` does not reveal
-much about the possible content 2 computer-readable: \* good: `myString`
-\* bad: `1-my-string!` as it uses invalid characters. E.g. never start
-with a number and avoid special characters such as -,.!\~=&^%$ etc. 3
-short names \* good: `myStr`, `my_string` , `m_string` \* bad:
-`my_new_string_i_will_use`, this is just hard to write out every time
-and the probability of making coding mistakes are getting larger 4 (+1)
-try to avoid already defined *function names* or already *existing
-variables*. We will see what are they and it is always advised not to
-re-define variables. It just sources of confusion and will make
-de-bugging much harder.
+1.  human-readable:
+
+-   good: `myString` or `my_string` refers to a variable which includes
+    a string, but
+-   bad: `m3st96k` does not reveal much about the possible content
+
+2.  computer-readable:
+
+-   good: `myString`
+-   bad: `1-my-string!` as it uses invalid characters. E.g. never start
+    with a number and avoid special characters such as -,.!\~=&^%$ etc.
+
+3.  short names
+
+-   good: `myStr`, `my_string` , `m_string`
+-   bad: `my_new_string_i_will_use`, this is just hard to write out
+    every time and the probability of making coding mistakes are getting
+    larger
+
+4.  (+1) try to avoid already defined *function names* or already
+    *existing variables*. We will see what are they and it is always
+    advised not to re-define variables. It just sources of confusion and
+    will make de-bugging much harder.
 
 ### Numeric operations
 
@@ -362,11 +373,11 @@ Work with `NA` values are pretty much the same: they do not respond to
 operations and remains NAs:
 
 ``` r
-nan_vec <- c(NaN,1,2,3,4)
+nan_vec <- c(NA,1,2,3,4)
 nan_vec + 3
 ```
 
-    ## [1] NaN   4   5   6   7
+    ## [1] NA  4  5  6  7
 
 ### Inf value
 
@@ -422,23 +433,33 @@ logical. We call *R-object* the type of value of a variable. It is the
 smallest element in R. To collect all of them, let us create a detailed
 list here:
 
-1 R-objects - numeric - any numeric value - integer - a special numeric
-value, which is not a fraction. An extra ‘L’ is put next to the value in
-the Environment to show that it is an integer. - character - also known
-as string. Any variable which contains letters, special characters or
-numbers between ’’ or ““. - logical - have only two values: `TRUE` or
-`FALSE` possibly after a statement is run and evaluated as true or false
-- factor - special R-object that we will discuss later. It is an element
-in a factor variable type. 2 Variable types - vectors: containing only
-the same R-objects (values) in a single-dimension vector - lists: can
-mix different R-objects as elements - matrices: containing same
-R-objects (values) in a 2-dimensional matrix - arrays: allows for
-multidimensional matrices - factors: a special vector, which contains
-*categorical* or *ordinal* values. We will see these in later classes -
-data frames: containing data, basically a flexible matrix, which can
-contain different vectors with different R-object and organized as it
-has variables and observations. We will discuss this at next lecture
-more in detail.
+1.  R-objects
+
+-   numeric - any numeric value
+-   integer - a special numeric value, which is not a fraction. An extra
+    ‘L’ is put next to the value in the Environment to show that it is
+    an integer.
+-   character - also known as string. Any variable which contains
+    letters, special characters or numbers between ’’ or ““.
+-   logical - have only two values: `TRUE` or `FALSE` possibly after a
+    statement is run and evaluated as true or false
+-   factor - special R-object that we will discuss later. It is an
+    element in a factor variable type.
+
+2.  Variable types
+
+-   vectors: containing only the same R-objects (values) in a
+    single-dimension vector
+-   lists: can mix different R-objects as elements
+-   matrices: containing same R-objects (values) in a 2-dimensional
+    matrix
+-   arrays: allows for multidimensional matrices
+-   factors: a special vector, which contains *categorical* or *ordinal*
+    values. We will see these in later classes
+-   data frames: containing data, basically a flexible matrix, which can
+    contain different vectors with different R-object and organized as
+    it has variables and observations. We will discuss this at next
+    lecture more in detail.
 
 ``` r
 # Difference between doubles and integers
