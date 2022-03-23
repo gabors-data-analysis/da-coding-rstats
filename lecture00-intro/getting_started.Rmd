@@ -207,7 +207,7 @@ If value is missing or unknown, usually it is marked as `NA` or `NaN`. `NA` is s
 
 Work with `NA` values are pretty much the same: they do not respond to operations and remains NAs:
 ```{r}
-nan_vec <- c(NaN,1,2,3,4)
+nan_vec <- c(NA,1,2,3,4)
 nan_vec + 3
 ```
 
@@ -239,13 +239,13 @@ which should be the same, however due to rounding `sqrt(2)`, it will not be the 
 
 We have already used different R-objects such as numbers, characters and logical. We call *R-object* the type of value of a variable. It is the smallest element in R. To collect all of them, let us create a detailed list here:
 
-1 R-objects
+1. R-objects
   - numeric - any numeric value
   - integer - a special numeric value, which is not a fraction. An extra 'L' is put next to the value in the Environment to show that it is an integer.
   - character - also known as string. Any variable which contains letters, special characters or numbers between '' or "".
   - logical - have only two values: `TRUE` or `FALSE` possibly after a statement is run and evaluated as true or false
   - factor - special R-object that we will discuss later. It is an element in a factor variable type.
-2 Variable types
+2. Variable types
   - vectors: containing only the same R-objects (values) in a single-dimension vector
   - lists: can mix different R-objects as elements
   - matrices: containing same R-objects (values) in a 2-dimensional matrix
