@@ -1,21 +1,73 @@
-Introduction to R
+Getting started with R
 ================
 Agoston Reguly
 March 22, 2022
 
 ## Getting familiar with the interface
 
-Bli Bla
+Show the following features of RStudio: - 4 different windows: - The
+Console/Terminal/Jobs window: what are they and how to use them -
+Scripts and Files window: the main programming will happen here -
+Environment/History/Connection/Tutorial window -
+Files/Plots/Packages/Help/Viewer widnow
 
-## My first commands
+## Using the console
 
-R can be used as a calculator:
+R can be used as a calculator through the console! E.g. you can type in:
 
 ``` r
 2+2
 ```
 
     ## [1] 4
+
+and R will calculate and show the result in the console window. Note
+that every command that you do will show in the console window. It can
+be useful if you are getting familiar and using some of the ‘clicking’
+options in R as we will see with data import.
+
+## Creating the first script
+
+Using the console is really handy, but will not keep track what we have
+done. R-scripts are for this purpose: collect your commands, you can
+save this as a file and rerun these commands whenever you want. This is
+the first pillar of good coding: reproducible codes.
+
+To create your new script you need to click on
+`File -> New file -> R Script` or simply push `shift+cmd+N` on mac or
+`shift+crtl+N` on windows.
+
+### Run codes via scripts
+
+Now you can write whatever R will understand. Continuing our example you
+can just type in:
+
+``` r
+2+2
+```
+
+    ## [1] 4
+
+You can see that there is a line number left to your command.
+Furthermore, note that nothing will happen eve if you hit enter, but a
+new line will show up in the script.
+
+In order to run this code, you need to run it via the console, which can
+be done in several ways. The most obvious way to do it is to copy and
+paste it to the console, however, it is not really efficient. The
+quickest is to bring your courser to the line which you want to run and
+hit `cmd+return` or `ctrl+enter`. This will execute the command.
+Alternatively you can find the icon on the top-right corner of the
+script window, which says `Run` with a possible rolling window.
+
+*Tip:* you may select multiple lines and use the same method to run
+multiple codes at once.
+
+``` r
+"Hello world!"
+```
+
+    ## [1] "Hello world!"
 
 ``` r
 myString <- "Hello world!"
