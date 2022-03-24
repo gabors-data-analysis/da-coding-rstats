@@ -366,7 +366,7 @@ which computes the square root of 4.
 **Tip:** If you are unsure what a function does: what inputs it expects
 and what it is going to give, you can check the help by using `?*name*`
 expression in the console and on the left window ‘Help’ section will
-provide you an answer with examples.
+provide you an answer with examples. E.g.:
 
 ``` r
 ?sqrt
@@ -694,7 +694,9 @@ sqrt(2)^2 == 2
     ## [1] FALSE
 
 which should be the same, however, due to rounding `sqrt(2)`, it will
-not be the same.
+not be the same. **To do:** ‘fix’ this problem, by using the function
+`round()`. Check its description and use it so the logical operator will
+give `TRUE` as an output.
 
 ## Variable types
 
