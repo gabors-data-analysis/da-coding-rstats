@@ -359,6 +359,7 @@ As all software R works with certain digits and not in a so-called *symbolic* wa
 sqrt(2)^2 == 2
 ```
 which should be the same, however, due to rounding `sqrt(2)`, it will not be the same.
+**To do:** 'fix' this problem, by using the function `round()`. Check its description and use it so the logical operator will give `TRUE` as an output.
 
 
 ## Variable types
