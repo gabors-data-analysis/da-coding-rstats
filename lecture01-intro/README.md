@@ -1,75 +1,63 @@
-# Coding for Data Analysis with R 
-Introduction to Data Analysis with R - lecture materials
-by [Ágoston Reguly](https://regulyagoston.github.io/) (CEU)
+# Example case-study: life expectancy analysis
+*Coding course to complete Data Analysis in R*
 
-This course material is a supplement to *Data Analysis for Business, Economics, and Policy 
-by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan)
-Published on 6 May 2021 by Cambridge University Press*
-[gabors-data-analysis.com](https://gabors-data-analysis.com/)
+This is an example of a coding lecture, which provides materials for students and lecturers to analyze the association between life expectancy and GDP measures for various countries in 2019.
 
-## Overview
+This lecture is based on Chapter 08, B: *How is life expectancy related to the average income of a country?*
 
+## Learning outcomes
+After successfully completing codes in *raw_codes* you should be able:
 
-## How to use
-
-### Folder structure within lectures
-
-Within each lecture there is the following folder structure:
-  - `raw_codes`: includes codes, which are ready to use during the course but require some live coding in class.
-  - `complete_codes`: includes codes with suggested solutions to codes in `raw_codes`
-  - `data`: in some cases, there is a data folder, which includes data files (typically in '.csv'). I have found it crucial during live-coding classes to make sure everybody has the same data.
-  - if there are no folders then:
-    - lecture has a notebook format, which implies complete live-coding class (mostly introduction or technical ''hard-core coding'' lectures)
-    - lecture has a complete R-script. In this case, the lecturer should pay attention to the interpretation of the material itself rather than to coding. Typically this is for more advanced case studies (chapters 13-18), where there is no new coding technique, but interpreting the results might be challenging.
-
-## Learning outcomes and relation to the book
-
-### Lectures, learning outcomes, and case-studies
-
-| Lecture  | Learning outcomes | Case-study |
-| -------  | ----------------- | ---------- |
-| [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) | Run and plot single variable regressions with transformations and residual analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
-
-### Relate case-studies to specific lecture
-Or one can relate each case study from the book to specific lectures.
-
-|Chapter | Case-study | Lecture |
-| ------ | ---------  | ------- |
-| Chapter 1 | [ch01-hotels-data-collect](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch01-hotels-data-collect) | |
-|           | [ch02-football-manager-success](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-football-manager-success) | |
-| Chapter 2 | [ch02-hotels-data-prep](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-hotels-data-prep) | |
-|           | [ch02-immunization-crosscountry](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-immunization-crosscountry) | |
-|           | [ch03-city-size-japan](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-city-size-japan) | |
-|           | [ch03-distributions-height-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-distributions-height-income) | |
-| Chapter 3 | [ch03-football-home-advantage](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-football-home-advantage) | |
-|           | [ch03-hotels-europe-compare](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-hotels-europe-compare) | |
-|           | [ch03-hotels-vienna-explore](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-hotels-vienna-explore) | |
-|           | [ch03-simulations](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-simulations) |  |
-| Chapter 4 | [ch04-management-firm-size](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch04-management-firm-size) |  |
-| Chapter 5 | [ch05-stock-market-loss-generalize](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch05-stock-market-loss-generalize) |  |
-| Chapter 6 | [ch06-online-offline-price-test](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch06-online-offline-price-test) |  |
-|           | [ch06-stock-market-loss-test](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch06-stock-market-loss-test) | |
-| Chapter 7 | [ch07-hotels-simple-reg](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch07-hotels-simple-reg)| |
-|           | [ch07-ols-simulation](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch07-ols-simulation) | |
-|           | [ch08-hotels-measurement-error](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-hotels-measurement-error) |  |
-| Chapter 8 | [ch08-hotels-nonlinear](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-hotels-nonlinear) |  |
-|           | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) | [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) |
-| Chapter 9 | [ch09-gender-age-earnings](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch09-gender-age-earnings) |  |
-|           | [ch09-hotels-europe-stability](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch09-hotels-europe-stability) |  |
-| Chapter 10 | [ch10-gender-earnings-understand](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch10-gender-earnings-understand) |  |
-|            | [ch10-hotels-multiple-reg](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch10-hotels-multiple-reg) |  |
-| Chapter 11 | [ch11-australia-rainfall-predict](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch11-australia-rainfall-predict) |  |
-|            | [ch11-smoking-health-risk](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch11-smoking-health-risk) |  |
-|            | [ch12-electricity-temperature](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-electricity-temperature) |  |
-| Chapter 12 | [ch12-stock-returns-risk](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-stock-returns-risk)|  |
-|            | [ch12-time-series-simulations](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-time-series-simulations) |  |
+`life_exp_getdata.R`
+  - Solid ground for importing and exporting data from World Bank's website via API.
 
 
+`life_exp_analysis.R`
+  - Create scatter-plots for competing models.
+  - Transform variables from level to log in a ggplot and scale the axis for proper interpretation.
+  - Run and plot multiple single-variable regressions with:
+    - log transformation,
+    - higher-order polynomial, or
+    - piecewise linear spline
+  - Be able to estimate heteroscedastic robust SEs and compare specific model results with `etable` in one output.
+  - Get model residuals and find the top or bottom largest (n) error(s). 
+
+## Lecture Time
+
+Ideal overall time: **60 mins**.
+
+Solving `life_exp_getdata.R` takes around *5-10 minutes* as it builds on [lecture01-data-imp_n_exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-data-imp_n_exp). In principle it should be a quick reminder and practice.
+
+Solving `life_exp_analysis.R` introduces the main material, and takes *40-60 minutes* depending on the student's background. This lecture is mainly a theory-based lecture (practice via case study) and includes easy, but many new commands in a repetitive way. 
+
+## Homework
+
+*Type*: quick practice, approx 15 mins
+
+Use the linear spline model:
+
+lifeexp<sub>i</sub> = &alpha; + &beta;<sub>1</sub> ( log( gdppc<sub>i</sub> ) < 50 ) + &beta;<sub>2</sub> ( log( gdppc<sub>i</sub> &ge; 50 )
+
+  and get the 5 largest positive and negative errors. Create a scatter graph with the regression line. Color these largest errors with a different color. 
+ Finally, annotate the largest positive and negative country within the graph.
+
+## Further material
+
+  - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income)
+  - Coding and simple linear regression: partially related is Chapter 3 from [James-Witten-Hastie-Tibshirani (2013) - An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
+  - On ggplot and transforming variables, see Chapter 3.5-6 and Chapter 5.6 [Kieran H. (2019): Data Visualization](https://socviz.co/makeplot.html#mapping-aesthetics-vs-setting-them). For the homework, Chapter 5.4 can be handy.
 
 
+## Folder structure
+  
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
+    - `life_exp_getdata.R`, shows how to get life-expectancy data (and GDP measure) directly from the World Bank's website via an API. It saves a raw data file.
+    - **`life_exp_analysis.R`** is the main material for this lecture. 
+  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/complete_codes) includes codes with solutions for
+    - `life_exp_getdata.R` as `life_exp_getdata_fin.R` and
+    - `life_exp_analysis.R` as `life_exp_analysis_fin.R`.
+    - furthermore, it includes `life_exp_clean.R`, which is an auxiliary file. It shows how to create clean data from the raw data, produced by *life_exp_getdata.R*. Usually, this code is skipped during the lecture as it is already known, but tedious material. If needed it can be given as extra homework.
+  - [data](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/data) includes [raw](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/data/raw) and [clean](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/data/clean) data which are produced by codes in [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/complete_codes).
+    - helps lagging students to catch up, without complete codes as files in [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/raw_codes) load data from this source.
 
-## Found an error or have a suggestion?
 
-Awesome, we know there are errors and bugs. Or just much better ways to do a procedure.
-
-To make a suggestion, please open a `GitHub issue` here with a title containing the case study name. You may also contact us directly.
