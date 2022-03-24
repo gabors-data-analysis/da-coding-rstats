@@ -29,6 +29,7 @@ Within each lecture there is the following folder structure:
 | Lecture  | Learning outcomes | Case-study |
 | -------  | ----------------- | ---------- |
 | [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) | Run and plot single variable regressions with transformations and residual analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
+| [lecture01-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-intro) | Introduction to RStudio. R-objects, basic operations, functions, vectors, lists | - |
 
 ### Relate case-studies to specific lecture
 Or one can relate each case study from the book to specific lectures.
