@@ -216,6 +216,12 @@ sqrt(4)
 ```
 which computes the square root of 4.
 
+**Tip:** If you are unsure what a function does: what inputs it expects and what it is going to give, you can check the help by using `?*name*` expression in the console and on the left window 'Help' section will provide you an answer with examples. E.g.:
+
+```{r}
+?sqrt
+```
+
 ## Type of R-objects
 
 One may be interested in the type of the R-object saved in a variable. As it turns out it is easy to get this information with the function of `typeof`:

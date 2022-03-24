@@ -212,7 +212,7 @@ collect all types, let us create a detailed list here:
 **R-objects**:
 
 -   *character* - also known as a string. Any variable which contains
-    letters, special characters, or numbers between ’’ or “” marks.
+    letters, special characters, or numbers between `''` or `""` marks.
 -   *numeric* - any numeric value, broadly speaking is called *double*.
 -   *integer* - a special numeric value, which is not a fraction. An
     extra ‘L’ is put next to the value in the Environment to show that
@@ -362,6 +362,15 @@ sqrt(4)
     ## [1] 2
 
 which computes the square root of 4.
+
+**Tip:** If you are unsure what a function does: what inputs it expects
+and what it is going to give, you can check the help by using `?*name*`
+expression in the console and on the left window ‘Help’ section will
+provide you an answer with examples.
+
+``` r
+?sqrt
+```
 
 ## Type of R-objects
 
