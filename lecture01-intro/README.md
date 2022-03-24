@@ -2,7 +2,7 @@
 *Coding course to complete Data Analysis in R*
 
 This is the first coding lecture, which introduces students to R and RStudio and shows how it works in general.
-It is a *live coding class*, that introduces the basics. Teaching material is detailed in [`getting_started.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.md).
+It is a **live coding class**, that introduces the basics. Teaching material is detailed in [`getting_started.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.md).
 
 
 ## Learning outcomes
