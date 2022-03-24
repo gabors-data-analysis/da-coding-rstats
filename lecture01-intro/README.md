@@ -45,5 +45,5 @@ This lecture time assumes that R and RStudion already work on their laptops.
   
   - [`getting_started.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.md) provides material for the live coding session with explanations.
   - [`getting_started.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.Rmd) is the generating Rmarkdown file for `getting_started.md`
-  - **[`first_script.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/first_script.Rmd)** is a possible realization of the live coding session
+  - **[`first_script.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/first_script.R)** is a possible realization of the live coding session
   - [`assignment_1.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/assignment_1.R) is the assignment after the first lecture.
