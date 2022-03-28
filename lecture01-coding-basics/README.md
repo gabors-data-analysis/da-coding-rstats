@@ -1,4 +1,4 @@
-# Lecture 01: Getting started with R
+# Lecture 01: Coding basics - R
 *Coding course to complete Data Analysis in R*
 
 This is the first coding lecture, which introduces students to R and RStudio and shows how it works in general.
