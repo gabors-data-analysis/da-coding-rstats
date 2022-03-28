@@ -38,3 +38,9 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 .DS_Store
+lecture02-data-imp_n_exp/data/hotels_vienna/raw/hotelbookingdata.csv
+lecture02-data-imp_n_exp/data/hotels_vienna/export/my_csvfile.csv
+lecture02-data-imp_n_exp/data/hotels_vienna/export/my_csvfile.xlsx
+lecture02-data-imp_n_exp/data/hotels_vienna/export/hotelbookingdata.xlsx
+lecture02-data-imp_n_exp/data/hotels_vienna/export/hotelbookingdata.RData
+lecture02-data-imp_n_exp/data/hotels_vienna/export/my_rfile.RData
