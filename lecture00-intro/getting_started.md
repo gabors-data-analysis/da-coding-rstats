@@ -46,9 +46,10 @@ be useful if you are getting familiar with and using some of the
 Codes that we are going to use in this course are stored in scripts.
 
 At this point, the lecturer should decide if she/he will run
-`intro_to_R.R` as a demonstration and ask students to pay attention or
-can do the running together. There is no perfect choice, both have some
-pros and cons.
+[`intro_to_R.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture00-intro/intro_to_R.R)
+as a demonstration and ask students to pay attention or can do the
+running together. There is no perfect choice, both have some pros and
+cons.
 
 Doing it alone and only showing:
 
@@ -70,8 +71,8 @@ Doing it alone and only showing:
         and end up with errors.
 
 If teacher decides to do it together, then consider
-`lecture01-coding-basics/coding_basics.md` first part: *Creating the
-first script*.
+[`lecture01-coding-basics/coding_basics.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md)
+first part: *Creating the first script*.
 
 -   Pro:
 
