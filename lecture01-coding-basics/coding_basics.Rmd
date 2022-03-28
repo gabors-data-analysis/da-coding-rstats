@@ -9,29 +9,6 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Getting familiar with the interface
-
-Show the following features of RStudio:
-
-Different windows:
-
-  * The Console/Terminal/Jobs window: what are they and how to use them
-  * Scripts and Files window: the main programming will happen here
-  * Environment/History/Connection/Tutorial window
-  * Files/Plots/Packages/Help/Viewer window
-
-## Using the console
-
-R can be used as a calculator through the console! E.g. you can type in:
-
-```{r calculator, include=TRUE}
-
-2+2
-
-```
-
-and R will calculate and show the result in the console window. Note that every command that you do will show in the console window. It can be useful if you are getting familiar with and using some of the 'clicking' options in R as we will see with data import.
-
 ## Creating the first script
 
 Using the console is really handy, but will not keep track of what we have done. R-scripts are for this purpose: collect your commands, you can save this as a file and rerun these commands whenever you want. This is the first pillar of good coding: reproducible codes. 
@@ -210,17 +187,20 @@ rm(d)
 ```
 will remove variable `d` from your environment and you can not refer to it anymore unless you re-define it.
 
+**Tip:** If you are unsure what a function does: what inputs it expects and what it is going to give, you can check the help by using `?*name*` expression in the console and on the left window 'Help' section will provide you an answer with examples. E.g.:
+
+```{r}
+?rm
+```
+
+**Good to know:** If you would like to remove all variables in the environment you can run `rm(list=ls())` command. This specifies an input called `list` for the `rm()` function and it tells R to clear everything. Here, you should **not run** this code as later we will use already defined variables.
+
 Another example is the square root function:
 ```{r}
 sqrt(4)
 ```
 which computes the square root of 4.
 
-**Tip:** If you are unsure what a function does: what inputs it expects and what it is going to give, you can check the help by using `?*name*` expression in the console and on the left window 'Help' section will provide you an answer with examples. E.g.:
-
-```{r}
-?sqrt
-```
 
 ## Type of R-objects
 

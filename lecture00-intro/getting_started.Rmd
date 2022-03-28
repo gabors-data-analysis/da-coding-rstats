@@ -1,0 +1,38 @@
+---
+title: "Getting started with R"
+author: Agoston Reguly
+output: github_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Getting familiar with the interface
+
+Show the following features of RStudio:
+
+Different windows:
+
+  * The Console/Terminal/Jobs window: what are they and how to use them
+  * Scripts and Files window: the main programming will happen here
+  * Environment/History/Connection/Tutorial window
+  * Files/Plots/Packages/Help/Viewer window
+
+## Using the console
+
+R can be used as a calculator through the console! E.g. you can type in:
+
+```{r calculator, include=TRUE}
+
+2+2
+
+```
+
+and R will calculate and show the result in the console window. Note that every command that you do will show in the console window. It can be useful if you are getting familiar with and using some of the 'clicking' options in R as we will see with data import.
+
+## Opening a script
+
+Codes that we are going to use in this course are stored in scripts. 
+
