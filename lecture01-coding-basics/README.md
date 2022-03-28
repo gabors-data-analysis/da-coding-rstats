@@ -2,11 +2,11 @@
 *Coding course to complete Data Analysis in R*
 
 This is the first coding lecture, which introduces students to R and RStudio and shows how it works in general.
-It is a **live coding class**, that introduces the basics. Teaching material is detailed in [`getting_started.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.md).
+It is a **live coding class**, that introduces the basics. Teaching material is detailed in [`coding_basics.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md).
 
 
 ## Learning outcomes
-After successfully live-coding the material (see: [`getting_started.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.md)), students will have knowledge on
+After successfully live-coding the material (see: [`coding_basics.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md)), students will have knowledge on
 
 - How RStudio works and which window is which.
 - How to run a command via console.
@@ -43,7 +43,7 @@ This lecture time assumes that R and RStudion already work on their laptops.
 
 ## File structure
   
-  - [`getting_started.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.md) provides material for the live coding session with explanations.
+  - [`coding_basics.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md) provides material for the live coding session with explanations.
   - [`getting_started.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.Rmd) is the generating Rmarkdown file for `getting_started.md`
   - **[`first_script.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/first_script.R)** is a possible realization of the live coding session
   - [`assignment_1.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/assignment_1.R) is the assignment after the first lecture.
