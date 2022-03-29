@@ -38,7 +38,7 @@ This lecture time assumes that R and RStudion already work on their laptops.
 
   - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 20](https://r4ds.had.co.nz/vectors.html) provide a similar but more detailed discussion.
   - Kieran H. (2019): Data Visualization [Chapter 2.2-2.3](https://socviz.co/gettingstarted.html#use-r-with-rstudio) introduces window structure in RStudio pretty well (Chapter 2.2) and basic syntax, objects, libraries (Chapter 2.3)
-  - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 02](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/02_code_style.Rmd) provides useful guidelines on how to write and format codes.
+  - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 02](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/02_code_style.Rmd) provides useful guidelines on how to write and format codes. [Lecture 03](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/03_1d_data.Rmd) provides some additional exercises and insights to R-objects, variable types and some basic functions.
 
 
 ## File structure
