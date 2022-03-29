@@ -38,7 +38,7 @@ WIP
 
 ## Further material
 
-  - Hadley Wickham and Garrett Grolemund R for Data Science: [Chapter 12](https://r4ds.had.co.nz/tidy-data.html) introduces to tidy approach and works with tibble. [Chapter 13](https://r4ds.had.co.nz/relational-data.html) provide a detailed discussion on merging.
+  - Hadley Wickham and Garrett Grolemund R for Data Science: [Chapter 12](https://r4ds.had.co.nz/tidy-data.html) introduces to tidy approach and works with tibble. [Chapter 13](https://r4ds.had.co.nz/relational-data.html) provides a detailed discussion on merging.
   - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 05]((https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/05_tidy_data.Rmd) provides useful further guidelines on tidy approach and merging.
 
 
