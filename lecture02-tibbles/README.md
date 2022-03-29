@@ -25,7 +25,7 @@ After successfully completing codes in *raw_codes* you should be able:
 
 ## Lecture Time
 
-Ideal overall time: **40 mins**.
+Ideal overall time: **30-40 mins**.
 
 Showing [`intro_to_tibbles.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-tibbles/raw_codes/intro_to_tibbles.R) takes around *15-20 minutes*, while doing the tasks would take the rest.
  
