@@ -1,7 +1,7 @@
 # Lecture 02: Tibbles
 *Coding course to complete Data Analysis in R*
 
-This lecture introduces `tibble`s as Data variable in `tidyverse`. It uses pre-written codes with tasks during the class.
+This lecture introduces `tibble`-s as Data variable in `tidyverse`. It uses pre-written codes with tasks during the class.
 
 
 ## Learning outcomes
@@ -47,7 +47,7 @@ WIP
   - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-tibbles/raw_codes) includes one code, which is ready to use during the course but requires some live coding in class.
     - [`intro_to_tibbles.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-tibbles/raw_codes/intro_to_tibbles.R)
   - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-tibbles/complete_codes) includes one code with solutions for
-    - [`intro_to_tibbles.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-tibbles/raw_codes/intro_to_tibbles.R) as - [`intro_to_tibbles_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-tibbles/complete_codes/intro_to_tibbles_fin.R)
+    - [`intro_to_tibbles_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-tibbles/complete_codes/intro_to_tibbles_fin.R) solution for: [`intro_to_tibbles.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-tibbles/raw_codes/intro_to_tibbles.R)
     
 
 
