@@ -47,3 +47,6 @@ lecture02-data-imp_n_exp/data/hotels_vienna/export/my_rfile.RData
 lecture00-intro/test_Rmarkdown.html
 lecture00-intro/test_Rmarkdown.pdf
 TO DOs
+lecture03-data-imp_n_exp/data/hotels_vienna/export/my_csvfile.csv
+lecture03-data-imp_n_exp/data/hotels_vienna/export/my_csvfile.xlsx
+lecture03-data-imp_n_exp/data/hotels_vienna/export/my_rfile.RData
