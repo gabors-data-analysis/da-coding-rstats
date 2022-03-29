@@ -130,7 +130,9 @@ but in each year there are something new, that needs individual fixes…
 (alternatively can use RStudio via a cloud, which has other pros and
 cons.)
 
-Open `test_Rmarkdown.Rmd` and knit with **both** output options:
+Open
+[`test_Rmarkdown.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture00-intro/test_Rmarkdown.Rmd)
+and knit with **both** output options:
 
 -   output: pdf_document
 -   output: html_document

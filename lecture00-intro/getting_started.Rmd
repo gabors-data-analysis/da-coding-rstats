@@ -98,7 +98,7 @@ RMarkdown is a powerful tool, provided in RStudio, which helps to create reports
 
 It is always a good practice to try to knit at the first class an Rmarkdown file. This is the most painful process of the course, to make sure that everybody can knit an Rmarkdown file into a pdf or a html file. Usually, the problem is with pdf. Therefore it is good to start in the first class to identify the problem and then the teacher needs to pay individual attention to each case. Of course, there are several common mistakes/problems (see more in: [*Help to knit my document in RMarkdown*](https://github.com/gabors-data-analysis/da-coding-rstats/common_issues/help_rmarkdown.md)), but in each year there are something new, that needs individual fixes... (alternatively can use RStudio via a cloud, which has other pros and cons.)
 
-Open `test_Rmarkdown.Rmd` and knit with **both** output options:
+Open [`test_Rmarkdown.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture00-intro/test_Rmarkdown.Rmd) and knit with **both** output options:
 
 -   output: pdf_document
 -   output: html_document
