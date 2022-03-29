@@ -47,8 +47,8 @@ View(df)
 #   It can be used similarly, but newer functions and manipulations with tidyverse functions 
 #   are not supported, thus may cause a problem later.
 df_old1 <- data_frame(id=c(1,2,3,4,5,6),
-                 age=c(25,30,33,NA,26,38),
-                 grade=c("A","A+","B","B-","B+","A"))
+                      age=c(25,30,33,NA,26,38),
+                      grade=c("A","A+","B","B-","B+","A"))
 
 # data.frame is the built-in Data variable in R. It seems also nice, 
 #   but tidyverse functions and manipulations will not work with them.
@@ -140,14 +140,7 @@ df$grade[ df$age >= 25 & df$age < 35 ]
 # 3) Find the ages of these observations
 # Extra: use the `which()` function to find these values instead
 #     which function is handy if you are interested in the index values itself, but using logicals
-df$id[ is.na( df$age ) ]
-df$id[ df$grade == 'A' | df$grade == 'A+' ]
-# which function
-?which
-which( is.na( df$age ) )
-which( !is.na( df$age ) )
-df$id[ which( df$grade == 'A' | df$grade == 'A+' ) ]
-df$age[ which( df$grade == 'A' | df$grade == 'A+' ) ]
+
 
 
 
@@ -187,14 +180,7 @@ sd( df$age , na.rm = TRUE )
 #       for students with grade lower or equal than B+
 #   - what are the issues that you have encountered?
 #   - what are the potential solutions? Name at least two of them!
-logID <- df$grade == "B+" | df$grade == 'B' | df$grade == 'B-' | df$grade == 'C'
-new_group <- df$age[ logID ]
-mean( df$age[ logID ] , na.rm = TRUE )
-sd( df$age[ logID ] , na.rm = TRUE ) 
-# What happens if using NOT A or A+
-logNID <- !(df$grade == "A" | df$grade == "A+")
 
-all( logID == logNID )
 
 
 #########
@@ -260,9 +246,9 @@ df <- df[df$id != 7 , ]
 
 # We have an additional tibble with new observations
 df_2 <- tibble(id=c(10,11,12,13,14,15),
-                age=c(16,40,52,24,28,26),
-                grade=c("C","A","B-","C+","B+","A-"),
-                gender=c("F","F","M","M","M","F"))
+               age=c(16,40,52,24,28,26),
+               grade=c("C","A","B-","C+","B+","A-"),
+               gender=c("F","F","M","M","M","F"))
 df_2
 
 # We would like to add this new data table to our original data table:
@@ -307,25 +293,17 @@ df_new2
 #     For all students the year is 2002 and the month is 9.
 #       Use left_join.
 #
-df_new3 <- left_join( df_new2 , tibble( id = df_new2$id ,
-                                        year = 2002,
-                                        month = 9, ) , 
-                      by = "id" )
-df_new3
+
+df_new3 <-
+
 #
 # 2) Create a new datatable `df_new4`, which extends the tibble df_new3 in the following way:
 #   It repeats all the values that are in df_new3 with the following exceptions:
 #     - age is age + 10
 #     - year is 2012
-#   Hint: use `rbind()` and you can make a shortcut by using the specific variables such as `df_new3$id`, ect.
+#   Hint: use `rbind()`
 
-aux_table <- tibble( id = df_new3$id , 
-                     age = df_new3$age + 10 ,
-                     grade = df_new3$grade ,
-                     height = df_new3$height,
-                     year = df_new3$year + 10,
-                     month = df_new3$month,
-                     gender = df_new3$gender ) 
+aux_table <- 
 
 df_new4 <- rbind( df_new3 , aux_table )
 df_new4
