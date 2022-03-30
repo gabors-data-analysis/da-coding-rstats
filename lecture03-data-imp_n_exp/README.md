@@ -1,4 +1,4 @@
-# Lecture 03: Import and Export data to RStudio
+# Lecture 03: Import and Export data to R
 *Coding course to complete Data Analysis in R*
 
 This lecture introduces students to importing and exporting data to R. Various importation technique is discussed and several options on how to export data to the local computer.
