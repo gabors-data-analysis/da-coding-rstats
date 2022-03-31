@@ -20,6 +20,13 @@ This is not a hardcore coding course, but a course to supplement data analysis. 
 
 The material structure also reflects this principle. The majority of the lectures have pre-written codes which include in-class tasks. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding.
 
+### Lectures, learning outcomes, and case-studies
+
+| Lecture  | Lecture Type | Learning outcomes | Case-study |
+| -------  | ----------------- | ---------- |
+| [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) | pre-written with tasks | Run and plot single variable regressions with transformations and residual analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
+| [lecture01-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-intro) | live coding |Introduction to RStudio. R-objects, basic operations, functions, vectors, lists | - |
+
 ### Folder structure within lectures
 
 Within each lecture there is the following folder structure:
@@ -36,14 +43,8 @@ Probably, the largest difference compared to the book is that data handling is t
 
 In contrast, Part II in the book deals with regressions of various forms. This is fairly simple from the coding perspective, which allows the lecturer to deepen students' knowledge of a) basic coding principles; b) add further data handling practices to students' toolkit, and c) provide more skills on Rmarkdown, while following the material of the book. If material is properly taught -- for Part III of the book -- there is no need for an extra coding course, but a simple seminar type of supplement, which put emphasis on *interpretation* and *practice* of machine learning methods. In principle after these materials, students should be able to code by themself and understand and work with case study materials related to Part IV.
 
-### Lectures, learning outcomes, and case-studies
 
-| Lecture  | Learning outcomes | Case-study |
-| -------  | ----------------- | ---------- |
-| [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) | Run and plot single variable regressions with transformations and residual analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
-| [lecture01-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-intro) | Introduction to RStudio. R-objects, basic operations, functions, vectors, lists | - |
-
-### Relate case-studies to specific lecture
+### Case-studies and coding lectures
 Or one can relate each case study from the book to specific lectures.
 
 |Chapter | Case-study | Lecture |
