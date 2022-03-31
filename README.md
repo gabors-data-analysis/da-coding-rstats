@@ -10,7 +10,7 @@ Published on 6 May 2021 by Cambridge University Press*
 ## Overview
 
 
-## How to use
+## How to use and teaching philisophy
 
 ### Folder structure within lectures
 
