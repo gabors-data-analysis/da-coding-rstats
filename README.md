@@ -23,7 +23,7 @@ The material structure also reflects this principle. The majority of the lecture
 ### Lectures, learning outcomes, and case-studies
 
 | Lecture  | Lecture Type | Learning outcomes | Case-study |
-| -------  | ----------------- | ---------- |
+| -------  | -------------| ----------------- | ---------- |
 | [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) | pre-written with tasks | Run and plot single variable regressions with transformations and residual analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
 | [lecture01-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-intro) | live coding |Introduction to RStudio. R-objects, basic operations, functions, vectors, lists | - |
 
