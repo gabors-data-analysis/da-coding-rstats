@@ -1,13 +1,6 @@
 ###############################
 ##  INTRO TO                 ##
-##        DATA MUNGING:      ##
-##                           ##
-##  a) Tibble as 'Data' var  ##
-##  b) Indexing              ##
-##  c) Simple functions      ##
-##  d) Reset values,         ##
-##      add rows and cols    ##
-##  f) Merging tibbles       ##
+##        DATA MUNGING      ##
 ##                           ##
 ##                           ##
 ###############################
