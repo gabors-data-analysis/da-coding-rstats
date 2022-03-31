@@ -6,6 +6,7 @@ Descriptive statistics and descriptive graphs for one variable are concerned to 
 Moreover simple hypothesis testing is covered as well as association graphs and statistics between two variables.
 
 This lecture uses the [*Billion Price Project* case study from Chapter 6](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch06-online-offline-price-test) and extends it to specific tools to use in data exploration.
+This lecture also uses materials from case studies: XXX
 
 
 ## Learning outcomes
@@ -56,7 +57,8 @@ WIP
 
   - Hadley Wickham and Garrett Grolemund: R for Data Science, [Chapter 3](https://r4ds.had.co.nz/data-visualisation.html) introduces to `ggplot` and show some features how to visualize data. [Chapter 5.6-7](https://r4ds.had.co.nz/transform.html) discusses `summarise` and `group_by` more in detail. [Chapter 7](https://r4ds.had.co.nz/exploratory-data-analysis.html) provides an overview on histograms, scatter plot and associations along with other exploratory tools. [Chapter 15](https://r4ds.had.co.nz/factors.html) provides further material on factors.
   - Billion-Price-Project case study can be found in Gabor's da_case_studies repository: [ch06-online-offline-price-test](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch06-online-offline-price-test) This case study primarly focuses on hypothesis testing only.
-  - Data exploration case study in Gabor's da_case_studies repository is [ch03-hotels-vienna-explore](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch03-hotels-vienna-explore/ch03-hotels-vienna-explore.R). It focuses on bars, histograms and basic descriptive statistics.
+  - Data exploration case study in Gabor's da_case_studies repository is [ch03-hotels-vienna-explore](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch03-hotels-vienna-explore) and [ch03-hotels-europe-compare](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch03-hotels-europe-compare). It focuses on bars, histograms and basic descriptive statistics.
+  - Association, scatter and bin-scatter is used in case study [ch04-management-firm-size](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch04-management-firm-size) in Gabor's book.
   - Kieran Healy: Data Visualization, [Chapter 3](https://socviz.co/makeplot.html#makeplot) is a great (but somewhat outdated) overview of ggplot and the theory behind.
   - [Winston Chang: R Graphics Cookbook](https://r-graphics.org/) is a great book all about graphics in general with R.
   - Andrew Heiss: Data Visualization with R - [Lesson 3](https://datavizs21.classes.andrewheiss.com/lesson/03-lesson/) points to many other useful links to use ggplot. [Lesson 4](https://datavizs21.classes.andrewheiss.com/lesson/04-lesson/) overviews `summarise` and `group_by`.
