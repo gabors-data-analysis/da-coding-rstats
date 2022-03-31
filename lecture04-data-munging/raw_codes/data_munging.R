@@ -221,6 +221,28 @@ df <- filter( df , !duplicated(  select( df , country,hotel_id,
 
 hotel_vienna <- 
 
+  
+  
+###
+# Pipes in tidyverse
+#
+# tidyverse allows 'pipes' which is a great and intuitive programming expression:
+# It allows to make multiple sequential manipulations with one command:
+# use `%>%` which says: take obj1 %>% do manipulations.
+  
+  # E.g. filter out Vienna from df:
+df %>% filter( city == 'Vienna' )
+
+# Or do multiple filters:
+df %>% filter( city == 'Vienna' ) %>% 
+  filter( year == 2017 & month == 11 & weekend == 0 )
+
+# But the great advantage is that you can use different functions e.g.
+df %>% filter( city == 'Vienna' ) %>%
+  select( city, distance ) %>% 
+  rename( town = city )
+
+# %>% has a hotkey of `cmd+shift+m` on mac and `ctrl+shift+m` on windows  
 
 ##
 # Make data table more `pretty`
