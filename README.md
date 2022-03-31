@@ -10,7 +10,15 @@ Published on 6 May 2021 by Cambridge University Press*
 ## Overview
 
 
-## How to use and teaching philisophy
+## How to use
+
+## Teaching philosophy
+
+We believe, students will learn using R by writing scripts, solving problems on their own and we can provide and show them good practices on how to do it. 
+
+This is not a hardcore coding course, but a course to supplement data analysis. The material focuses on specific issues in this topic and balances between higher levels of coding such as `tidyverse` -- which is more intuitive, easier to learn but less flexible -- and basic coding principles -- which allows greater complexity, but requires much more practice and has a steeper learning curve. 
+
+The material structure also reflects this principle. The majority of the lectures have pre-written codes which include in-class tasks. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding.
 
 ### Folder structure within lectures
 
@@ -19,10 +27,14 @@ Within each lecture there is the following folder structure:
   - `complete_codes`: includes codes with suggested solutions to codes in `raw_codes`
   - `data`: in some cases, there is a data folder, which includes data files (typically in '.csv'). I have found it crucial during live-coding classes to make sure everybody has the same data.
   - if there are no folders then:
-    - lecture has a notebook format, which implies complete live-coding class (mostly introduction or technical ''hard-core coding'' lectures)
+    - lecture has a notebook format, which implies a complete live-coding class (mostly introduction or technical ''hard-core coding'' lectures)
     - lecture has a complete R-script. In this case, the lecturer should pay attention to the interpretation of the material itself rather than to coding. Typically this is for more advanced case studies (chapters 13-18), where there is no new coding technique, but interpreting the results might be challenging.
 
 ## Learning outcomes and relation to the book
+
+Probably, the largest difference compared to the book is that data handling is the most challenging and most time-consuming part of coding, while it is a relatively little part of the book. It is always a challenge to keep up with the material if the two courses (Data Analysis and Coding) are running parallel. Experience shows that lecture 05 - data exploration in this course is the first truly common point with the book and lecture 06 - rmarkdown101 enables students to submit data analysis material via pdf or HTML. This coding material was developed such that it catches up with the book as quickly as possible. The result is that after 6 lectures from both courses (teaching Part I. of the book) there is room for common assignment in the form of a descriptive analysis. The 'cost' is that apart from some references or homework there is no true connection between the two courses before lecture 05 in coding. Also do not expect students to be able to solve (all) of the data exercises from the book (however, there were some positive surprises during the years).
+
+After 
 
 ### Lectures, learning outcomes, and case-studies
 
