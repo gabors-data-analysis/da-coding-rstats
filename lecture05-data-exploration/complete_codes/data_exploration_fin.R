@@ -361,7 +361,7 @@ t.test( bpp$p_diff , mu = 0 , alternative = "greater" )
 t.test( bpp$p_diff , mu = 0 , alternative = "less" )
 
 ###
-# summarise and group_by functions intidyverse:
+# summarise and group_by functions in tidyverse:
 #
 # Let us create multiple hypothesis tests:
 #   check the hypothesis that online prices are the same as offline for each country!
