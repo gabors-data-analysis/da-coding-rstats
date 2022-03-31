@@ -39,7 +39,8 @@ WIP
 ## Further material
 
   - Hadley Wickham and Garrett Grolemund R for Data Science: [Chapter 5](https://r4ds.had.co.nz/transform.html) provides an overview of the type of variables, selecting, filtering, and arranging along with others. [Chapter 15](https://r4ds.had.co.nz/factors.html) provides further material on factors.
-  - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 03](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/03_1d_data.Rmd) is relevant for factors, but includes many more. [Lecture 6](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/06_slicing_dicing.Rmd) introduces similar manipulations with tibble.
+  - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 3](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/03_1d_data.Rmd) is relevant for factors, but includes many more. [Lecture 6](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/06_slicing_dicing.Rmd) introduces similar manipulations with tibble.
+  - Grant McDermott: Data Science for Economists, Course material, [Lecture 5](https://github.com/uo-ec607/lectures/blob/master/05-tidyverse/05-tidyverse.pdf) is a nice overview on tidyverse with easy data manipulations.
 
 
 ## Folder structure
