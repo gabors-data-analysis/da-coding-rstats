@@ -37,6 +37,7 @@ No homework, apart from fixing possible issues with R, RStudio, and compiling an
 
   - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 3](https://r4ds.had.co.nz/data-visualisation.html) on libraries, [Chapter 6](https://r4ds.had.co.nz/workflow-scripts.html) on windows and workflow.
   - Kieran H. (2019): Data Visualization [Chapter 2.2](https://socviz.co/gettingstarted.html#use-r-with-rstudio) introduces window structure in RStudio pretty well
+  - Andrew Heiss: Data Visualization with R, [Lesson 1](https://datavizs21.classes.andrewheiss.com/lesson/01-lesson/) provides some great videos and introduction to R and Rmarkdown.
 
 
 ## File structure
