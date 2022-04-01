@@ -245,6 +245,27 @@ any( v & q > 0 )
 
     ## [1] TRUE
 
+Finally, with two or more vectors there is an other way to evaluate a
+conditional: first decide for each element of each vector if the
+statement is true and then compare that result with each other. It may
+result in a outcome. E.g. check if all elements are greater than 0 for
+each vector and then compare if both of them are true:
+
+``` r
+all( v > 0 ) && all( q > 0)
+```
+
+    ## [1] FALSE
+
+or check if all elements in `v` but any elements in `q` and then use the
+or comparison:
+
+``` r
+all( v > 0 ) || any( q > 0 )
+```
+
+    ## [1] TRUE
+
 ## Extra material
 
 In the following, we cover some non-essential, but good-to-know
