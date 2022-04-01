@@ -35,7 +35,7 @@ Showing [`ggplot_indepth.R`](https://github.com/gabors-data-analysis/da-coding-r
 *Type*: quick practice, approx 15 mins
   - students need to create their own theme. Encourage them to use it during the course (and others).
   - Two files: 
-    - [`homework_ggplot_runme.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/raw_codes/homework_ggplot_runme.R) is the evaluation file, where students need to call their theme file and do some partial coding.
+    - [`homework_ggpplot_runfile.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/raw_codes/homework_ggpplot_runfile.R) is the evaluation file, where students need to call their theme file and do some partial coding.
     - [`theme_RENAMEME.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/raw_codes/theme_RENAMEME.R) is the skeleton for the theme and the student need to change the name of this script. This includes the main task: the creation of the theme.
 
 
@@ -52,7 +52,7 @@ Showing [`ggplot_indepth.R`](https://github.com/gabors-data-analysis/da-coding-r
   - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/raw_codes) includes one code, which is ready to use during the course but requires some live coding in class.
     -[`ggplot_indepth.R`](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture07-ggplot-indepth/raw_codes/ggplot_indepth.R) is the main course material.
     - [`theme_bluewhite.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/raw_codes/theme_bluewhite.R) shows an example for a user defined theme for `ggplot`.
-    - [`homework_ggplot_runme.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/raw_codes/homework_ggplot_runme.R) is the homework main file.
+    - [`homework_ggpplot_runfile.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/raw_codes/homework_ggpplot_runfile.R) is the homework main file.
     - [`theme_RENAMEME.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/raw_codes/theme_RENAMEME.R) is the skeleton for the theme and the student need to change the name of this script.
   - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth/complete_codes) includes one code with solutions for
     -[`ggplot_indepth.R_fin`](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture07-ggplot-indepth/complete_codes/ggplot_indepth_fin.R) is the completed file for [`ggplot_indepth.R`](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture07-ggplot-indepth/raw_codes/ggplot_indepth.R)
