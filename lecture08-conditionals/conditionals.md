@@ -100,6 +100,13 @@ if ( x > 0 ){
 
     ## [1] "negative number"
 
+**Tip:** it is always a good practice to use an `else` part in the
+conditionals. In many cases we do mistakes and R will not evaluate any
+of our commands, even if we believe we mapped all the possible
+scenarios. In this case you can put an `else` statement with an error or
+print out some message to notify that you need to refine your
+statements.
+
 ## Multiple conditions
 
 From the logic of `if` and `else` statements it follows that multiple
