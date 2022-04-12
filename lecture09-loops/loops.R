@@ -57,11 +57,11 @@ if ( all( cs_v == cumsum( v ) ) ){
 }
 
 ## Measure CPU time
-# install.packages("devtools")
-# library( devtools )
-# devtools::install_github("jabiru/tictoc")
-install.packages("tictoc")
-library(tictoc)
+if (!require(tictoc)){
+  install.packages("tictoc")
+  library(tictoc)
+}
+
 
 iter_num <- 10000
 
