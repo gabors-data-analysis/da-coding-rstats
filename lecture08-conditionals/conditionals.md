@@ -271,6 +271,45 @@ all( v > 0 ) || any( q > 0 )
 In the following, we cover some non-essential, but good-to-know
 materials related to conditionals.
 
+### Conditional installation of packages
+
+Let us start with a somewhat un-related issue. It is really useful to
+install a package conditional on if it has been already installed or
+not. It helps a lot for working with others.
+
+A simple example for `tidyverse`:
+
+``` r
+if ( !require(tidyverse) ){
+  install.packages("tidyverse")
+  library(tidyverse)
+}
+```
+
+    ## Loading required package: tidyverse
+
+    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+
+    ## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
+    ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+    ## ✓ readr   2.1.1     ✓ forcats 0.5.1
+
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
+
+This can help you to avoide to install a package multiple times!
+
+Pseudo-code:
+
+``` r
+if(!require(somepackage)){
+    install.packages("somepackage")
+    library(somepackage)
+}
+```
+
 ### Spacing and formatting
 
 It is possible to write short `if-else` statements in one line:

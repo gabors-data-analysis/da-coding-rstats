@@ -188,6 +188,28 @@ all( v > 0 ) || any( q > 0 )
 
 In the following, we cover some non-essential, but good-to-know materials related to conditionals.
 
+### Conditional installation of packages
+
+Let us start with a somewhat un-related issue. It is really useful to install a package conditional on if it has been already installed or not. It helps a lot for working with others. 
+
+A simple example for `tidyverse`:
+
+```{r}
+if ( !require(tidyverse) ){
+  install.packages("tidyverse")
+  library(tidyverse)
+}
+```
+This can help you to avoide to install a package multiple times!
+
+Pseudo-code:
+```{r, eval=FALSE}
+if(!require(somepackage)){
+    install.packages("somepackage")
+    library(somepackage)
+}
+```
+
 ### Spacing and formatting
 
 It is possible to write short `if-else` statements in one line:

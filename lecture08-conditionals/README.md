@@ -18,6 +18,7 @@ After successfully live-coding the material (see: [`conditionals.md`](https://gi
   - understanding pairwise comparison of vectors
   - understanding different levels of evaluation of logical operators.
 - extra material
+  - conditional installation of packages
   - spacing and formatting the `if-else` statements
   - `ifelse()` function
   - `xor` function
