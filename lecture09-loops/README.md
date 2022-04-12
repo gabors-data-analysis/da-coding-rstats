@@ -1,0 +1,46 @@
+# Lecture 08: Conditional Programming in R
+*Coding course to complete Data Analysis in R*
+
+This lecture introduces students to conditional programming with `if-else` statements. It covers the essentials as well as logical operations with vectors.
+
+
+## Learning outcomes
+After successfully live-coding the material (see: [`conditionals.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture08-conditionals/conditionals.md)), students will have knowledge on
+
+- How a conditional statement works
+- What are the crucial elements of an `if-else` statement
+- Good practices writing a conditional
+- How multiple conditions work
+  - single-valued variables with multiple conditions
+  - vector variables with conditions
+- with vectors:
+  - understanding the differences between `|`, `||`, `&`, `&&`, `any()` and `all()`
+  - understanding pairwise comparison of vectors
+  - understanding different levels of evaluation of logical operators.
+- extra material
+  - spacing and formatting the `if-else` statements
+  - `ifelse()` function
+  - `xor` function
+  - `switch` statement 
+
+## Lecture Time
+
+Ideal overall time: **10-20 mins**.
+
+This is a relatively short lecture, and it can be even shorter if logical operators with vectors is neglected. Although good understanding of the anatomy of an `if-else` statement is important
+
+## Homework
+
+*Type*: quick practice, approx 15 mins, together with [lecture09-loops](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture09-loops), [lecture10-functions](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture10-functions), and [lecture11-random_numbers](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture11-random_numbers)
+
+## Further material
+
+  - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 19.4](https://r4ds.had.co.nz/functions.html) provides further material on conditionals.
+  - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 10](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/10_functional_programming.Rmd) provides useful guidelines on conditionals along with other programming skills.
+
+
+## File structure
+  
+  - [`conditionals.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture08-conditionals/conditionals.md) provides material for the live coding session with explanations.
+  - [`conditionals.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture08-conditionals/conditionals.Rmd) is the generating Rmarkdown file for `conditionals.md`
+  - **[`conditionals.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture08-conditionals/conditionals.R)** is a possible realization of the live coding session
