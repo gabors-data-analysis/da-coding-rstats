@@ -1,8 +1,9 @@
-#####################
-##  Random numbers ##
-##    and          ##
-##  Functions      ##
-#####################
+##################################
+##                              ##
+##  Random Numbers and          ##
+##       Random Sampling in R   ##
+##                              ##
+##################################
 
 # Clear memory and load packages
 rm(list=ls())
