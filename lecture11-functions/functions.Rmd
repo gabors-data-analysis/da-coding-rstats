@@ -1,0 +1,63 @@
+---
+title: "Functions: Programming with R"
+author: Agoston Reguly
+output: github_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Functions
+
+Functions allow you to automate common tasks in a more powerful and general way than copy-and-pasting. Writing a function has three big advantages over using copy-and-paste:
+
+1. You can give a function an evocative name that makes your code easier to understand.
+
+2. As requirements change, you only need to update code in one place, instead of many.
+
+3. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another). 
+
+Good code style is like correct punctuation. Youcanmanagewithoutit, but it sure makes things easier to read! As with styles of punctuation, there are many possible variations. Here we present the style we use in our code, but the most important thing is to be consistent. *(Hadley Wickham and Garrett Grolemund R for Data Science Ch. 19.1)*
+
+
+## Anatomy of a function
+
+
+```{r, eval=FALSE}
+name_function <- function( input1, input2, ... ){
+  task1 <- command1
+  task2 <- task1_with_command2
+}
+```
+
+E.g. we can calculate the average of a numeric vector easily, and call this function as `my_avg`:
+```{r}
+my_avg <- function( x ){
+  sum_x <- sum( x )
+  sum_x / length( x )
+}
+
+x <- c( 1, 5, 389, -45, 33, 1187 , -986)
+# Print out
+my_avg( x )
+
+# or save it as a variable
+avg_x <- my_avg( x )
+
+```
+
+In general R always gives you as output the last command. E.g. we can calculate the standard deviation as. Let us call this now `my_fun`.
+
+```{r}
+my_fun <- function( x ){
+  sum_x <- sum( x )
+  sum_x / length( x )
+  sd_x <- sd( x )
+}
+
+my_fun( x )
+```
+
+
