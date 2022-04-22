@@ -28,6 +28,8 @@ This is a relatively short lecture with few coding, but many background knowledg
 
 *Type*: quick practice, approx 15 mins, together with [lecture08-conditionals](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture08-conditionals), [lecture09-loops](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture09-loops), and [lecture11-functions](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture11-functions)
 
+Check the common homework [here](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture11-functions/README.md).
+
 ## Further material
 
   - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 10](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/10_functional_programming.Rmd) touches the topic, but not too deeply.
