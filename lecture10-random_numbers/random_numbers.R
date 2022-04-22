@@ -34,20 +34,29 @@ ggplot( df , aes( x = var1 ) ) +
 # There are some other type of distributions:
 #   rbinom, rexp ,rlnorm, etc.
 
+
+#####
 # Random sampling from a data/variable:
+
+sp500 <- read_csv('https://osf.io/h64z2/download')
+head(sp500)
+
+
 # Sample_1 is without replacement
 set.seed(123)
-sample_1 <- sample_n( df , 1000 , replace = FALSE )
+sample_1 <- sample_n( sp500 , 1000 , replace = FALSE )
+head(sample_1)
 # Sample_2 with replacement -> useful for bootstrapping
-sample_2 <- sample_n( df , 1000 , replace = TRUE )
+sample_2 <- sample_n( sp500 , 1000 , replace = TRUE )
 
 # alternatively:
 set.seed(123)
-sample_1a <- slice_sample( df , n = 1000 , replace = FALSE )
+sample_1a <- slice_sample( sp500 , n = 1000 , replace = FALSE )
 set.seed(123)
-sample_1b <- tibble( var1 = sample( df$var1 , 1000 , replace = FALSE ) )
+sample_1b <- tibble( VALUE = sample( sp500$VALUE , 1000 , replace = FALSE ) )
 set.seed(123)
-sample_1c <- df[sample.int( 1000 , replace = FALSE ),]
-# Note: all the other are the same except sample_1c
+sample_1c <- sp500[sample.int( 1000 , replace = FALSE ),]
+# Note: all the other are the same except sample_1c, this is due to the fact 
+#   that set.seed controls for the output of the function, but the function may alter the seed.
 
 
