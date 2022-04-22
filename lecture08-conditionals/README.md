@@ -32,7 +32,7 @@ This is a relatively short lecture, and it can be even shorter if logical operat
 
 ## Homework
 
-*Type*: quick practice, approx 15 mins, together with [lecture09-loops](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture09-loops), [lecture10-functions](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture10-functions), and [lecture11-random_numbers](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture11-random_numbers)
+*Type*: quick practice, approx 15 mins, together with [lecture09-loops](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture09-loops), [lecture10-random_numbers](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture10-random_numbers), and [lecture11-functions](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture11-functions)
 
 ## Further material
 
