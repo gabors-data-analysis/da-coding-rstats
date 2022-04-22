@@ -1,7 +1,9 @@
 # Lecture 11: Writing Functions
 *Coding course to complete Data Analysis in R*
 
-This lecture introduces students to imperative programming with `for` and `while` loops. 
+This lecture introduces functions, how they are structured and how to write them.
+
+It uses `sp500` data as a homework from the case study [CH05A](https://gabors-data-analysis.com/casestudies/#ch05a-what-likelihood-of-loss-to-expect-on-a-stock-portfolio) to calculate bootstrap standard errors and calculate confidence intervals.
 
 
 ## Learning outcomes
