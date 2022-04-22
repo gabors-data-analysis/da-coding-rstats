@@ -27,6 +27,8 @@ This is a relatively short lecture, and it can be even shorter if measuring CPU 
 
 *Type*: quick practice, approx 15 mins, together with [lecture08-conditionals](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture08-conditionals), [lecture10-random_numbers](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture10-random_numbers), and [lecture11-functions](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture11-functions).
 
+Check the common homework [here](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture11-functions/README.md).
+
 ## Further material
 
   - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 21](https://r4ds.had.co.nz/iteration.html) provide further material on iterations, both imperative and functional programming.
