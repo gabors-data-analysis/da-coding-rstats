@@ -1,4 +1,4 @@
-# Lecture 09: Writing Functions
+# Lecture 11: Writing Functions
 *Coding course to complete Data Analysis in R*
 
 This lecture introduces students to imperative programming with `for` and `while` loops. 
