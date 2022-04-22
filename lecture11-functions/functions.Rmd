@@ -39,25 +39,284 @@ my_avg <- function( x ){
   sum_x / length( x )
 }
 
-x <- c( 1, 5, 389, -45, 33, 1187 , -986)
+# Generate a random normal as an example for the input
+set.seed( 1234 )
+x1 <- rnorm( 1000 , mean = 15 , sd = 5 )
 # Print out
-my_avg( x )
+my_avg( x1 )
 
 # or save it as a variable
-avg_x <- my_avg( x )
+avg_x <- my_avg( x1 )
+avg_x
 
 ```
 
-In general R always gives you as output the last command. E.g. we can calculate the standard deviation as. Let us call this now `my_fun`.
+In general R always gives you the last command as output. E.g. we can calculate the standard deviation. Let us call this now `my_fun1`.
 
 ```{r}
-my_fun <- function( x ){
+my_fun1 <- function( x ){
   sum_x <- sum( x )
-  sum_x / length( x )
-  sd_x <- sd( x )
+  # number of observations
+  N <- length( x )
+  # Mean of x
+  mean_x <- sum_x / N
+  # Variance of x
+  var_x  <- sum( ( x - mean_x )^2 / N )
+  # Standard deviation of x
+  sqrt( var_x )
 }
 
-my_fun( x )
+# Get the standard deviation for x1
+my_fun1( x1 )
+```
+
+### Control for output
+
+We can control for the output as well. E.g. if we want the mean, but want to calculate the standard deviation as well, we can copy the same code and add `return` command to control for the output.
+
+```{r}
+my_fun2 <- function( x ){
+  sum_x <- sum( x )
+  # number of observations
+  N <- length( x )
+  # Mean of x
+  mean_x <- sum_x / N
+  # Variance of x
+  var_x  <- sum( ( x - mean_x )^2 ) / ( N - 1 )
+  # Standard deviation of x
+  sqrt( var_x )
+  return( mean_x )
+}
+
+# Get the mean for x1
+my_fun2( x1 )
+
+```
+
+### Multiple output
+
+To be more realistic, in many case we want to have multiple outputs. Creating a list is a great tool to do that and one can use the `$` sign to get the needed output.
+
+```{r}
+
+my_fun3 <- function( x ){
+  sum_x <- sum( x )
+  # number of observations
+  N <- length( x )
+  # Mean of x
+  mean_x <- sum_x / N
+  # Variance of x
+  var_x  <- sum( ( x - mean_x )^2 ) / ( N - 1 )
+  # Standard deviation of x
+  sd_x <- sqrt( var_x )
+  out <- list( "sum" = sum_x , "mean" = mean_x , "var" = var_x ,"sd" = sd_x )
+  return( out )
+}
+
+# Check the output
+out3 <- my_fun3( x1 )
+# get all the output as list
+out3
+# get e.g. the mean
+out3$mean
+
+
 ```
 
 
+### Controlling for the input
+
+When writing a function it is always a good idea to control for the input at a proper level. This is useful as future ourselves or others who use the functions/codes may not be familiar with the inputs. Also if one is developing a package with multiple functions which are cross-referencing each other it is a great way to avoid programming mistakes. In general controlling for input is called *error-handling*, which has many aspects and certainly exceeds our focus. If interested you may check out [*Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/) for further details, especially [Chapter 2](https://bookdown.org/rdpeng/RProgDA/advanced-r-programming.html).
+
+At our level, the main goal is to properly balance the time and coding spent on controlling for input. The simplest and most useful function to do it is called `stopifnot`. It takes many logical inputs, e.g. we can check if `x` is numeric or not. Let us use this for calculating the mean of a variable using `my_avg` function:
+
+```{r, error=TRUE}
+my_avg_chck <- function( x ){
+  stopifnot( is.numeric( x ) )
+  sum_x <- sum( x )
+  sum_x / length( x )
+}
+
+# Good input
+my_avg_chck( x1 )
+# Bad input
+my_avg_chck( 'Hello world' )
+```
+
+Alternatively one can use conditionals and `error()` or `stop()` functions with specific message. This is longer and harder to write, but has a great benefit that the code-writer can tell what is the problem as we will see shortly. Again we will not go much into details as the main aim of this course is not advanced programming.
+
+### Multiple inputs
+
+In many case there are multiple input for a function. Let us take the example of calculating the confidence intervals for the mean estimator. In this case we need to supply our (random) variable along with the confidence level we would like to get. In many cases we are interested in the 95% confidence intervals, thus we may provide a *pre-set* input with 95%, which can be overwritten by the user. Now, to practice controlling for input via error-handling, let us create a conditional for having a level at 0.95 or 0.99, but otherwise it should give an error.
+
+```{r, error = TRUE}
+conf_interval <- function( x , level = 0.95 ){
+  # mean of x
+  mean_x <- mean( x , na.rm = TRUE ) 
+  # standard deviation
+  sd_x <- sd( x , na.rm = TRUE )
+  # number of observations in x
+  n_x <- sum( !is.na( x ) )
+  # Calculate the theoretical SE for mean of x
+  se_mean_x <- sd_x / sqrt( n_x )
+  # Calculate the CI
+  if ( level == 0.95 ){
+    CI_mean <- c( mean_x - 1.96*se_mean_x , mean_x + 1.96*se_mean_x )
+  } else if ( level == 0.99 ){
+    CI_mean <- c( mean_x - 2.58*se_mean_x , mean_x + 2.58*se_mean_x )
+  } else {
+    stop("No such level implemented for confidence interval, use 0.95 or 0.99")
+  }
+  out <- list("mean"=mean_x,"CI_mean" = CI_mean )
+  return( out )
+}
+# Get some CI values
+conf_interval( x1 , level = 0.95 )
+conf_interval( x1 )
+conf_interval( x1 , level = 0.99 )
+conf_interval( x1 , level = 0.98 )
+
+
+```
+
+*Task: * Extend the `conf_interval` function for any level between 0 and 1. Use the `qnorm` function and take care that as we are interested in both lower and upper interval, you have to modify the input to `qnorm`, eg. 95% level would indicate 0.975.
+
+
+```{r, eval = FALSE, include=FALSE}
+conf_interval2 <- function( x , level = 0.95 ){
+  # mean of x
+  mean_x <- mean( x , na.rm = TRUE ) 
+  # standard deviation
+  sd_x <- sd( x , na.rm = TRUE )
+  # number of observations in x
+  n_x <- sum( !is.na( x ) )
+  # Calculate the theoretical SE for mean of x
+  se_mean_x <- sd_x / sqrt( n_x )
+  # Calculate the CI
+  if ( level >= 0 | level <= 1 ){
+    crit_val <- qnorm( level + ( 1 - level )/2 )
+    CI_mean <- c( mean_x - crit_val*se_mean_x , mean_x + crit_val*se_mean_x )
+  } else {
+    stop("level must be between 0 and 1")
+  }
+  out <- list("mean"=mean_x,"CI_mean" = CI_mean )
+  return( out )
+}
+# Get some CI values
+conf_interval2( x1 , level = 0.95 )
+conf_interval2( x1 )
+conf_interval2( x1 , level = 0.99 )
+conf_interval2( x1 , level = 0.98 )
+
+```
+
+### Exercise: sampling distribution for t-values
+
+It is a good coding and statistics exercise to explore how hypothesis work with t-statistics. Let assume we have a population that we care about and call it `y`. We do no observe `y` only a random realization, let us call the i-th realization `y_i`. We would like to test two hypothesis:
+
+  - Hypothesis A: Mean of `y` is 1.
+  - Hypothesis B: Mean of `y` is 0.
+  
+Based on what we have learned on statistics, we can calculate the t-statistics:
+
+ - Hypothesis A: t-statistics where the null hypothesis is : mu = 1 (( mu - 1 )/SE(mu))
+ - Hypothesis B: t-statistics where the null hypothesis is : mu = 0 ( mu /SE(mu))
+
+Write a function, which has the following inputs:
+  
+  - `y` <- the population itself that we somehow get to know (in real life it is never observed)
+  - `rep_num` <- how many time we can sample from `y` or to put it differently for `y_i`, i = 1,...,`rep_num`
+  - `sample_size` <- how many observation we get at each random sample from `y`
+  
+and outputs:
+
+  - `out` - tibble with variables:
+    - `mean_stat` - each `y_i` sample's mean
+    - `t_stat_A`  - t-statistics for Hypothesis A
+    - `t_stat_B`  - t-statistics for Hypothesis B
+  - `out` tibble should have 3 variables and `rep_num` observations
+
+Notes for the function: 
+
+  - use `sample_n()` or `sample()` for random sampling, without repetition
+  - set the seed to have reproducible results
+  - use `for` cycle and initialize vectors for the cycle 
+  - you can check the type of inputs
+
+After you have written the function, set the seed to `123` and generate `y` as a uniform random variable with 10,000 observations and with lower bound of 0 and upper bound of 1.
+Use this `y` and set `rep_num = 1000` and `sample_size = 5000` and run the function. 
+Create three ggplots: 
+
+  - plot the histogram (density) of the calculated means with a normal distribution's curve (N(mean(y),sd(y)/sqrt(sample_size))) add two vertical line, one with the mean of `y` and the other with the mean of `mean_stat`.
+    - explain what you can see and how it reflects to the hypothesis you ask?
+  - plot the histogram (density) of the calculated `t_stat_A` with a normal distribution N(0,1)
+    - what is the Type 1 error here? What is the power of the test?
+  - plot the histogram (density) of the calculated `t_stat_B` with a normal distribution N(0,1)
+    - what is the Type 2 error here? What is the size of the test?
+  
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+# Function for sampling distribution
+get_sampling_dists <- function( y , rep_num = 1000 , sample_size = 1000 ){
+  # Check inputs
+  stopifnot( is.numeric( y ) )
+  stopifnot( is.numeric( rep_num ) , length( rep_num ) == 1 , rep_num > 0 )
+  stopifnot( is.numeric( sample_size ) , length( sample_size ) == 1 ,
+             sample_size > 0 , sample_size <= length( y ) )
+  # initialize the for loop
+  set.seed(100)
+  mean_stat <- double(rep_num)
+  t_stat_A <- double(rep_num)
+  t_stat_B <- double(rep_num)
+  # Usual scaler for SE
+  sqrt_n <- sqrt( sample_size )
+  for ( i in 1:rep_num ) {
+    # Need a new sample
+    y_i <- sample( y , sample_size , replace = FALSE )
+    # Mean for sample_i
+    mean_stat[ i ] <- mean( y_i )
+    # SE for Mean
+    se_mean <- sd( y_i ) / sqrt_n
+    # T-statistics for hypotheses
+    t_stat_A[ i ] <- ( mean_stat[ i ] - 1 ) / se_mean
+    t_stat_B[ i ] <- mean_stat[ i ] / se_mean
+  }
+  out <- tibble( mean_stat = mean_stat , t_stat_A = t_stat_A , 
+                t_stat_B = t_stat_B )
+}
+
+# Create y
+set.seed(123)
+y <- runif( 10000 , min = 0 , max = 2 )
+# Get some sampling distribution
+sampling_y <- get_sampling_dists( y , rep_num = 1000 , sample_size = 100 )
+
+# Plot these distributions
+ggplot( sampling_y , aes( x = mean_stat ) ) +
+  geom_histogram( aes( y = ..density.. ) , bins = 60, color = 'navyblue', fill = 'navyblue' ) +
+  geom_vline( xintercept = 1 , linetype = "dashed" , color = 'blue' , size = 1 )+
+  geom_vline( xintercept = mean( y ) , color = 'red' , size = 1 ) +
+  geom_vline( xintercept = mean( sampling_y$mean_stat ) , color = 'black' , size = 1 )+
+  stat_function( fun = dnorm , args = list( mean = mean( y ) , sd = sd( y ) / sqrt(100) ) ,
+                 color = 'red' , size = 1 ) +
+  theme_bw()
+
+
+# Plot distribution for t-stats - Hypothesis A
+ggplot( sampling_y , aes( x = t_stat_A ) ) +
+  geom_histogram( aes( y = ..density.. ) , bins = 60 , fill = 'navyblue' ) +
+  stat_function( fun = dnorm , args = list( mean = 0 , sd = 1 ) ,
+                 color = 'red' , size = 1 ) +
+  theme_bw()
+
+
+# Plot distribution for t-stats - Hypothesis B
+ggplot( sampling_y , aes( x = t_stat_B ) ) +
+  geom_histogram( aes( y = ..density.. ) , bins = 60 , fill = 'navyblue' ) +
+  stat_function( fun = dnorm , args = list( mean = 0 , sd = 1 ) ,
+                 color = 'red' , size = 1 ) +
+  scale_x_continuous(limits = c(-4,30))+
+  theme_bw()
+```
