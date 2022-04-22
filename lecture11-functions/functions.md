@@ -268,10 +268,10 @@ conf_interval( x1 , level = 0.98 )
 
     ## Error in conf_interval(x1, level = 0.98): No such level implemented for confidence interval, use 0.95 or 0.99
 
-*Task: * Extend the `conf_interval` function for any level between 0 and
-1. Use the `qnorm` function and take care that as we are interested in
-both lower and upper interval, you have to modify the input to `qnorm`,
-eg. 95% level would indicate 0.975.
+**Task:** Extend the `conf_interval` function for any level between 0
+and 1. Use the `qnorm` function and take care that as we are interested
+in both lower and upper interval, you have to modify the input to
+`qnorm`, eg. 95% level would indicate 0.975.
 
 ### Exercise: sampling distribution for t-values
 
