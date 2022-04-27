@@ -9,16 +9,20 @@ Published on 6 May 2021 by Cambridge University Press*
 
 ## Overview
 
+The course serves as an introduction to the R programming language and software environment for data exploration, data munging, data visualization, reporting, and modeling. Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 -- and focuses on the basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing. Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) -- Data Analysis 2 -- and focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting.
+
 
 ## How to use
+
+
 
 ## Teaching philosophy
 
 We believe, students will learn using R by writing scripts, solving problems on their own and we can provide and show them good practices on how to do it. 
 
-This is not a hardcore coding course, but a course to supplement data analysis. The material focuses on specific issues in this topic and balances between higher levels of coding such as `tidyverse` -- which is more intuitive, easier to learn but less flexible -- and basic coding principles -- which allows greater complexity, but requires much more practice and has a steeper learning curve. 
+This is not a hardcore coding course, but a course to supplement data analysis. The material focuses on specific issues in this topic and balances between higher levels of coding such as `tidyverse` -- which is more intuitive, easier to learn but less flexible -- and lower levels in form of basic coding principles -- which allows greater complexity, but requires much more practice and has a steeper learning curve. 
 
-The material structure also reflects this principle. The majority of the lectures have pre-written codes which include in-class tasks. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding.
+The material structure also reflects this principle. The majority of the lectures have pre-written codes which include in-class tasks. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills via practice. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding.
 
 ### Lectures, learning outcomes, and case-studies
 
