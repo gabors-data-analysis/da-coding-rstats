@@ -1,6 +1,6 @@
 # Coding for Data Analysis with R 
 Introduction to Data Analysis with R - lecture materials
-by [Ágoston Reguly](https://regulyagoston.github.io/) (CEU)
+by [Ágoston Reguly](https://regulyagoston.github.io/) (CEU) with [Gábor Békés](https://sites.google.com/site/bekesg/) ([CEU](https://people.ceu.edu/gabor_bekes), [KRTK](https://kti.krtk.hu/en/kutatok/gabor-bekes/5896/), [CEPR](https://voxeu.org/users/gaborbekes0)) 
 
 This course material is a supplement to *Data Analysis for Business, Economics, and Policy 
 by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan)
@@ -14,7 +14,9 @@ The course serves as an introduction to the R programming language and software 
 
 ## How to use
 
+This course material may be used as a basis for course on learning coding with R for the purpose of analyzing data. It is developed to be taught simultaneously with the textbook, but may be used independently. It is rather comprehensive and thus, may be used without any textbook to prepare. 
 
+We have not invented the coding wheel. Instead tried to adopt best practices and combine it with real life case studies from the textbook.
 
 ## Teaching philosophy
 
@@ -90,4 +92,4 @@ Or one can relate each case study from the book to specific lectures.
 
 Awesome, we know there are errors and bugs. Or just much better ways to do a procedure.
 
-To make a suggestion, please open a `GitHub issue` here with a title containing the case study name. You may also contact us directly.
+To make a suggestion, please open a `GitHub issue` here with a title containing the case study name. You may also [contact us directly](https://gabors-data-analysis.com/contact-us/). 
