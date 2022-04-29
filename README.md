@@ -3,13 +3,23 @@ Introduction to Data Analysis with R - lecture materials
 by [Ágoston Reguly](https://regulyagoston.github.io/) (CEU) with [Gábor Békés](https://sites.google.com/site/bekesg/) ([CEU](https://people.ceu.edu/gabor_bekes), [KRTK](https://kti.krtk.hu/en/kutatok/gabor-bekes/5896/), [CEPR](https://voxeu.org/users/gaborbekes0)) 
 
 This course material is a supplement to *Data Analysis for Business, Economics, and Policy 
-by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan)
-Published on 6 May 2021 by Cambridge University Press*
-[gabors-data-analysis.com](https://gabors-data-analysis.com/)
+by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan),  Cambridge University Press, 2021*
+
+Textbook information: [gabors-data-analysis.com](https://gabors-data-analysis.com/)
 
 ## Overview
 
-The course serves as an introduction to the R programming language and software environment for data exploration, data munging, data visualization, reporting, and modeling. Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 -- and focuses on the basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing. Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) -- Data Analysis 2 -- and focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting.
+The course serves as an introduction to the R programming language and software environment for data exploration, data munging, data visualization, reporting, and modeling. 
+
+Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 -- and focuses on the basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing.
+
+Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) -- Data Analysis 2 -- and focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting.
+
+The material is based on 3 years of teaching a coding course as well as advice from many many great resources such as 
+  - Hadley Wickham and Garrett Grolemund [R for Data Science Chapter 20](https://r4ds.had.co.nz) 
+  - Jae Yeon Kim: [R Fundamentals for Public Policy, Course material](https://github.com/KDIS-DSPPM) 
+  - Winston Chang: [R Graphics Cookbook](https://r-graphics.org/) 
+  - Andrew Heiss: [Data Visualization with R ](https://datavizs21.classes.andrewheiss.com) 
 
 
 ## How to use
