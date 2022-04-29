@@ -101,9 +101,9 @@ Or one can relate each case study from the book to specific lectures.
 |            | [ch12-time-series-simulations](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-time-series-simulations) |  |
 
 
-## Our Thanks
+## Our thanks
 
-Thanks to all folks who contributed to the codebase for the course, especially Gábor Kézdi, co-author of the book. But also thanks to [Zsuzsa Holler](), [Kinga Ritter](), [Ádám Víg ], [Jenő Pál](), [János Divényi](), Gábors' many students. Big thanks to [Laurent Bergé](https://sites.google.com/site/laurentrberge/software?authuser=0), [Grant McDermott](https://grantmcdermott.com/software/) and [Vincent Arel-Bundock](https://arelbundock.com/#code) for awesome packages and all the help on coding over several years.
+Thanks to all folks who contributed to the codebase for the course, especially Gábor Kézdi, co-author of the book. But also thanks to [Zsuzsa Holler](https://www.linkedin.com/in/zsuzsa-holler-70bba031/), [Kinga Ritter](https://www.linkedin.com/in/kinga-ritter/?originalSubdomain=es), [Ádám Víg](https://github.com/adamvig96), [Jenő Pál](https://github.com/paljenczy/), [János Divényi](https://divenyijanos.github.io/pages/about-me.html), Gábors' many students. Big thanks to [Laurent Bergé](https://sites.google.com/site/laurentrberge/software?authuser=0), [Grant McDermott](https://grantmcdermott.com/software/) and [Vincent Arel-Bundock](https://arelbundock.com/#code) for awesome packages and all the help on coding over several years.
 
 
 ## Found an error or have a suggestion?
