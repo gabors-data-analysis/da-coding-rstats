@@ -7,6 +7,12 @@ by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan),  Cambridge University P
 
 Textbook information: [gabors-data-analysis.com](https://gabors-data-analysis.com/)
 
+## Status
+
+This is very much in development. We hope to have a beta version by August 2022. 
+
+Comments are really welcome in email or as a github issue. 
+
 ## Overview
 
 The course serves as an introduction to the R programming language and software environment for data exploration, data munging, data visualization, reporting, and modeling. 
