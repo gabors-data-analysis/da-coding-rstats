@@ -15,6 +15,10 @@ After successfully completing the code in *raw_codes* students should be able to
     - use API, namingly: `tidyquant` and `WDI` packages.
   - Export data on *csv*, *xlsx* or *RData* format to local computer 
 
+## Datasets used
+* [Hotels Vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna)
+
+
 ## Lecture Time
 
 Ideal overall time: **10-20 mins**.
