@@ -5,9 +5,6 @@ This lecture introduces students to data exploration with `modelsummary`, `ggplo
 Descriptive statistics and descriptive graphs for one variable are concerned to decide on further data munging.
 Moreover, simple hypothesis testing is covered as well as association graphs and statistics between two variables.
 
-This lecture uses the [*Billion Price Project* case study from Chapter 6](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch06-online-offline-price-test) and extends it to specific tools to use in data exploration.
-This lecture also uses materials from case studies: XXX
-
 
 ## Learning outcomes
 After completing the code in *raw_codes* students should be able to:
@@ -34,6 +31,10 @@ After completing the code in *raw_codes* students should be able to:
     - scatter plot
     - bin-scatter: equidistance bin-scatter with `stat_summary_bin` and equal number of observations in each bin by hand
     - correlation for specific subgroups and how to plot them. Use of `fct_reorder`.  
+
+## Datasets used
+* [Billion Prices](https://gabors-data-analysis.com/datasets/#billion-prices)
+
 
 ## Lecture Time
 
