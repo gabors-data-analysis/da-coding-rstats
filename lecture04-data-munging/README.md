@@ -24,6 +24,10 @@ After successfully completing the code in *raw_codes* students should be able to
   - use pipes to do multiple manipulations at once
   - sort data ascending or descending according to a specific variable 
 
+## Datasets used
+* [Hotels Europe](https://gabors-data-analysis.com/datasets/#hotels-europe)
+
+
 ## Lecture Time
 
 Ideal overall time: **40-60 mins**.
