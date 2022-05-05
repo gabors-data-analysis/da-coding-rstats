@@ -3,8 +3,6 @@
 
 This lecture extends the tools to create plots with `ggplot2` from `tidyverse`.
 
-This lecture uses the [*hotels-europe*](https://gabors-data-analysis.com/datasets/#hotels-europe) data, with a focus on hotels from Vienna and London. It relates to XX
-
 
 ## Learning outcomes
 After completing the code in *raw_codes* students should be able to:
@@ -22,6 +20,9 @@ After completing the code in *raw_codes* students should be able to:
     - stacked with percentages
   - box plot
   - violine plot
+
+## Datasets used
+* [Hotel Europe](https://gabors-data-analysis.com/datasets/#hotels-europe)
 
 ## Lecture Time
 
