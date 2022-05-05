@@ -34,6 +34,8 @@ This course material may be used as a basis for course on learning coding with R
 
 We have not invented the coding wheel. Instead tried to adopt best practices and combine it with real life case studies from the textbook.
 
+There are no slides. But codes are commented heavily. 
+
 ## Teaching philosophy
 
 We believe, students will learn using R by writing scripts, solving problems on their own and we can provide and show them good practices on how to do it. 
