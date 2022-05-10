@@ -1,9 +1,9 @@
-# Example case-study: life expectancy analysis
+# Lecture 13: life expectancy analysis
 *Coding course to complete Data Analysis in R*
 
-This is an example of a coding lecture, which provides materials for students and lecturers to analyze the association between life expectancy and GDP measures for various countries in 2019.
+This lecture provides materials to analyze the association between life expectancy and GDP measures for various countries in 2019, inspired by the dataset [worldbank-lifeexpectancy](https://gabors-data-analysis.com/datasets/#worldbank-lifeexpectancy). During this exercise, students get familiar with creating simple linear regression-based models with different transformations, such as level-level, log-level, level-log, log-log models, or using polynomials or piecewise linear splines transformation of the explanatory variable.
 
-This lecture is based on Chapter 08, B: *How is life expectancy related to the average income of a country?*
+This lecture is based on [Chapter 08, B: *How is life expectancy related to the average income of a country?*](https://gabors-data-analysis.com/casestudies/#ch08b-how-is-life-expectancy-related-to-the-average-income-of-a-country)
 
 ## Learning outcomes
 After successfully completing codes in *raw_codes* you should be able:
@@ -13,7 +13,7 @@ After successfully completing codes in *raw_codes* you should be able:
 
 
 `life_exp_analysis.R`
-  - Create scatter-plots for competing models.
+  - Create scatter plots for competing models.
   - Transform variables from level to log in a ggplot and scale the axis for proper interpretation.
   - Run and plot multiple single-variable regressions with:
     - log transformation,
@@ -44,13 +44,15 @@ lifeexp<sub>i</sub> = &alpha; + &beta;<sub>1</sub> ( log( gdppc<sub>i</sub> ) < 
 ## Further material
 
   - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income)
-  - Coding and simple linear regression: partially related is Chapter 3 from [James-Witten-Hastie-Tibshirani (2013) - An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
-  - On ggplot and transforming variables, see Chapter 3.5-6 and Chapter 5.6 [Kieran H. (2019): Data Visualization](https://socviz.co/makeplot.html#mapping-aesthetics-vs-setting-them). For the homework, Chapter 5.4 can be handy.
+  - Coding and simple linear regression: partially related in Chapter 3 from [James-Witten-Hastie-Tibshirani (2013) - An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
+  - On ggplot and transforming variables:
+    - Chapter 3.5-6 and Chapter 5.6 [Kieran H. (2019): Data Visualization](https://socviz.co/makeplot.html#mapping-aesthetics-vs-setting-them). For the homework, Chapter 5.4 can be handy.
+    - [Winston C. (2022): R Graphics Cookbook, Chapter 5](https://r-graphics.org/chapter-scatter) also provides further material.
 
 
 ## Folder structure
   
-  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/raw_codes) includes codes, which are ready to use during the course but require some live coding in class.
     - `life_exp_getdata.R`, shows how to get life-expectancy data (and GDP measure) directly from the World Bank's website via an API. It saves a raw data file.
     - **`life_exp_analysis.R`** is the main material for this lecture. 
   - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example/complete_codes) includes codes with solutions for
