@@ -30,7 +30,7 @@ After successfully completing codes in *raw_codes* you should be able:
 
 Ideal overall time: **60 mins**.
 
-Solving `hotels_intro_to_regression.R` takes around *5-10 minutes*. It builds on [lecture07-ggplot-indepth](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture07-ggplot-indepth) as it requires to build a boxplot. Can be skipped.
+Solving [`hotels_intro_to_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_intro_to_regression.R) takes around *5-10 minutes*. It builds on [lecture07-ggplot-indepth](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture07-ggplot-indepth) as it requires to build a boxplot. Can be skipped.
 
 
 ## Homework
