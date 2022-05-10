@@ -276,9 +276,6 @@ etable( reg4 , reg6 , reg7 , headers = c('Simple','L.Spline','Weighted'))
 ######
 # Residual analysis.
 
-# feols output is a `list` (to be more precise an `object') with different elements
-# Check the `Value` section
-?feols
 
 # Get the predicted y values from the model
 df$reg4_y_pred <- reg4$fitted.values
