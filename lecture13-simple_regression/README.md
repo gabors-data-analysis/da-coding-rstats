@@ -33,7 +33,7 @@ Solving `life_exp_analysis.R` introduces the main material, and takes *40-60 min
 
 *Type*: quick practice, approx 20 mins
 
-Use the [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotels-vienna), similarly as we used in [`hotels_intro_to_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_intro_to_regression.R). Create and compare different transformations of y = price, x = distance variables:
+Use the [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotels-vienna), similarly as we used in [`hotels_intro_to_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_intro_to_regression.R). Create and compare different transformations of y=price, x=distance variables:
   
   - level-level
   - log-level
@@ -42,7 +42,7 @@ Use the [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotel
   - polinomials of distance with square and cube terms
   - piecewise-linear-spline model, with a cutoff of 2 miles 
 
- Compare these models with an `etable` and decide which model would you use and why! Argue!
+ Estimate these models with `feols`, using robust SEs and compare with `etable` and decide which model would you use and why! Argue!
 
 ## Further material
 
