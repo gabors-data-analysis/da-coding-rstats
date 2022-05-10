@@ -42,7 +42,7 @@ Use the [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotel
   - polinomials of distance with square and cube terms
   - piecewise-linear-spline model, with a cutoff of 2 miles 
 
- Compare these models and decide which model would you use and why! Argue!
+ Compare these models with an `etable` and decide which model would you use and why! Argue!
 
 ## Further material
 
