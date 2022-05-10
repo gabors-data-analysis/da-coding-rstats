@@ -1,7 +1,7 @@
 # Lecture 12: Introduction to regression
 *Coding course to complete Data Analysis in R*
 
-This lecture introduces regressions via [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotels-vienna). It overviews simple binary means, binscatters, lowess nonparametric regression and introduces to simple linear regression techniques. The lecture illustrates the use of predicted values and regression residuals with linear regression.
+This lecture introduces regressions via [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotels-vienna). It overviews models based on simple binary means, binscatters, lowess nonparametric regression, and introduces simple linear regression techniques. The lecture illustrates the use of predicted values and regression residuals with linear regression, but as homework, the same exercise is repeated with a binscatter-based model.
 
 This lecture is based on [Chapter 07, A: *Finding a good deal among hotels with simple regression*](https://gabors-data-analysis.com/casestudies/#ch07a-finding-a-good-deal-among-hotels-with-simple-regression)
 
@@ -23,7 +23,7 @@ After successfully completing codes in *raw_codes* you should be able:
     - `feols` package: estimate two models w and w/o heteroscedastic robust SE and compare the two model
     - Have an idea about `estimatr` package and `lm_robust` command
     - How to get predicted values and errors of predictions
-    - Get the best and worst deals: identify hotels with smallest/largest errors
+    - Get the best and worst deals: identify hotels with the smallest/largest errors
     - Visualize the errors via histogram and scatter plot with annotating the best and worst 5 deals.
 
 ## Lecture Time
@@ -44,7 +44,7 @@ Use binscatter model with 7 bins and save the predicted values and errors (true 
 
   - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch07-hotels-simple-reg](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch07-hotels-simple-reg)
   - On ggplot, see Chapter 3.5-6 and Chapter 5.6 [Kieran H. (2019): Data Visualization](https://socviz.co/makeplot.html#mapping-aesthetics-vs-setting-them). For the homework, Chapter 5.4 can be handy.
-  - On regression [Grant McDermott: Data Science for Economists, Course material Lecture 08](https://github.com/uo-ec607/lectures/tree/master/08-regression) provides somewhat different approach, but can be a nice supplement
+  - On regression [Grant McDermott: Data Science for Economists, Course material Lecture 08](https://github.com/uo-ec607/lectures/tree/master/08-regression) provides a somewhat different approach, but can be a nice supplement
 
 
 ## Folder structure
