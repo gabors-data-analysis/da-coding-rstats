@@ -43,7 +43,7 @@ Use binscatter model with 7 bins and save the predicted values and errors (true 
 ## Further material
 
   - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch07-hotels-simple-reg](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch07-hotels-simple-reg)
-  - On ggplot, see Chapter 3.5-6 and Chapter 5.6 [Kieran H. (2019): Data Visualization](https://socviz.co/makeplot.html#mapping-aesthetics-vs-setting-them). For the homework, Chapter 5.4 can be handy.
+  - On ggplot, see Chapter 3.5-6 and Chapter 5.6 [Kieran H. (2019): Data Visualization](https://socviz.co/makeplot.html#mapping-aesthetics-vs-setting-them) or [Winston C. (2022): R Graphics Cookbook, Chapter 5](https://r-graphics.org/chapter-scatter)
   - On regression [Grant McDermott: Data Science for Economists, Course material Lecture 08](https://github.com/uo-ec607/lectures/tree/master/08-regression) provides a somewhat different approach, but can be a nice supplement
 
 
