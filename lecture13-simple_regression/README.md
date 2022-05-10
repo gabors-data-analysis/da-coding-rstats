@@ -20,7 +20,6 @@ After successfully completing codes in *raw_codes* you should be able:
     - higher-order polynomial, or
     - piecewise linear spline
   - Be able to estimate heteroscedastic robust SEs and compare specific model results with `etable` in one output.
-  - Get model residuals and find the top or bottom largest (n) error(s). 
 
 ## Lecture Time
 
@@ -32,14 +31,18 @@ Solving `life_exp_analysis.R` introduces the main material, and takes *40-60 min
 
 ## Homework
 
-*Type*: quick practice, approx 15 mins
+*Type*: quick practice, approx 20 mins
 
-Use the linear spline model:
+Use the [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotels-vienna), similarly as we used in [`hotels_intro_to_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_intro_to_regression.R). Create and compare different transformations of y = price, x = distance variables:
+  
+  - level-level
+  - log-level
+  - level-log
+  - log-log
+  - polinomials of distance with square and cube terms
+  - piecewise-linear-spline model, with a cutoff of 2 miles 
 
-lifeexp<sub>i</sub> = &alpha; + &beta;<sub>1</sub> ( log( gdppc<sub>i</sub> ) < 50 ) + &beta;<sub>2</sub> ( log( gdppc<sub>i</sub> &ge; 50 )
-
-  and get the 5 largest positive and negative errors. Create a scatter graph with the regression line. Color these largest errors with a different color. 
- Finally, annotate the largest positive and negative country within the graph.
+ Compare these models and decide which model would you use and why! Argue!
 
 ## Further material
 
