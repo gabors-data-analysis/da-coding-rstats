@@ -22,8 +22,8 @@ Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gab
 Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) -- Data Analysis 2 -- and focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting.
 
 The material is based on 3 years of teaching a coding course as well as advice from many many great resources such as 
-  - Hadley Wickham and Garrett Grolemund [R for Data Science Chapter 20](https://r4ds.had.co.nz) 
-  - Jae Yeon Kim: [R Fundamentals for Public Policy, Course material](https://github.com/KDIS-DSPPM) 
+  - Hadley Wickham and Garrett Grolemund [R for Data Science](https://r4ds.had.co.nz) 
+  - Jae Yeon Kim: [R Fundamentals for Public Policy, Course material](https://github.com/KDIS-DSPPM/r-fundamentals) 
   - Winston Chang: [R Graphics Cookbook](https://r-graphics.org/) 
   - Andrew Heiss: [Data Visualization with R ](https://datavizs21.classes.andrewheiss.com) 
 
