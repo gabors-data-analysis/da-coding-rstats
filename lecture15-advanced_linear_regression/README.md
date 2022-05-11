@@ -1,55 +1,61 @@
-# Lecture 12: Introduction to regression
+# Lecture 15: Advanced Linear Regression
 *Coding course to complete Data Analysis in R*
 
-This lecture introduces regressions via [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotels-vienna). It overviews models based on simple binary means, binscatters, lowess nonparametric regression, and introduces simple linear regression techniques. The lecture illustrates the use of predicted values and regression residuals with linear regression, but as homework, the same exercise is repeated with a binscatter-based model.
+This lecture introduces multiple variable regressions via [hotels-europe dataset](https://gabors-data-analysis.com/datasets/#hotels-europe). It introduces topics of how to choose a model from many possible candidates based on R2, how to evaluate prediction with multiple regressors: different graphs prediction uncertainty, and calculate the confidence and prediction intervals. Moreover, it covers external validity with robustness test: checking model results in different time/location/type of observations. Finally, as an extra part, it shows a simple example of using a training and test sample to better understand the process of model choice and the limitation of R2.
 
-This lecture is based on [Chapter 07, A: *Finding a good deal among hotels with simple regression*](https://gabors-data-analysis.com/casestudies/#ch07a-finding-a-good-deal-among-hotels-with-simple-regression)
+This lecture is based on [Chapter 10, B: *Finding a good deal among hotels with multiple regression*](https://gabors-data-analysis.com/casestudies/#ch10b-finding-a-good-deal-among-hotels-with-multiple-regression)
 
 ## Learning outcomes
 After successfully completing codes in *raw_codes* you should be able:
 
-[`hotels_intro_to_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_intro_to_regression.R)
-  - Binary means:
-    - Calculate prediction based on means of two categories and create an annotated graph
-  - Binscatter:
-    - Create means based on differently defined bins for the X variable
-    - Show two different graphs: simple mean predictions for each bins as a dot and scatter with step functions
-  - Lowess nonparametric regression:
-    - How to create a lowess (loess) graph
-    - What is an output of a loess model. What are the main advantages and disadvantages.
-  - Simple linear regression
-    - How to create a simple linear regression line in a scatterplot
-    - The classical `lm` command and its limitation
-    - `feols` package: estimate two models w and w/o heteroscedastic robust SE and compare the two model
-    - Have an idea about `estimatr` package and `lm_robust` command
-    - How to get predicted values and errors of predictions
-    - Get the best and worst deals: identify hotels with the smallest/largest errors
-    - Visualize the errors via histogram and scatter plot with annotating the best and worst 5 deals.
+[`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/raw_codes/hotels_advanced_regression.R)
+  - Visualize multiple explanatory variables vs outcome:
+    - With a scatter plot decide the functional form which is needed.
+    - `ggpubr` package to plot multiple ggplot in one graph.
+  - Multiple linear regression
+    - Use `feols` to estimate regressions with multiple explanatory variables
+    - Use `etable` to compare multiple candidate models and report model statistics such as R2 to evaluate models.
+  - Analysing model prediction
+    - Get model predictions and residuals and in case of a log-transformed outcome, how to convert the predictions and residuals into level.
+    - y-yhat scatter plot with 45-degree line to evaluate prediction uncertainty
+    - residual-yhat or residual-explanatory variable scatter plot to evaluate model performance along different dimensions
+  - Confidence and Prediction interval
+    - Using `predict` function to get confidence and prediction interval
+    - Set the significance level for the intervals with `level` input argument
+    - Convert log-transformed outcome confidence and/or prediction intervals into level. Limitations.
+  - External Validity: robustness checks
+    - Estimate a selected model with different data to assess model uncertainty
+    - Using different time periods, locations, and types of hotels/apartments.
+    - Compare these models to the original and evaluate external validity
+  - Extra
+    - Split the original sample into a training and test samples
+    - Use the training sample to estimate the model and the test sample to predict hotel prices
+    - Evaluate which model performs better with RMSE measure.
 
 ## Lecture Time
 
-Ideal overall time: **60 mins**.
+Ideal overall time: **100 mins**.
 
-Solving [`hotels_intro_to_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_intro_to_regression.R) takes around *5-10 minutes*. It builds on [lecture07-ggplot-indepth](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture07-ggplot-indepth) as it requires to build a boxplot. Can be skipped.
+Going through [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/raw_codes/hotels_advanced_regression.R) takes around *70-80 minutes* as there are many discussion and interpretation of the models. Solving the tasks takes the remaining *20-30 minutes*. 
 
 
 ## Homework
 
-*Type*: quick practice, approx 15 mins
+*Type*: quick practice, approx 20 mins
 
-Use binscatter model with 7 bins and save the predicted values and errors (true price minus the predicted value). Find the best and worst 10 deals and visualize with a scatterplot, highlighting the under/overpriced hotels with these best/worst deals according to this model. Compare to the simple linear regression. Which model would you use? Argue!
+Choose a different city from Vienna and make sure you have at least 100 observations after filtering. Create at least 3 models with at least 3 explanatory variables (check for transformation) and choose the best. Imagine you can build a new hotel in your city and can specify the feature values as you wish. Predict the price and estimate confidence and prediction intervals with a 90% significance level. Set the price of your hotel and argue, why is it your choice. 
 
 
 ## Further material
 
-  - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch07-hotels-simple-reg](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch07-hotels-simple-reg)
-  - On ggplot, see Chapter 3.5-6 and Chapter 5.6 [Kieran H. (2019): Data Visualization](https://socviz.co/makeplot.html#mapping-aesthetics-vs-setting-them) or [Winston C. (2022): R Graphics Cookbook, Chapter 5](https://r-graphics.org/chapter-scatter)
+  - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch10-hotels-multiple-reg](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch10-hotels-multiple-reg)
+  - Coding and multiple linear regression: partially related in Chapter 3 from [James-Witten-Hastie-Tibshirani (2013) - An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
   - On regression [Grant McDermott: Data Science for Economists, Course material Lecture 08](https://github.com/uo-ec607/lectures/tree/master/08-regression) provides a somewhat different approach, but can be a nice supplement
 
 
 ## Folder structure
   
-  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture12_intro_to_regression/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
-    - [`hotels_intro_to_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_intro_to_regression.R), is the main material for this lecture.
-  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture12_intro_to_regression/complete_codes) includes code with solution for [`hotels_intro_to_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_intro_to_regression.R) as [`hotels_intro_to_regression_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/complete_codes/hotels_intro_to_regression.R)
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture15_advanced_regression/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
+    - [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_advanced_regression.R), is the main material for this lecture.
+  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture15_advanced_regression/complete_codes) includes code with solution for [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/raw_codes/hotels_advanced_regression.R) as [`hotels_advanced_regression_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/complete_codes/hotels_advanced_regression.R)
 
