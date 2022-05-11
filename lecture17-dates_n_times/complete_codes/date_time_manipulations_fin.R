@@ -153,6 +153,8 @@ rm( list = ls())
 #   2) Inflation (CPI level) - monthly from 1978-12 
 #   3) SP500 closing prices - daily from 1997-12-31 - 2018-12-31
 #
+# You can check the ticker name on FRED
+#
 # We want to make them into the same tibble with same time frequency
 #   Need to aggregate everything to quarterly level with time interval between 1997-2018
 
@@ -233,7 +235,7 @@ agg_inflat <- inflat %>% select( year, quarter , inflat ) %>%
 
 # Add time and select variables
 agg_inflat$time <- yq( paste0( agg_inflat$year , "-" , agg_inflat$quarter ) )
-agg_inflat <- agg_inflat %>% select( time , inflat )
+agg_inflat      <- agg_inflat %>% select( time , inflat )
 
 # Join to df
 df <- left_join( df , agg_inflat , by = "time" )
@@ -303,12 +305,13 @@ df <- df %>% mutate( dgdp = ( gdp - lag(gdp,1) ) / gdp * 100 ,
                      dinflat = inflat - lag(inflat,1),
                      return = ( price - lag(price,1) ) / price * 100 )
 
-# Check again:
+##
+# Task
+# Check again the Philip-Perron tests!
 pp.test( df$dgdp    , lag.short = F)
 pp.test( df$dinflat , lag.short = F)
 pp.test( df$return  , lag.short = F)
 
-# All set.
 
 # Visualization2:
 # NO 2: standardization - good to compare the (co)-movement
@@ -328,10 +331,10 @@ ggplot( filter(df,complete.cases(df)) , aes( x = time ) ) +
                                 "return"="SP500 return")) +
   labs(x="Years",y="Standardized values")+
   theme_bw()
-
 # More or less moving together!
 
-# Can check scatter plots: 
+
+# For association, can check scatter plots: 
 
 # GDP and inflation
 ggplot( df , aes( x = dgdp , y = dinflat ) ) +
