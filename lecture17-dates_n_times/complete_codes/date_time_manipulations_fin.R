@@ -3,7 +3,12 @@
 #               Lecture 17                    #
 #                                             #
 #    Date and time manipulations in R         #
-#     -        #
+#     - date_time format with lubridate       #
+#     - Year, quarters, months, rounding ect  #
+#     - Time spans and duration               #
+#     - Aggregating time-series data          #
+#     - Plotting time-series                  #
+#     - Unit root test                        #
 #                                             #
 # Case Study:                                 # 
 #   SP500 stock prices                        #
