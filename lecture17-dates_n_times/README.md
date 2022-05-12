@@ -41,7 +41,7 @@ Estimate the *beta* coefficient between quarterly SP500 log returns on Microsoft
 
   - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch12-stock-returns-risk](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch12-stock-returns-risk/ch12-stock-returns-risk.R)
   - Hadley Wickham and Garrett Grolemund R for Data Science: [Chapter 16](https://r4ds.had.co.nz/dates-and-times.html) discuss time and date formates more in detail.
-  - [`timetk` package](https://business-science.github.io/timetk/index.html) is a well-documented and developed package for time-series variables. There are many possibilities with great solutions. A good starting point for further material in time series with R.
+  - [`timetk` package](https://business-science.github.io/timetk/index.html) is a well-documented advanced time-series related package. There are many possibilities with great solutions. A good starting point for further material in time series with R.
   - [`lubridate` package](https://lubridate.tidyverse.org/index.html) has good documentation, worth checking.
 
 ## Folder structure
