@@ -4,7 +4,7 @@
 This lecture introduces spatial data visualization using maps. During the lecture, students will visualize the 2016 US election results on the US map along with covid death rates on the world map.
 
 ## Learning outcomes
-After successfully completing codes in *raw_codes* you should be able:
+After successfully completing codes you should be able:
 
 [`visualize_spatial.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture20-basic_spatial_vizz/visualize_spatial.R)
   - US 2016 election
