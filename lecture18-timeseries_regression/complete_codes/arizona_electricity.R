@@ -162,7 +162,7 @@ ggarrange(p1 + scale_x_date(date_breaks = "3 years", date_labels = "%Y"),
 # Time-series specific analysis
 
 # 1) Serial correlation: a.k.a. Auto-correlation
-source( 'ggplot.acorr.R' )
+source_url( 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture18-timeseries_regression/raw_codes/ggplot.acorr.R' )
 
 # ACF - gives the correlation between y_t and lags: Corr(y_t,y_t-lag)
 # PACF - (Partial Autocorrelation Fnc)
@@ -193,16 +193,18 @@ df <- df %>% mutate(DlnQ=lnQ-lag(lnQ),
 ##
 # functional form investigations 
 ggplot(data = df, aes(x=DCLDD_avg, y=DlnQ)) +
-  geom_point(size=2,  shape=20, stroke=2, fill="blue", color="blue") +
+  geom_point(size=1,  shape=20, stroke=2, fill="blue", color="blue") +
   geom_smooth(method="loess", se=F, colour="black", size=1.5, span=0.9 , formula = y ~ x) +
-  labs(x = "Cooling degrees (Farenheit), first difference",y = "ln(monthly electricity consumption), first difference") +
+  labs(x = "Cooling degrees (Farenheit), first difference",
+       y = "ln(monthly electricity consumption), first difference") +
   scale_x_continuous(limits = c(-20,20), breaks = seq(-20,20, 10)) +
   theme_bw()
 
 ggplot(data = df, aes(x=DHTDD_avg, y=DlnQ)) +
-  geom_point(size=2,  shape=20, stroke=2, fill="blue", color="blue") +
+  geom_point(size=1,  shape=20, stroke=2, fill="blue", color="blue") +
   geom_smooth(method="loess", se=F, colour="black", size=1.5, span=0.9 , formula = y ~ x) +
-  labs(x = "Heating degrees (Farenheit), first difference",y = "ln(monthly electricity consumption), first difference") +
+  labs(x = "Heating degrees (Farenheit), first difference",
+       y = "ln(monthly electricity consumption), first difference") +
   scale_x_continuous(limits = c(-10,10), breaks = seq(-10,10, 10)) +
   theme_bw()
 
@@ -215,6 +217,8 @@ ggplot(data = df, aes(x=DHTDD_avg, y=DlnQ)) +
 # reg4: DlnQ = alpha + beta_1 * DCLDD_avg + beta_2 * DHTDD_avg + months + 2 LAGS of DCLDD_avg and DHTDD_avg
 # reg_cumSE: use reg4 but estimate standard errors for the cumulative effect
 
+# Need to add a new variable which is telling fixest that it is a time-series data and not panel:
+#   period is changing as date, but id is the same
 df <- df %>% mutate( period = 1 : dim( df )[1] , id = 1 )
 
 
@@ -238,7 +242,7 @@ reg3
 
 # reg4: include the lag of heating/cooling degrees up to two lags
 reg4 <- feols( DlnQ ~ l( DCLDD_avg , 0 : 2 ) + l( DHTDD_avg , 0 : 2 ) + as.factor(month), 
-               data=df, panel.id = ~ id + period , vcov = NW(24) )
+               data = df, panel.id = ~ id + period , vcov = NW(24) )
 reg4
 
 # Compare the results:
@@ -248,14 +252,27 @@ etable( reg1 , reg2 , reg3 , reg4 )
 etable( reg1 , reg2 , reg3 , reg4 , drop = "factor" , se.below = T )
 
 # Task:
-# Replicate these results, but now using the same sample for each model!
+# Replicate these results, but now using the same sample for each model to ensure fair comparison!
+# You should have the same number of observations in the end
+
+reg1_s <- feols( DlnQ ~ DCLDD_avg + DHTDD_avg, data = filter( df , period > 3 ) , 
+                 panel.id = ~ id + period , vcov = NW(24) )
+reg2_s <- feols(DlnQ ~ DCLDD_avg + DHTDD_avg + as.factor(month), data = filter( df , period > 3 ), 
+                panel.id = ~ id + period , vcov = NW(24) )
+reg3_s <- feols( DlnQ ~ l( DlnQ , 1 ) + DCLDD_avg + DHTDD_avg + as.factor(month), 
+                 data = filter( df , period > 2 ) , panel.id = ~ id + period , vcov = NW(24) )
+reg4_s <- feols( DlnQ ~ l( DCLDD_avg , 0 : 2 ) + l( DHTDD_avg , 0 : 2 ) + as.factor(month), 
+                 data = df , panel.id = ~ id + period , vcov = NW(24) )
+
+etable( reg1_s , reg2_s , reg3_s , reg4_s , drop = "factor" , se.below = T )
 
 
-##
-# Trick to estimate SE on the cummulative effect
+
+####
+# Trick to estimate SE on the cumulative effect
 # 1) create double differenced variable
-df<-df %>% mutate(DDCLDD_avg=(DCLDD_avg-lag(DCLDD_avg)),
-                      DDHTDD_avg=(DHTDD_avg-lag(DHTDD_avg)))
+df <- df %>% mutate( DDCLDD_avg = DCLDD_avg - lag( DCLDD_avg ) ,
+                     DDHTDD_avg = DHTDD_avg - lag( DHTDD_avg ) )
 
 reg_cumSE <- feols( DlnQ ~ l( DCLDD_avg , 2 ) + l( DHTDD_avg , 2 ) +
                            l( DDCLDD_avg , 0:1 ) + l( DDHTDD_avg , 0:1 ) + as.factor(month), 
