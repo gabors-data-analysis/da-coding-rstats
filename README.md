@@ -17,7 +17,7 @@ Comments are really welcome in email or as a github issue.
 
 The course serves as an introduction to the R programming language and software environment for data exploration, data munging, data visualization, reporting, and modeling. 
 
-Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 -- and focuses on the basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing.
+Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 course -- and focuses on the basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing.
 
 Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) -- Data Analysis 2 -- and focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting.
 
@@ -48,8 +48,14 @@ The material structure also reflects this principle. The majority of the lecture
 
 | Lecture  | Lecture Type | Learning outcomes | Case-study |
 | -------  | -------------| ----------------- | ---------- |
-| [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) | pre-written with tasks | Run and plot single variable regressions with transformations and residual analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
-| [lecture01-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-intro) | live coding |Introduction to RStudio. R-objects, basic operations, functions, vectors, lists | - |
+| [lecture00-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture00-intro) | live coding or pre-written |Setting up R and RStudio. Introduction to the interface of R-studio. Packages and tryout of `tidyverse` and knitting a pre-written Rmarkdown | - |
+| [lecture01-coding-basics](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-coding-basics) | live coding |Introduction to coding with R: R-objects, basic operations, functions, vectors, lists | - |
+
+
+
+
+
+| [lecture14-simple_regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture14-simple_regression) | pre-written with tasks | Run and plot single linear regressions with transformations and prediction analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
 
 ### Folder structure within lectures
 
