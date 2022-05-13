@@ -8,7 +8,7 @@ This lecture is based on [Chapter 10, B: *Finding a good deal among hotels with 
 ## Learning outcomes
 After successfully completing codes in *raw_codes* you should be able:
 
-[`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/raw_codes/hotels_advanced_regression.R)
+[`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced_linear_regression/raw_codes/hotels_advanced_regression.R)
   - Visualize multiple explanatory variables vs outcome:
     - With a scatter plot decide the functional form which is needed.
     - `ggpubr` package to plot multiple ggplot in one graph.
@@ -36,7 +36,7 @@ After successfully completing codes in *raw_codes* you should be able:
 
 Ideal overall time: **100 mins**.
 
-Going through [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/raw_codes/hotels_advanced_regression.R) takes around *70-80 minutes* as there are many discussion and interpretation of the models. Solving the tasks takes the remaining *20-30 minutes*. 
+Going through [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced_linear_regression/raw_codes/hotels_advanced_regression.R) takes around *70-80 minutes* as there are many discussion and interpretation of the models. Solving the tasks takes the remaining *20-30 minutes*. 
 
 
 ## Homework
@@ -55,7 +55,7 @@ Choose a different city from Vienna and make sure you have at least 100 observat
 
 ## Folder structure
   
-  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture15_advanced_regression/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
-    - [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_advanced_regression.R), is the main material for this lecture.
-  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture15_advanced_regression/complete_codes) includes code with solution for [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/raw_codes/hotels_advanced_regression.R) as [`hotels_advanced_regression_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/complete_codes/hotels_advanced_regression.R)
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced_linear_regression/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
+    - [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced_linear_regression/raw_codes/hotels_advanced_regression.R), is the main material for this lecture.
+  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced_linear_regression/complete_codes) includes code with solution for [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced_linear_regression/raw_codes/hotels_advanced_regression.R) as [`hotels_advanced_regression_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced_linear_regression/complete_codes/hotels_advanced_regression_fin.R)
 
