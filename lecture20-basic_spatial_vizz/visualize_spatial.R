@@ -172,7 +172,7 @@ countrytotal <- covid_raw %>% group_by(Country_Region) %>%
                 cumrecovered = sum(Recovered)/1000)
 
 
-# Get the map source - this is a new one...
+# Get the map source - this is a new one from tmap...
 data(World)
 
 
