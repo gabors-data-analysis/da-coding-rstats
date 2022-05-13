@@ -1,52 +1,50 @@
-# Lecture 17: Date and time manipulations with R
+# Lecture 18: Introduction to time-series regression
 *Coding course to complete Data Analysis in R*
 
-This lecture introduces basic date and time-variable manipulations. The first part starts with the basics using `lubridate` package by overviewing basic time-related functions and manipulations with time-related values and variables. The second part discusses time-series data aggregation from different frequencies along with visualization for time-series data and unit root tests.
+This lecture introduces time-series regression via the [arizona-electricity](https://gabors-data-analysis.com/datasets/#arizona-electricity) dataset. During this lecture students manipulate time-series data along time dimensions, create multiple time-series related graphs and get familiar with (partial) autocorrelation. Based on these analysis, different time-series models are run via `feols` with Newey-West standard errors.
 
-This lecture is based on [Chapter 12, A: *CH12A Returns on a company stock and market returns*](https://gabors-data-analysis.com/casestudies/#ch12a-returns-on-a-company-stock-and-market-returns) and uses [`stocks-sp500`](https://gabors-data-analysis.com/datasets/#stocks-sp500) dataset
+This lecture is based on [Chapter 12, B: *Electricity consumption and temperature*](https://gabors-data-analysis.com/casestudies/#ch12b-electricity-consumption-and-temperature)
 
 ## Learning outcomes
 After successfully completing codes in *raw_codes* you should be able:
 
-[`date_time_manipulations.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture17_dates_n_times/raw_codes/date_time_manipulations.R)
-  - Familiar with the `lubridate` package, especially with
-    - creating specific time variables, converting other types of variables into a date or datetime object
-    - understand the importance of time zones
-    - Get specific parts of a date object such as `year, quarter, month, wday, yday, day, leap_year`
-    - Rounding to the closest month, year, quarter, etc.
-    - Understand the difference between duration and periods
-  - Carry out time aggregation
-    - Aggregate different time series objects to lower frequencies, using mean/median/max/end date, etc.
-    - Adding `lag`-ged and `diff`-erenced variables to data
-  - Visualize time series with
-    - `facet_wrap` to stack multiple graphs as an alternative to `ggpurb`
-    - standardize variables and put multiple lines into one graph   
-  - Unit root tests using `aTSA` package's `pp.test` function
+[`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R)
+  - Merge different data
+  - Create time-series related descriptives and graphs
+    - handle date as axis
+    - import source code from url via `source_url` from `devtools`
+    - create autocorrelation and partial autocorrelation graphs and interpret
+  - Run time-series regression with `feols` from `fixest`
+    - Understand why to define period and id is important with `fixest` package
+    - Estimate Newey-West standard errors and understand the role of lags
+    - Control for seasonality via dummies
+    - Add lagged variables to the model (and possibly leads as well)
+    - How and why to use the same time interval when comparing competing time-series models
+    - Estimate the standard error for the cummulative effect
 
 ## Lecture Time
 
-Ideal overall time: **35-40 mins**.
+Ideal overall time: **60-80 mins**.
 
-Going through [`date_time_manipulations.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture17_dates_n_times/raw_codes/date_time_manipulations.R) takes around *30 minutes*. There are some discussions and interpretations of the time series (e.g. stationarity). Solving the tasks takes the remaining *5-10 minutes*. The lecture can be shortened by only showing these methods. It will be partially repeated in [lecture18-timeseries_regression](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18_timeseries_regression).
+Going through [`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R) takes around *50-70 minutes* as there are some discussions and interpretations of the time series (e.g. stationarity, transformation of variables ect). Solving the tasks takes the remaining *10 minutes*.
 
 
 ## Homework
 
-*Type*: quick practice, approx 10 mins
+*Type*: quick practice, approx 20 mins
 
-Estimate the *beta* coefficient between quarterly SP500 log returns on Microsoft stocks log return. Use the [`stocks-sp500`](https://gabors-data-analysis.com/datasets/#stocks-sp500) dataset. Take care when aggregating the data to a) use the last day in the quarter and then take the logs and then difference the variable to get log returns. When estimating the regression use heteroskedastic robust standard error (next lecture we learn how to use Newey-West SE).
+You will use the [case-shiller-la](https://gabors-data-analysis.com/datasets/#case-shiller-la) dataset to build a model for unemployment based on the shiller price index. Load the data and consider only `pn` (shiller price index) and `un` (unemployment) as the variables of interest. Both are seasonally adjusted. Decide which transformation to use to make the variables stationary. Create models, where you predict the unemployment based on the shiller price index. At least you should have one model where you use only the contemporaneous effects and one when you use lagged variables for both variables as explanatory variables.
 
 
 ## Further material
 
-  - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch12-stock-returns-risk](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch12-stock-returns-risk/ch12-stock-returns-risk.R)
-  - Hadley Wickham and Garrett Grolemund R for Data Science: [Chapter 16](https://r4ds.had.co.nz/dates-and-times.html) discuss time and date formates more in detail.
-  - [`timetk` package](https://business-science.github.io/timetk/index.html) is a well-documented advanced time-series related package. There are many possibilities with great solutions. A good starting point for further material in time series with R.
-  - [`lubridate` package](https://lubridate.tidyverse.org/index.html) has good documentation, worth checking.
+  - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch12-electricity-temperature](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-electricity-temperature)
+  - Handy, but somewhat different approach for time-series analysis can be found [James Long and Paul Teetor: R Cookbook (2019), Chapter 14](https://rc2e.com/timeseriesanalysis)
+  - A good starting point for advanced methods in time-series analysis are: [`modeltime`](https://business-science.github.io/modeltime/) introduces to automated, machine learning and deep learning based analysis, its supplementary package [`timetk`](https://business-science.github.io/timetk/index.html) has many great time-series related manipulations.
 
 ## Folder structure
   
-  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture17_dates_n_times/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
-    - [`date_time_manipulations.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture17_dates_n_times/raw_codes/date_time_manipulations.R), is the main material for this lecture.
-  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture17_dates_n_times/complete_codes) includes code with solution for [`date_time_manipulations.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture17_dates_n_times/raw_codes/date_time_manipulations.R) as [`date_time_manipulations_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture17_dates_n_times/complete_codes/date_time_manipulations_fin.R)
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture18-timeseries_regression/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
+    - [`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R), is the main material for this lecture.
+  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture18-timeseries_regression/complete_codes) includes code with solution for [`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R) as [`arizona_electricity_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/complete_codes/arizona_electricity_fin.R)
 
