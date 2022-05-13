@@ -1,9 +1,7 @@
-# Lecture 18: Introduction to time-series regression
+# Lecture 20: Spatial data visualization
 *Coding course to complete Data Analysis in R*
 
-This lecture introduces time-series regression via the [arizona-electricity](https://gabors-data-analysis.com/datasets/#arizona-electricity) dataset. During this lecture, students manipulate time-series data along time dimensions, create multiple time-series related graphs and get familiar with (partial) autocorrelation. Based on this analysis, different time-series models are run via `feols` with Newey-West standard errors.
-
-This lecture is based on [Chapter 12, B: *Electricity consumption and temperature*](https://gabors-data-analysis.com/casestudies/#ch12b-electricity-consumption-and-temperature)
+This lecture introduces spatial data visualization using maps. During the lecture students will visualize 2016 US election results on US map along with covid death rates on world map.
 
 ## Learning outcomes
 After successfully completing codes in *raw_codes* you should be able:
