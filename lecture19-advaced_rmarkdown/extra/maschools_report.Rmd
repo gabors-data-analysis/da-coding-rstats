@@ -1,5 +1,5 @@
 ---
-title: "Example for knitting pdf with models"
+title: "Better Teacher to Student ratio is success?"
 output: 
   pdf_document:
     extra_dependencies: ["float"]
@@ -40,9 +40,9 @@ HERE COMES THE MOTIVATION WHY THIS IS A MEANINGFUL PROJECT AND WHAT IS THE MAIN 
 ## Data
 
 The Massachusetts data are ...
-Further information is available (here)[<https://www.rdocumentation.org/packages/AER/versions/1.2-9/topics/MASchools>].
+Further information is available [here](https://www.rdocumentation.org/packages/AER/versions/1.2-9/topics/MASchools).
 
-ECT.
+ETC.
 
 
 ```{r, echo=FALSE}
@@ -198,7 +198,7 @@ kable( etable( reg1 , reg2 , reg3 , reg4 , reg5 ,
         se.row = F,
         depvar = F ) , 
         col.names = c('(1)','(2)','(3)','(4)','(5)'),
-       "latex", booktabs = TRUE,  position = "H",
+       "latex", booktabs = TRUE,
        caption = 'Models to uncover relation between test score and student to teacher ratio') %>% kable_styling(latex_options = c("hold_position","scale_down"))
 
 
