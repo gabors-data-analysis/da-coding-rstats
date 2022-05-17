@@ -1,0 +1,223 @@
+---
+title: "Example for knitting pdf with models"
+output: 
+  pdf_document:
+    extra_dependencies: ["float"]
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+# Set graph size
+#knitr::opts_chunk$set(echo = FALSE, out.width = "50%" )#fig.asp = 0.5, fig.width = 7, out.width = "90%" )
+
+rm(list=ls())
+
+# Libraries
+library(AER)
+library(tidyverse)
+library(lspline)
+library(fixest)
+library(modelsummary)
+library(ggpubr)
+# Extra for correlation heatmap
+library(reshape2)
+library(kableExtra)
+
+# Get the data
+data("MASchools")
+df <- MASchools
+rm( MASchools )
+
+```
+
+## Introduction
+
+This is a causal analysis on fourth graders in Massachusetts public schools in the spring of 1998. We investigating the effect of student per teacher ratio on the test results of the fourth graders. ECT.
+
+HERE COMES THE MOTIVATION WHY THIS IS A MEANINGFUL PROJECT AND WHAT IS THE MAIN GOAL!
+
+
+## Data
+
+The Massachusetts data are ...
+Further information is available (here)[<https://www.rdocumentation.org/packages/AER/versions/1.2-9/topics/MASchools>].
+
+ECT.
+
+
+```{r, echo=FALSE}
+# Sample selection
+df <- df %>% select( score4 , stratio, english, 
+                     income, scratio, exptot, special,
+                     lunch, salary ) %>% drop_na()
+
+P95 <- function(x){quantile(x,0.95,na.rm=T)}
+P05 <- function(x){quantile(x,0.05,na.rm=T)}
+datasummary( (`Overall Grade` = score4 ) + 
+             (`Student to teacher ratio` = stratio ) + 
+             (`Percent of english learner` = english ) + 
+             (`Income per capita` = income) + 
+             (`Student to computer ratio` = scratio) + 
+             (`Total Expenditure ($)` = exptot) + 
+             (`Special education students (%)` = special )+
+             (`Percent qualifying for reduced-price lunch` = lunch ) +
+             (`Average teacher hourly wage ($)` = salary ) ~
+             Mean + Median + SD + Min + Max + P05 + P95 , 
+             data = df ,
+             title = 'Descriptive statistics') %>% 
+      kable_styling(latex_options = c("HOLD_position","scale_down"))
+```
+
+The number of observations is `r sum(!is.na(df$score4))` for all of our key variables.
+
+DESCRIPTION OF THE SUMMARY STATS: WHAT CAN WE LEARN FROM THEM?
+
+As the focus is the price difference, the next Figure shows the histogram for this variable.
+
+```{r, echo=FALSE, warning=FALSE, fig.width=8, fig.height = 3, fig.align="center" }
+# score 4
+p1 <- ggplot( df , aes(x = score4)) +
+  geom_histogram( binwidth = 5, fill='navyblue', color = 'white' ) +
+  labs(y = 'Count',x = "Averaged values of test scores for schools") +
+  theme_bw()
+
+# stratio
+p2 <- ggplot( df , aes(x = stratio)) +
+  geom_histogram(binwidth = 0.5,fill='navyblue', color = 'white' ) +
+  labs(y = 'Count',x = "Student to teacher ratio") +
+  theme_bw()
+
+association_figs <- ggarrange(p1, p2,
+                       hjust = -0.6,
+                       ncol = 2, nrow = 1)
+association_figs
+
+```
+
+DESCRIPTION OF THE FIGURE. WHAT DOES IT TELS US?
+
+(May change the order of descriptive stats and graph.)
+
+The key pattern of association is:
+
+```{r, echo=FALSE, warning=FALSE, fig.width=4, fig.height = 3, fig.align="center" }
+chck_sp <- function( x_var , x_lab ){
+  ggplot( df , aes(x = x_var, y = score4)) +
+    geom_point(color='red',size=2,alpha=0.6) +
+    geom_smooth(method="loess" , formula = y ~ x )+
+    labs(x = x_lab, y = "Averaged values of test scores") +
+    theme_bw()
+}
+
+# Our main interest: student-to-teacher ratio:
+chck_sp(df$stratio,'Student-to-teacher ratio')
+
+```
+
+How will you include this in your model?
+
+Short description on the other variables: 2-10 sentence depends on the amount of variables you have. You should reference your decisions on the graphs/analysis which are located in the appendix.
+
+## Model
+
+
+```{r, echo = FALSE }
+
+# reg1: NO control, simple linear regression
+reg1 <- feols( score4 ~ stratio , data = df , vcov = 'hetero' )
+
+# reg2: NO controls, use piecewise linear spline(P.L.S) with a knot at 18
+reg2 <- feols( score4 ~ lspline( stratio , 18 ) , data = df , vcov = 'hetero' )
+
+# reg3: control for english learners dummy (english_d) only. 
+#   Is your parameter different? Is it a confounder?
+df <- df %>% mutate( english_d = 1*(english>1))
+reg3 <- feols( score4 ~ lspline( stratio , 18 ) + english_d, data = df , vcov = 'hetero' )
+
+##
+# reg4: reg3 + Schools' special students measures (lunch with P.L.S, knot: 15; and special)
+reg4 <- feols( score4 ~ lspline( stratio , 18 ) + english_d 
+                   + lspline(lunch,15) + special , data = df , vcov = 'hetero' )
+
+#
+# reg5: reg4 + salary with P.L.S, knots at 35 and 40, exptot, log of income and scratio
+reg5 <- feols( score4 ~ lspline( stratio , 18 ) + english_d
+                   + lspline(lunch,15) + special 
+                   + lspline(salary,c(35,40)) + exptot 
+                   + log( income ) + scratio , data = df , vcov = 'hetero' )
+
+# Naming the coefficients for pretty output
+alpha  <- round( reg5$coeftable[1,1] , 2 )
+b1 <- round( reg5$coeftable[2,1] , 2 )
+b2 <- round( reg5$coeftable[3,1] , 2 )
+```
+
+My preferred model is:
+
+score = $`r alpha`$ $`r b1`$ $( student/teacher < 18)$ $`r b2`$ $( student/teacher \geq 18) + \delta Z$
+
+where $Z$ are standing for the controls, which includes controlling for english language, lunch, other special characteristics and wealth measures. From this model we can infer:
+
+- when every covariates are zero, students expected to have grade score of $`r alpha`$
+- when the student to teacher is one unit larger, but below the value of 18, we see students to have on average $`r abs(b1)`$ smaller grades.
+- when the student to teacher is one unit larger, with the value above or equal to 18, we see students to have on average $`r abs(b2)`$ smaller grades.
+
+However, based on the heteroskedastic robust standard errors, these results are statistically non different from zero. To show that, I have run a two-sided hypothesis test:
+$$H_0:=\beta_1 = 0$$
+$$H_A:=\beta_1 \neq 0$$
+I have the t-statistic as `r round( reg5$coeftable[2,3] , 2 )` and the p-value as `r round( reg5$coeftable[2,4] , 2 )`, which confirms my conclusion.
+
+We compare multiple models to learn about the stability of the parameters. Bla-bla:
+
+```{r, echo = FALSE }
+##
+# Summarize our findings:
+varname_report <- c("(Intercept)" = "Intercept",
+                   "stratio" = "student/teacher",
+                   "lspline(stratio,18)1" = "student/teacher (<18)",
+                   "lspline(stratio,18)2" = "student/teacher (>=18)",
+                   "english_d" = "english_dummy")
+groupConf <- list("English" = c("english"),
+                  "Lunch" = c("lunch"),
+              "Other Special" = c("special"),
+              "Wealth Measures" = c("exptot","income","scratio"))
+vars_omit <- c("english|lunch|special|salary|exptot|income|scratio")
+
+# Note: coefstat = 'confint' is just an example, usually you need to report se.
+style_noHeaders = style.tex(var.title = "", fixef.title = "", stats.title = " ")
+
+
+kable( etable( reg1 , reg2 , reg3 , reg4 , reg5 ,
+        title = 'Average test scores for 4th graders',
+        dict = varname_report,
+        drop = vars_omit ,
+        group = groupConf ,
+        se.below = T,
+        coefstat = 'se',
+        fitstat = c('n','r2'),
+        se.row = F,
+        depvar = F ) , 
+        col.names = c('(1)','(2)','(3)','(4)','(5)'),
+       "latex", booktabs = TRUE,  position = "H",
+       caption = 'Models to uncover relation between test score and student to teacher ratio') %>% kable_styling(latex_options = c("hold_position","scale_down"))
+
+
+```
+
+
+
+
+
+## Robustness check / 'Heterogeneity analysis'
+
+Task: calculate and report t-tests for each countries. 
+
+
+
+## Conclusion
+
+HERE COMES WHAT WE HAVE LEARNED AND WHAT WOULD STRENGHTEN AND WEAKEN OUR ANALYSIS.
+
+## Appendix
+
+Here comes all the results which are referenced and not essential for understanding the MAIN results.

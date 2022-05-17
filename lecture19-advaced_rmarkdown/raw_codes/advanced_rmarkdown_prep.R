@@ -3,12 +3,26 @@
 #               Lecture 19                    #
 #                                             #
 #    Advanced RMarkdown - preparation         #
-#     -       #
-#     -   #
-#     - #
-#     - #
-#     - #
-#     - #
+#     - Analysis of wage gap in US            #
+#     - Special attention to plots            #
+#     - Customizing etable output             #
+#     - Comparing competing models            #
+#                                             #
+#   In Rmd file:                              #
+#     - Naming chunks                         #
+#     - Suppressing messages                  #
+#     - customizing figure:                   #
+#         - size, alignment, caption,         #
+#           resolution knitting format,       #
+#           referencing                       #
+#     - Customizing tables                    #
+#         - Properly formatted descriptives   #
+#         - title, caption, alignment,        #
+#           referencing                       #
+#         - Formatted model comparison tables #
+#     - In line equations and greek letters   #
+#     - Referencing tables, figures in text   #
+#                                             #
 #                                             #
 # Case Study:                                 # 
 #   Wage differences                          #
@@ -24,28 +38,34 @@ library(tidyverse)
 library(modelsummary)
 library(fixest)
 library(ggpubr)
-#library(segmented)
+library(devtools)
 
+# Import Gabors book theme for pretty plots
+source_url("https://raw.githubusercontent.com/gabors-data-analysis/da_case_studies/master/ch00-tech-prep/theme_bg.R")
 
 
 
 #####
 # Import Data and Clean
 
-#import data (state must be as character: it's a mix of double and character in raw)
+# Import data (there is a column without a name, hence name_repair input and rename)
 cps <- read_csv("https://osf.io/4ay9x/download", 
-                col_types = cols(.default = "?", 
-                                 state = "c"))
-
-# Check the number of observations for each state
-datasummary(state ~ N + Percent(), data = cps)
+                name_repair = "minimal" )
+cps <- cps %>% rename( 'id' = '' )
 
 # Select observations
 cps <- cps %>% filter(uhours>=20 & earnwke>0 & age>=24 & age<=64 & grade92>=44)
 glimpse(cps)
 
+# Check the number of observations for each state
+datasummary( state ~ N + Percent(), data = cps)
+
+# Check occupations
+datasummary( factor( occ2012 ) ~ N + Percent(), data = cps)
+
 # Create new variables
-cps <- cps %>% mutate(female = as.numeric( sex == 2 ),
+cps <- cps %>% mutate(female     = as.numeric( sex == 2  ),
+                      female_fac = factor( ifelse( female == 1 , 'female' , 'male' ) ),
                       w = earnwke / uhours,
                       lnw = log( w ) )
 
@@ -54,10 +74,40 @@ cps <- cps %>% mutate(female = as.numeric( sex == 2 ),
 datasummary( earnwke + uhours + w ~ Mean + Median + P25 + P75 + Max + Min + N , data = cps )
 
 # Distribution of earnings by gender 
-datasummary( female * ( earnwke + uhours + w ) ~ Mean + Median + P25 + P75 + Max + Min + N , data = cps )
+datasummary( female_fac * ( earnwke + uhours + w + lnw ) ~ Mean + Median + P25 + P75 + Max + Min + N , data = cps )
 
 
+# Show wage and log-wage conditional distributions (pretty on purpose -> only copy to Rmd)
+gw <- ggplot( data = cps, aes( x = w , color= female_fac ) ) +
+        geom_density( bw = 10 ) +
+        labs( x = "Wage", y = "Density", color = "") +
+        scale_color_manual( name="", 
+                            values=c(color[2],color[1]),
+                            labels=c("Female","Male") ) +
+        scale_x_continuous(expand = c(0.01, 0.01), limits = c(0, 100)  , breaks = seq(0,  100, by = 25)) +
+        scale_y_continuous(expand = c(0.0, 0.0)  , limits = c(0, 0.03), breaks = seq(0, 0.03, by = 0.01)) +
+        annotate( 'text' , x = 55, y = 0.020, label = "Male"  , color = color[1] , size = 4 ) +
+        annotate( 'text' , x = 25, y = 0.025, label = "Female", color = color[2], size = 4 ) +
+        theme_bg( ) +
+        theme(legend.position = "none")
+gw
 
+glnw <- ggplot( data = cps, aes( x = lnw, color= female_fac ) ) +
+          geom_density( bw = .25 ) +
+          labs( x = "Log-Wage", y = "Density", color = "") +
+          scale_color_manual( name="", 
+                              values=c(color[2],color[1]),
+                              labels=c("Female","Male") ) +
+          scale_x_continuous(expand = c(0.01, 0.01), limits = c(-1, 6) , breaks = seq(-1,  6, by = 1)) +
+          scale_y_continuous(expand = c(0.0, 0.0)  , limits = c(0, 0.8), breaks = seq(0, 0.8, by = 0.2)) +
+          annotate( 'text' , x = 5, y = 0.6, label = "Male", color = color[1] , size = 4 ) +
+          annotate( 'text', x = 2, y = 0.6, label = "Female", color = color[2], size = 4 ) +
+          theme_bg( ) +
+          theme(legend.position = "none")
+glnw
+
+# Plot together
+ggarrange( gw , glnw , nrow = 1 , ncol = 2 )
 
 ################################################################
 # Models to understand earnings:
@@ -75,17 +125,17 @@ reg3 <- feols( age ~ female        , data=cps, vcov = "hetero")
 etable( reg1 , reg2 , reg3 , headers = c('Omitted','Complete','Auxillary') )
 
 # Kernel density to show age distribution -> one source of the bias
-ggplot(data = cps, aes(x=age, y = stat(density), color = female)) +
+ggplot(data = cps, aes(x=age, y = stat(density), color = female_fac)) +
   geom_density(adjust=1.5, show.legend=F, na.rm =TRUE, size=0.7) +
   labs(x="Age (years)", y="Density", color = "") +
   scale_color_manual(name="", 
-                     values=c('red','blue'),
+                     values=c(color[1],color[2]),
                      labels=c("Male","Female")) +
   scale_x_continuous(expand = c(0.01, 0.01), limits = c(24, 64), breaks = seq(25, 65, by = 5)) +
   scale_y_continuous(expand = c(0.0, 0.0), limits = c(0, 0.04), breaks = seq(0, 0.04, by = 0.01)) +
-  geom_text(aes(x = 55, y = 0.028, label = "Male"), color = 'red', size=2) +
-  geom_text(aes(x = 55, y = 0.020, label = "Female"), color = 'blue', size=2) +
-  theme_bw()
+  annotate("text",x = 55, y = 0.020, label = "Male", color = color[1], size = 4 ) +
+  annotate("text",x = 55, y = 0.03, label = "Female", color = color[2], size = 4 ) +
+  theme_bg()
 
 
 
@@ -112,7 +162,7 @@ etable( reg4, reg5, reg6, reg7)
 #    education
 
 # create education dummies
-cps <- cps %>% mutate( ed_MA     = as.numeric(grade92==44),
+cps <- cps %>% mutate( ed_MA      = as.numeric(grade92==44),
                        ed_Profess = as.numeric(grade92==45),
                        ed_PhD     = as.numeric(grade92==46) )
 
@@ -170,15 +220,17 @@ data_f <- data_f %>% mutate( lin_fit      = pred_f$fit,
                              lin_fit_CIlo = pred_f$ci_low )
 
 pred_lin <- ggplot( )+
-  geom_line(data=data_m,aes(x=age,y=lin_fit),colour='blue',linetype=1, lwd=0.8)+
-  geom_line(data=data_m,aes(x=age,y=lin_fit_CIup), colour='blue', linetype= "dashed", lwd=0.3)+
-  geom_line(data=data_m,aes(x=age,y=lin_fit_CIlo), colour='blue', linetype= "dashed", lwd=0.3)+
-  geom_line(data=data_f,aes(x=age,y=lin_fit),colour='red',lwd=0.8)+
-  geom_line(data=data_f,aes(x=age,y=lin_fit_CIup), colour='red',  linetype= "dashed", lwd=0.3)+
-  geom_line(data=data_f,aes(x=age,y=lin_fit_CIlo), colour='red',  linetype= "dashed", lwd=0.3)+
+  geom_line(data=data_m,aes(x=age,y=lin_fit),colour=color[1],linetype=1, lwd=0.8)+
+  geom_line(data=data_m,aes(x=age,y=lin_fit_CIup), colour=color[1], linetype= "dashed", lwd=0.3)+
+  geom_line(data=data_m,aes(x=age,y=lin_fit_CIlo), colour=color[1], linetype= "dashed", lwd=0.3)+
+  geom_line(data=data_f,aes(x=age,y=lin_fit),colour=color[2],lwd=0.8)+
+  geom_line(data=data_f,aes(x=age,y=lin_fit_CIup), colour=color[2],  linetype= "dashed", lwd=0.3)+
+  geom_line(data=data_f,aes(x=age,y=lin_fit_CIlo), colour=color[2],  linetype= "dashed", lwd=0.3)+
   labs(x = "Age (years)",y = "ln(earnings per hour, US dollars)")+
   scale_x_continuous(expand = c(0.01,0.01), limits = c(24, 65), breaks = seq(25, 65, by = 5)) +
   scale_y_continuous(expand = c(0.01,0.01), limits = c(2.8, 3.8), breaks = seq(2.8, 3.8, by = 0.1)) +
+  annotate("text",x = 50, y = 3.25, label = "Female", color = color[2], size=4) +
+  annotate("text",x = 35, y = 3.65, label = "Male", color = color[1], size=4) +
   theme_bw() 
 pred_lin
 
@@ -198,15 +250,17 @@ data_f <- data_f %>% mutate( poly_fit      = pred_f$fit,
                              poly_fit_CIlo = pred_f$ci_low )
 
 pred_poly <- ggplot( )+
-  geom_line(data=data_m,aes(x=age,y=poly_fit),colour='blue',linetype=1, lwd=0.8)+
-  geom_line(data=data_m,aes(x=age,y=poly_fit_CIup), colour='blue', linetype= "dashed", lwd=0.3)+
-  geom_line(data=data_m,aes(x=age,y=poly_fit_CIlo), colour='blue', linetype= "dashed", lwd=0.3)+
-  geom_line(data=data_f,aes(x=age,y=poly_fit),colour='red',lwd=0.8)+
-  geom_line(data=data_f,aes(x=age,y=poly_fit_CIup), colour='red',  linetype= "dashed", lwd=0.3)+
-  geom_line(data=data_f,aes(x=age,y=poly_fit_CIlo), colour='red',  linetype= "dashed", lwd=0.3)+
+  geom_line(data=data_m,aes(x=age,y=poly_fit),colour=color[1],linetype=1, lwd=0.8)+
+  geom_line(data=data_m,aes(x=age,y=poly_fit_CIup), colour=color[1], linetype= "dashed", lwd=0.3)+
+  geom_line(data=data_m,aes(x=age,y=poly_fit_CIlo), colour=color[1], linetype= "dashed", lwd=0.3)+
+  geom_line(data=data_f,aes(x=age,y=poly_fit),colour=color[2],lwd=0.8)+
+  geom_line(data=data_f,aes(x=age,y=poly_fit_CIup), colour=color[2],  linetype= "dashed", lwd=0.3)+
+  geom_line(data=data_f,aes(x=age,y=poly_fit_CIlo), colour=color[2],  linetype= "dashed", lwd=0.3)+
   labs(x = "Age (years)",y = "ln(earnings per hour, US dollars)")+
   scale_x_continuous(expand = c(0.01,0.01), limits = c(24, 65), breaks = seq(25, 65, by = 5)) +
   scale_y_continuous(expand = c(0.01,0.01), limits = c(2.8, 3.8), breaks = seq(2.8, 3.8, by = 0.1)) +
+  annotate("text",x = 50, y = 3.25, label = "Female", color = color[2], size=4) +
+  annotate("text",x = 35, y = 3.65, label = "Male", color = color[1], size=4) +
   theme_bw() 
 pred_poly
 
@@ -309,16 +363,19 @@ varname_report <- c("female" = 'Female' )
 #   (but should deal with care e.g. in case of age in polynomials!)
 
 etable( reg1_e , reg2_e , reg3_e , reg4_e ,
-        title = 'Gender wage gap',
-        headers = c("(1)","(2)","(3)","(4)"),
-        keep = 'Female',
-        dict = varname_report,
-        #drop = vars_omit ,
-        group = groupConf ,
-        digits = 3,
-        digits.stats = 3,
-        se.below = T,
-        fitstat = c('r2','n') )
+        title = 'Gender wage gap',            # Add a title
+        headers = c("(1)","(2)","(3)","(4)"), # Name of the models
+        depvar = F,                           # Hide the dependent variable from the header
+        keep = 'Female',                      # Keep variable -> show coeff and stats
+        dict = varname_report,                # Rename variable for pretty presentation
+        #drop = vars_omit ,                   # Hide variables from presentation (not used: keep or drop)
+        group = groupConf ,                   # Grouping variables into 'control types'
+        digits = 3,                           # Reported digits for coeffs and SE
+        digits.stats = 3,                     # Reported digits for the summary statistics
+        se.below = T,                         # Show standard errors below the coefficients
+        se.row = F,                           # Hide Type of SE used from summary stat part
+        fitstat = c('r2','n')                 # Reported statistics (R2 and Num obs.)
+        )
 
 # Note: if you use 'keep', then you have to use the same name as you specified in 'dict'.
 #   also if you use 'drop' you have to take care!

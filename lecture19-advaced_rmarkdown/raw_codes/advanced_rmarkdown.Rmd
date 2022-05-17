@@ -1,0 +1,370 @@
+---
+title: "Gender Wage Gap"
+output: 
+  pdf_document:
+    fig_caption: yes
+
+#date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+
+
+# clear memory
+rm( list = ls() )
+
+# packages
+library(tidyverse)
+library(modelsummary)
+library(fixest)
+library(ggpubr)
+library(devtools)
+
+# For rmarkdown:
+library(kableExtra)
+
+# Import Gabor's book theme for pretty plots
+source_url("https://raw.githubusercontent.com/gabors-data-analysis/da_case_studies/master/ch00-tech-prep/theme_bg.R")
+
+```
+
+## Introduction
+
+This is a causal analysis of the wage gap between female and male workers. We investigating the wage gap as...
+
+HERE COMES THE MOTIVATION FOR WHY THIS IS A MEANINGFUL PROJECT AND WHAT IS THE MAIN GOAL!
+
+## Data
+
+```{r data import, echo=FALSE, message = FALSE}
+## Importing Data and Cleaning
+cps <- read_csv("https://osf.io/4ay9x/download", 
+                name_repair = "minimal" )
+cps <- cps %>% rename( 'id' = '' )
+
+# Select observations
+cps <- cps %>% filter(uhours>=20 & earnwke>0 & age>=24 & age<=64 & grade92>=44)
+
+# Create new variables
+cps <- cps %>% mutate(female = as.numeric( sex == 2  ),
+                      female_fac = factor( ifelse( female == 1 , 'female' , 'male' ) ),
+                      w = earnwke / uhours,
+                      lnw = log( w ) )
+
+```
+
+The data are ... (US, which occupation, etc.) Further information is available at the [National Bureau of Economic Research (US) - CPS Merged Outgoing Rotation Groups](http://www2.nber.org/data/morg.html).
+
+Some further information on the data is necessary to interpret the results.
+
+### Selecting the sample
+
+We have restricted our attention to age cohorts between 40 and 60 with a graduate degree as the participants in the CPS data are better balanced along these dimensions. Figure \ref{fig:age_dist} shows the age distribution of employees with a graduate degree by gender.
+
+```{r create figure wi label, echo=FALSE, warning=FALSE, fig.width=3, fig.height = 2.5, fig.align="center", fig.cap="\\label{fig:age_dist}Age distribution of employees with graduate degree by gender"}
+# Alternatively you can use one of fig.width or fig.height with fig.extra = 'keepaspectratio'
+#
+# Also good to know:
+#   In many cases you work with large data -> create a large knitted document if simply include a figure:
+#   Multiple possibilities:
+#     a) In figure use a smaller, random sample of the original (e.g. 1k or 10k instead of 100k) 
+#         - BUT ONLY ON THE FIGURE!
+#     b) change fig.retina input. The default is 2, may use 1. (you can also set 'dpi' as well)
+#     c) set how figure is knitted (rendered). Default is svg which gives you amazing (but large) results.
+#         can set dev = "png" or "jpeg" instead. May cause blurry results. 
+#     +1) If want to knit the whole document, use at the beginning: 
+#         e.g. knitr::opts_chunk$set(dev = "png", dpi = 300, fig.retina = 1)
+
+# Kernel density to show age distribution -> one source of the bias
+ggplot(data = cps, aes(x=age, y = stat(density), color = female_fac)) +
+  geom_density(adjust=1.5, show.legend=F, na.rm =TRUE, size=0.7) +
+  labs(x="Age (years)", y="Density", color = "") +
+  scale_color_manual(name="", 
+                     values=c(color[1],color[2]),
+                     labels=c("Female","Male")) +
+  scale_x_continuous(expand = c(0.01, 0.01), limits = c(24, 64), breaks = seq(25, 65, by = 5)) +
+  scale_y_continuous(expand = c(0.0, 0.0), limits = c(0, 0.04), breaks = seq(0, 0.04, by = 0.01)) +
+  annotate("text",x = 55, y = 0.03, label = "Female", color = color[2], size=4) +
+  annotate("text",x = 55, y = 0.020, label = "Male", color = color[1], size=4) +
+  theme_bg()
+
+```
+
+### Descriptive statistics
+
+Using this sample our parameter of interest is the expected difference between female and male workers' hourly wages.  Table \ref{tab:wage_desc} describes the main characteristics of hourly wage and log wages for each gender.
+
+```{r create table, echo=FALSE, message = FALSE}
+# Show descriptive statistics of the parameter of interest
+P95 <- function(x){quantile(x,0.95,na.rm=T)}
+P05 <- function(x){quantile(x,0.05,na.rm=T)}
+
+
+# Distribution of earnings by gender: wage and log-wage
+datasummary( ( `gender` = female_fac ) * ( ( `wage` = w ) + ( `log-wage` = lnw ) ) ~
+             Mean + Median + SD + P05 + P95 + Max + Min , data = filter(cps, age>=40 & age<=60),
+             title = ' \\label{tab:wage_desc}Descriptive statistics of hourly wage by gender' ) %>% 
+    kable_styling(latex_options = c("HOLD_position"))
+
+# Good-to-know: 
+#   if output is larger than the page's width, use: kable_styling(latex_options ="scale_down") )
+#   if output is longer than the page's lenght, use: kable_styling( font_size = X ) , where X is positive integer.
+
+```
+
+The number of observations is `r sum(!is.na(cps$w))` for all of our key variables.
+
+DESCRIPTION OF THE SUMMARY STATS: WHAT CAN WE LEARN FROM THEM?
+
+As the focus is the price difference, Figure \ref{fig:wage_dist} shows the conditional distributions of the wage and log-wage.
+
+```{r show two graphs, echo=FALSE, warning=FALSE, fig.width=8, fig.height = 3, fig.align="center" , fig.cap = "\\label{fig:wage_dist} Density plot of hourly wage and log-wage by gender"}
+# Wage-pretty
+gw <- ggplot( data = filter(cps, age>=40 & age<=60), aes( x = w, color= female_fac ) ) +
+        geom_density( bw = 10 ) +
+        labs( x = "Wage", y = "Density", color = "",
+              caption = 'Hourly wage') +
+        scale_color_manual( name="", 
+                            values=c(color[1],color[2]),
+                            labels=c("Female","Male") ) +
+        scale_x_continuous( limits = c(0, 100)  , breaks = seq(0,  100, by = 25)) +
+        scale_y_continuous( limits = c(0, 0.03), breaks = seq(0, 0.03, by = 0.01)) +
+        annotate("text",x = 55, y = 0.020, label = "Male"  , color = color[2] , size = 4 ) +
+        annotate("text",x = 25, y = 0.025, label = "Female", color = color[1], size = 4 ) +
+        theme_bg( ) +
+        theme(legend.position = "none", plot.caption = element_text(hjust = 0.5))
+
+# Log-wage pretty
+glnw <- ggplot( data = filter( cps, age>=40 & age<=60), aes( x = lnw, color= female_fac ) ) +
+          geom_density( bw = .25 ) +
+          labs( x = "Log-Wage", y = "Density", color = "",
+                caption = 'Hourly log-wage') +
+          scale_color_manual( name="", 
+                              values=c(color[1],color[2]),
+                              labels=c("Female","Male") ) +
+          scale_x_continuous( limits = c(-1, 6) , breaks = seq(-1,  6, by = 1)) +
+          scale_y_continuous( limits = c(0, 0.8), breaks = seq(0, 0.8, by = 0.2)) +
+          annotate("text",x = 5, y = 0.65, label = "Male"  , color = color[2] , size = 4 ) +
+          annotate("text",x = 2, y = 0.65, label = "Female", color = color[1], size = 4 ) +
+          theme_bg( ) +
+          theme(legend.position = "none", plot.caption = element_text(hjust = 0.5))
+
+
+# Plot together
+ggarrange( gw , glnw , ncol = 2, nrow = 1)
+
+```
+
+DESCRIPTION OF THE FIGURE. WHAT DOES IT TELL US?
+
+
+(May change the order of descriptive stats and graph or if not enough space put one of them into the appendix.)
+
+
+
+How will you include this in your model?
+
+Short description of the other variables: 2-10 sentences depending on the number of variables you have. You should reference your decisions on the graphs/analysis which are located in the appendix.
+
+## Model
+
+I have run several models, from simply regressing female variables on log wages to more elaborate models, where I have controlled for several socio-economic and other variables. 
+
+```{r, echo = FALSE }
+
+###
+# Adding variables:
+
+# Polynomials of age
+cps <- cps %>% mutate(agesq = age^2,
+                      agecu = age^3,
+                      agequ = age^4 )
+
+# Education dummies
+cps <- cps %>% mutate( ed_MA      = as.numeric(grade92==44),
+                       ed_Profess = as.numeric(grade92==45),
+                       ed_PhD     = as.numeric(grade92==46) )
+
+# Pre-determined demographics: create features
+cps <- cps %>% mutate(white = as.numeric( race == 1 ),
+                      afram = as.numeric( race == 2 ),
+                      asian = as.numeric( race == 4 ),
+                      hisp  = as.numeric( !is.na(ethnic) ),
+                      othernonw = as.numeric(white==0 & afram==0 & asian==0 & hisp==0),
+                      nonUSborn = as.numeric( prcitshp=="Foreign Born, US Cit By Naturalization" 
+                                              | prcitshp=="Foreign Born, Not a US Citizen") )
+
+
+# Potentially important (confounder) family background variables
+cps <- cps %>% mutate(married  = as.numeric(marital==1 | marital==2),
+                      divorced = as.numeric(marital==3 | marital==5 | marital==6),
+                      widowed  = as.numeric(marital==4),
+                      nevermar = as.numeric(marital==7),
+                      child0   = as.numeric(chldpres==0),
+                      child1   = as.numeric(chldpres==1),
+                      child2   = as.numeric(chldpres==2),
+                      child3   = as.numeric(chldpres==3),
+                      child4pl = as.numeric(chldpres>=4))
+
+# Work-related confounder variables
+cps <- cps %>% mutate(fedgov  = as.numeric(class=="Government - Federal"),
+                      stagov  = as.numeric(class=="Government - State"),
+                      locgov  = as.numeric(class=="Government - Local"),
+                      nonprof = as.numeric(class=="Private, Nonprofit"),
+                      ind2dig = as.integer(as.numeric(as.factor(ind02))/100),
+                      occ2dig = as.integer(occ2012/100),
+                      union   = as.numeric(unionmme=="Yes" | unioncov=="Yes"))
+
+
+# Control for hours in polynomial
+cps <- cps %>% mutate(uhourssq = uhours^2,
+                      uhourscu = uhours^3,
+                      uhoursqu = uhours^4)
+
+####
+# Models (extended only here)
+
+# only focus on age between 40 and 60 to have more close to linear differences
+cps_f <- cps %>% filter(age>=40 & age<=60)
+
+# Simple benchmark
+reg1_e <- feols(lnw ~ female                            , data=cps_f, vcov = "HC1")
+# Age and Education
+reg2_e <- feols(lnw ~ female + age + ed_Profess + ed_PhD, data=cps_f,vcov = "HC1")
+# Age, Education, demographics, socio-economic and work related
+reg3_e <- feols(lnw ~ female + age + afram + hisp + 
+                      asian + othernonw + nonUSborn + 
+                      ed_Profess + ed_PhD + married + 
+                      divorced+ widowed + child1 + child2 + 
+                      child3 +child4pl + as.factor(stfips) + 
+                      uhours + fedgov + stagov + locgov + nonprof + 
+                      union + as.factor(ind2dig) + as.factor(occ2dig) , data=cps_f,vcov = "HC1")
+# Age, Education, demographics, socio-economic and work related with polynomials
+reg4_e <- feols(lnw ~ female + age + afram + hisp + 
+                      asian + othernonw + nonUSborn + 
+                      ed_Profess + ed_PhD + married + 
+                      divorced+ widowed + child1 + child2 + 
+                      child3 +child4pl + as.factor(stfips) + 
+                      uhours + fedgov + stagov + locgov + nonprof + 
+                      union + as.factor(ind2dig) + as.factor(occ2dig) + 
+                      agesq + agecu + agequ + uhoursqu + uhourscu + uhourssq , data=cps_f,vcov = "HC1")
+
+# Naming the coefficients for pretty output
+alpha  <- round( reg4_e$coeftable[1,1] , 2 )
+b1     <- round( reg4_e$coeftable[2,1] , 2 )
+```
+
+The preferred model was the largest, where I have conditioned on ...
+
+\begin{center}
+  log wage = $\alpha$ $`r b1`$ $female$ $+ \delta Z$
+\end{center}
+
+where $Z$s are standing for the controls, which includes controlling for ... . 
+From this model we can infer:
+
+- for the female worker, when controlling for the above-mentioned variables, the wage difference is $`r abs(b1)`$.
+
+I have compared multiple models to learn about the stability of the parameters. EXPLAIN BRIEFLY MODELS AND THE RESULTS OF IT
+
+```{r, echo = FALSE }
+##
+# Summarize our findings:
+groupConf <- list("Age and Education" = c("age","ed_"),
+                  "Family background" = c("married","divorced","widowed","child",
+                                          "afram","hisp","asian","othernonw"),
+                  "Hours worked" = c("uhours"),
+                  "Government or private" = c("fedgov","stagov","locgov","nonprof"),
+                  "Union member" = c("union"),
+                  "Not born in USA" = c("nonUSborn"),
+                  "Age in polynomial" = c("agesq","agecu","agequ"),
+                  "Hours in polynomial" = c("uhourssq","uhourscu","uhoursqu") )
+
+varname_report <- c("female" = 'Female' )
+
+# Note: coefstat = 'confint' is just an example, usually you need to report se.
+style_noHeaders = style.tex(var.title = "", fixef.title = "", stats.title = " ")
+
+
+kable( etable( reg1_e , reg2_e , reg3_e , reg4_e ,
+                title = 'Gender wage gap',
+                depvar = F,
+                keep = 'Female',
+                dict = varname_report,
+                #drop = vars_omit ,
+                group = groupConf ,
+                digits = 3,
+                digits.stats = 3,
+                se.below = T,
+                se.row = F,
+                fitstat = c('r2','n') ) , 
+        col.names = c('(1)','(2)','(3)','(4)'),
+       "latex", booktabs = TRUE,
+       caption = '\\label{tab:model_res}Models to uncover gender wage gap') %>% 
+  kable_styling(latex_options = c("hold_position","scale_down"))
+
+
+```
+
+### Hypothesis testing 
+
+All the aforementioned models show that the results are statistically different from zero. To show that, I have run a two-sided hypothesis test: $$H_0:=\beta_1 = 0$$ $$H_A:=\beta_1 \neq 0$$ using or preferred model (4). I have the t-statistic as `r round( reg4_e$coeftable[2,3] , 2 )` and the p-value as `r round( reg4_e$coeftable[2,4] , 2 )`, which confirms the conclusion: the probability of making a Type I is almost zero.
+
+
+## Robustness check / 'Heterogeneity analysis'
+
+Task: run a model on the full sample. Report a similar table, with the model (4) as the first column.
+
+```{r, echo = FALSE }
+# Re-run the models on the full sample
+# use: kable_styling(latex_options = c("hold_position","scale_down")) when reporting!
+
+
+```
+
+INTERPRET THESE RESULTS IN 2-5 SENTENCES
+
+
+## Conclusion
+
+HERE COMES WHAT WE HAVE LEARNED AND WHAT WOULD STRENGTHEN AND WEAKEN OUR ANALYSIS.
+
+## Appendix
+
+Here comes all the results which are referenced and not essential for understanding the MAIN results.
+
+```{r appendix description, include = F}
+###
+# Tasks:
+#   
+#   - Descriptive stats for variables for the restricted sample
+#   - Add the graph of predicted wages based on polynomials of age
+#
+```
+
+A short explanation of the variables.
+
+```{r desc vars, echo = F}
+# Distribution of earnings by gender: all variables (yes, it is painful...)
+# Notes: stfips = states, ind2dig -> two digits industry code -> can show a frequency table, 
+#           use 'font_size = 8' as kable_styling() input!
+#         occ2dig = occupation 2 digits code -> probably too long and not that important to report.
+#         This is important, but way too many and it is a categorical (possibly in a different frequency table)
+#       
+
+
+```
+```{r skip frequency occupation, include = F}
+
+```
+
+Discuss the age effect. Short description of the model.
+```{r age predict, echo = F }
+
+```
+
+```{r plot pred graph}
+
+
+
+```
