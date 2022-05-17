@@ -1,19 +1,17 @@
-# Lecture 18: Introduction to time-series regression
+# Lecture 19: Advanced RMarkdown
 *Coding course to complete Data Analysis in R*
 
-This lecture introduces time-series regression via the [arizona-electricity](https://gabors-data-analysis.com/datasets/#arizona-electricity) dataset. During this lecture, students manipulate time-series data along time dimensions, create multiple time-series related graphs and get familiar with (partial) autocorrelation. Based on this analysis, different time-series models are run via `feols` with Newey-West standard errors.
+This lecture shows the tricks-and-tips on how to write and format a complete report for a data analysis, using [cps-earnings](https://gabors-data-analysis.com/datasets/#cps-earnings) dataset in RMarkdown. Using RMarkdown in our experience is one of the most challenging and time consuming part of the work when creating a complete data analysis. This lecture uses a script file to prepare the analysis on the topic (see [`advanced_rmarkdown_prep.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture19-advaced_rmarkdown/raw_codes/advanced_rmarkdown_prep.R) ) and when the main results and messages are cristallized, we propose to create an `.Rmd` file to present and communicate the results.
+During this lecture, students will learn, what is the general structure of a data analysis report, how to format figures and tables in order to efficiently communicate the results.
 
-This lecture is based on [Chapter 12, B: *Electricity consumption and temperature*](https://gabors-data-analysis.com/casestudies/#ch12b-electricity-consumption-and-temperature)
+This lecture is based on [Chapter 10, A: *Understanding the gender difference in earnings*](https://gabors-data-analysis.com/casestudies/#ch10a-understanding-the-gender-difference-in-earnings).
 
 ## Learning outcomes
 After successfully completing codes in *raw_codes* you should be able:
 
-[`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R)
-  - Merge different data
-  - Create time-series related descriptives and graphs
-    - handle date as the axis
-    - import source code from URL via `source_url` from `devtools`
-    - create autocorrelation and partial autocorrelation graphs and interpret
+[`advanced_rmarkdown.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture19-advaced_rmarkdown/raw_codes/advanced_rmarkdown.Rmd)
+  - General understanding on the structure of a data analysis report
+  - Naming code chunks and why is it beneficial
   - Run time-series regression with `feols` from `fixest`
     - Understand why defining period and id is important with `fixest` package
     - Estimate Newey-West standard errors and understand the role of lags
