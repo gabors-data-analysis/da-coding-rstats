@@ -8,7 +8,8 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-
+# Here you may set general behavior of figures, tables, format, etc.
+# knitr::opts_chunk$set(dev = "png", dpi = 300, fig.retina = 1)
 
 # clear memory
 rm( list = ls() )
