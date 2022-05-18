@@ -127,6 +127,21 @@ datasummary( continent ~ N + Percent() , data = wms )
 # Create a region variable 
 
 
+##
+# It is also possible to create these groups by hand, with fct_collapse command.
+#
+# check the type ownership:
+unique(wms$ownership)
+
+wms <- wms %>% 
+  mutate(owner = fct_collapse(ownership,
+                              other   = c("Other"),
+                              family  = grep("Family", unique( ownership ), value = TRUE),
+                              gov     = c("Government"),
+                              private = c('Dispersed Shareholders',"Private Individuals",
+                                          'Founder owned, CEO unknown','Private Equity/Venture Capital',
+                                          'Founder owned, external CEO','Founder owned, founder CEO') ) )
+unique(wms$owner)
 
 ####
 # Good-to-know: labeled ordered factor variable: 
