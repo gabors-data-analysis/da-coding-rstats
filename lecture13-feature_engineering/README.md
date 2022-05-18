@@ -1,42 +1,53 @@
-# Lecture 09: Programming loops in R
+# Lecture 13: Feature Engineering
 *Coding course to complete Data Analysis in R*
 
-This lecture introduces students to imperative programming with `for` and `while` loops. 
+This lecture overviews main feature engineering practices. It uses [wms-management-survey](https://gabors-data-analysis.com/datasets/#wms-management-survey) dataset for manipulation of (mulitple) variable(s) into a new one and [bisnode-firms](https://gabors-data-analysis.com/datasets/#bisnode-firms) dataset to show more elaborate techniques such as imputing, nonlinear transformations and winsorizing.
+
+The lecture (partially) uses case studies of [Chapter 1C: Management quality: data collectionv](https://gabors-data-analysis.com/casestudies/#ch01c-management-quality-data-collection), [Chapter 4A: Management quality and firm size: describing patterns of association](https://gabors-data-analysis.com/casestudies/#ch04a-management-quality-and-firm-size-describing-patterns-of-association) and [Chapter 17A Predicting firm exit: probability and classification](https://gabors-data-analysis.com/casestudies/#ch17a-predicting-firm-exit-probability-and-classification)
 
 
 ## Learning outcomes
-After successfully live-coding the material (see: [`loops.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.md)), students will have knowledge on
+After successfully completing codes in *raw_codes* you should be able:
 
-- What is imperative programming and what is functional programming for iterations
-- What is a for loop
-  - what are the possible inputs for an iteration vector
-  - how to measure CPU time
-  - what are the possible issues with the for-loop
-- What is a while loop
-  - what are the possible drawbacks of a while loop
-  - how to use a for loop instead
-  - `break` command     
+[`feature_engineering.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature_engineering/raw_codes/feature_engineering.R)
+- How to create new variable from multiple already existing variables with calculating the mean or the sum
+- Create groups of a categorical variable
+  - `countrycode` package to get continents and regions
+  - `fct_collapse` to group by hand
+- Create ordered factor variable
+  - convert an integer valued variable to ordered factor variable     
+  - `cut`, `cut_numbers` and others to convert a contiunous variable into an ordered factor variable
+- Create dummy variables from a factor variable with `fastDummies` package
+- Imputing values
+  - replacing with mean or median
+  - using outside knowledge (or other variable)
+  - creating categorical variable with specific value for missing
+- Adjusting log transformation (to avoid log(0))
+- Using `lead` and `lag` functions
+- Numeric vs factor representation with visualization
+- Random sampling with panel data for (faster) visualization
+- Winsorizing 
+- Using `ggpubr` package to plot multiple `ggplot2` object at once
 
 ## Lecture Time
 
-Ideal overall time: **10-20 mins**.
+Ideal overall time: **30-50 mins**.
 
-This is a relatively short lecture, and it can be even shorter if measuring CPU time is neglected.
+This lecture is a collection of feature engineering techniques used throught [this R course](https://github.com/gabors-data-analysis/da-coding-rstats) and [case studies](https://github.com/gabors-data-analysis/da_case_studies). Therefore it can be skipped and spend more time in each individual lecture with the transformations. However it is highly useful to see almost all the transformations in one place.
 
 ## Homework
 
-*Type*: quick practice, approx 15 mins, together with [lecture08-conditionals](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture08-conditionals), [lecture10-random_numbers](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture10-random_numbers), and [lecture11-functions](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture11-functions).
+*Type*: TBC
 
-Check the common homework [here](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture11-functions/README.md).
 
 ## Further material
-
-  - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 21](https://r4ds.had.co.nz/iteration.html) provide further material on iterations, both imperative and functional programming.
-  - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 10](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/10_functional_programming.Rmd) provides useful guidelines on iterations along with other programming skills.
+  - More materials on the **World-Management Survey case study** can be found in Gabor's *da_case_studies* repository: [https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch04-management-firm-size]
+  - More materials on the **Predicting firm exit case study** can be found in Gabor's *da_case_studies* repository: [ch17-predicting-firm-exit](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch17-predicting-firm-exit), especially in the [data preparation file](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch17-predicting-firm-exit/ch17-firm-exit-data-prep.R)
+  - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 15](https://r4ds.had.co.nz/factors.html) provide further material on factors and dealing with them.
 
 
 ## File structure
   
-  - [`loops.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.md) provides material for the live coding session with explanations.
-  - [`loops.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.Rmd) is the generating Rmarkdown file for `loops.md`
-  - **[`loops.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.R)** is a possible realization of the live coding session
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature_engineering/raw_codes/) includes codes, which are ready to use during the course but requires some live coding in class.
+    - [`feature_engineering.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature_engineering/raw_codes/feature_engineering.R), is the main material for this lecture.
+  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature_engineering/complete_codes/) includes code with solution for [`feature_engineering.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature_engineering/raw_codes/feature_engineering.R) as [`feature_engineering_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature_engineering/complete_codes/feature_engineering_fin.R)
