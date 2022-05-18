@@ -41,7 +41,7 @@ This lecture is a collection of feature engineering techniques used throught [th
 
 
 ## Further material
-  - More materials on the **World-Management Survey case study** can be found in Gabor's *da_case_studies* repository: [https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch04-management-firm-size]
+  - More materials on the **World-Management Survey case study** can be found in Gabor's *da_case_studies* repository: [ch04-management-firm-size](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch04-management-firm-size)
   - More materials on the **Predicting firm exit case study** can be found in Gabor's *da_case_studies* repository: [ch17-predicting-firm-exit](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch17-predicting-firm-exit), especially in the [data preparation file](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch17-predicting-firm-exit/ch17-firm-exit-data-prep.R)
   - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 15](https://r4ds.had.co.nz/factors.html) provide further material on factors and dealing with them.
 
