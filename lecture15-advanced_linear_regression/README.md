@@ -11,7 +11,6 @@ After successfully completing codes in *raw_codes* you should be able:
 [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced_linear_regression/raw_codes/hotels_advanced_regression.R)
   - Visualize multiple explanatory variables vs outcome:
     - With a scatter plot decide the functional form which is needed.
-    - `ggpubr` package to plot multiple ggplot in one graph.
   - Multiple linear regression
     - Use `feols` to estimate regressions with multiple explanatory variables
     - Use `etable` to compare multiple candidate models and report model statistics such as R2 to evaluate models.
