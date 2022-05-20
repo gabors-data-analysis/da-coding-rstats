@@ -37,6 +37,7 @@ Import from OSF the [footbal](https://osf.io/zqm6c/) data tables. To be more pre
 
   - Hadley Wickham and Garrett Grolemund R for Data Science: [Chapter 11](https://r4ds.had.co.nz/data-import.html) provides an overview of data import and export along with a detailed discussion of how these methods are done and how tidyverse approaches.
   - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 02](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/02_computational_reproducibility.Rmd) provides useful further guidelines on how to organize the folder structure and how to export and import data/figures/etc.
+  - [`rio` package](https://cran.r-project.org/web/packages/rio/vignettes/rio.html) is a great integrated package to import and export different types of data not only csv, xlsx and other basic formats. Worth to check out.
 
 
 ## Folder structure
