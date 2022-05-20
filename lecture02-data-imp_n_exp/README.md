@@ -15,7 +15,9 @@ After successfully completing the code in *raw_codes* students should be able to
   - Export data on *csv*, *xlsx* or *RData* format to local computer 
 
 ## Datasets used
+
 * [Hotels Vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna)
+* [Footbal](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna/raw) as homework.
 
 
 ## Lecture Time
@@ -27,9 +29,9 @@ Showing [`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding
 
 ## Homework
 
-*Type*: quick practice, approx 15 mins
+*Type*: quick practice, approx 10 mins
 
-WIP
+Import from OSF the [footbal](https://osf.io/zqm6c/) data tables. To be more precise you should import table containing manager's characteristics data (`football_managers.csv`) and football performance with teams (`football_managers_workfile.csv`). Make sure of using a tidy folder structure: create a data folder with raw and clean folders. For this time only, export the same data tables into an export folder as `xlsx` and `.RData` files.
 
 ## Further material
 
