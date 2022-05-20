@@ -68,6 +68,6 @@ ggplot( map_data("world") , aes(long, lat, group = group)) +
     coord_quickmap()
 
 ##
-# Or other pretty cool stuff that we are going to learn through the semester!
+# Or other pretty cool stuff that we are going to learn through the course!
 
 

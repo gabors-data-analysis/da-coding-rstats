@@ -78,7 +78,7 @@ first part: *Creating the first script*.
 
     -   students are engaged
     -   after a successful session teacher can be sure that all students
-        are on the same page and everything runs nicely
+        are on the same page and that everything runs nicely
 
 -   Con:
 
@@ -89,9 +89,9 @@ first part: *Creating the first script*.
 ### Alternative: use console only
 
 If decided not to start with a script, it is advised to install the most
-used package `tidyverse` as a) it takes some time b) it will show you if
-there is a problem with any student. In this case, just ask students to
-write the following piece of code into the console:
+used package `tidyverse` as a) it takes some time and b) it will show
+you if there is a problem with any student. In this case, just ask
+students to write the following piece of code into the console:
 
 ``` r
 install.packages('tidyverse')
@@ -116,11 +116,11 @@ However, in this case, do not forget to tell them:
 ## Opening a Rmarkdown file
 
 RMarkdown is a powerful tool, provided in RStudio, which helps to create
-reports rigorously, automatize reports, create an html, etc.
+reports rigorously, automatize reports, create an Html, etc.
 
-It is always a good practice to try to knit at the first class an
+It is always a good practice to try to knit on the first class a
 Rmarkdown file. This is the most painful process of the course, to make
-sure that everybody can knit an Rmarkdown file into a pdf or a html
+sure that everybody can knit a Rmarkdown file into a pdf or an Html
 file. Usually, the problem is with pdf. Therefore it is good to start in
 the first class to identify the problem and then the teacher needs to
 pay individual attention to each case. Of course, there are several
@@ -137,6 +137,50 @@ and knit with **both** output options:
 -   output: pdf_document
 -   output: html_document
 
-## Git and GitHub
+## Version control: Git and GitHub
 
-WIP
+Version control is an essential part of coding. It ensures that you keep
+proper track of your progress when writing a code for analysis or
+developing a code/package/material etc. We strongly encourage you to
+create this good habit during this course.
+
+There are multiple ways to do version control all of it has some
+benefits and drawbacks. Here we list the three most commonly used ones:
+
+-   [GitHub Desktop](https://desktop.github.com/) (and
+    [friends](https://www.slant.co/options/13488/alternatives/~github-desktop-alternatives)):
+    -   Application to conveniently keep track of your modifications,
+        commit, pull and push to GitHub
+    -   Pro: easy to use, flexible for all types of files, helps to
+        avoid conflicts
+    -   Con: extra application, should create a habit and not forget
+        about it :)
+-   [RStudio Integrated
+    VC](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/common_issues/help_github_n_Rstudio.md)
+    -   You can connect your RStudio with your (git and) Github
+    -   Pro: built-in RStudio, easy to access, and can do multiple
+        commits
+    -   Con: If you are working outside of RStudio you can not use it
+-   Shell/Terminal
+    -   Using shell or terminal for version control
+    -   Pro: flexible for all types of files, can do literally
+        everything there
+    -   Con: hard to learn, can make mistakes, which is hard to correct
+
+It does not matter what you use, the main issue is to use version
+control. It makes your life much easier, especially with complicated
+projects, where you have to test and try out different directions.
+[github](https://github.com/) is a great platform to collaborate,
+however, there are others as well.
+
+In this course, we do not overview how to do version control but assume
+the basics are known. Some useful material (thanks to [Oliver
+Kiss](https://github.com/kiss-oliver)) can be found at:
+
+-   Technical foundations of informatics book:
+    <https://info201.github.io/git-basics.html>
+-   Software carpentry course (Strongly recommended):
+    <https://swcarpentry.github.io/git-novice/>
+-   Github Learning Lab: <https://lab.github.com/>
+-   If you are really committed (pun intended):
+    <https://git-scm.com/book/en/v2>
