@@ -1,6 +1,6 @@
 # Lecture 00: Introduction to R and RStudio
 
-This is the starting lecture, that introduces students to R and RStudio (download and install), runs a pre-written script, asks them to knit a pdf/Html document and highlight the importance of version control.
+This is the starting lecture, that introduces students to R and RStudio (download and install), runs a pre-written script, asks them to knit a pdf/Html document, and highlights the importance of version control.
 
 The aim of this class is not to teach coding, but to make sure that everybody has R and RStudio on their laptop, installs `tidyverse` package, and (tries to) knit an RMarkdown document. The main aim of these steps is to reveal possible OS mismatches or other problems with R and RStudio. 
 The material and steps are detailed in [`getting_started.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture00-intro/getting_started.md).
