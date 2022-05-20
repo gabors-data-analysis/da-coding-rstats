@@ -58,7 +58,7 @@ initially create (see tidy approach from [DA Book, Chapter
 On the other hand R-project creates the folder structure when
 initialized and set the working directory automatically (we will discuss
 this issue more in detail in
-[lecture03](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-data-imp_n_exp).).
+[lecture02](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp).).
 This can help to organize your project (with possibly many files) and to
 simplify: you do not need bother with where is your project. Although,
 it seems more convenient, we will prefer simple scripts and learn later
