@@ -132,7 +132,7 @@ glimpse(gdp_data)
 #
 # 1) Go to the webpage: https://gabors-data-analysis.com/ and find OSF database under `Data and Code`
 # 2) Go the the Gabor's OSF database and download manually 
-#       the `hotelbookingdata.csv` from `hotels-europe` dataset into your computer.
+#       the `hotelbookingdata.csv` from `hotels-europe` dataset into your computer and save it to 'raw' folder.
 # 3) load the data from this path
 # 4) also load the data directly from the web (note you need to add `/download` to the url)
 # 5) write out this file as xlsx and as a .RData next to the original data.
