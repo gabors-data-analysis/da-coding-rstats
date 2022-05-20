@@ -45,7 +45,7 @@ WIP
     - [`dataset_handling_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/complete_codes/dataset_handling_fin.R) solution for: [`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/raw_codes/dataset_handling.R)
   - [data/hotels_vienna](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna) provides a folder structure for the class. It contains data that will be used during the lecture as well as folders for the outputs.
     - [clean](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna/clean) - this is a great example of how to organize a project's cleaned data folder.
-    - [raw](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna/raw) - includes a raw file containing data on bookings of hotels as `hotelbookingdata.csv`
+    - [raw](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna/raw) - includes (a) raw files. Should save during the lecture the data on bookings of hotels as `hotelbookingdata.csv` into this folder.
     - [export](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna/export) - is a folder where you should export all the files during the course.
     
 
