@@ -48,10 +48,26 @@ or `"` signs before and after:
 
     ## [1] "Hello world!"
 
+### Good-to-know: script or project?
+
+R-script is one file with bunch of commands in it. During this course we
+mainly use R-scripts saved in a well-organized folder structure, that we
+initially create (see tidy approach from [DA Book, Chapter
+02](https://gabors-data-analysis.com/chapters/#chapter-02-preparing-data-for-analysis)).
+
+On the other hand R-project creates the folder structure when
+initialized and set the working directory automatically (we will discuss
+this issue more in detail in
+[lecture03](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-data-imp_n_exp).).
+This can help to organize your project (with possibly many files) and to
+simplify: you do not need bother with where is your project. Although,
+it seems more convenient, we will prefer simple scripts and learn later
+how to deal with folder structure and set the path correctly.
+
 ## Variables
 
 Running simple codes is great, but in many cases, we want to write
-elaborate multistep commands. In this case, we can create `variables`,
+elaborate multistage commands. In this case, we can create `variables`,
 which will store information in the memory and can be called later.
 
 E.g. we can save the command “Hello world!” into a variable, that we
@@ -76,8 +92,8 @@ covering functions when `=` does not work, but if you can not wait until
 then, you may check out [this StackOverflow
 thread](https://stackoverflow.com/questions/1741820/what-are-the-differences-between-and-assignment-operators-in-r).
 
-*Tip:* You can use the following hotkey for `<-`: `option+-` for mac and
-`alt+-` for windows.
+*Tip:* You can use the following hot key for `<-`: `option+-` for mac
+and `alt+-` for windows.
 
 You can call this variable via typing in and running:
 
@@ -288,7 +304,7 @@ or, if `2==2` **or** `3==2` with the `|` operator
 
     ## [1] TRUE
 
-Note: later we will discuss the difference between `&,|` and `&&,"||`
+Note: later we will discuss the difference between `&, |` and `&&, ||`
 operators.
 
 ### Operations with R-objects
@@ -328,7 +344,7 @@ will remove variable `d` from your environment and you can not refer to
 it anymore unless you re-define it.
 
 **Tip:** If you are unsure what a function does: what inputs it expects
-and what it is going to give, you can check the help by using `?*name*`
+and what it is going to give, you can check the help by using `?name`
 expression in the console and on the left window ‘Help’ section will
 provide you an answer with examples. E.g.:
 
