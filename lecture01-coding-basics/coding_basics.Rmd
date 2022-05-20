@@ -117,6 +117,8 @@ We have already created an R-object, `mySrting` a single-valued variable, which 
   - *integer* - a special numeric value, which is not a fraction. An extra 'L' is put next to the value in the Environment to show that it is an integer and not a numeric.
   - *logical* - have only two values: `TRUE` or `FALSE` possibly after a statement is run and evaluated as true or false
   - *factor* - special R-object that we will discuss in later lectures.
+  
+There is one more, *complex*, which is a complex value defined in R. It is interesting, but not that important from our perspective. (You can create a complex value with a numeric and adding 'i', such as `1+2i`)
 
 ### Operations with numeric values
 

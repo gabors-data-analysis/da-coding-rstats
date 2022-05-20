@@ -211,6 +211,10 @@ collect all types, let us create a detailed list here:
     statement is run and evaluated as true or false
 -   *factor* - special R-object that we will discuss in later lectures.
 
+There is one more, *complex*, which is a complex value defined in R. It
+is interesting, but not that important from our perspective. (You can
+create a complex value with a numeric and adding ‘i’, such as `1+2i`)
+
 ### Operations with numeric values
 
 One can define numeric variables similarly to character values. Let us
