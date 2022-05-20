@@ -6,7 +6,7 @@ This lecture introduces students to importing and exporting data to R with `dply
 ## Learning outcomes
 After successfully completing the code in *raw_codes* students should be able to:
 
-[`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture03-data-imp_n_exp/raw_codes/dataset_handling.R)
+[`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/raw_codes/dataset_handling.R)
   - Import data *csv* or other formats via 
     - clicking through the built-in options 
     - using a local path
@@ -22,7 +22,7 @@ After successfully completing the code in *raw_codes* students should be able to
 
 Ideal overall time: **10-20 mins**.
 
-Showing [`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture03-data-imp_n_exp/raw_codes/dataset_handling.R) takes around *10 minutes* while doing the tasks would take the rest.
+Showing [`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/raw_codes/dataset_handling.R) takes around *10 minutes* while doing the tasks would take the rest.
  
 
 ## Homework
@@ -39,14 +39,14 @@ WIP
 
 ## Folder structure
   
-  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture03-data-imp_n_exp/raw_codes) includes one code, which is ready to use during the course but requires some live coding in class.
-    - [`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture03-data-imp_n_exp/raw_codes/dataset_handling.R)
-  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture03-data-imp_n_exp/complete_codes) includes one code with solutions for
-    - [`dataset_handling_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture03-data-imp_n_exp/complete_codes/dataset_handling_fin.R) solution for: [`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture03-data-imp_n_exp/raw_codes/dataset_handling.R)
-  - [data/hotels_vienna](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-data-imp_n_exp/data/hotels_vienna) provides a folder structure for the class. It contains data that will be used during the lecture as well as folders for the outputs.
-    - [clean](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-data-imp_n_exp/data/hotels_vienna/clean) - this is a great example of how to organize a project's cleaned data folder.
-    - [raw](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-data-imp_n_exp/data/hotels_vienna/raw) - includes a raw file containing data on bookings of hotels as `hotelbookingdata.csv`
-    - [export](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-data-imp_n_exp/data/hotels_vienna/export) - is a folder where you should export all the files during the course.
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/raw_codes) includes one code, which is ready to use during the course but requires some live coding in class.
+    - [`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/raw_codes/dataset_handling.R)
+  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/complete_codes) includes one code with solutions for
+    - [`dataset_handling_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/complete_codes/dataset_handling_fin.R) solution for: [`dataset_handling.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture02-data-imp_n_exp/raw_codes/dataset_handling.R)
+  - [data/hotels_vienna](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna) provides a folder structure for the class. It contains data that will be used during the lecture as well as folders for the outputs.
+    - [clean](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna/clean) - this is a great example of how to organize a project's cleaned data folder.
+    - [raw](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna/raw) - includes (a) raw files. Should save during the lecture the data on bookings of hotels as `hotelbookingdata.csv` into this folder.
+    - [export](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp_n_exp/data/hotels_vienna/export) - is a folder where you should export all the files during the course.
     
 
 
