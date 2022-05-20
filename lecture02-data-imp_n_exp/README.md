@@ -1,7 +1,6 @@
-# Lecture 03: Import and Export data to R
-*Coding course to complete Data Analysis in R*
+# Lecture 02: Import and Export data to R
 
-This lecture introduces students to importing and exporting data to R. Various importation technique is discussed and several options on how to export data to the local computer.
+This lecture introduces students to importing and exporting data to R with `dplyr` from `tidyverse`. Various importation technique and format is discussed and several options on how to export data to the local computer.
 
 
 ## Learning outcomes
