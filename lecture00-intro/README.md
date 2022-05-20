@@ -25,7 +25,7 @@ Furthermore, students will,
 These steps are found to be extremely important, as fixing installation and knitting problems may take days to weeks.
 
 ## Datasets used
-* No dataset used in this lecture
+* No dataset is used in this lecture
 
 ## Lecture Time
 
