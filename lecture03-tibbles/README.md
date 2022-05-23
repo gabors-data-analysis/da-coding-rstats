@@ -2,6 +2,8 @@
 
 This lecture introduces `tibble`-s as the 'Data' variable in `tidyverse`. It shows multiple column and row manipulations with one `tibble` as well as how to merge two `tibble`s. It uses pre-written codes with tasks during the class.
 
+Data merging is based on [Chapter 02, C: Identifying successful football managers](https://gabors-data-analysis.com/casestudies/#ch02c-identifying-successful-football-managers).
+
 
 ## Learning outcomes
 After successfully completing codes in [`intro_to_tibbles.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture03-tibbles/raw_codes/intro_to_tibbles.R) students should be able:
