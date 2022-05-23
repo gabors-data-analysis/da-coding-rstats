@@ -50,7 +50,7 @@ The material structure also reflects this principle. The majority of the lecture
 | -------  | -------------| ----------------- | ---------- | ------- |
 | [lecture00-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture00-intro) | live coding or pre-written |Setting up R and RStudio. Introduction to the interface of R-studio. Packages and tryout of `tidyverse` and knitting a pre-written Rmarkdown | - | - |
 | [lecture01-coding-basics](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-coding-basics) | live coding |Introduction to coding with R: R-objects, basic operations, functions, vectors, lists | - | - |
-| [lecture02-data-imp-n-exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp-n-exp) | pre-written | How to import and export data with `dplyr` and APIs | - | [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna), [football](https://gabors-data-analysis.com/datasets/#football) |
+| [lecture02-data-imp-n-exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp-n-exp) | pre-written | How to import and export data with `readr` and APIs | - | [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna), [football](https://gabors-data-analysis.com/datasets/#football) |
 
 
 
