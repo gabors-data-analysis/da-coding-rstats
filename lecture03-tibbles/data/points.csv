@@ -1,7 +1,6 @@
 team,manager_id,manager_name,manager_points
 Arsenal,19,Arsène Wenger,721
 Arsenal,238,Unai Emery,70
-Aston Villa,14,Alex McLeish,38
 Aston Villa,71,Eric Black,1
 Aston Villa,80,Gary McAllister,8
 Aston Villa,96,Gérard Houllier,34
@@ -19,7 +18,6 @@ Bolton,81,Gary Megson,59
 Bolton,165,Owen Coyle,103
 Bournemouth,68,Eddie Howe,177
 Brighton,40,Chris Hughton,76
-Burnley,32,Brian Laws,10
 Burnley,165,Owen Coyle,20
 Burnley,209,Sean Dyche,167
 Cardiff,57,David Kerslake,1
@@ -145,7 +143,6 @@ Swansea,168,Paul Clement,41
 Tottenham,16,André Villas-Boas,99
 Tottenham,97,Harry Redknapp,250
 Tottenham,121,Juande Ramos,2
-Tottenham,148,Mauricio Pochettino,368
 Tottenham,229,Tim Sherwood,42
 Watford,106,Javi Gracia,65
 Watford,140,Marco Silva,26
@@ -156,7 +153,6 @@ West Brom,9,Alan Pardew,8
 West Brom,52,Darren Moore,11
 West Brom,81,Gary Megson,2
 West Brom,123,Keith Downing,6
-West Brom,150,Michael Appleton,1
 West Brom,176,Pepe Mel,15
 West Brom,192,Roberto Di Matteo,26
 West Brom,199,Roy Hodgson,67
@@ -175,4 +171,3 @@ Wigan,194,Roberto Martínez,157
 Wigan,213,Steve Bruce,45
 Wolves,152,Mick McCarthy,99
 Wolves,162,Nuno Espírito Santo,57
-Wolves,226,Terry Connor,4
