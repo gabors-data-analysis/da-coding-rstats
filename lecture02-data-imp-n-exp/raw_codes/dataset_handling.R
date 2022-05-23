@@ -1,14 +1,23 @@
-##########################
-##                      ##
-## Dataset Handling:    ##
-##                      ##
-##  Import              ##
-##      and             ##
-##        Export data   ##
-##                      ##
-##    Lecture 3         ##
-##                      ##
-##########################
+##################################
+#                                #
+#          Lecture 02            #
+#                                #
+#    Import and Export Data      #
+#       to R with                #
+#                                #
+#     - Importing with clicking  #
+#     - read_csv():              #
+#       - local and url          #
+#       - working directory      #
+#     - Export                   #
+#       - write_csv              #
+#       - xlsx package           #
+#       - save to RData          #
+#     - API:                     #
+#       - tidyquant and WDI      #
+#                                #
+#                                #
+##################################
 
 rm( list = ls() )
 # Tidyverse includes readr package 

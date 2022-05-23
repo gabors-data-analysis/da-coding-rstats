@@ -1,11 +1,19 @@
-#################################
-## Getting familiar            ##
-##      with R and Rstudio     ##
-##                             ##
-##         LECTURE 01          ##
-##                             ##
-##    Agoston Reguly          ##
-#################################
+##################################
+#                                #
+#          Lecture 01            #
+#                                #
+#    Introduction to coding      #
+#                                #
+#     - R-objects                #
+#     - Variables                #
+#     - Built in functions       #
+#     - Vectors                  #
+#     - Indexing                 #
+#     - Special values           #
+#     - Lists                    #
+#                                #
+#                                #
+##################################
 
 
 ##
