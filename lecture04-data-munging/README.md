@@ -48,9 +48,9 @@ Use the same [hotel-europe data from OSF](https://osf.io/r6uqb/), but now
     ```r 
     city %in% c('City_A','City_B')
     ``` 
-    - accomodation should be Apartment, 3-4 stars (only) with more than 10 reviews
+    - accommodation should be Apartment, 3-4 stars (only) with more than 10 reviews
     - price is less than 600$
- - arrange the data into ascending order by price
+ - arrange the data in ascending order by price
 
 ## Further material
 
