@@ -1,12 +1,36 @@
-###############################
-##  INTRO TO                 ##
-##        DATA MUNGING      ##
-##                           ##
-##                           ##
-###############################
+#########################################
+#                                       #
+#              Lecture 04               #
+#                                       #
+#    Introduction to data-munging       #
+#                                       #
+#   - Add new manipulated variables     #
+#   - Separate char to new variables    #
+#   - Convert variables to              #
+#       numeric or factor               #
+#   - Some string manipulations         #
+#   - Rename variables                  #
+#   - Filter out different observations #
+#     - conditional selection           #
+#     - tabulate frequency of a var     #
+#     - missing values                  #
+#     - replace values                  #
+#     - duplicates                      #
+#   - Using pipies: %>%                 #
+#   - Sorting data                      #
+#                                       #
+# Case-study:                           #
+# Based on: Chapter 02, A:              #
+#     Finding a good deal among hotels: #
+#         data preparation              #
+#                                       #
+# Dataset:                              #
+#   hotels-europe                       #
+#                                       #
+#########################################
 
 #
-# Data Munging with hotel dataset
+# Data Munging with hotel-europe data
 
 rm( list = ls() )
 library( tidyverse )
@@ -220,9 +244,7 @@ df <- filter( df , !duplicated(  select( df , country,hotel_id,
                                               year, 
                                               month,
                                               weekend, 
-                                              holiday  ) 
-                                 ) 
-              )
+                                              holiday  ) ) )
 
 ###
 ## Task: Get specific data used in DA1 course:

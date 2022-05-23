@@ -1,12 +1,36 @@
-###############################
-##  INTRO TO                 ##
-##        DATA MUNGING      ##
-##                           ##
-##                           ##
-###############################
+#########################################
+#                                       #
+#              Lecture 04               #
+#                                       #
+#    Introduction to data-munging       #
+#                                       #
+#   - Add new manipulated variables     #
+#   - Separate char to new variables    #
+#   - Convert variables to              #
+#       numeric or factor               #
+#   - Some string manipulations         #
+#   - Rename variables                  #
+#   - Filter out different observations #
+#     - conditional selection           #
+#     - tabulate frequency of a var     #
+#     - missing values                  #
+#     - replace values                  #
+#     - duplicates                      #
+#   - Using pipies: %>%                 #
+#   - Sorting data                      #
+#                                       #
+# Case-study:                           #
+# Based on: Chapter 02, A:              #
+#     Finding a good deal among hotels: #
+#         data preparation              #
+#                                       #
+# Dataset:                              #
+#   hotels-europe                       #
+#                                       #
+#########################################
 
 #
-# Data Munging with hotel dataset
+# Data Munging with hotel-europe data
 
 rm( list = ls() )
 library( tidyverse )
@@ -89,9 +113,6 @@ is.factor( df$acc_type )
 #   1) Correct the guestreviewsrating into simple numeric variable
 #   2) check with `typeof()`
 #   3) convert the variable into a numeric variable
-# In case of only one variable you may use the `classical` approach
-#   when adding/redefining a variable
-
 
 
 
@@ -171,10 +192,6 @@ df <- filter( df , !is.na( ratings ) )
 # Do the same for missing id-s and argue what to do with them! 
 
 
-# Lesson-to-learn: in many cases if there are many different values, it does not worth to tabulate!
-# rather you may want to focus on only missing values!
-
-
 ###
 ## Correcting wrongly documented observations:
 # In case of `stars` there are only values from 0-5
@@ -207,9 +224,7 @@ df <- filter( df , !duplicated(  select( df , country,hotel_id,
                                          year, 
                                          month,
                                          weekend, 
-                                         holiday  ) 
-) 
-)
+                                         holiday  ) ) )
 
 ###
 ## Task: Get specific data used in DA1 course:
@@ -219,18 +234,16 @@ df <- filter( df , !duplicated(  select( df , country,hotel_id,
 #       - with Hotel types which has stars between 3 and 4
 #       - and drop observations which has price more than 1000 EUR.
 
-hotel_vienna <- 
 
-  
-  
+
 ###
 # Pipes in tidyverse
 #
 # tidyverse allows 'pipes' which is a great and intuitive programming expression:
 # It allows to make multiple sequential manipulations with one command:
 # use `%>%` which says: take obj1 %>% do manipulations.
-  
-  # E.g. filter out Vienna from df:
+
+# E.g. filter out Vienna from df:
 df %>% filter( city == 'Vienna' )
 
 # Or do multiple filters:
@@ -242,7 +255,7 @@ df %>% filter( city == 'Vienna' ) %>%
   select( city, distance ) %>% 
   rename( town = city )
 
-# %>% has a hotkey of `cmd+shift+m` on mac and `ctrl+shift+m` on windows  
+# %>% has a hotkey of `cmd+shift+m` on mac and `ctrl+shift+m` on windows
 
 ##
 # Make data table more `pretty`
