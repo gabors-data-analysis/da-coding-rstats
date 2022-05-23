@@ -96,7 +96,7 @@ However, in this case, do not forget to tell them:
 
 RMarkdown is a powerful tool, provided in RStudio, which helps to create reports rigorously, automatize reports, create an Html, etc.
 
-It is always a good practice to try to knit on the first class a Rmarkdown file. This is the most painful process of the course, to make sure that everybody can knit a Rmarkdown file into a pdf or an Html file. Usually, the problem is with pdf. Therefore it is good to start in the first class to identify the problem and then the teacher needs to pay individual attention to each case. Of course, there are several common mistakes/problems (see more in: [*Help to knit my document in RMarkdown*](https://github.com/gabors-data-analysis/da-coding-rstats/common_issues/help_rmarkdown.md)), but in each year there are something new, that needs individual fixes... (alternatively can use RStudio via a cloud, which has other pros and cons.)
+It is always a good practice to try to knit on the first class a Rmarkdown file. This is the most painful process of the course, to make sure that everybody can knit a Rmarkdown file into a pdf or an Html file. Usually, the problem is with pdf. Therefore it is good to start in the first class to identify the problem and then the teacher needs to pay individual attention to each case. Of course, there are several common mistakes/problems (see more in: [*Help to knit my document in RMarkdown*](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/common_issues/help_rmarkdown.md)), but in each year there are something new, that needs individual fixes... (alternatively can use RStudio via a cloud, which has other pros and cons.)
 
 Open [`test_Rmarkdown.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture00-intro/test_Rmarkdown.Rmd) and knit with **both** output options:
 
@@ -123,7 +123,7 @@ There are multiple ways to do version control all of it has some benefits and dr
   - Pro: flexible for all types of files, can do literally everything there
   - Con: hard to learn, can make mistakes, which is hard to correct
   
-It does not matter what you use, the main issue is to use version control. It makes your life much easier, especially with complicated projects, where you have to test and try out different directions. [github](https://github.com/) is a great platform to collaborate, however, there are others as well.
+It does not matter what you use, the main issue is to use version control. It makes your life much easier, especially with complicated projects, where you have to test and try out different directions. [GitHub](https://github.com/) is a great platform to collaborate, however, there are others as well.
 
 In this course, we do not overview how to do version control but assume the basics are known. Some useful material (thanks to [Oliver Kiss](https://github.com/kiss-oliver)) can be found at:
 

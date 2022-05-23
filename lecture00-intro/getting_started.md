@@ -125,7 +125,7 @@ file. Usually, the problem is with pdf. Therefore it is good to start in
 the first class to identify the problem and then the teacher needs to
 pay individual attention to each case. Of course, there are several
 common mistakes/problems (see more in: [*Help to knit my document in
-RMarkdown*](https://github.com/gabors-data-analysis/da-coding-rstats/common_issues/help_rmarkdown.md)),
+RMarkdown*](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/common_issues/help_rmarkdown.md)),
 but in each year there are something new, that needs individual fixes…
 (alternatively can use RStudio via a cloud, which has other pros and
 cons.)
@@ -170,7 +170,7 @@ benefits and drawbacks. Here we list the three most commonly used ones:
 It does not matter what you use, the main issue is to use version
 control. It makes your life much easier, especially with complicated
 projects, where you have to test and try out different directions.
-[github](https://github.com/) is a great platform to collaborate,
+[GitHub](https://github.com/) is a great platform to collaborate,
 however, there are others as well.
 
 In this course, we do not overview how to do version control but assume
