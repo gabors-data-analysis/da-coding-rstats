@@ -53,7 +53,7 @@ The material structure also reflects this principle. The majority of the lecture
 | [lecture02-data-imp-n-exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp-n-exp) | pre-written | How to import and export data with `readr` and APIs | - | [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna), [football](https://gabors-data-analysis.com/datasets/#football)* |
 | [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles) | pre-written | Introduces `tibble`-s as data variable. Selecting, adding or removing rows (observations) and columns (variables). Convert to wide and long formta. Merge two tibbles in multiple ways. | [Ch 02C: Football Managers](https://gabors-data-analysis.com/casestudies/#ch02c-identifying-successful-football-managers) | [football](https://gabors-data-analysis.com/datasets/#football) |
 
-* dataset is used in homework
+*dataset is used in homework
 
 
 | [lecture14-simple_regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture14-simple_regression) | pre-written with tasks | Run and plot single linear regressions with transformations and prediction analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
