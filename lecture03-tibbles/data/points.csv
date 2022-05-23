@@ -1,0 +1,178 @@
+team,manager_id,manager_name,manager_points
+Arsenal,19,Arsène Wenger,721
+Arsenal,238,Unai Emery,70
+Aston Villa,14,Alex McLeish,38
+Aston Villa,71,Eric Black,1
+Aston Villa,80,Gary McAllister,8
+Aston Villa,96,Gérard Houllier,34
+Aston Villa,131,Kevin MacDonald,6
+Aston Villa,146,Martin O'Neill,126
+Aston Villa,173,Paul Lambert,101
+Aston Villa,204,Rémi Garde,12
+Aston Villa,229,Tim Sherwood,20
+Birmingham,14,Alex McLeish,89
+Blackburn,171,Paul Ince,13
+Blackburn,205,Sam Allardyce,99
+Blackburn,216,Steve Kean,53
+Blackpool,102,Ian Holloway,39
+Bolton,81,Gary Megson,59
+Bolton,165,Owen Coyle,103
+Bournemouth,68,Eddie Howe,177
+Brighton,40,Chris Hughton,76
+Burnley,32,Brian Laws,10
+Burnley,165,Owen Coyle,20
+Burnley,209,Sean Dyche,167
+Cardiff,57,David Kerslake,1
+Cardiff,138,Malky Mackay,17
+Cardiff,158,Neil Warnock,34
+Cardiff,163,Ole Gunnar Solskjær,12
+Chelsea,16,André Villas-Boas,46
+Chelsea,17,Antonio Conte,163
+Chelsea,37,Carlo Ancelotti,157
+Chelsea,95,Guus Hiddink,69
+Chelsea,120,José Mourinho,184
+Chelsea,137,Luiz Felipe Scolari,49
+Chelsea,149,Maurizio Sarri,72
+Chelsea,184,Rafael Benítez,51
+Chelsea,192,Roberto Di Matteo,42
+Crystal Palace,9,Alan Pardew,88
+Crystal Palace,77,Frank de Boer,0
+Crystal Palace,102,Ian Holloway,3
+Crystal Palace,124,Keith Millen,3
+Crystal Palace,158,Neil Warnock,15
+Crystal Palace,199,Roy Hodgson,93
+Crystal Palace,205,Sam Allardyce,26
+Crystal Palace,235,Tony Pulis,41
+Everton,58,David Moyes,297
+Everton,61,David Unsworth,10
+Everton,140,Marco Silva,54
+Everton,194,Roberto Martínez,163
+Everton,197,Ronald Koeman,69
+Everton,205,Sam Allardyce,34
+Fulham,46,Claudio Ranieri,12
+Fulham,72,Felix Magath,12
+Fulham,143,Mark Hughes,49
+Fulham,145,Martin Jol,105
+Fulham,189,René Meulensteen,10
+Fulham,199,Roy Hodgson,99
+Fulham,208,Scott Parker,9
+Fulham,211,Slaviša Jokanović,5
+Huddersfield,62,David Wagner,48
+Huddersfield,105,Jan Siewert,5
+Huddersfield,142,Mark Hudson,0
+Hull,100,Iain Dowie,6
+Hull,140,Marco Silva,21
+Hull,154,Mike Phelan,13
+Hull,180,Phil Brown,59
+Hull,213,Steve Bruce,72
+Leicester,28,Brendan Rodgers,20
+Leicester,45,Claude Puel,70
+Leicester,46,Claudio Ranieri,102
+Leicester,49,Craig Shakespeare,29
+Leicester,150,Michael Appleton,3
+Leicester,160,Nigel Pearson,41
+Liverpool,28,Brendan Rodgers,219
+Liverpool,122,Jürgen Klopp,296
+Liverpool,126,Kenny Dalglish,85
+Liverpool,184,Rafael Benítez,149
+Liverpool,199,Roy Hodgson,25
+Man City,31,Brian Kidd,3
+Man City,139,Manuel Pellegrini,231
+Man City,143,Mark Hughes,76
+Man City,175,Pep Guardiola,276
+Man City,193,Roberto Mancini,276
+Man United,12,Alex Ferguson,433
+Man United,58,David Moyes,57
+Man United,120,José Mourinho,176
+Man United,136,Louis van Gaal,136
+Man United,163,Ole Gunnar Solskjær,40
+Man United,203,Ryan Giggs,7
+Middlesbrough,3,Aitor Karanka,22
+Middlesbrough,78,Gareth Southgate,32
+Middlesbrough,212,Steve Agnew,6
+Newcastle,9,Alan Pardew,209
+Newcastle,10,Alan Shearer,5
+Newcastle,40,Chris Hughton,19
+Newcastle,112,Joe Kinnear,25
+Newcastle,114,John Carver,12
+Newcastle,129,Kevin Keegan,4
+Newcastle,184,Rafael Benítez,102
+Newcastle,217,Steve McClaren,24
+Norwich,15,Alex Neil,34
+Norwich,40,Chris Hughton,76
+Norwich,157,Neil Adams,1
+Norwich,173,Paul Lambert,47
+Portsmouth,21,Avram Grant,21
+Portsmouth,97,Harry Redknapp,13
+Portsmouth,170,Paul Hart,24
+Portsmouth,231,Tony Adams,11
+QPR,42,Chris Ramsey,11
+QPR,97,Harry Redknapp,40
+QPR,143,Mark Hughes,24
+QPR,158,Neil Warnock,17
+Reading,34,Brian McDermott,23
+Reading,159,Nigel Adkins,5
+Reading,262,Eamonn Dolan,0
+Southampton,45,Claude Puel,46
+Southampton,143,Mark Hughes,17
+Southampton,147,Mauricio Pellegrino,28
+Southampton,148,Mauricio Pochettino,75
+Southampton,159,Nigel Adkins,22
+Southampton,185,Ralph Hasenhüttl,30
+Southampton,197,Ronald Koeman,123
+Stoke,143,Mark Hughes,219
+Stoke,173,Paul Lambert,13
+Stoke,235,Tony Pulis,225
+Sunderland,58,David Moyes,24
+Sunderland,65,Dick Advocaat,15
+Sunderland,94,Gus Poyet,63
+Sunderland,127,Kevin Ball,0
+Sunderland,146,Martin O'Neill,65
+Sunderland,166,Paolo Di Canio,9
+Sunderland,190,Ricky Sbragia,21
+Sunderland,200,Roy Keane,15
+Sunderland,205,Sam Allardyce,36
+Sunderland,213,Steve Bruce,102
+Swansea,7,Alan Curtis,5
+Swansea,25,Bob Bradley,8
+Swansea,28,Brendan Rodgers,47
+Swansea,38,Carlos Carvalhal,20
+Swansea,73,Francesco Guidolin,32
+Swansea,79,Garry Monk,88
+Swansea,134,Leon Britton,1
+Swansea,151,Michael Laudrup,70
+Swansea,168,Paul Clement,41
+Tottenham,16,André Villas-Boas,99
+Tottenham,97,Harry Redknapp,250
+Tottenham,121,Juande Ramos,2
+Tottenham,148,Mauricio Pochettino,368
+Tottenham,229,Tim Sherwood,42
+Watford,106,Javi Gracia,65
+Watford,140,Marco Silva,26
+Watford,183,Quique Sánchez Flores,45
+Watford,240,Walter Mazzarri,40
+West Brom,8,Alan Irvine,17
+West Brom,9,Alan Pardew,8
+West Brom,52,Darren Moore,11
+West Brom,81,Gary Megson,2
+West Brom,123,Keith Downing,6
+West Brom,150,Michael Appleton,1
+West Brom,176,Pepe Mel,15
+West Brom,192,Roberto Di Matteo,26
+West Brom,199,Roy Hodgson,67
+West Brom,214,Steve Clarke,64
+West Brom,233,Tony Mowbray,32
+West Brom,235,Tony Pulis,125
+West Ham,6,Alan Curbishley,6
+West Ham,21,Avram Grant,33
+West Ham,58,David Moyes,33
+West Ham,85,Gianfranco Zola,80
+West Ham,130,Kevin Keen,0
+West Ham,139,Manuel Pellegrini,52
+West Ham,205,Sam Allardyce,133
+West Ham,210,Slaven Bilić,116
+Wigan,194,Roberto Martínez,157
+Wigan,213,Steve Bruce,45
+Wolves,152,Mick McCarthy,99
+Wolves,162,Nuno Espírito Santo,57
+Wolves,226,Terry Connor,4
