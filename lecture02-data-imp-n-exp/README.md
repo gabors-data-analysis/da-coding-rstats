@@ -1,6 +1,6 @@
 # Lecture 02: Import and Export data to R
 
-This lecture introduces students to importing and exporting data to R with `dplyr` from `tidyverse`. Various importation technique and format is discussed and several options on how to export data to the local computer.
+This lecture introduces students to importing and exporting data to R with `readr` from `tidyverse`. Various importation technique and format is discussed and several options on how to export data to the local computer.
 
 
 ## Learning outcomes
