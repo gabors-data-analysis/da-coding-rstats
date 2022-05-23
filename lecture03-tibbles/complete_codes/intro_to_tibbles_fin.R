@@ -1,16 +1,19 @@
-##############################
-##                           ##
-##    INTRO TO TIBBLES:      ##
-##                           ##
-##  a) Tibble as 'Data' var  ##
-##  b) Indexing              ##
-##  c) Simple functions      ##
-##  d) Reset values,         ##
-##      add rows and cols    ##
-##  f) Merging tibbles       ##
-##                           ##
-##                           ##
-###############################
+##################################
+#                                #
+#          Lecture 03            #
+#                                #
+#    Introduction to tibble      #
+#                                #
+#     - Tibble as 'Data' var     #
+#     - Indexing                 #
+#     - Simple functions         #
+#     - Reset values,            #
+#         add rows and cols      #
+#     - Wide vs long format      #
+#     - Merging tibbles          #
+#                                #
+#                                #
+##################################
 
 # Clear environment
 rm(list = ls())
@@ -248,103 +251,108 @@ df <- df[df$id != 7 , ]
 # Again in lecture04-data-munging we will discuss it more in detail.
 
 #####
-# f) Merging two tibble
+# f) wide and long format
+#
+# We will use football data to practice the following manipulations
+#   Note: there are some modification to the dataset for demonstartive purposes
+
+rm( list = ls() )
+
+# url for modified dataset
+path_url <- "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture03-tibbles/data/"
+# Football managers and played games
+games  <- read_csv( paste0( path_url, "games.csv") )
+
+##
+# Wide format: from tidy to non-tidy format
+#   in some rare cases it is useful to work with wide format:
+wide_format <- pivot_wider( games , names_from = team , values_from = manager_games )
+
+
+##
+# Long-format:
+#   however in most cases we work with tidy data, thus long-format:
+#   note many dataset are in wide format, thus it is practical to know how to create a long-format
+# To convert back to longer format:
+# first we need a new variable, which contains the team names
+name_teams  <- unique( games$team )
+long_format <- pivot_longer( wide_format, name_teams , names_to = "team" , values_to = "manager_games")
+
+##
+# Task: 
+#  Remove missing values, use is.na() function 
+# and check with 'all_equal()' function if it is the same as games tibble
+long_format <- long_format[ !is.na( long_format$manager_games ) , ]
+
+all_equal( games , long_format )
+
+##
+# Good-to-know: previously 'spread()' and 'gather()' functions were used
+rm(wide_format,name_team,long_format)
+
+
+
+####
+# g) Merging two tibble
 #
 # Merging tibbles can be done in several way and there are many possible issues, 
 #   thus it is a fairly complicated topic. 
 # Here we only overview the main tools and the most common merging functions.
 # For more see e.g.: Chapter 13 in Hadley's book: https://r4ds.had.co.nz/relational-data.html
 
-##
-# 1st case: same variables, but different observations
-
-# We have an additional tibble with new observations
-df_2 <- tibble(id=c(10,11,12,13,14,15),
-                age=c(16,40,52,24,28,26),
-                grade=c("C","A","B-","C+","B+","A-"),
-                gender=c("F","F","M","M","M","F"))
-df_2
-
-# We would like to add this new data table to our original data table:
-df_new <- rbind( df , df_2 )
-
-# Note: rbind() works only, if all the columns are the same and does not care about duplicates in the data.
-# this is the simplest and mostly used command.
-
-# Alternatively, tidyverse offer several alternatives, here what can be used is called `full_join()`
-# with full_join() it is essential, to list all variable names for the input argument 'by', 
-#   as it will check along all these dimensions and will give an error or put a new variable.
-full_join( df , df_2 , by = c("id", "age", "grade","gender") )
+# Get football managers and earned points via games
+points <- read_csv(paste0( path_url, "points.csv") )
 
 
-##
-# 2nd case: add new columns (information)
-df_lj <- tibble( id = c(1,3,5,10,12),
-                 height = c(165,200,187,175,170) )
+# Left-join by team, manager_id and manager_name:
+#   games is the tibble which will get the new variables from points
+#     if id variables are missing, it will be removed
+lj <- left_join( games , points , by = c('team','manager_id','manager_name') )
 
-# Here we use rather the tidyverse function `left_join()`, as it 
-# only retains rows, that are in `df_new`, and add the new information (columns) from df_lj
-# here the input argument `by=` is essential, as it will only join variables, 
-#   that are available in `df_new$id`.
+# Right-join by team, manager_id and manager_name:
+#   points is the tibble which will get the new variables from points
+#     if id variables are missing, it will be removed
+rj <- right_join( games , points , by = c('team','manager_id','manager_name') )
 
-df_new2 <- left_join( df_new , df_lj , by = "id" )
-df_new2
+# Can check if they are the same or not
+all_equal(lj,rj)
+# Note: right_join and left_join is the same if you switch the first input in one of them
 
-# Alternatively you can use `cbind()`, but here it is not preferred as you need to have:
-#   all observations with the same ordering!
-#
-# Note: right_join() will do the same but you have to reorder the inputs:
-# `left_join( df_new1, df_lj,  by = "id" ) == right_join( df_lj , df_new1 , by = "id" )`
+# Full-join will take all the possible observations and create an extend the tibble 
+fj <- full_join( games , points , by = c('team','manager_id','manager_name') )
+
+# Inner-join will take only values which are in both tibbles
+ij <- inner_join( games , points , by = c('team','manager_id','manager_name') )
 
 
+# Importance of the key-variables or identifiers:
+# Case 1)
+#   No unique identifier: create multiple new variables and observations
+lj2 <- left_join( games , points , by = c('team') )
+all_equal(lj,lj2)
+# Case 2)
+#   Unique identifier, but unmatched variable: create new variable
+lj3 <- left_join( games , points , by = c('team','manager_id') )
+all_equal(lj,lj3)
 
 ##
-# Tasks:
-#
-# 1) Add a new variable to df_new2, and call it `df_new3` which has a variable with name 
-#     'year = 2002' and 
-#     'month = 9'.
-#     For all students the year is 2002 and the month is 9.
-#       Use left_join.
-#
-df_new3 <- left_join( df_new2 , tibble( id = df_new2$id ,
-                                        year = 2002,
-                                        month = 9, ) , 
-                      by = "id" )
-df_new3
-#
-# 2) Create a new datatable `df_new4`, which extends the tibble df_new3 in the following way:
-#   It repeats all the values that are in df_new3 with the following exceptions:
-#     - age is age + 10
-#     - year is 2012
-#   Hint: use `rbind()` and you can make a shortcut by using the specific variables such as `df_new3$id`, ect.
+# Task:
+#   try out 'semi_join()' and 'anti_join()' functions with proper identifiers
+#   try out what happens if you change the order of input in both cases
 
-aux_table <- tibble( id = df_new3$id , 
-                     age = df_new3$age + 10 ,
-                     grade = df_new3$grade ,
-                     height = df_new3$height,
-                     year = df_new3$year + 10,
-                     month = df_new3$month,
-                     gender = df_new3$gender ) 
+sj <- semi_join( games , points , by = c('team','manager_id','manager_name') )
+all_equal(sj,ij)
+sj2 <- semi_join( points, games , by = c('team','manager_id','manager_name') )
+all_equal(sj2,sj)
+aj <- anti_join( games , points , by = c('team','manager_id','manager_name') )
+aj
+aj2 <- anti_join( points , games , by = c('team','manager_id','manager_name') )
+aj2
 
-df_new4 <- rbind( df_new3 , aux_table )
-df_new4
-
-####
-# Long vs wide format
-#
-# `df_new4` is called the 'long format' and we consider this as the tidy approach!
-#  In some cases the data is in wide format, hence we need to convert to long format.
-#  In order to simulate this, let us first create a wide format from this tibble!
-
-# wide format: use `spread()` function
-wide_df <- spread( df_new4 , key = year , value = age )
-wide_df
-
-# Converting a wide-format back to long-format: use `gather()` function
-long_df <- gather( wide_df , `2002`,`2012` , key = year, value = age )
-long_df
-
-# This is same as df_new4, but with different variable ordering...
-
+##
+# Good-to-know:
+#   - in base R 'merge()' function is used for merging two data and the method must be defined in its input
+#   - rbind() function is handy, if two datatable has the same variables (and ordering) 
+#       and you want to add new rows (observations)
+#   - cbind() is similar to rbind(), but now rows (or observations) are the same, but new variable(s) are added
 
