@@ -50,10 +50,12 @@ The material structure also reflects this principle. The majority of the lecture
 | -------  | -------------| ----------------- | ---------- | ------- |
 | [lecture00-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture00-intro) | live coding or pre-written |Setting up R and RStudio. Introduction to the interface of R-studio. Packages and tryout of `tidyverse` and knitting a pre-written Rmarkdown | - | - |
 | [lecture01-coding-basics](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-coding-basics) | live coding |Introduction to coding with R: R-objects, basic operations, functions, vectors, lists | - | - |
-| [lecture02-data-imp-n-exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp-n-exp) | pre-written | How to import and export data with `readr` and APIs | - | [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna), [football](https://gabors-data-analysis.com/datasets/#football)* |
+| [lecture02-data-imp-n-exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp-n-exp) | pre-written | How to import and export data with `readr` and APIs | - | [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna), [football](https://gabors-data-analysis.com/datasets/#football)** |
 | [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles) | pre-written | Introduces `tibble`-s as data variable. Selecting, adding or removing rows (observations) and columns (variables). Convert to wide and long formta. Merge two tibbles in multiple ways. | [Ch 02C: Football Managers](https://gabors-data-analysis.com/casestudies/#ch02c-identifying-successful-football-managers) | [football](https://gabors-data-analysis.com/datasets/#football) |
+| [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging)| pre-written | Intro to data munging with `dplyr`: add, remove, separate, convert variables, filter observations, etc. | [Ch 02A: Hotels prep](https://gabors-data-analysis.com/casestudies/#ch02a-finding-a-good-deal-among-hotels-data-preparation)* | [hotels-europe](https://gabors-data-analysis.com/datasets/#hotels-europe)|
 
-*dataset is used in homework
+*case study was the base for the material, but coding material is modified
+**dataset is used in homework
 
 
 | [lecture14-simple_regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture14-simple_regression) | pre-written with tasks | Run and plot single linear regressions with transformations and prediction analysis | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) |
@@ -80,10 +82,10 @@ Or one can relate each case study from the book to specific lectures.
 
 |Chapter | Case-study | Lecture |
 | ------ | ---------  | ------- |
-| Chapter 1 | [ch01-hotels-data-collect](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch01-hotels-data-collect) | |
+| Chapter 1 | [ch01-hotels-data-collect](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch01-hotels-data-collect) | [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles)**|
 |           | [ch02-football-manager-success](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-football-manager-success) | [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles)*|
-| Chapter 2 | [ch02-hotels-data-prep](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-hotels-data-prep) | |
-|           | [ch02-immunization-crosscountry](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-immunization-crosscountry) | |
+| Chapter 2 | [ch02-hotels-data-prep](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-hotels-data-prep) | [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging) |
+|           | [ch02-immunization-crosscountry](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-immunization-crosscountry) | [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging)** |
 |           | [ch03-city-size-japan](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-city-size-japan) | |
 |           | [ch03-distributions-height-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-distributions-height-income) | |
 | Chapter 3 | [ch03-football-home-advantage](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-football-home-advantage) | |
@@ -110,6 +112,7 @@ Or one can relate each case study from the book to specific lectures.
 |            | [ch12-time-series-simulations](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-time-series-simulations) |  |
 
 *partial match: case study is only used as a starting point for the lecture.
+** students can understand and replicate material based on that lecture
 
 ## Our thanks
 
