@@ -55,6 +55,7 @@ The material structure also reflects this principle. The majority of the lecture
 | [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging)| pre-written | Intro to data munging with `dplyr`: add, remove, separate, convert variables, filter observations, etc. | [Ch 02A: Hotels prep](https://gabors-data-analysis.com/casestudies/#ch02a-finding-a-good-deal-among-hotels-data-preparation)* | [hotels-europe](https://gabors-data-analysis.com/datasets/#hotels-europe)|
 
 *case study was the base for the material, but coding material is modified
+
 **dataset is used in homework
 
 
@@ -112,7 +113,8 @@ Or one can relate each case study from the book to specific lectures.
 |            | [ch12-time-series-simulations](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-time-series-simulations) |  |
 
 *partial match: case study is only used as a starting point for the lecture.
-** students can understand and replicate material based on that lecture
+
+**students can understand and replicate material based on that lecture
 
 ## Our thanks
 
