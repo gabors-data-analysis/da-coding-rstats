@@ -40,7 +40,7 @@ This lecture time assumes that R and RStudion already work on their laptops.
 
 ## Further material
 
-  - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 4](https://r4ds.had.co.nz/workflow-basics.html) provide some basic principles and using the console. [Chapter 6](https://r4ds.had.co.nz/workflow-scripts.html) deals with scripts and some error handling.[Chapter 8] shows how to work with projects, along with useful setup options and working directory settings. [Chapter 20](https://r4ds.had.co.nz/vectors.html) provides a similar but more detailed discussion.
+  - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 4](https://r4ds.had.co.nz/workflow-basics.html) provide some basic principles and using the console. [Chapter 6](https://r4ds.had.co.nz/workflow-scripts.html) deals with scripts and some error handling.[Chapter 8](https://r4ds.had.co.nz/workflow-projects.html) shows how to work with projects, along with useful setup options and working directory settings. [Chapter 20](https://r4ds.had.co.nz/vectors.html) provides a similar but more detailed discussion.
   - Kieran H. (2019): Data Visualization [Chapter 2.2-2.3](https://socviz.co/gettingstarted.html#use-r-with-rstudio) introduces window structure in RStudio pretty well (Chapter 2.2) and basic syntax, objects, libraries (Chapter 2.3)
   - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 02](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/02_code_style.Rmd) provides useful guidelines on how to write and format codes. [Lecture 03](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/03_1d_data.Rmd) provides some additional exercises and insights into R-objects, variable types, and some basic functions.
 
@@ -48,6 +48,6 @@ This lecture time assumes that R and RStudion already work on their laptops.
 ## File structure
   
   - [`coding_basics.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md) provides material for the live coding session with explanations.
-  - [`getting_started.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/getting_started.Rmd) is the generating Rmarkdown file for `getting_started.md`
-  - **[`first_script.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/first_script.R)** is a possible realization of the live coding session
-  - [`assignment_1.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-intro/assignment_1.R) is the assignment after the first lecture.
+  - [`coding_basics.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.Rmd) is the generating Rmarkdown file for [`coding_basics.md`]((https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md))
+  - [**`first_script.R`**](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/first_script.R) is a possible realization of the live coding session
+  - [`assignment_1.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/assignment_1.R) is the assignment after the first lecture.
