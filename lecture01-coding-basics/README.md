@@ -48,6 +48,6 @@ This lecture time assumes that R and RStudion already work on their laptops.
 ## File structure
   
   - [`coding_basics.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md) provides material for the live coding session with explanations.
-  - [`coding_basics.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.Rmd) is the generating Rmarkdown file for [`coding_basics.md`]((https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md))
+  - [`coding_basics.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.Rmd) is the generating Rmarkdown file for [`coding_basics.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md)
   - [**`first_script.R`**](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/first_script.R) is a possible realization of the live coding session
   - [`assignment_1.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/assignment_1.R) is the assignment after the first lecture.
