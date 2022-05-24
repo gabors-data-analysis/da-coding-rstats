@@ -100,15 +100,29 @@ test_out <- t.test( bpp$p_diff , mu = 0 )
 
 We test the hypothesis, whether the price difference is zero, therefore there is no difference between retail and online prices:
 
-$$H_0:=\text{price online} - \text{price retail} = 0$$ $$H_A:=\text{price online} - \text{price retail} \neq 0$$ Running a two-sided t-test, we have the t-statistic as `r round( test_out$statistic , 2 )` and the p-value as `r round( test_out$p.value , 2 )`. The 95% confidence intervals are: `r round( test_out$conf.int[1] , 2 )` and `r round( test_out$conf.int[2] , 2 )`. Based on these results with 95% confidence we can reject the hypothesis that the two price would be the same in this particular sample.
+$$H_0:=\text{price online} - \text{price retail} = 0$$ $$H_A:=\text{price online} - \text{price retail} \neq 0$$ Running a two-sided t-test, we have the t-statistic as `r round( test_out$statistic , 2 )` and the p-value as `r round( test_out$p.value , 2 )`. The 95% confidence intervals are: `r round( test_out$conf.int[1] , 2 )` and `r round( test_out$conf.int[2] , 2 )`. **Based on these results with 95% confidence we can reject the hypothesis that the two price would be the same in this particular sample.**
 
 ## Robustness check / 'Heterogeneity analysis'
 
-Task: calculate and report t-tests for each countries.
+Task: 
 
-You should report: Country, mean of p_diff, se of the mean for p_diff, number of observations in each country, t-statistic, p-value.
+  - calculate and report t-tests for each countries.
+  - You should report: 
+    - country, 
+    - mean of price differences
+    - standard errors of the mean for price differences
+    - number of observations in each country
+    - t-statistic
+    - p-value.
 
-Hint: use 'kable()' and to hold the table position you can define the following argument: 'position = "H"' . Take care of caption, number of digits you use and the name of variables you report! You may check how the output changes if you use 'booktabs = TRUE' input for kable! In case of html output use something like:
+Hints: 
+
+  1. use 'kable()' and to hold the table position you can define the following argument: 'position = "H"'
+  2. Take care of caption, number of digits you use and the name of variables you report! 
+  3. You may check how the output changes if you use 'booktabs = TRUE' input for kable! 
+  4. In case of html output use something like:
+  
+
 
 ```{r, eval=FALSE}
   kable(...,

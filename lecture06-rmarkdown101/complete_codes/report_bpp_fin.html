@@ -748,21 +748,35 @@ therefore there is no difference between retail and online prices:</p>
 retail} = 0\]</span> <span class="math display">\[H_A:=\text{price
 online} - \text{price retail} \neq 0\]</span> Running a two-sided
 t-test, we have the t-statistic as -2.62 and the p-value as 0.01. The
-95% confidence intervals are: -0.84 and -0.12. Based on these results
-with 95% confidence we can reject the hypothesis that the two price
-would be the same in this particular sample.</p>
+95% confidence intervals are: -0.84 and -0.12. <strong>Based on these
+results with 95% confidence we can reject the hypothesis that the two
+price would be the same in this particular sample.</strong></p>
 </div>
 <div id="robustness-check-heterogeneity-analysis" class="section level2">
 <h2>Robustness check / ‘Heterogeneity analysis’</h2>
-<p>Task: calculate and report t-tests for each countries.</p>
-<p>You should report: Country, mean of p_diff, se of the mean for
-p_diff, number of observations in each country, t-statistic,
-p-value.</p>
-<p>Hint: use ‘kable()’ and to hold the table position you can define the
-following argument: ‘position = “H”’ . Take care of caption, number of
-digits you use and the name of variables you report! You may check how
-the output changes if you use ‘booktabs = TRUE’ input for kable! In case
-of html output use something like:</p>
+<p>Task:</p>
+<ul>
+<li>calculate and report t-tests for each countries.</li>
+<li>You should report:
+<ul>
+<li>country,</li>
+<li>mean of price differences</li>
+<li>standard errors of the mean for price differences</li>
+<li>number of observations in each country</li>
+<li>t-statistic</li>
+<li>p-value.</li>
+</ul></li>
+</ul>
+<p>Hints:</p>
+<ol style="list-style-type: decimal">
+<li>use ‘kable()’ and to hold the table position you can define the
+following argument: ‘position = “H”’</li>
+<li>Take care of caption, number of digits you use and the name of
+variables you report!</li>
+<li>You may check how the output changes if you use ‘booktabs = TRUE’
+input for kable!</li>
+<li>In case of html output use something like:</li>
+</ol>
 <pre class="r"><code>  kable(...,
         &quot;html&quot;, booktabs = F,  position = &quot;H&quot;) %&gt;%
         kable_classic(full_width = F, html_font = &quot;Cambria&quot;)</code></pre>
