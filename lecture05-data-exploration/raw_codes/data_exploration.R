@@ -1,14 +1,35 @@
-##################################
-##                              ##
-##      Data Exploration        ##
-##                              ##
-##    Billion Price Project     ##
-##                              ##
-##  Case study - Chapter 06     ##
-##                              ##
-##  Online and Offline prices   ##
-##                              ##
-##################################
+#########################################
+#                                       #
+#              Lecture 06               #
+#                                       #
+#           Data Exploration            #
+#                                       #
+#   - modelsummary package:             #
+#     - datasummary for descriptives    #
+#     - descriptive by categories       #
+#     - custom function                 #
+#   - ggplot                            #
+#     - histogram                       #
+#     - customize a ggplot              #
+#     - kernel density                  #
+#     - multiple geometries             #
+#   - Hypothesis testing with t.test    #
+#   - Association                       #
+#     - scatter plot                    #
+#     - bin-scatter:                    #
+#         - equal distance              #
+#         - equal number of obs         #
+#     - correlation and covariance      #
+#     - factors with ggplot             #
+#                                       #
+# Case-study:                           #
+#  Billion Price Project:               #
+#   Online and Offline prices           #
+#                                       #
+# Dataset:                              #
+#   billion-prices                      #
+#                                       #
+#########################################
 
 
 # Remove variables from the memory
@@ -197,7 +218,7 @@ ggplot( data = bpp ) +
 # Count vs. Relative Frequency
 #   until now we have used count (counted the number of observations in each bin)
 #   the other possibility is to use relative frequency instead:
-# you need to add `y = ..density..` to the aesthetics:
+#   you need to add `y = ..density..` to the aesthetics:
 ggplot( data = bpp ) +
   geom_histogram( aes(  y = ..density.. , x = price ) , fill = 'navyblue',
                   bins = 50 ) +
@@ -276,7 +297,7 @@ ggplot( data = bpp , aes( x = p_diff , fill = country_f ) ) +
 
 ###
 # Task 2)
-# 1 )Do the same, but use geom_density instead of geom_histogram!
+# 1) Do the same, but use geom_density instead of geom_histogram!
 #     You may play around with the xlim!
 # 2) Drop the `facet_wrap` command! What happens? Which graph would you use to tell your story in this case?
 # What if instead of `fill` you use `color` or `group`

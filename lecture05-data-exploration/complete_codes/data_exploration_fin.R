@@ -1,14 +1,35 @@
-##################################
-##                              ##
-##      Data Exploration        ##
-##                              ##
-##    Billion Price Project     ##
-##                              ##
-##  Case study - Chapter 06     ##
-##                              ##
-##  Online and Offline prices   ##
-##                              ##
-##################################
+#########################################
+#                                       #
+#              Lecture 06               #
+#                                       #
+#           Data Exploration            #
+#                                       #
+#   - modelsummary package:             #
+#     - datasummary for descriptives    #
+#     - descriptive by categories       #
+#     - custom function                 #
+#   - ggplot                            #
+#     - histogram                       #
+#     - customize a ggplot              #
+#     - kernel density                  #
+#     - multiple geometries             #
+#   - Hypothesis testing with t.test    #
+#   - Association                       #
+#     - scatter plot                    #
+#     - bin-scatter:                    #
+#         - equal distance              #
+#         - equal number of obs         #
+#     - correlation and covariance      #
+#     - factors with ggplot             #
+#                                       #
+# Case-study:                           #
+#  Billion Price Project:               #
+#   Online and Offline prices           #
+#                                       #
+# Dataset:                              #
+#   billion-prices                      #
+#                                       #
+#########################################
 
 
 # Remove variables from the memory
@@ -86,8 +107,8 @@ datasummary( country_f * p_diff ~ Mean + Median ,
   # Lets check the 'range' as an external function to the descriptive
 # Our first function - explain each part, especially the output
 range_ds <- function( x ){ 
-                max( x , na.rm = T ) - min( x , na.rm = T ) 
-}
+                max( x , na.rm = T ) - min( x , na.rm = T ) }
+
 # Later we will discuss functions more in details!
 
 datasummary( price + price_online + p_diff ~ 
@@ -303,7 +324,7 @@ ggplot( data = bpp , aes( x = p_diff , group = country_f ) ) +
 
 ###
 # Task 2)
-# 1 )Do the same, but use geom_density instead of geom_histogram!
+# 1) Do the same, but use geom_density instead of geom_histogram!
 #     You may play around with the xlim!
 # 2) Drop the `facet_wrap` command! What happens? Which graph would you use to tell your story in this case?
 # What if instead of `fill` you use `color` or `group`
