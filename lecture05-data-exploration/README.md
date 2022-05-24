@@ -61,7 +61,7 @@ If you do not have the needed time for one lecture, you may take this into two p
 
 *Type*: quick practice, approx 15 mins
 
-Use the [wms-management-survey](https://gabors-data-analysis.com/datasets/#wms-management-survey) data.
+Use the [wms-management-survey](https://gabors-data-analysis.com/datasets/#wms-management-survey) data, 'wms_da_textbook.csv' file.
 Use the following units:
   - United States firms, observed in wave 2004 and employment of the firms should be between 100 and 5000.
   - Create a descriptive statistic table for variables of `management`, `emp_firm`, and `firm_age` with mean, median, sd, min, max, range, and 5% and 95% percentiles. Hint: use `quantile()` function for percentiles.
