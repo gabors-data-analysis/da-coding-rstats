@@ -1,5 +1,6 @@
 ---
 title: "Report on Billion Price Project"
+author: 'Name of author'
 output: 
   pdf_document:
     extra_dependencies: ["float"]
@@ -7,27 +8,11 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
-# Set graph size
-#knitr::opts_chunk$set(echo = FALSE, out.width = "50%" )#fig.asp = 0.5, fig.width = 7, out.width = "90%" )
-
+rm( list = ls())
+# Here comes the packages
 library(tidyverse)
 library(modelsummary)
 library(kableExtra)
-
-# Import data and basic datamunging
-bpp_orig <- read_csv( 'https://osf.io/yhbr5/download' )
-
-bpp_orig <- bpp_orig %>% mutate( p_diff = price_online - price )
-
-bpp <- bpp_orig %>% 
-  filter( is.na(sale_online) ) %>%
-  filter(!is.na(price)) %>%
-  filter(!is.na(price_online)) %>% 
-  filter(PRICETYPE == "Regular Price") %>% 
-  filter( price < 1000 ) %>% 
-  filter( p_diff < 500 & p_diff > -500 )
-
 ```
 
 ## Introduction
@@ -40,13 +25,36 @@ For more details on the project see: <http://www.thebillionpricesproject.com/>.
 
 ## Data
 
+```{r data import, include=FALSE}
+# Import data and basic data munging
+bpp_orig <- read_csv( 'https://osf.io/yhbr5/download' )
+
+bpp_orig <- bpp_orig %>% mutate( p_diff = price_online - price )
+
+bpp <- bpp_orig %>% 
+  filter( is.na(sale_online) ) %>%
+  filter(!is.na(price)) %>%
+  filter(!is.na(price_online)) %>% 
+  filter( PRICETYPE == "Regular Price" ) %>% 
+  filter( price < 1000 ) %>% 
+  filter( p_diff < 500 & p_diff > -500 )
+
+```
+
 HERE COMES A DETAILLED EXPLANATION ABOUT WHERE THE DATA COMES FROM AND IF IT IS REPRESENTATIVE OR NOT.
 
 Our main interest is whether online prices are lower or higher than simple retail store prices. We investigated the data on the collected prices and we have the following descriptive statistics on online, in-store prices and in their differences.
 
-```{r, echo=FALSE}
-P95 <- function(x){quantile(x,0.95,na.rm=T)}
-P05 <- function(x){quantile(x,0.05,na.rm=T)}
+```{r data descriptive, echo=FALSE}
+
+# Descriptive statistics with pretty names
+P95 <- function(x){ quantile( x , 0.95 , na.rm=T ) }
+P05 <- function(x){ quantile( x , 0.05 , na.rm=T ) }
+
+# Use datasummary:
+# - rewrite names to human readable
+# - add title and notes
+# - fix position with kable_styling()
 datasummary( (`Retail` = price ) + (`Online` = price_online ) + (`Price difference` = p_diff ) ~
              Mean + Median + SD + Min + Max + P05 + P95 , 
              data = bpp ,
@@ -61,7 +69,11 @@ DESCRIPTION OF THE SUMMARY STATS: WHAT CAN WE LEARN FROM THEM?
 
 As the focus is the price difference, the next Figure shows the histogram for this variable.
 
-```{r, echo=FALSE, warning=FALSE, fig.width=4, fig.height = 3, fig.align="center" }
+```{r data hist, echo=FALSE, warning=FALSE, fig.width=4, fig.height = 3, fig.align="center" }
+
+# Add plot: in header, specify the figure size and alignment
+#
+# add simple plot: take care of labels and limits (and theme)
 ggplot( data = bpp ) +
   geom_density( aes( x = p_diff ) , fill = 'navyblue'  , bins = 30 ) +
   labs(x = "Price differences",
@@ -76,7 +88,7 @@ DESCRIPTION OF THE FIGURE. WHAT DOES IT TELS US?
 
 ## Testing Price Differences
 
-```{r, echo = FALSE }
+```{r test, echo = FALSE }
 
 test_out <- t.test( bpp$p_diff , mu = 0 )
 
@@ -94,7 +106,8 @@ You should report: Country, mean of p_diff, se of the mean for p_diff, number of
 
 Hint: use 'kable()' and to hold the table position you can define the following argument: 'position = "H"' . Take care of caption, number of digits you use and the name of variables you report! You may check how the output changes if you use 'booktabs = TRUE' input for kable!
 
-```{r, echo = FALSE }
+```{r test countries, echo = FALSE }
+
 # When creating a factor, it will use the sorted values:
 levels_fac <- sort( unique( bpp$COUNTRY ) )
 # If want to have pretty variable nems when groupping, need to use 'labels' input!
