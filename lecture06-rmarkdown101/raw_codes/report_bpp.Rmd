@@ -2,10 +2,10 @@
 title: "Report on Billion Price Project"
 author: 'Name of author'
 output: 
-  # html_document
   pdf_document:
     extra_dependencies: ["float"]
-  
+  #
+  # html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -116,41 +116,14 @@ Hint: use 'kable()' and to hold the table position you can define the following 
         kable_classic(full_width = F, html_font = "Cambria")
 ```
 
-```{r test countries, echo = FALSE }
 
-# When creating a factor, it will use the sorted values:
-levels_fac <- sort( unique( bpp$COUNTRY ) )
-# If want to have pretty variable nems when groupping, need to use 'labels' input!
-# create a new variable for that:
-labs <- c('Brazil','China','Germany','Japan','South Africa','USA')
-# Note order must be the same as in `levels_fac`!
-bpp$country <- factor( bpp$COUNTRY , labels = labs )
-# Multiple hypothesis testing
-testing <- bpp %>% 
-  select( country , p_diff ) %>% 
-  group_by( country ) %>% 
-  summarise( mean_pdiff = mean( p_diff ) ,
-             se_pdiff = 1/sqrt(n())*sd(p_diff),
-             num_obs = n() )
-
-# Testing in R is easy if one understands the theory!
-testing <- mutate( testing , t_stat = mean_pdiff / se_pdiff )
-testing <- mutate( testing , p_val = pt( -abs( t_stat ) , df = num_obs - 1 ) )
-testing <- mutate( testing ,  p_val = round( p_val , digit = 4 ) )
-
-# Report a tibble or any other dataframe/matrix variable
-kable( testing , digits = 4, 
-       caption = 'Online and retail price differences by countries and t-tests',
-       col.names = c('Country','Mean','SE','Num.Obs','t-stat','p-val'),
-       "latex", booktabs = TRUE,  position = "H")             # Comment out if html
-      #"html", booktabs = F,  position = "H") %>%             # Uncomment if html
-      #  kable_classic(full_width = F, html_font = "Cambria")
-
-```
 
 Extra: In words, select those countries, where you can not reject the alternative that the prices are different. With the command '\textcolor{red}{this is red} you can highlight these countries!
 
-Countries, where we can not reject the alternative with 95% confidence (or with 5% significance level), that the prices are different, hence retail and online prices might differ: \textcolor{red}{`r testing$country[ testing$p_val < 0.05]`}
+Countries, where we can not reject the alternative with 95% confidence (or with 5% significance level), that the prices are different, hence retail and online prices might differ: 
+
+Task: put here country names in red with p-values less than 5%.
+
 
 ## Conclusion
 
