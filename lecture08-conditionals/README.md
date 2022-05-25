@@ -1,4 +1,4 @@
-# Lecture 08: Conditional Programming in R
+# Lecture 08: Conditional Programming
 
 This lecture introduces students to conditional programming with `if-else` statements. It covers the essentials as well as logical operations with vectors, creating new variables with conditionals and some extra material.
 
