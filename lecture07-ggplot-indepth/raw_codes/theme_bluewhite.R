@@ -18,7 +18,7 @@ theme_bluewhite <- function( base_size = 11, base_family = "") {
       axis.line         = element_line(color = "red"),
       # Littel lines called ticks on the axis
       axis.ticks        = element_line(color = "steelblue"),
-      # Numbers on the axis
-      axis.text         = element_text(color = "navyblue")
+      # Color and font size for the numbers on the axis
+      axis.text         = element_text(color = "navyblue", font_size = 8)
     )
 }
