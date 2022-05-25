@@ -1,9 +1,18 @@
-#################################
-##        CLASS 4              ##
-##    GGPLOT in-depth          ##
-## my first external function: ##
-##    your own theme           ##
-#################################
+#######################################################
+#                                                     #
+#              Lecture 08                             #
+#                                                     #
+#           ggplot in-depth                           #
+#         `theme_bluewhite()`                         #
+#                                                     #
+#     first external function:                        #
+#          creating your own theme                    #
+#                                                     #
+# For complete list of theme options                  #
+#     see:                                            #
+#  https://ggplot2.tidyverse.org/reference/theme.html #
+#                                                     #
+#######################################################
 
 theme_bluewhite <- function( base_size = 11, base_family = "") {
   # Inherit the basic properties of theme_bw

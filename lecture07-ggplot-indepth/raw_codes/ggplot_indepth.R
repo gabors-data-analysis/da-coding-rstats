@@ -1,29 +1,62 @@
-##################################
-##                              ##
-##   ggplot in-depth            ##
-##      - themes                ##
-##      - write own theme       ##
-##      - manipulating axis     ##
-##      - adding lines and      ##
-##          annotations         ##
-##      - Commonly used other   ##
-##          plots:              ##
-##        - bar, box, violin    ##
-##                              ##
-##    Based on:                 ##
-##  Case study - Chapter 03     ##
-##                              ##
-##  Hotels Europe Data          ##
-##                              ##
-##################################
+#########################################
+#                                       #
+#              Lecture 08               #
+#                                       #
+#           ggplot in-depth             #
+#                                       #
+#      - themes                         #
+#      - write your own theme           #
+#         - call outside script/source  #
+#      - manipulating axis              #
+#      - adding lines and               #
+#          annotations                  #
+#      - Commonly used other plots:     #
+#        - bar, box, violin             #
+#      - theme_bg() and                 #
+#         formatting principles in book #
+#                                       #
+#  Case study:                          #
+#   Ch03B Comparing hotel prices        #
+#       in Europe: Vienna vs London     #
+#                                       #
+# Dataset:                              #
+#  hotels-europe                        #
+#                                       #
+#########################################
 
 rm( list= ls())
 
 # Load packages
 library( tidyverse )
+# ggthemes is providing many built in themes for ggplot
+# install.library("ggthemes")
+library(ggthemes)
+# scales manipulate ggplot in various ways, 
+#   we use it here to convert axis numbering to percentages
+#install.packages("scales")
+library(scales)
+# devtools package is for developing tools in R (great package)
+#   we use it here to import script/function from web
+# install.packages("devtools")
+library(devtools)
 
+#####
+# 0) Data import and filter
 # Use the london-vienna dataset to introduce different aspects of ggplot
-df <- read_csv( "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture07-ggplot-indepth/data/hotels-vienna-london.csv" )
+
+# import the prices and features of hotels
+heu_price <- read_csv("https://osf.io/p6tyr/download")
+heu_feature <- read_csv("https://osf.io/utwjs/download")
+df <- left_join( heu_feature , heu_price , by = 'hotel_id' )
+
+# filter
+df <- df %>% filter( year == 2017, month == 11 , weekend == 0 ) %>% 
+  filter( city %in% c('Vienna','London'),  city_actual %in% c('Vienna','London') ) %>% 
+  filter( accommodation_type == 'Hotel', stars >= 3 & stars <= 4 ) %>% 
+  filter( price <= 600 )
+
+rm( heu_price, heu_feature )
+
 
 #####
 # 1) Use different themes:
@@ -48,7 +81,8 @@ ggplot( filter( df , city == 'Vienna' ) , aes( x = price ) ) +
 ##
 # Task: 
 #   Play around with themes!
-# may import 'ggthemes' library
+#      using 'ggthemes' library
+
 
 
 ##
@@ -80,7 +114,7 @@ f1
 #   1) if continuous variable: `scale_()_continuous`
 #   2) if discrete/categorical variable: `scale_()_discrete`
 
-#   a) limit -> changes the l
+#   a) limit -> changes the limit
 f1 + scale_x_continuous( limits = c( 0 , 300 ) )
 #   b) set tickers, called 'breaks'
 f1 + scale_x_continuous( limits = c( 0 , 300 ) , breaks = c( 0 , 100 , 150 , 200 , 250 , 300 )  )
@@ -145,7 +179,8 @@ f1
 # Summarize hotels which are close/medium or far away from the city-center:
 
 # Let create a new factor variable
-df$dis_f <- cut( df$distance , breaks=c(-1,2,4,100) , labels = c('close','medium','far') )
+df <- df %>% mutate( dis_f = cut( distance , breaks=c(-1,2,4,100) , 
+                                  labels = c('close','medium','far') ) )
 
 # We are curious about how these hotels distribute in the cities
 # Summarize the number of close/medium/far hotels
@@ -158,12 +193,14 @@ ds0
 ## Do the plot:
 f3 <- ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
   geom_bar(stat = "identity", position = "dodge", width = 0.6,  size = 0.5)+ 
-  labs(x = "Citys", y = "Number of hotels", fill = "Distance")
+  labs(x = "Citys", y = "Number of hotels", fill = "Distance") +
+  theme_bw()
 f3
 
 # Make the legends more pretty: put to the top
 f3 + scale_fill_discrete(name="Distance from city center:") +
   theme(legend.position = "top") 
+
 
 ## Stacked bar
 ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
@@ -172,10 +209,11 @@ ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
   scale_fill_discrete(name="Distance from city center:") +
   theme(legend.position = "top") 
 
-## Stacked bar with percentages
+## Stacked bar with percentages: using scales package
 ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
   geom_bar(stat = "identity", position = "fill", width = 0.6,  size = 0.5) +
   labs(x = "Citys", y = "Share of the hotels") +
+  scale_y_continuous(labels = scales::percent) +
   scale_fill_discrete(name="Distance from city center:") +
   theme(legend.position = "top") 
 
@@ -186,7 +224,8 @@ ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
 #
 f4 <- ggplot(df, aes(y = price, x = city)) +
   geom_boxplot(color = "blue", size = 0.5, width = 0.1, alpha = 0.5) +
-  labs(x='Cities',y='Price')
+  labs(x='Cities',y='Price') +
+  theme_bw()
 f4
 
 # Make it a bit more fancy by adding error-bars
@@ -201,16 +240,27 @@ f4 + stat_summary(fun=mean, geom="point", shape=20, size=5, color="red", fill="r
 #   violin plots adds a kernel density estimator to the boxplot in a neat way
 # 
 ggplot(df, aes(y = price, x = city)) +
-  geom_violin( size=1,  width = 0.5, color = 'blue', fill = 'lightblue', trim = T, show.legend=F, alpha = 0.3) +
-  geom_boxplot(color = "black", fill='lightblue', size = 0.5, width = 0.1, alpha = 0.5 ,  outlier.shape = NA) +
-  xlab('Cities')+
-  ylab('Price')
+  geom_violin( size=1,  width = 0.5, color = 'blue', 
+               fill = 'lightblue', trim = T, show.legend=F, alpha = 0.3) +
+  geom_boxplot(color = "black", fill='lightblue', 
+               size = 0.5, width = 0.1, alpha = 0.5 ,  outlier.shape = NA) +
+  labs(x='Cities', y='Price')+
+  theme_bw()
 
+
+###
+# 6) theme_bg()
+#
+
+# Using devtools package to source a script from the web
+source_url("https://raw.githubusercontent.com/gabors-data-analysis/da_case_studies/master/ch00-tech-prep/theme_bg.R")
+
+f4 + theme_bg()
 
 
 #####
 # Extra:
-# can be a homework or 
+# can be an extra homework or 
 #   good for demonstration of a conditional box-plot graph.
 #
 # Task:
@@ -220,5 +270,7 @@ ggplot(df, aes(y = price, x = city)) +
 #   4) Add conditional mean as dots
 #   5) Annotate everything with arrows:
 #       `geom_segment(aes(x=,y=,xend=,yend=),arrow=arrow(length=unit(x,"cm")),color=)`
-#   6) use a theme
+#   6) use theme_bg()
+#   7) Instead of using 'color = 'blue'', or other colors, use 'color = color[1]' or color[x]
+#       these are defined colors in theme_bg()
 

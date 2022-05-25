@@ -1,8 +1,12 @@
 #########################
-## Homework for        ##
-##    ggplot in-depth  ##
-##  Deadline:          ##
-##                     ##
+#                       #
+#   Homework for        #
+#      ggplot in-depth  #
+#                       #
+#    Deadline:          #
+#                       #
+#                       #
+#                       #
 #########################
 
 ##
