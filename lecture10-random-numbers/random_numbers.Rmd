@@ -8,7 +8,13 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(gganimate)
+library(ggpubr)
 ```
+
+Datasets: 
+
+ - [height-income-distributions](https://gabors-data-analysis.com/datasets/#height-income-distributions)
+ - [sp500](https://gabors-data-analysis.com/datasets/#sp500)
 
 ## Random Numbers
 
@@ -90,7 +96,97 @@ There are other useful distributions that you can check out. E.g.:
   - `rexp` (exponential distribution)
   - `rlnorm` (log-normal distribution)
 
+## Exercise: `height-income-distributions`
 
+Next, let us check the difference between the artificially generated theoretical and the empirically observed variables' distributions.
+
+```{r, message = FALSE , warning = FALSE}
+# Get data from OSF
+df <- read_csv('https://osf.io/rnuh2/download')
+# set height as numeric
+df <- df %>% mutate( height = as.numeric( height ) )
+
+
+```
+
+First, let us start with the height of people which is close to the normal distribution.
+
+```{r, warning = FALSE}
+
+# Create a empirical histogram of height with theoretical normal
+emp_height <- ggplot( df , aes( x = height ) ) +
+  geom_histogram( aes( y = ..density.. ), binwidth = 0.03, 
+                 fill = 'navyblue', alpha = 0.6 ) +
+  stat_function( fun = dnorm, color = 'red',  
+                 args = with( df, c( mean = mean( height , na.rm = T ), sd = sd( height , na.rm = T ) ) ) ) + 
+  labs(x="Height (meters)", y="Density" ) +
+    theme_bw()
+
+emp_height
+
+```
+
+As you may see the theoretical normal distribution is close but far from a perfect fit.
+
+Next, let us check the distribution of income, which is close to the log-normal distribution. For better visualization, we restrict our attention to incomes less than 1000 thousand $.
+
+```{r , warning = FALSE}
+# Calculate the empirical mean and standard deviation 
+#   (see eg.: https://en.wikipedia.org/wiki/Log-normal_distribution)
+mu <- with( filter( df , hhincome < 1000 ), 
+            log( mean( hhincome )^2 / sqrt( var( hhincome ) + mean( hhincome )^2 ) ) )
+sigma <- with( filter( df , hhincome < 1000 ),
+               sqrt( log( var( hhincome ) / mean( hhincome )^2 + 1 ) ) )
+
+emp_inc <- ggplot( filter( df , hhincome < 1000 ) , aes( x = hhincome ) ) +
+  geom_histogram( aes( y = ..density.. ), binwidth = 10,
+                 fill = 'navyblue', alpha = 0.6 ) +
+  stat_function( fun = dlnorm, colour= 'red',  
+                 args = c( mean = mu , sd =  sigma ) ) + 
+  labs(x="Income (thousand $)", y="Density" ) +
+    theme_bw()
+
+emp_inc
+
+
+```
+
+Here, the theoretical and empirical distributions are much closer.
+
+As a next step let us generate two artificial variables, one with normal and the second with log-normal distributions, where the moments are the same as for the empirical distributions.
+
+```{r}
+set.seed(123)
+artif <- tibble( height_art = rnorm( nrow( df ) , mean( df$height , na.rm = T ), 
+                                                 sd = sd( df$height , na.rm = T ) ) ,
+                inc_art = rlnorm( nrow( df ) , meanlog = mu , sdlog = sigma ) )
+
+```
+
+We can compare these artificial random variables with the truly observed variables. Let us start with height.
+
+```{r , warning = FALSE}
+
+emp_height + geom_histogram( data = artif, aes( x = height_art , y = ..density.. ), 
+                             binwidth = 0.03, boundary = 1.3 , 
+                 fill = 'orange', alpha = 0.3 )
+
+```
+
+The artificial variable is much closer to the theoretical distribution.
+
+The income can be checked similarly.
+
+```{r , warning = FALSE}
+emp_inc + geom_histogram( data = artif , aes( x = inc_art , y = ..density.. ), binwidth = 10,
+                          fill = 'orange', alpha = 0.3 ) +
+        xlim(0,500)
+
+```
+
+It would be difficult to tell if there is a difference between the two variables.
+
+**Task:** Transform the income variable to log income and check with a normal distribution along with an artificially generated normal distribution with the same mean and sd. Hint: use `ifelse()` when creating log-income to avoid log(0).
 
 ## Random sampling
 

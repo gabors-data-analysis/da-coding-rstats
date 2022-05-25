@@ -2,6 +2,11 @@ Random Numbers and Random Sampling in R
 ================
 Agoston Reguly
 
+Datasets:
+
+-   [height-income-distributions](https://gabors-data-analysis.com/datasets/#height-income-distributions)
+-   [sp500](https://gabors-data-analysis.com/datasets/#sp500)
+
 ## Random Numbers
 
 In dealing with data, the use of random numbers is essential. In any
@@ -46,7 +51,7 @@ distribution between 0 and 1, we can run the following code:
 runif( 5 , min = 0 , max = 1)
 ```
 
-    ## [1] 0.06767098 0.98660840 0.39275628 0.66632423 0.24219306
+    ## [1] 0.4504302 0.4982766 0.3658106 0.9349943 0.5152275
 
 Note that if you re-run this piece of code it will result in different
 values. Naturally, the question emerges, how to write a code, which will
@@ -101,6 +106,108 @@ There are other useful distributions that you can check out. E.g.:
 -   `rbinom` (binomial distribution)
 -   `rexp` (exponential distribution)
 -   `rlnorm` (log-normal distribution)
+
+## Exercise: `height-income-distributions`
+
+Next, let us check the difference between the artificially generated
+theoretical and the empirically observed variables’ distributions.
+
+``` r
+# Get data from OSF
+df <- read_csv('https://osf.io/rnuh2/download')
+# set height as numeric
+df <- df %>% mutate( height = as.numeric( height ) )
+```
+
+First, let us start with the height of people which is close to the
+normal distribution.
+
+``` r
+# Create a empirical histogram of height with theoretical normal
+emp_height <- ggplot( df , aes( x = height ) ) +
+  geom_histogram( aes( y = ..density.. ), binwidth = 0.03, 
+                 fill = 'navyblue', alpha = 0.6 ) +
+  stat_function( fun = dnorm, color = 'red',  
+                 args = with( df, c( mean = mean( height , na.rm = T ), sd = sd( height , na.rm = T ) ) ) ) + 
+  labs(x="Height (meters)", y="Density" ) +
+    theme_bw()
+
+emp_height
+```
+
+![](random_numbers_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+As you may see the theoretical normal distribution is close but far from
+a perfect fit.
+
+Next, let us check the distribution of income, which is close to the
+log-normal distribution. For better visualization, we restrict our
+attention to incomes less than 1000 thousand $.
+
+``` r
+# Calculate the empirical mean and standard deviation 
+#   (see eg.: https://en.wikipedia.org/wiki/Log-normal_distribution)
+mu <- with( filter( df , hhincome < 1000 ), 
+            log( mean( hhincome )^2 / sqrt( var( hhincome ) + mean( hhincome )^2 ) ) )
+sigma <- with( filter( df , hhincome < 1000 ),
+               sqrt( log( var( hhincome ) / mean( hhincome )^2 + 1 ) ) )
+
+emp_inc <- ggplot( filter( df , hhincome < 1000 ) , aes( x = hhincome ) ) +
+  geom_histogram( aes( y = ..density.. ), binwidth = 10,
+                 fill = 'navyblue', alpha = 0.6 ) +
+  stat_function( fun = dlnorm, colour= 'red',  
+                 args = c( mean = mu , sd =  sigma ) ) + 
+  labs(x="Income (thousand $)", y="Density" ) +
+    theme_bw()
+
+emp_inc
+```
+
+![](random_numbers_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+Here, the theoretical and empirical distributions are much closer.
+
+As a next step let us generate two artificial variables, one with normal
+and the second with log-normal distributions, where the moments are the
+same as for the empirical distributions.
+
+``` r
+set.seed(123)
+artif <- tibble( height_art = rnorm( nrow( df ) , mean( df$height , na.rm = T ), 
+                                                 sd = sd( df$height , na.rm = T ) ) ,
+                inc_art = rlnorm( nrow( df ) , meanlog = mu , sdlog = sigma ) )
+```
+
+We can compare these artificial random variables with the truly observed
+variables. Let us start with height.
+
+``` r
+emp_height + geom_histogram( data = artif, aes( x = height_art , y = ..density.. ), 
+                             binwidth = 0.03, boundary = 1.3 , 
+                 fill = 'orange', alpha = 0.3 )
+```
+
+![](random_numbers_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+The artificial variable is much closer to the theoretical distribution.
+
+The income can be checked similarly.
+
+``` r
+emp_inc + geom_histogram( data = artif , aes( x = inc_art , y = ..density.. ), binwidth = 10,
+                          fill = 'orange', alpha = 0.3 ) +
+        xlim(0,500)
+```
+
+![](random_numbers_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+It would be difficult to tell if there is a difference between the two
+variables.
+
+**Task:** Transform the income variable to log income and check with a
+normal distribution along with an artificially generated normal
+distribution with the same mean and sd. Hint: use `ifelse()` when
+creating log-income to avoid log(0).
 
 ## Random sampling
 
