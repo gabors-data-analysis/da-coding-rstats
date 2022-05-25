@@ -2,6 +2,9 @@ Conditional Programming in R
 ================
 Agoston Reguly
 
+Data used:
+[wms-management](https://gabors-data-analysis.com/datasets/#wms-management-survey)
+
 ## What are conditional statements
 
 Conditionals are expressions that perform different computations or
@@ -155,8 +158,8 @@ v > 0
 which results in a vector. To suppress this into one logical outcome, we
 need to decide what we want:
 
--   if any element is larger than zero -> use `any()`
--   if all elements are larger than zero -> use `all()`
+-   if any element is larger than zero -\> use `any()`
+-   if all elements are larger than zero -\> use `all()`
 
 Let us say we want any elements to be larger than zero, thus:
 
@@ -214,6 +217,10 @@ v | q > 0
 v || q > 0
 ```
 
+    ## Warning in v || q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
+
+    ## Warning in v || q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
+
     ## [1] TRUE
 
 Using double-operators will imply `any()` for `||` and `all()` for `&&`:
@@ -222,11 +229,17 @@ Using double-operators will imply `any()` for `||` and `all()` for `&&`:
 ( v || q > 0 ) == any( v | q > 0 )
 ```
 
+    ## Warning in v || q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
+
+    ## Warning in v || q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
+
     ## [1] TRUE
 
 ``` r
 ( v && q > 0 ) == all( v & q > 0 )
 ```
+
+    ## Warning in v && q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
 
     ## [1] TRUE
 
@@ -236,6 +249,8 @@ vectors, as the results can be different if mixing these up, e.g.
 ``` r
 v && q > 0
 ```
+
+    ## Warning in v && q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
 
     ## [1] FALSE
 
@@ -266,6 +281,66 @@ all( v > 0 ) || any( q > 0 )
 
     ## [1] TRUE
 
+## Conditionals for creating a new variable
+
+In the data analysis business conditionals are not used that often or
+that explicitly. Most commonly it used, when a new variable is created
+and its values are conditional on other variable(s).
+
+To show a simple example, let us use the
+[wms-management](https://gabors-data-analysis.com/datasets/#wms-management-survey)
+data,
+
+``` r
+library(tidyverse)
+# Import wms-management data
+wms <- read_csv("https://osf.io/uzpce/download")
+
+# 
+#   
+```
+
+Look at `emp_firm`, which is the number of employee in the firm. Let us
+create a new variable based on number of employees. We consider three
+types of firms:
+
+-   large: no. employees is more or equal than 1000
+-   medium: no. employees is more or equal than 200, but less than 1000
+-   small: no. employees is less than 200
+
+We will cover two cases:
+
+-   using simple base-R methods to demonstrate conditionals
+-   introduce `ifelse()` function, which is more compatible with
+    `tidyverse` approach.
+
+### Base R for creating new variables with conditionals
+
+Using previous conditional statements it is easy to use logical
+operations to index certain values and then redefine them.
+
+``` r
+# Create a new variable with NA values by default -> it is going to be a character vector
+wms$firm_size <- NA_character_
+wms$firm_size[ wms$emp_firm >= 1000 ] = 'large'
+wms$firm_size[ wms$emp_firm < 1000 & wms$emp_firm >= 200 ] = 'medium'
+wms$firm_size[ wms$emp_firm < 200 ] = 'small'
+```
+
+### `ifelse()` function
+
+There is a built-in `ifelse(condition,if_true,if_false)` function, which
+is a compact form of `if-else` statements. This is a bit harder to read,
+but useful with `tidyverse`. We need to use multiple `ifelse()` function
+as if the first is false, we need to still consider the other cases.
+Again as usual, try to cover all possible cases!
+
+``` r
+wms <- wms %>% mutate( firm_size2 = ifelse( emp_firm >= 1000 , 'large',
+                                    ifelse( wms$emp_firm < 1000 & wms$emp_firm >= 200 , 'medium',
+                                    ifelse( wms$emp_firm < 200, 'small', NA_character_ ) ) ) ) 
+```
+
 ## Extra material
 
 In the following, we cover some non-essential, but good-to-know
@@ -285,19 +360,6 @@ if ( !require(tidyverse) ){
   library(tidyverse)
 }
 ```
-
-    ## Loading required package: tidyverse
-
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-
-    ## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
-    ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
-    ## ✓ readr   2.1.1     ✓ forcats 0.5.1
-
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
 
 This can help you to avoide to install a package multiple times!
 
@@ -321,21 +383,6 @@ if ( x > 5 ){ print(' x > 5') } else { print('x <= 5' ) }
     ## [1] "x <= 5"
 
 However, it is not recommended as it makes reading the code much harder.
-
-### The `ifelse()` function
-
-There is a built-in `ifelse(condition,if_true,if_false)` function, which
-is a compact form of `if-else` statements. Again, this is a bit harder
-to read as the convention for `if-else` statements in coding is to have
-them in separate lines:
-
-``` r
-ifelse( x > 5 , print( 'x>5' ) , print( 'x<=5' ) )
-```
-
-    ## [1] "x<=5"
-
-    ## [1] "x<=5"
 
 ### The `xor` operator
 

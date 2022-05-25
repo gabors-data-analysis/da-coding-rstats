@@ -1,5 +1,7 @@
 ##################################
 ##                              ##
+##          Lecture 08          ##
+##                              ##
 ##  Conditional Programming     ##
 ##                              ##
 ##                              ##
@@ -80,6 +82,27 @@ v || q > 0
 v && q > 0
 any( v & q > 0 )
 
+#####
+# Using conditionals when creating new variables
+
+# Import wms-management data
+library(tidyverse)
+wms <- read_csv("https://osf.io/uzpce/download")
+
+# Method 1: use base-R commands
+wms$firm_size <- NA_character_
+wms$firm_size[ wms$emp_firm >= 1000 ] = 'large'
+wms$firm_size[ wms$emp_firm < 1000 & wms$emp_firm >= 200 ] = 'medium'
+wms$firm_size[ wms$emp_firm < 200 ] = 'small'
+
+# Method 2: ifelse function
+wms <- wms %>% mutate( firm_size2 = ifelse( emp_firm >= 1000 , 'large',
+                                    ifelse( wms$emp_firm < 1000 & wms$emp_firm >= 200 , 'medium',
+                                    ifelse( wms$emp_firm < 200, 'small', NA_character_ ) ) ) ) 
+
+# Task: check they are the same:
+all( wms$firm_size == wms$firm_size2, na.rm = T )
+
 ######
 # Extra material
 
@@ -88,9 +111,6 @@ any( v & q > 0 )
 
 if ( x > 5 ){ print(' x > 5') } else { print('x <= 5' ) }
 # However, it is not recommended as it makes reading the code much harder.
-
-# or can use a function:
-ifelse( x > 5 , print( 'x>5' ) , print( 'x<=5' ) )
 
 
 # The xor() operator

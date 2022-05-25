@@ -9,6 +9,8 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Data used: [wms-management](https://gabors-data-analysis.com/datasets/#wms-management-survey)
+
 ## What are conditional statements
 
 Conditionals are expressions that perform different computations or actions depending on whether a predefined logical expression (aka boolean) condition is `TRUE` or `FALSE`.
@@ -184,6 +186,57 @@ or check if all elements in `v` but any elements in `q` and then use the or comp
 ```{r}
 all( v > 0 ) || any( q > 0 )
 ```
+
+## Conditionals for creating a new variable
+
+In the data analysis business conditionals are not used that often or that explicitly. Most commonly it used, when a new variable is created and its values are conditional on other variable(s).
+
+To show a simple example, let us use the [wms-management](https://gabors-data-analysis.com/datasets/#wms-management-survey) data,
+
+```{r, warning = FALSE, message=FALSE}
+library(tidyverse)
+# Import wms-management data
+wms <- read_csv("https://osf.io/uzpce/download")
+
+# 
+#   
+```
+Look at `emp_firm`, which is the number of employee in the firm. Let us create a new variable based on number of employees. We consider three types of firms:
+
+- large: no. employees is more or equal than 1000
+- medium: no. employees is more or equal than 200, but less than 1000
+- small: no. employees is less than 200
+
+We will cover two cases: 
+
+- using simple base-R methods to demonstrate conditionals
+- introduce `ifelse()` function, which is more compatible with `tidyverse` approach.
+
+### Base R for creating new variables with conditionals
+
+Using previous conditional statements it is easy to use logical operations to index certain values and then redefine them.
+
+```{r}
+# Create a new variable with NA values by default -> it is going to be a character vector
+wms$firm_size <- NA_character_
+wms$firm_size[ wms$emp_firm >= 1000 ] = 'large'
+wms$firm_size[ wms$emp_firm < 1000 & wms$emp_firm >= 200 ] = 'medium'
+wms$firm_size[ wms$emp_firm < 200 ] = 'small'
+
+```
+
+### `ifelse()` function
+
+There is a built-in `ifelse(condition,if_true,if_false)` function, which is a compact form of `if-else` statements. This is a bit harder to read, but useful with `tidyverse`. We need to use multiple `ifelse()` function as if the first is false, we need to still consider the other cases. Again as usual, try to cover all possible cases!
+
+```{r}
+wms <- wms %>% mutate( firm_size2 = ifelse( emp_firm >= 1000 , 'large',
+                                    ifelse( wms$emp_firm < 1000 & wms$emp_firm >= 200 , 'medium',
+                                    ifelse( wms$emp_firm < 200, 'small', NA_character_ ) ) ) ) 
+```
+
+**Task:** Check if `firm_size` and `firm_size2` have exactly the same values!
+
 ## Extra material
 
 In the following, we cover some non-essential, but good-to-know materials related to conditionals.
@@ -220,13 +273,6 @@ if ( x > 5 ){ print(' x > 5') } else { print('x <= 5' ) }
 
 However, it is not recommended as it makes reading the code much harder.
 
-### The `ifelse()` function
-
-There is a built-in `ifelse(condition,if_true,if_false)` function, which is a compact form of `if-else` statements. Again, this is a bit harder to read as the convention for `if-else` statements in coding is to have them in separate lines:
-
-```{r}
-ifelse( x > 5 , print( 'x>5' ) , print( 'x<=5' ) )
-```
 
 ### The `xor` operator
 
