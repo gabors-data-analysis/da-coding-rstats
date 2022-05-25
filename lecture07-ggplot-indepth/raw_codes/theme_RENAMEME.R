@@ -1,8 +1,10 @@
 #########################
-## Assignment 4        ##
-##      CLASS 4        ##
-##  Deadline:          ##
-##  2021/11/2 17:40   ##
+#                       #
+#     Assignment        #
+#      Lecture 07       #
+#                       #
+#  Deadline:            #
+#                       #
 #########################
 
 ##
@@ -16,6 +18,7 @@
 #
 #  Useful resources you may want to check:
 #     https://www.datanovia.com/en/blog/ggplot-themes-gallery/
+#     https://ggplot2.tidyverse.org/reference/theme.html
 #  Or the book's theme:
 #       https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch00-tech-prep/theme_bg.R
 #  Some more advanced/elaborated examples:

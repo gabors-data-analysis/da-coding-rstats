@@ -16,8 +16,7 @@
 
 # 1) Load tidyverse 
 
-# 2) use the same dataset as in class:
-df <- read_csv( "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture07-ggplot-indepth/data/hotels-vienna-london.csv" )
+# 2) use the same data with the same filter as in class!
 
 # 3) Call your personalized ggplot function
 
