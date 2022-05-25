@@ -45,7 +45,7 @@ library(devtools)
 # Use the london-vienna dataset to introduce different aspects of ggplot
 
 # import the prices and features of hotels
-heu_price <- read_csv("https://osf.io/p6tyr/download")
+heu_price   <- read_csv("https://osf.io/p6tyr/download")
 heu_feature <- read_csv("https://osf.io/utwjs/download")
 df <- left_join( heu_feature , heu_price , by = 'hotel_id' )
 
