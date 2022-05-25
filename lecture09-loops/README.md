@@ -1,11 +1,12 @@
-# Lecture 09: Programming loops in R
-*Coding course to complete Data Analysis in R*
+# Lecture 09: Programming loops
 
-This lecture introduces students to imperative programming with `for` and `while` loops. 
+This lecture introduces students to imperative programming with `for` and `while` loops. Furthermore, it provides an exercise with [sp500](https://gabors-data-analysis.com/datasets/#sp500) dataset to calculate yearly and monthly returns.
+
+[Chapter 05, A: What likelihood of loss to expect on a stock portfolio?](https://gabors-data-analysis.com/casestudies/#ch05a-what-likelihood-of-loss-to-expect-on-a-stock-portfolio) case study was a starting point to develop the exercise.
 
 
 ## Learning outcomes
-After successfully live-coding the material (see: [`loops.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.md)), students will have knowledge on
+After successfully live-coding the material (see: [`loops.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.md)), students will know
 
 - What is imperative programming and what is functional programming for iterations
 - What is a for loop
@@ -15,17 +16,22 @@ After successfully live-coding the material (see: [`loops.md`](https://github.co
 - What is a while loop
   - what are the possible drawbacks of a while loop
   - how to use a for loop instead
-  - `break` command     
+  - `break` command
+- Calculate returns with different time periods.   
+
+## Datasets used
+
+- [sp500](https://gabors-data-analysis.com/datasets/#sp500)
 
 ## Lecture Time
 
 Ideal overall time: **10-20 mins**.
 
-This is a relatively short lecture, and it can be even shorter if measuring CPU time is neglected.
+This is a relatively short lecture, and it can be even shorter if measuring CPU time and/or exercise is/are neglected.
 
 ## Homework
 
-*Type*: quick practice, approx 15 mins, together with [lecture08-conditionals](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture08-conditionals), [lecture10-random_numbers](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture10-random_numbers), and [lecture11-functions](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture11-functions).
+*Type*: quick practice, approx 15 mins, together with [lecture08-conditionals](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture08-conditionals), [lecture10-random-numbers](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture10-random-numbers), and [lecture11-functions](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture11-functions).
 
 Check the common homework [here](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture11-functions/README.md).
 
@@ -39,4 +45,4 @@ Check the common homework [here](https://github.com/gabors-data-analysis/da-codi
   
   - [`loops.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.md) provides material for the live coding session with explanations.
   - [`loops.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.Rmd) is the generating Rmarkdown file for `loops.md`
-  - **[`loops.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.R)** is a possible realization of the live coding session
+  - [`loops.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops/loops.R) is a possible realization of the live coding session
