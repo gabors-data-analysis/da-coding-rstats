@@ -16,7 +16,7 @@ After completing [`ggplot_indepth.R`](https://github.com/gabors-data-analysis/da
   - write own theme and call it via `source()` function
     - set different colors for background, axis, etc
     - set font size for different elements
-  - manipulating axis with `scale_*_continuous` and `scale_*_discrete`, where * stands for y or x
+  - manipulating axis with `scale_*_continuous` and `scale_*_discrete`, where `*` stands for `y` or `x`
     - set limits
     - set break points
   - add annotation to a plot
@@ -58,6 +58,7 @@ Showing [`ggplot_indepth.R`](https://github.com/gabors-data-analysis/da-coding-r
   - [Winston Chang: R Graphics Cookbook](https://r-graphics.org/) is a great book all about graphics in general with R.
   - Andrew Heiss: [Data Visualization with R](https://datavizs21.classes.andrewheiss.com/lesson/) in general focuses on visualization with ggplot.
   - [Official webpage of `ggplot2`](https://ggplot2.tidyverse.org/) is very well documented and can be handy. Also look at the references there, which point to online courses and youtube material.
+  - Some useful materials on creating your own theme: [datanovia](https://www.datanovia.com/en/blog/ggplot-themes-gallery/), [ggplot2's description](https://ggplot2.tidyverse.org/reference/theme.html), [Peng, Kross and Anderson: Mastering Software Development in R, Chapter 4.6](https://bookdown.org/rdpeng/RProgDA/building-a-new-theme.html) or [towardsdatascience.com](https://towardsdatascience.com/5-steps-for-creating-your-own-ggplot-theme-656e79a96b9).
 
 ## Folder structure
   
