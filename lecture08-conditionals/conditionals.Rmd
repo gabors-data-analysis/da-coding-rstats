@@ -163,27 +163,27 @@ v & q > 0
 ```
 
 At this point we can check the differences between single-operators and double-operators
-```{r}
+```{r, warning = FALSE}
 v | q > 0
 v || q > 0
 ```
 Using double-operators will imply `any()` for `||` and `all()` for `&&`:
-```{r}
+```{r, warning = FALSE}
 ( v || q > 0 ) == any( v | q > 0 )
 ( v && q > 0 ) == all( v & q > 0 )
 ```
 therefore one needs to be careful, when using these operators with vectors, as the results can be different if mixing these up, e.g.
-```{r}
+```{r, warning = FALSE}
 v && q > 0
 any( v & q > 0 )
 ```
 
 Finally, with two or more vectors there is an other way to evaluate a conditional: first decide for each element of each vector if the statement is true and then compare that result with each other. It may result in a outcome. E.g. check if all elements are greater than 0 for each vector and then compare if both of them are true:
-```{r}
+```{r, warning = FALSE}
 all( v > 0 ) && all( q > 0)
 ```
 or check if all elements in `v` but any elements in `q` and then use the or comparison:
-```{r}
+```{r, warning = FALSE}
 all( v > 0 ) || any( q > 0 )
 ```
 
@@ -197,9 +197,7 @@ To show a simple example, let us use the [wms-management](https://gabors-data-an
 library(tidyverse)
 # Import wms-management data
 wms <- read_csv("https://osf.io/uzpce/download")
-
-# 
-#   
+ 
 ```
 Look at `emp_firm`, which is the number of employee in the firm. Let us create a new variable based on number of employees. We consider three types of firms:
 

@@ -217,10 +217,6 @@ v | q > 0
 v || q > 0
 ```
 
-    ## Warning in v || q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
-
-    ## Warning in v || q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
-
     ## [1] TRUE
 
 Using double-operators will imply `any()` for `||` and `all()` for `&&`:
@@ -229,17 +225,11 @@ Using double-operators will imply `any()` for `||` and `all()` for `&&`:
 ( v || q > 0 ) == any( v | q > 0 )
 ```
 
-    ## Warning in v || q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
-
-    ## Warning in v || q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
-
     ## [1] TRUE
 
 ``` r
 ( v && q > 0 ) == all( v & q > 0 )
 ```
-
-    ## Warning in v && q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
 
     ## [1] TRUE
 
@@ -249,8 +239,6 @@ vectors, as the results can be different if mixing these up, e.g.
 ``` r
 v && q > 0
 ```
-
-    ## Warning in v && q > 0: 'length(x) = 3 > 1' in coercion to 'logical(1)'
 
     ## [1] FALSE
 
@@ -295,9 +283,6 @@ data,
 library(tidyverse)
 # Import wms-management data
 wms <- read_csv("https://osf.io/uzpce/download")
-
-# 
-#   
 ```
 
 Look at `emp_firm`, which is the number of employee in the firm. Let us
@@ -340,6 +325,9 @@ wms <- wms %>% mutate( firm_size2 = ifelse( emp_firm >= 1000 , 'large',
                                     ifelse( wms$emp_firm < 1000 & wms$emp_firm >= 200 , 'medium',
                                     ifelse( wms$emp_firm < 200, 'small', NA_character_ ) ) ) ) 
 ```
+
+**Task:** Check if `firm_size` and `firm_size2` have exactly the same
+values!
 
 ## Extra material
 
