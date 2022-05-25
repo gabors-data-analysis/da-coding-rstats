@@ -8,7 +8,7 @@ Relates to case studies:
 
 
 ## Learning outcomes
-After successfully live-coding the material (see: [`random_numbers.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture10-random_numbers/random_numbers.md)), students will have knowledge on
+After successfully live-coding the material (see: [`random_numbers.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture10-random-numbers/random_numbers.md)), students will have knowledge on
 
 - When and why random numbers are used in R
 - Different `distributions` and their properties available in R
@@ -40,11 +40,11 @@ Check the common homework [here](https://github.com/gabors-data-analysis/da-codi
 ## Further material
 
   - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 10](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/10_functional_programming.Rmd) touch the topic, but not too deeply.
-  - There are some useful bookdown material by [Ko Chiu Yu: Techincal Analysis with R](https://bookdown.org/kochiuyu/Technical-Analysis-with-R/random-number.html) and [Nathaniel D. Phillips: YaRrr! The Pirate’s Guide to R, Chapter 5.3](https://bookdown.org/ndphillips/YaRrr/generating-random-data.html)
+  - There are some useful bookdown material by [Ko Chiu Yu: Techincal Analysis with R, Chapter 4.2](https://bookdown.org/kochiuyu/Technical-Analysis-with-R/random-number.html) and [Nathaniel D. Phillips: YaRrr! The Pirate’s Guide to R, Chapter 5.3](https://bookdown.org/ndphillips/YaRrr/generating-random-data.html)
 
 
 ## File structure
   
-  - [`random_numbers.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture10-random_numbers/random_numbers.md) provides material for the live coding session with explanations.
-  - [`random_numbers.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture10-random_numbers/random_numbers.Rmd) is the generating Rmarkdown file for `random_numbers.md`
-  - [`random_numbers.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture10-random_numbers/random_numbers.R) is a possible realization of the live coding session
+  - [`random_numbers.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture10-random-numbers/random_numbers.md) provides material for the live coding session with explanations.
+  - [`random_numbers.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture10-random-numbers/random_numbers.Rmd) is the generating Rmarkdown file for `random_numbers.md`
+  - [`random_numbers.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture10-random-numbers/random_numbers.R) is a possible realization of the live coding session
