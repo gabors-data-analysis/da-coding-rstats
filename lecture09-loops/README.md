@@ -36,7 +36,8 @@ This is a relatively short lecture, and it can be even shorter if measuring CPU 
 Check the common homework [here](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture11-functions/README.md).
 
 ## Further material
-
+  
+  - More materials on the case study can be found in Gabor's da_case_studies repository: [ch05-stock-market-loss-generalize](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch05-stock-market-loss-generalize)
   - Hadley Wickham and Garrett Grolemund R for Data Science [Chapter 21](https://r4ds.had.co.nz/iteration.html) provide further material on iterations, both imperative and functional programming.
   - Jae Yeon Kim: R Fundamentals for Public Policy, Course material, [Lecture 10](https://github.com/KDIS-DSPPM/r-fundamentals/blob/main/lecture_notes/10_functional_programming.Rmd) provides useful guidelines on iterations along with other programming skills.
 
