@@ -1,7 +1,9 @@
 #########################
 #                       #
-#   Homework for        #
-#      ggplot in-depth  #
+#   Lecture 07          #
+#                       #
+#   Runner for          # 
+#     assignment        #  
 #                       #
 #    Deadline:          #
 #                       #
