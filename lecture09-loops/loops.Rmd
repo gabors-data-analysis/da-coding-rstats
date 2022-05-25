@@ -194,3 +194,5 @@ kableExtra::kable(return_yearly,booktabs=T)
 
 
 **Task:** Calculate the monthly returns.
+
+*Note:* Later we will cover more efficient ways of calculating returns, but it is a good exercise for for-loops.

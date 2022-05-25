@@ -122,7 +122,7 @@ for ( i in 1 : iter_num ){
 toc()
 ```
 
-    ## Sloppy way: 0.29 sec elapsed
+    ## Sloppy way: 0.289 sec elapsed
 
 ``` r
 # Proper way
@@ -134,7 +134,7 @@ for ( i in 1 : iter_num ){
 toc()
 ```
 
-    ## Good way: 0.007 sec elapsed
+    ## Good way: 0.008 sec elapsed
 
 You may play along with `iter_num` to find how strong your computer is
 and when the ‘good way’ is outperformed by the ‘sloppy way’ in CPU time.
@@ -392,3 +392,6 @@ NA
 </table>
 
 **Task:** Calculate the monthly returns.
+
+*Note:* Later we will cover more efficient ways of calculating returns,
+but it is a good exercise for for-loops.
