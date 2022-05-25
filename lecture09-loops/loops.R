@@ -109,6 +109,36 @@ if ( flag ) {
   print("Did not satisfied stopping criterion!")
 }
 
+####
+# Exercise sp500
+library(tidyverse)
+# Load data
+sp500 <- read_csv("https://osf.io/h64z2/download" , na = c("", "#N/A") )
+# Filter out missing and create a year variable
+sp500 <- sp500 %>% filter( !is.na( VALUE ) ) %>% 
+  mutate( year = format( DATE , '%Y' ) ) 
 
+# Get unique years and create tibble
+years <- unique( sp500$year )
+return_yearly <- tibble( years = years , return = NA )
+
+# Initialize
+aux <- sp500$VALUE[ sp500$year == years[ 1 ] ]
+lyp <- aux[ length( aux ) ]
+rm( aux )
+# start from 2007
+for ( i in 2 : length( years ) ){
+  # get the values for specific year
+  value_year_i <- sp500$VALUE[ sp500$year == years[ i ] ]
+  # last day's price
+  ldp <- value_year_i[ length(value_year_i) ]
+  # calculate the return
+  return_yearly$return[ i ] <- ( ldp - lyp ) / lyp * 100
+  # save this years last value as last year value
+  lyp <- ldp
+}
+
+# Check results
+return_yearly
 
 
