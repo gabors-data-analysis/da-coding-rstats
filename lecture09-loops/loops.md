@@ -2,6 +2,8 @@ Loops: Programming with R
 ================
 Agoston Reguly
 
+Dataset used: [sp500](https://gabors-data-analysis.com/datasets/#sp500)
+
 ## Imperative programming
 
 Reducing code duplication has three main benefits:
@@ -120,7 +122,7 @@ for ( i in 1 : iter_num ){
 toc()
 ```
 
-    ## Sloppy way: 0.228 sec elapsed
+    ## Sloppy way: 0.29 sec elapsed
 
 ``` r
 # Proper way
@@ -132,7 +134,7 @@ for ( i in 1 : iter_num ){
 toc()
 ```
 
-    ## Good way: 0.009 sec elapsed
+    ## Good way: 0.007 sec elapsed
 
 You may play along with `iter_num` to find how strong your computer is
 and when the ‘good way’ is outperformed by the ‘sloppy way’ in CPU time.
@@ -239,3 +241,154 @@ execute it multiple times on the supplied objects (e.g. tibble).
 `tidyverse` has its own iteration functions in the sub-package `purr`,
 such as the `map()` function or its R-object specific functions such as
 `map_dbl()`, `map_lgl()` or `map_chr()`.
+
+## Exercise: `sp-500` data
+
+To exercise for-loops, we use the `sp-500` data to calculate yearly
+returns.
+
+``` r
+library(tidyverse)
+# Load data
+sp500 <- read_csv("https://osf.io/h64z2/download" , na = c("", "#N/A") )
+# Filter out missing and create a year variable
+sp500 <- sp500 %>% filter( !is.na( VALUE ) ) %>% 
+                  mutate( year = format( DATE , '%Y' ) ) 
+# Note: later we will learn to convert date format to year more elegantly
+```
+
+To do so, we create a new `tibble` called `return_yearly` and save
+`uniqe` values from `sp500$year`. The yearly returns are:
+
+![return_t = \\frac{price_t - price\_{t-1}}{price\_{t-1}}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;return_t%20%3D%20%5Cfrac%7Bprice_t%20-%20price_%7Bt-1%7D%7D%7Bprice_%7Bt-1%7D%7D "return_t = \frac{price_t - price_{t-1}}{price_{t-1}}")
+
+where
+![t](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;t "t")
+stands for the last day’s price at year
+![t](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;t "t").
+
+``` r
+years <- unique( sp500$year )
+return_yearly <- tibble( years = years , return = NA )
+
+aux <- sp500$VALUE[ sp500$year == years[ 1 ] ]
+lyp <- aux[ length( aux ) ]
+rm( aux )
+for ( i in 2 : length( years ) ){
+  # get the values for specific year
+  value_year_i <- sp500$VALUE[ sp500$year == years[ i ] ]
+  # last day's price
+  ldp <- value_year_i[ length(value_year_i) ]
+  # calculate the return
+  return_yearly$return[ i ] <- ( ldp - lyp ) / lyp * 100
+  # save this years last value as last year value
+  lyp <- ldp
+}
+
+kableExtra::kable(return_yearly,booktabs=T)
+```
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+years
+</th>
+<th style="text-align:right;">
+return
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2006
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2007
+</td>
+<td style="text-align:right;">
+3.5295777
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2008
+</td>
+<td style="text-align:right;">
+-38.4857937
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2009
+</td>
+<td style="text-align:right;">
+23.4541932
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:right;">
+12.7827101
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:right;">
+-0.0031806
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:right;">
+13.4056934
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+29.6012453
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:right;">
+11.3906382
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;">
+-0.7266016
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:right;">
+6.1205319
+</td>
+</tr>
+</tbody>
+</table>
+
+**Task:** Calculate the monthly returns.
