@@ -9,6 +9,8 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Dataset: [wms-management](https://gabors-data-analysis.com/datasets/#wms-management-survey)
+
 ## Functions
 
 Functions allow you to automate common tasks in a more powerful and general way than copy-and-pasting. Writing a function has three big advantages over using copy-and-paste:
@@ -38,10 +40,16 @@ my_avg <- function( x ){
   sum_x <- sum( x )
   sum_x / length( x )
 }
-
-# Generate a random normal as an example for the input
-set.seed( 1234 )
-x1 <- rnorm( 1000 , mean = 15 , sd = 5 )
+```
+To demonstrate how this function work, let us use the average management score from wms-management data, and save management average score `x1`.
+```{r, warning=FALSE, message=F}
+library(tidyverse)
+wms <- read_csv( "https://osf.io/uzpce/download" )
+# save as x1
+x1 <- wms$management
+```
+The mean of the average test score is given by `my_avg` function:
+```{r}
 # Print out
 my_avg( x1 )
 
@@ -51,7 +59,7 @@ avg_x
 
 ```
 
-In general, R always gives you the last command as output. For E.g. we can calculate the standard deviation. Let us call this now `my_fun1`.
+In general, R always gives you the last command as output. For example, we can calculate the standard deviation. Let us call this now `my_fun1`.
 
 ```{r}
 my_fun1 <- function( x ){
@@ -147,7 +155,7 @@ Alternatively one can use conditionals and `error()` or `stop()` functions with 
 
 ### Multiple inputs
 
-In any case, there are multiple input for a function. Let us take the example of calculating the confidence intervals for the mean estimator. In this case, we need to supply our (random) variable along with the confidence level we would like to get. In many cases we are interested in the 95% confidence intervals, thus we may provide a *pre-set* input with 95%, which can be overwritten by the user. Now, to practice controlling for input via error-handling, let us create a conditional for having a level at 0.95 or 0.99, but otherwise, it should give an error.
+In any case, there are multiple-input for a function. Let us take the example of calculating the confidence intervals for the mean estimator. In this case, we need to supply our (random) variable along with the confidence level we would like to get. In many cases we are interested in the 95% confidence intervals, thus we may provide a *pre-set* input with 95%, which can be overwritten by the user. Now, to practice controlling for input via error-handling, let us create a conditional for having a level at 0.95 or 0.99, but otherwise, it should give an error.
 
 ```{r, error = TRUE}
 conf_interval <- function( x , level = 0.95 ){
@@ -256,7 +264,6 @@ Create three ggplots:
   
 
 ```{r, message=FALSE, warning=FALSE}
-library(tidyverse)
 
 # Function for sampling distribution
 get_sampling_dists <- function( y , rep_num = 1000 , sample_size = 1000 ){
@@ -301,6 +308,7 @@ ggplot( sampling_y , aes( x = mean_stat ) ) +
   geom_vline( xintercept = mean( sampling_y$mean_stat ) , color = 'black' , size = 1 )+
   stat_function( fun = dnorm , args = list( mean = mean( y ) , sd = sd( y ) / sqrt(100) ) ,
                  color = 'red' , size = 1 ) +
+  labs( x = 'Sampling distribution of the mean', y = 'Density') +
   theme_bw()
 
 
@@ -309,6 +317,7 @@ ggplot( sampling_y , aes( x = t_stat_A ) ) +
   geom_histogram( aes( y = ..density.. ) , bins = 60 , fill = 'navyblue' ) +
   stat_function( fun = dnorm , args = list( mean = 0 , sd = 1 ) ,
                  color = 'red' , size = 1 ) +
+  labs( x = 'Sampling distribution of t-stats: hypothesis A', y = 'Density') +
   theme_bw()
 
 
@@ -318,5 +327,6 @@ ggplot( sampling_y , aes( x = t_stat_B ) ) +
   stat_function( fun = dnorm , args = list( mean = 0 , sd = 1 ) ,
                  color = 'red' , size = 1 ) +
   scale_x_continuous(limits = c(-4,30))+
+  labs( x = 'Sampling distribution of t-stats: hypothesis B', y = 'Density') +
   theme_bw()
 ```

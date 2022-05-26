@@ -11,9 +11,13 @@ my_avg <- function( x ){
   sum_x / length( x )
 }
 
-# Generate a random normal as an example for the input
-set.seed( 1234 )
-x1 <- rnorm( 1000 , mean = 15 , sd = 5 )
+# Import wms-management data
+library(tidyverse)
+wms <- read_csv( "https://osf.io/uzpce/download" )
+# save management score x1
+x1 <- wms$management
+# Remove wms to keep environment tidy
+rm( wms )
 # Print out
 my_avg( x1 )
 
@@ -188,6 +192,7 @@ ggplot( sampling_y , aes( x = mean_stat ) ) +
   geom_vline( xintercept = mean( sampling_y$mean_stat ) , color = 'black' , size = 1 )+
   stat_function( fun = dnorm , args = list( mean = mean( y ) , sd = sd( y ) / sqrt(100) ) ,
                  color = 'red' , size = 1 ) +
+  labs( x = 'Sampling distribution of the mean', y = 'Density') +
   theme_bw()
 
 
@@ -196,6 +201,7 @@ ggplot( sampling_y , aes( x = t_stat_A ) ) +
   geom_histogram( aes( y = ..density.. ) , bins = 60 , fill = 'navyblue' ) +
   stat_function( fun = dnorm , args = list( mean = 0 , sd = 1 ) ,
                  color = 'red' , size = 1 ) +
+  labs( x = 'Sampling distribution of t-stats: hypothesis A', y = 'Density') +
   theme_bw()
 
 
@@ -205,6 +211,7 @@ ggplot( sampling_y , aes( x = t_stat_B ) ) +
   stat_function( fun = dnorm , args = list( mean = 0 , sd = 1 ) ,
                  color = 'red' , size = 1 ) +
   scale_x_continuous(limits = c(-4,30))+
+  labs( x = 'Sampling distribution of t-stats: hypothesis B', y = 'Density') +
   theme_bw()
 
 

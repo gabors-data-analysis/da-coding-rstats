@@ -2,6 +2,9 @@ Functions: Programming with R
 ================
 Agoston Reguly
 
+Dataset:
+[wms-management](https://gabors-data-analysis.com/datasets/#wms-management-survey)
+
 ## Functions
 
 Functions allow you to automate common tasks in a more powerful and
@@ -41,15 +44,26 @@ my_avg <- function( x ){
   sum_x <- sum( x )
   sum_x / length( x )
 }
+```
 
-# Generate a random normal as an example for the input
-set.seed( 1234 )
-x1 <- rnorm( 1000 , mean = 15 , sd = 5 )
+To demonstrate how this function work, let us use the average management
+score from wms-management data, and save management average score `x1`.
+
+``` r
+library(tidyverse)
+wms <- read_csv( "https://osf.io/uzpce/download" )
+# save as x1
+x1 <- wms$management
+```
+
+The mean of the average test score is given by `my_avg` function:
+
+``` r
 # Print out
 my_avg( x1 )
 ```
 
-    ## [1] 14.86701
+    ## [1] 2.919203
 
 ``` r
 # or save it as a variable
@@ -57,10 +71,10 @@ avg_x <- my_avg( x1 )
 avg_x
 ```
 
-    ## [1] 14.86701
+    ## [1] 2.919203
 
-In general R always gives you the last command as output. E.g. we can
-calculate the standard deviation. Let us call this now `my_fun1`.
+In general, R always gives you the last command as output. For example,
+we can calculate the standard deviation. Let us call this now `my_fun1`.
 
 ``` r
 my_fun1 <- function( x ){
@@ -79,13 +93,13 @@ my_fun1 <- function( x ){
 my_fun1( x1 )
 ```
 
-    ## [1] 4.984195
+    ## [1] 0.6709245
 
 ### Control for output
 
-We can control for the output as well. E.g. if we want the mean, but
-want to calculate the standard deviation as well, we can copy the same
-code and add `return` command to control for the output.
+We can control the output as well. E.g. if we want the mean, but want to
+calculate the standard deviation as well, we can copy the same code and
+add `return` command to control the output.
 
 ``` r
 my_fun2 <- function( x ){
@@ -105,11 +119,11 @@ my_fun2 <- function( x ){
 my_fun2( x1 )
 ```
 
-    ## [1] 14.86701
+    ## [1] 2.919203
 
-### Multiple output
+### Multiple outputs
 
-To be more realistic, in many case we want to have multiple outputs.
+To be more realistic, in any case, we want to have multiple outputs.
 Creating a list is a great tool to do that and one can use the `$` sign
 to get the needed output.
 
@@ -130,39 +144,39 @@ my_fun3 <- function( x ){
 
 # Check the output
 out3 <- my_fun3( x1 )
-# get all the output as list
+# get all the output as a list
 out3
 ```
 
     ## $sum
-    ## [1] 14867.01
+    ## [1] 41677.46
     ## 
     ## $mean
-    ## [1] 14.86701
+    ## [1] 2.919203
     ## 
     ## $var
-    ## [1] 24.86706
+    ## [1] 0.4501713
     ## 
     ## $sd
-    ## [1] 4.986689
+    ## [1] 0.670948
 
 ``` r
 # get e.g. the mean
 out3$mean
 ```
 
-    ## [1] 14.86701
+    ## [1] 2.919203
 
 ### Controlling for the input
 
-When writing a function it is always a good idea to control for the
-input at a proper level. This is useful as future ourselves or others
-who use the functions/codes may not be familiar with the inputs. Also if
-one is developing a package with multiple functions which are
-cross-referencing each other it is a great way to avoid programming
-mistakes. In general controlling for input is called *error-handling*,
-which has many aspects and certainly exceeds our focus. If interested
-you may check out [\*Mastering Software Development in
+When writing a function it is always a good idea to control the input at
+a proper level. This is useful as future ourselves or others who use the
+functions/codes may not be familiar with the inputs. Also if one is
+developing a package with multiple functions which are cross-referencing
+each other it is a great way to avoid programming mistakes. In general,
+controlling for input is called *error-handling*, which has many aspects
+and certainly exceeds our focus. If interested you may check out
+[\*Mastering Software Development in
 R](https://bookdown.org/rdpeng/RProgDA/) for further details, especially
 [Chapter
 2](https://bookdown.org/rdpeng/RProgDA/advanced-r-programming.html).
@@ -184,7 +198,7 @@ my_avg_chck <- function( x ){
 my_avg_chck( x1 )
 ```
 
-    ## [1] 14.86701
+    ## [1] 2.919203
 
 ``` r
 # Bad input
@@ -194,21 +208,21 @@ my_avg_chck( 'Hello world' )
     ## Error in my_avg_chck("Hello world"): is.numeric(x) is not TRUE
 
 Alternatively one can use conditionals and `error()` or `stop()`
-functions with specific message. This is longer and harder to write, but
+functions with specific message. This is longer and harder to write but
 has a great benefit that the code-writer can tell what is the problem as
-we will see shortly. Again we will not go much into details as the main
+we will see shortly. Again we will not go much into detail as the main
 aim of this course is not advanced programming.
 
 ### Multiple inputs
 
-In many case there are multiple input for a function. Let us take the
+In any case, there are multiple-input for a function. Let us take the
 example of calculating the confidence intervals for the mean estimator.
-In this case we need to supply our (random) variable along with the
+In this case, we need to supply our (random) variable along with the
 confidence level we would like to get. In many cases we are interested
 in the 95% confidence intervals, thus we may provide a *pre-set* input
 with 95%, which can be overwritten by the user. Now, to practice
 controlling for input via error-handling, let us create a conditional
-for having a level at 0.95 or 0.99, but otherwise it should give an
+for having a level at 0.95 or 0.99, but otherwise, it should give an
 error.
 
 ``` r
@@ -237,30 +251,30 @@ conf_interval( x1 , level = 0.95 )
 ```
 
     ## $mean
-    ## [1] 14.86701
+    ## [1] 2.919203
     ## 
     ## $CI_mean
-    ## [1] 14.55794 15.17609
+    ## [1] 2.908197 2.930209
 
 ``` r
 conf_interval( x1 )
 ```
 
     ## $mean
-    ## [1] 14.86701
+    ## [1] 2.919203
     ## 
     ## $CI_mean
-    ## [1] 14.55794 15.17609
+    ## [1] 2.908197 2.930209
 
 ``` r
 conf_interval( x1 , level = 0.99 )
 ```
 
     ## $mean
-    ## [1] 14.86701
+    ## [1] 2.919203
     ## 
     ## $CI_mean
-    ## [1] 14.46017 15.27386
+    ## [1] 2.904715 2.933690
 
 ``` r
 conf_interval( x1 , level = 0.98 )
@@ -270,16 +284,15 @@ conf_interval( x1 , level = 0.98 )
 
 **Task:** Extend the `conf_interval` function for any level between 0
 and 1. Use the `qnorm` function and take care that as we are interested
-in both lower and upper interval, you have to modify the input to
+in both lower and upper intervals, you have to modify the input to
 `qnorm`, eg. 95% level would indicate 0.975.
 
 ### Exercise: sampling distribution for t-values
 
-It is a good coding and statistics exercise to explore how hypothesis
-work with t-statistics. Let assume we have a population that we care
-about and call it `y`. We do no observe `y` only a random realization,
-let us call the i-th realization `y_i`. We would like to test two
-hypothesis:
+It is good coding and statistics exercise to explore how hypotheses work
+with t-statistics. Let’s assume we have a population that we care about
+and call it `y`. We do not observe `y` only a random realization, let us
+call the i-th realization `y_i`. We would like to test two hypotheses:
 
 -   Hypothesis A: Mean of `y` is 1.
 -   Hypothesis B: Mean of `y` is 0.
@@ -318,16 +331,17 @@ Notes for the function:
 -   you can check the type of inputs
 
 After you have written the function, set the seed to `123` and generate
-`y` as a uniform random variable with 10,000 observations and with lower
-bound of 0 and upper bound of 1. Use this `y` and set `rep_num = 1000`
-and `sample_size = 5000` and run the function. Create three ggplots:
+`y` as a uniform random variable with 10,000 observations and with a
+lower bound of 0 and upper bound of 1. Use this `y` and set
+`rep_num = 1000` and `sample_size = 5000` and run the function. Create
+three ggplots:
 
 -   plot the histogram (density) of the calculated means with a normal
-    distribution’s curve (N(mean(y),sd(y)/sqrt(sample_size))) add two
-    vertical line, one with the mean of `y` and the other with the mean
+    distribution curve (N(mean(y),sd(y)/sqrt(sample_size))) add two
+    vertical lines, one with the mean of `y` and the other with the mean
     of `mean_stat`.
-    -   explain what you can see and how it reflects to the hypothesis
-        you ask?
+    -   explain what you can see and how it reflects the hypothesis you
+        ask?
 -   plot the histogram (density) of the calculated `t_stat_A` with a
     normal distribution N(0,1)
     -   what is the Type 1 error here? What is the power of the test?
@@ -336,8 +350,6 @@ and `sample_size = 5000` and run the function. Create three ggplots:
     -   what is the Type 2 error here? What is the size of the test?
 
 ``` r
-library(tidyverse)
-
 # Function for sampling distribution
 get_sampling_dists <- function( y , rep_num = 1000 , sample_size = 1000 ){
   # Check inputs
@@ -381,10 +393,11 @@ ggplot( sampling_y , aes( x = mean_stat ) ) +
   geom_vline( xintercept = mean( sampling_y$mean_stat ) , color = 'black' , size = 1 )+
   stat_function( fun = dnorm , args = list( mean = mean( y ) , sd = sd( y ) / sqrt(100) ) ,
                  color = 'red' , size = 1 ) +
+  labs( x = 'Sampling distribution of the mean', y = 'Density') +
   theme_bw()
 ```
 
-![](functions_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](functions_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
 # Plot distribution for t-stats - Hypothesis A
@@ -392,10 +405,11 @@ ggplot( sampling_y , aes( x = t_stat_A ) ) +
   geom_histogram( aes( y = ..density.. ) , bins = 60 , fill = 'navyblue' ) +
   stat_function( fun = dnorm , args = list( mean = 0 , sd = 1 ) ,
                  color = 'red' , size = 1 ) +
+  labs( x = 'Sampling distribution of t-stats: hypothesis A', y = 'Density') +
   theme_bw()
 ```
 
-![](functions_files/figure-gfm/unnamed-chunk-9-2.png)<!-- -->
+![](functions_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
 
 ``` r
 # Plot distribution for t-stats - Hypothesis B
@@ -404,7 +418,8 @@ ggplot( sampling_y , aes( x = t_stat_B ) ) +
   stat_function( fun = dnorm , args = list( mean = 0 , sd = 1 ) ,
                  color = 'red' , size = 1 ) +
   scale_x_continuous(limits = c(-4,30))+
+  labs( x = 'Sampling distribution of t-stats: hypothesis B', y = 'Density') +
   theme_bw()
 ```
 
-![](functions_files/figure-gfm/unnamed-chunk-9-3.png)<!-- -->
+![](functions_files/figure-gfm/unnamed-chunk-11-3.png)<!-- -->
