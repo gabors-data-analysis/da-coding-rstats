@@ -18,6 +18,7 @@
 #         from numeric                                #
 #  - Factors or dummy variables:                      #
 #       creating multiple dummies                     #
+#  - Extra: intro to principal component analysis     #
 #                                                     #
 #                                                     #
 #           PART II                                   #
@@ -85,6 +86,7 @@ wms <- read_csv( "https://osf.io/uzpce/download" )
 #     matches will select these variables.
 wms <- wms %>% 
   select( matches( c('lean','perf','talent' ) ) ) %>% 
+  select( where( is.numeric ) ) %>%
   rowMeans( na.rm = TRUE ) %>% 
   mutate( wms , avg_score = .)
 
@@ -250,6 +252,67 @@ dummies <- wms %>% select( emp_cat ) %>% dummy_cols()
 #     - if outcome is binary it is needed (factor behaves differently)
 #     - can control for what is in your model (what is the reference category)
 
+
+####
+# Extra:
+#   principle component analysis or PCA
+#
+# One can argue, that the mean of the score is not the best measure, as it takes each value with the same weight
+# An alternative solution is creating principal components, which transform the original variables.
+
+# The function is called `prcomp()`
+?prcomp
+
+# Let us create principle components with all the questionnaires.
+# have to make sure there is no NA value
+pca <- wms %>% 
+  select( matches( c('lean','perf','talent' ) ) ) %>%
+  select( where( is.numeric ) ) %>%
+  drop_na() %>% 
+  prcomp()
+
+# We have the same number of variables, but they are transformed.
+# As PCA is an information reductionist approach, we can see, 
+#     which transformed variable explains what percent of the overall information (variation)
+pca %>%
+  tidy(matrix = "eigenvalues")
+
+# Let us decide to use only the first variable, which explains 45.6%
+pca_tibble <- pca %>% tidy( matrix = "x" ) %>% 
+  pivot_wider( names_from = PC, 
+               values_from = value, 
+               names_prefix = 'PC' )
+
+# aux: add firmid and wave with same filter to match PCs to wms data
+aux <- wms %>% select( matches( c('firmid','wave','lean','perf','talent' ) ) ) %>%
+  select( where( is.numeric ) ) %>%
+  drop_na()
+
+# add firmid wave and only PC1 from pca-s
+pca_tibble <- cbind( select( pca_tibble , PC1 ) , select( aux , firmid, wave ) )
+
+# add to wms data
+wms <- left_join( wms , pca_tibble , by = c('firmid','wave' ) )
+
+# Compare descriptives with average score
+datasummary( avg_score + PC1 ~ Mean + Median + SD + Min + Max , data = wms )
+
+# Create a bin-scatter with PC1
+wms %>% 
+  group_by( emp_cat ) %>% 
+  filter( !is.na( emp_cat ) ) %>% 
+  summarize( mPC1_score = mean( PC1 , na.rm = T ) ) %>% 
+  ggplot( aes( x = emp_cat , y = mPC1_score ) ) +
+  geom_point( color = 'red' , size = 10 ) +
+  labs( x = 'Firm size' , y = 'Principal component')+
+  theme_bw()
+
+# Notes: 
+#   1) PCA is especially useful when you have too many explanatory variables and want to reduce num vars, 
+#       with minimal information loss. However, should use it with care, especially with time series!
+#   2) There are many variations of PCA, if one starts to `rotate` the factors 
+#       to make some meaningful variables out of it (especially in psychology)
+#   3) There are many packages, which carry out PCA, this is pretty much the simplest intro here...
 
 ##################
 #   PART II      #
