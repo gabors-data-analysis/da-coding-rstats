@@ -1,6 +1,6 @@
 ###############################################
 #                                             #
-#               Lecture 14                    #
+#               Lecture 15                    #
 #                                             #
 # Advanced topics with linear regression      #
 #     - Multiple regression                   #
@@ -15,6 +15,9 @@
 #                                             #
 # Case Study:                                 #
 #  Using Hotels Europe                        #
+#                                             #
+# Dataset used:                               #
+#     hotel-europe                            #
 #                                             #
 ###############################################
 
