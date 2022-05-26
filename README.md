@@ -90,12 +90,12 @@ Or one can relate each case study from the book to specific lectures.
 |Chapter | Case-study | Lecture |
 | ------ | ---------  | ------- |
 | Chapter 1 | [ch01-hotels-data-collect](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch01-hotels-data-collect) | [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles)**|
-|           | [ch02-football-manager-success](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-football-manager-success) | [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles)*|
-| Chapter 2 | [ch02-hotels-data-prep](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-hotels-data-prep) | [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging) |
+| Chapter 2 | [ch02-football-manager-success](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-football-manager-success) | [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles)*|
+|           | [ch02-hotels-data-prep](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-hotels-data-prep) | [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging) |
 |           | [ch02-immunization-crosscountry](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch02-immunization-crosscountry) | [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging)** |
-|           | [ch03-city-size-japan](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-city-size-japan) | [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration)** |
+| Chapter 3 | [ch03-city-size-japan](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-city-size-japan) | [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration)** |
 |           | [ch03-distributions-height-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-distributions-height-income) | [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration)** |
-| Chapter 3 | [ch03-football-home-advantage](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-football-home-advantage) | [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration)** |
+|           | [ch03-football-home-advantage](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-football-home-advantage) | [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration)** |
 |           | [ch03-hotels-europe-compare](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-hotels-europe-compare) | [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration)**, [lecture07-ggplot-indepth](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture07-ggplot-indepth) |
 |           | [ch03-hotels-vienna-explore](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-hotels-vienna-explore) | [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration)** |
 |           | [ch03-simulations](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch03-simulations) | [lecture10-random-numbers](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture10-random-numbers) |
@@ -105,8 +105,8 @@ Or one can relate each case study from the book to specific lectures.
 |           | [ch06-stock-market-loss-test](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch06-stock-market-loss-test) | [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging)**, [lecture11-functions](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture11-functions)* |
 | Chapter 7 | [ch07-hotels-simple-reg](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch07-hotels-simple-reg)| [lecture12-intro-to-regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture12-intro-to-regression) |
 |           | [ch07-ols-simulation](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch07-ols-simulation) | [lecture12-intro-to-regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture12-intro-to-regression) with [lecture10-random-numbers](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture10-random-numbers) |
-|           | [ch08-hotels-measurement-error](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-hotels-measurement-error) |  |
-| Chapter 8 | [ch08-hotels-nonlinear](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-hotels-nonlinear) |  |
+| Chapter 8 | [ch08-hotels-measurement-error](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-hotels-measurement-error) |  |
+|           | [ch08-hotels-nonlinear](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-hotels-nonlinear) |  |
 |           | [ch08-life-expectancy-income](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch08-life-expectancy-income) | [00_example](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/00_example) |
 | Chapter 9 | [ch09-gender-age-earnings](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch09-gender-age-earnings) |  |
 |           | [ch09-hotels-europe-stability](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch09-hotels-europe-stability) |  |
@@ -114,8 +114,8 @@ Or one can relate each case study from the book to specific lectures.
 |            | [ch10-hotels-multiple-reg](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch10-hotels-multiple-reg) |  |
 | Chapter 11 | [ch11-australia-rainfall-predict](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch11-australia-rainfall-predict) |  |
 |            | [ch11-smoking-health-risk](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch11-smoking-health-risk) |  |
-|            | [ch12-electricity-temperature](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-electricity-temperature) |  |
-| Chapter 12 | [ch12-stock-returns-risk](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-stock-returns-risk)|  |
+| Chapter 12 | [ch12-electricity-temperature](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-electricity-temperature) |  |
+|            | [ch12-stock-returns-risk](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-stock-returns-risk)|  |
 |            | [ch12-time-series-simulations](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-time-series-simulations) |  |
 
 *partial match: case study is only used as a starting point for the lecture.
