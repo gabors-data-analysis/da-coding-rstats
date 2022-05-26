@@ -26,7 +26,7 @@ After successfully completing [`hotels_intro_to_regression.R`](https://github.co
 
 ## Dataset used
 
-- [hotels-vienna dataset](https://gabors-data-analysis.com/datasets/#hotels-vienna)
+- [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna)
 
 ## Lecture Time
 
