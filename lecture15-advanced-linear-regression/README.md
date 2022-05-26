@@ -9,7 +9,10 @@ This lecture introduces multiple variable regressions via [hotels-europe](https:
       
 Moreover, it covers external validity with robustness test: checking model results in different time/location/type of observations. Finally, as an extra part, it shows a simple example of using a training and test sample to better understand the process of model choice and the limitation of R2.
 
-This lecture is based on [Chapter 10, B: Finding a good deal among hotels with multiple regression](https://gabors-data-analysis.com/casestudies/#ch10b-finding-a-good-deal-among-hotels-with-multiple-regression)
+This lecture is based on 
+  - [Chapter 09, B: How stable is the hotel price–distance to center relationship?](https://gabors-data-analysis.com/casestudies/#ch09b-how-stable-is-the-hotel-pricedistance-to-center-relationship)
+  - [Chapter 10, B: Finding a good deal among hotels with multiple regression](https://gabors-data-analysis.com/casestudies/#ch10b-finding-a-good-deal-among-hotels-with-multiple-regression)
+  
 
 ## Learning outcomes
 After successfully completing [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15-advanced-linear-regression/raw_codes/hotels_advanced_regression.R), students should be able to:
