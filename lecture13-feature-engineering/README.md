@@ -4,7 +4,7 @@ This lecture introduces feature engineering practices and focuses on simple meth
 
 
 The lecture (partially) uses the following case studies:
-  - [Chapter 01, C: Management quality: data collectionv](https://gabors-data-analysis.com/casestudies/#ch01c-management-quality-data-collection)
+  - [Chapter 01, C: Management quality: data collection](https://gabors-data-analysis.com/casestudies/#ch01c-management-quality-data-collection)
   - [Chapter 04, A: Management quality and firm size: describing patterns of association](https://gabors-data-analysis.com/casestudies/#ch04a-management-quality-and-firm-size-describing-patterns-of-association)
   - [Chapter 08, C: Measurement error in hotel ratings](https://gabors-data-analysis.com/casestudies/#ch08c-measurement-error-in-hotel-ratings) as homework
   - [Chapter 17, A: Predicting firm exit: probability and classification](https://gabors-data-analysis.com/casestudies/#ch17a-predicting-firm-exit-probability-and-classification)
