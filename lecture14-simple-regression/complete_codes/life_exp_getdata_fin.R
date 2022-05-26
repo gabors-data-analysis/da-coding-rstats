@@ -1,22 +1,24 @@
-#######################
-## Analysis of       ##
-##  Life expectancy  ##
-##    and            ##
-##  GPD/capita       ##
-##                   ##
-##      NO. 1        ##
-##                   ##
-##  Getting the data ##
-##                   ##
-#######################
+#############################################
+#                                           #
+#               Lecture 14                  #
+#                                           #
+#   Getting the data for analysis           #
+#     - practice with WDI package           #
+#                                           #
+# Case Study:                               #
+#  Life-expectancy and income               #
+#                                           #
+#############################################
 
 
 # Clear memory
 rm(list=ls())
 
 # Call packages
-#install.packages('WDI')
-library(WDI)
+if ( !require(WDI) ){
+  install.packages('WDI')
+  library(WDI)
+}
 library(tidyverse)
 
 

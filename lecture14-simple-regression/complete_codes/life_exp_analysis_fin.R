@@ -1,19 +1,24 @@
-#######################
-## Analysis of       ##
-##  Life expectancy  ##
-##    and            ##
-##  Total GDP        ##
-##      OR           ##
-##  GPD/capita       ##
-##                   ##
-##      NO. 3        ##
-##                   ##
-## Analysis of       ##
-#       the data     ##
-#     SOLUTIONS      ##
-##                   ##
-#######################
-
+#############################################
+#                                           #
+#               Lecture 14                  #
+#                                           #
+#   Simple (Linear) Regressions             #
+#     - multiple graphs and descriptive     #
+#     - Scatterplots                        #
+#         - to decide functional form       #
+#         - to decide outcome variable      #
+#     - Simple, nonlinear models:           #
+#         - models with log                 #
+#         - polynomials                     #
+#         - piecewise linear spline         #
+#         - extra: weighted OLS             #
+#     - Residual analysis                   #
+#         - with multiple annotations       #
+#                                           #
+# Case Study:                               #
+#  Life-expectancy and income               #
+#                                           #
+#############################################
 
 
 # Clear memory
@@ -21,22 +26,22 @@ rm(list=ls())
 
 # Packages to use
 library(tidyverse)
+library(modelsummary)
 # Estimate piecewise linear splines
 library(lspline)
-# Fixest for estimating
 library(fixest)
 # For scaling ggplots
 require(scales)
 
 # Call the data from github
-my_url <- "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/00_example/data/clean/WDI_lifeexp_clean.csv"
-df <- read_csv( my_url )
+my_url <- "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture14-simple-regression/data/clean/WDI_lifeexp_clean.csv"
+df     <- read_csv( my_url )
 
 
 
 ####
 # 
-# Quick check on all HISTOGRAMS and descriptives
+# Good-to-know: Quick check on all HISTOGRAMS
 df %>%
   keep(is.numeric) %>% 
   gather() %>% 
@@ -45,7 +50,7 @@ df %>%
   geom_histogram(bins=20)+
   theme_bw()
 
-summary( df )
+datasummary_skim( df )
 
 ######
 # Create new variable: Total GDP = GDP per Capita * Populatio
@@ -70,7 +75,8 @@ df <- df %>% mutate( gdptot = gdppc*population )
 ggplot( df , aes(x = gdptot, y = lifeexp)) +
   geom_point() +
   geom_smooth(method="loess",formula = 'y~x')+
-  labs(x = "Total GDP (2017 int. const. $, PPP )",y = "Life expectancy  (years)") 
+  labs(x = "Total GDP (2017 int. const. $, PPP )",y = "Life expectancy  (years)") +
+  theme_bw()
 
 # 2) Change the scale for Total GDP for checking log-transformation
 # Tip: you can use `cale_x_continuous( trans = log_trans() )` with scales
@@ -79,7 +85,8 @@ ggplot( df , aes(x = gdptot, y = lifeexp)) +
   geom_point() +
   geom_smooth(method="loess",formula = 'y~x')+
   labs(x = "Total GDP (2017 int. const. $, PPP , ln scale )",y = "Life expectancy  (years)") +
-  scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )
+  scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )+
+  theme_bw()
 
 # 3) Change the scale for Total GDP and life-expectancy for checking log-transformation
 ggplot( df , aes(x = gdptot, y = lifeexp ))  +
@@ -87,7 +94,8 @@ ggplot( df , aes(x = gdptot, y = lifeexp ))  +
   geom_smooth(method="loess")+
   labs(x = "Total GDP (2017 int. const. $, PPP , ln scale )",y = "Life expectancy  (years, ln scale)") +
   scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )+
-  scale_y_continuous( trans = log_trans() )
+  scale_y_continuous( trans = log_trans() )+
+  theme_bw()
 
 ###
 ## Model B) lifeexp = alpha + beta * gdppc:
@@ -95,14 +103,16 @@ ggplot( df , aes(x = gdptot, y = lifeexp ))  +
 ggplot( df , aes(x = gdppc, y = lifeexp)) +
   geom_point() +
   geom_smooth(method="loess")+
-  labs(x = "GDP/capita (2017 int. const. $, PPP )",y = "Life expectancy  (years)") 
+  labs(x = "GDP/capita (2017 int. const. $, PPP )",y = "Life expectancy  (years)") +
+  theme_bw()
 
 # 5) Change the scale for GDP/capita for checking log-transformation
 ggplot( df , aes(x = gdppc, y = lifeexp)) +
   geom_point() +
   geom_smooth(method="loess")+
   labs(x = "GDP/capita (2017 int. const. $, PPP , ln scale )",y = "Life expectancy  (years)") +
-  scale_x_continuous( trans = log_trans(), breaks = seq(0, 120, by = 20))
+  scale_x_continuous( trans = log_trans(), breaks = seq(0, 120, by = 20))+
+  theme_bw()
 
 # 6) Change the scale for GDP/capita and life-expectancy for checking log-transformation
 ggplot( df , aes(x = gdppc, y = lifeexp ))  +
@@ -110,13 +120,14 @@ ggplot( df , aes(x = gdppc, y = lifeexp ))  +
   geom_smooth(method="loess")+
   labs(x = "GDP/capita (2017 int. const. $, PPP , ln scale )",y = "Life expectancy  (years, ln scale)") +
   scale_x_continuous( trans = log_trans(), breaks = seq(0, 120, by = 20)) +
-  scale_y_continuous( trans = log_trans() )
+  scale_y_continuous( trans = log_trans() ) +
+  theme_bw()
 
 ####
 # You should reach the following conclusions:
 #   1) taking log of gdptot is needed, but still non-linear pattern in data/need to use 'approximation' interpretation
-  #     - feasible to check and we do it due to learn how to do it, 
-  #           but in practice I would skip this -> over-complicates analysis
+#       - feasible to check and we do it due to learn how to do it, 
+#           but in practice I would skip this -> over-complicates analysis
 #   2) using only gdppc is possible, but need to model the non-linearity in data
 #       - Substantive: Level changes is harder to interpret and our aim is not to get $ based comparison
 #       - Statistical: log transformation is way better approximation make simplification!
@@ -154,7 +165,7 @@ df <- df %>% mutate( ln_gdppc = log( gdppc ),
 # 1) Add powers of the variable(s) to the dataframe:
 df <- df %>% mutate( ln_gdptot_sq = ln_gdptot^2,
                      ln_gdptot_cb = ln_gdptot^3,
-                     ln_gdppc_sq = ln_gdppc^2 )
+                     ln_gdppc_sq  = ln_gdppc^2 )
 #
 # 2) Use 'poly(x,n)' functions in graphs ONLY, which creates polynomials of x up to order n
 #     use this approach for graphs! may use it for models: 
@@ -177,11 +188,12 @@ reg1
 # Visual inspection:
 ggplot( data = df, aes( x = ln_gdptot, y = lifeexp ) ) + 
   geom_point( color='blue') +
-  geom_smooth( method = lm , color = 'red' )
+  geom_smooth( method = lm , color = 'red' ) +
+  theme_bw()
 
 # Second and third model with gdptot
 reg2 <- feols( lifeexp ~ ln_gdptot + ln_gdptot_sq , data = df , vcov = "hetero" )
-summary( reg2 )
+reg2
 # Plot
 ggplot( data = df, aes( x = ln_gdptot, y = lifeexp ) ) + 
   geom_point( color='blue') +
@@ -190,7 +202,8 @@ ggplot( data = df, aes( x = ln_gdptot, y = lifeexp ) ) +
 reg3 <- feols( lifeexp ~ ln_gdptot + ln_gdptot_sq + ln_gdptot_cb , data = df , vcov = "hetero" )
 ggplot( data = df, aes( x = ln_gdptot, y = lifeexp ) ) + 
   geom_point( color='blue') +
-  geom_smooth( formula = y ~ poly(x,3) , method = lm , color = 'red' )
+  geom_smooth( formula = y ~ poly(x,3) , method = lm , color = 'red' ) +
+  theme_bw()
 
 # Compare these models with etable()
 etable( reg1 , reg2 , reg3 )
@@ -202,7 +215,7 @@ etable( reg1 , reg2 , reg3 )
 # reg4: lifeexp = alpha + beta * ln_gdppc
 # + plot
 reg4 <- feols( lifeexp ~ ln_gdppc , data = df , vcov = "hetero" )
-summary( reg4 )
+reg4
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
   geom_smooth( method = lm , color = 'red' )
@@ -212,7 +225,8 @@ ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) +
 reg5 <- feols( lifeexp ~ ln_gdppc + ln_gdppc_sq , data = df, vcov = "hetero" )
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
-  geom_smooth( formula = y ~ poly(x,2) , method = lm , color = 'red' )
+  geom_smooth( formula = y ~ poly(x,2) , method = lm , color = 'red' ) +
+  theme_bw()
 
 ##
 # Compare results with gdp per capita:
@@ -235,10 +249,11 @@ cutoff_ln <- log( cutoff )
 # Use simple regression with the lspline function
 ?lspline
 reg6 <- feols(lifeexp ~ lspline( ln_gdppc , cutoff_ln ), data = df , vcov = "hetero" )
-summary( reg6 )
+reg6
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
-  geom_smooth( formula = y ~ lspline(x,cutoff_ln) , method = lm , color = 'red' )
+  geom_smooth( formula = y ~ lspline(x,cutoff_ln) , method = lm , color = 'red' ) +
+  theme_bw()
 
 
 ##
@@ -246,7 +261,7 @@ ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) +
 # Weighted-OLS: use reg4 setup and weight with population
 # Can be done with the `weights = df$population` input!
 reg7 <- feols(lifeexp ~ ln_gdppc, data = df , weights = df$population , vcov = "hetero" )
-summary( reg7 )
+reg7
 
 # Created a pretty graph for visualize this method:
 ggplot(data = df, aes(x = ln_gdppc, y = lifeexp)) +
@@ -255,9 +270,8 @@ ggplot(data = df, aes(x = ln_gdppc, y = lifeexp)) +
   scale_size(range = c(1, 15)) +
   coord_cartesian(ylim = c(50, 85)) +
   labs(x = "ln(GDP per capita, thousand US dollars) ",y = "Life expectancy  (years)")+
-  annotate("text", x = 4, y = 80, label = "USA", size=5)+
-  annotate("text", x = 2.7, y = 79, label = "China", size=5)+
-  annotate("text", x = 2,  y = 68, label = "India", size=5)
+  annotate("text", x = c( 4.5 , 2.7 , 2 ), y = c( 78 , 80 , 67 ), label = c( "USA", "China", "India" ) , size=5)+
+  theme_bw()
 
 
 #####
@@ -283,18 +297,25 @@ df$reg4_y_pred <- reg4$fitted.values
 df$reg4_res <- df$lifeexp - df$reg4_y_pred 
 # Or alternatively just use reg4$residuals
 
-# Show again the scatter plot
-ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
-  geom_point( color='blue') +
-  geom_smooth( method = lm , color = 'red' )
-
 # Find countries with largest negative errors
-df %>% top_n( -5 , reg4_res ) %>% 
-      select( country , lifeexp , reg4_y_pred , reg4_res )
+worst5 <- df %>% top_n( -5 , reg4_res ) %>% 
+            select( country , lifeexp , reg4_y_pred , reg4_res , ln_gdppc )
+worst5
 
 # Find countries with largest positive errors
-df %>% top_n( 5 , reg4_res ) %>% 
-       select( country , lifeexp , reg4_y_pred , reg4_res )
+best5 <- df %>% top_n( 5 , reg4_res ) %>% 
+          select( country , lifeexp , reg4_y_pred , reg4_res , ln_gdppc )
+best5
+
+# Show again the scatter plot with bests and worst
+ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
+  geom_point( color='blue') +
+  geom_smooth( method = lm , color = 'red' ) +
+  annotate("text", x = worst5$ln_gdppc, y = worst5$lifeexp - 1 , label = worst5$country ,
+           color = 'purple') +
+  annotate("text", x = best5$ln_gdppc, y = best5$lifeexp + 1 , label = best5$country ,
+           color = 'green') +
+  theme_bw()
 
 
   

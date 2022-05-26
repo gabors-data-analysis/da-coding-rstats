@@ -1,14 +1,14 @@
-#######################
-## Analysis of       ##
-##  Life expectancy  ##
-##    and            ##
-##  GPD/capita       ##
-##                   ##
-##      NO. 2        ##
-##                   ##
-## Cleaning the data ##
-##                   ##
-#######################
+#############################################
+#                                           #
+#               Lecture 14                  #
+#                                           #
+#   Auxiliary file to clean data            #
+#     - can practice, but not recommended   #
+#                                           #
+# Case Study:                               #
+#  Life-expectancy and income               #
+#                                           #
+#############################################
 
 
 
@@ -19,7 +19,7 @@ library(tidyverse)
 library(modelsummary)
 
 # Call the data from github
-my_url <- "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/00_example/data/raw/WDI_lifeexp_raw.csv"
+my_url <- "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture14-simple-regression/data/raw/WDI_lifeexp_raw.csv"
 df <- read_csv( my_url )
 
 ## Check the observations:
