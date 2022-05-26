@@ -5,6 +5,9 @@ This lecture provides materials to analyze the association between life expectan
 
 This lecture is a practice (or similar to live coding) lecture, as it does not teaches much new material, but provides students to deepen their understanding with simple regressions and the reasoning behind them.
 
+**Check out 
+[`life_exp_analysis.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture14-simple-regression/raw_codes/life_exp_analysis.R), which is basically a skeleton for live coding!** Although, this lecture has similar folder structure as a pre-written class.
+
 This lecture is based on [Chapter 08, B: How is life expectancy related to the average income of a country?](https://gabors-data-analysis.com/casestudies/#ch08b-how-is-life-expectancy-related-to-the-average-income-of-a-country)
 
 ## Learning outcomes
