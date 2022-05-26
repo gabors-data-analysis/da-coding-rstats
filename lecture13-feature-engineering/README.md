@@ -2,12 +2,13 @@
 
 This lecture introduces feature engineering practices and focuses on simple methods used in [Gabor's book](https://gabors-data-analysis.com/) and its [case studies]((https://github.com/gabors-data-analysis/da_case_studies)). It utilizes [wms-management-survey](https://gabors-data-analysis.com/datasets/#wms-management-survey) dataset for manipulation of (multiple) variable(s) into a new one and [bisnode-firms](https://gabors-data-analysis.com/datasets/#bisnode-firms) dataset to show more elaborate techniques such as imputing, nonlinear transformations and winsorizing.
 
-
 The lecture (partially) uses the following case studies:
   - [Chapter 01, C: Management quality: data collection](https://gabors-data-analysis.com/casestudies/#ch01c-management-quality-data-collection)
   - [Chapter 04, A: Management quality and firm size: describing patterns of association](https://gabors-data-analysis.com/casestudies/#ch04a-management-quality-and-firm-size-describing-patterns-of-association)
   - [Chapter 08, C: Measurement error in hotel ratings](https://gabors-data-analysis.com/casestudies/#ch08c-measurement-error-in-hotel-ratings) as homework
   - [Chapter 17, A: Predicting firm exit: probability and classification](https://gabors-data-analysis.com/casestudies/#ch17a-predicting-firm-exit-probability-and-classification)
+
+*Note: this is rather an introduction to feature engineering, emphasizing the importance of what kind of (basic) transformations are necessary with the variables. However, the literature rather thinks of feature engineering as a complex, usually machine learning-based method, to create new variables. Main applications are converting texts, pictures, videos, web-page content, etc into data-analysis-ready variables.* 
 
 
 ## Learning outcomes
