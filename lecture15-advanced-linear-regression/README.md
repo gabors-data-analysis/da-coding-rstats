@@ -1,6 +1,6 @@
 # Lecture 15: Advanced Linear Regression
 
-This lecture introduces multiple variable regressions via [hotels-europe dataset](https://gabors-data-analysis.com/datasets/#hotels-europe). It introduces topics on
+This lecture introduces multiple variable regressions via [hotels-europe](https://gabors-data-analysis.com/datasets/#hotels-europe) dataset. It introduces topics on
 
   - how to choose a model from many possible candidates based on R2, 
   - how to evaluate prediction with multiple regressors: 
@@ -38,7 +38,7 @@ After successfully completing [`hotels_advanced_regression.R`](https://github.co
 
 ## Dataset used
   
-  - [hotels-europe dataset](https://gabors-data-analysis.com/datasets/#hotels-europe)
+  - [hotels-europe](https://gabors-data-analysis.com/datasets/#hotels-europe)
 
 ## Lecture Time
 
