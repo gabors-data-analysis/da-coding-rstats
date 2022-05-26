@@ -1,6 +1,7 @@
 # Lecture 13: Feature Engineering
 
-This lecture introduces feature engineering practices and focuses on simple methods used in [Gabor's book](https://gabors-data-analysis.com/) and its [case studies]((https://github.com/gabors-data-analysis/da_case_studies)). It uses [wms-management-survey](https://gabors-data-analysis.com/datasets/#wms-management-survey) dataset for manipulation of (multiple) variable(s) into a new one and [bisnode-firms](https://gabors-data-analysis.com/datasets/#bisnode-firms) dataset to show more elaborate techniques such as imputing, nonlinear transformations and winsorizing.
+This lecture introduces feature engineering practices and focuses on simple methods used in [Gabor's book](https://gabors-data-analysis.com/) and its [case studies]((https://github.com/gabors-data-analysis/da_case_studies)). It utilizes [wms-management-survey](https://gabors-data-analysis.com/datasets/#wms-management-survey) dataset for manipulation of (multiple) variable(s) into a new one and [bisnode-firms](https://gabors-data-analysis.com/datasets/#bisnode-firms) dataset to show more elaborate techniques such as imputing, nonlinear transformations and winsorizing.
+
 
 The lecture (partially) uses the following case studies:
   - [Chapter 01, C: Management quality: data collectionv](https://gabors-data-analysis.com/casestudies/#ch01c-management-quality-data-collection)
@@ -20,6 +21,7 @@ After successfully completing [`feature_engineering.R`](https://github.com/gabor
   - convert an integer-valued variable to an ordered factor variable     
   - `cut`, `cut_numbers` and others to convert a continuous variable into an ordered factor variable
 - Create dummy variables from a factor variable with `fastDummies` package
+- Extra: introduction to principal component analysis with `prcomp()`
 - Imputing values
   - replacing with mean or median
   - using outside knowledge (or other variables)
