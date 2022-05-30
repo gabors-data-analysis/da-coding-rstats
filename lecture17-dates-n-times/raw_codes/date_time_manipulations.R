@@ -133,11 +133,11 @@ ceiling_date(dt,"month")
 # Task:
 # Do the rounding for quarters
 # Get the first day of the month
-floor_date(dt,"quarter")
+
 # Get the first or last day in the month depending which is closer
-round_date(dt,"quarter")
+
 # Get the first day for the next month
-ceiling_date(dt,"quarter")
+
 
 ##
 # Time spans - duration vs periods
@@ -268,14 +268,7 @@ ggplot( filter( sp500 , date > '2018-01-01' ) , aes( x = date , y = price) ) +
 # use monthly tickers between 2008-2010 and change the frequency of the breaks
 # use `%m` with `-` sign or `%B` instead of `%b`
 
-# Monthly tickers with limits and minor breaks
-ggplot( filter( sp500 , date > '2008-01-01' & date < '2011-01-01' ) , aes( x = date , y = price) ) +
-  geom_line( color = 'red',size=0.5) +
-  labs(x="Date",y="Price ($)") +
-  scale_x_date(date_breaks = "6 month", date_minor_breaks = "3 month",
-               date_labels = "%Y-%m", 
-               limits = ymd( c( '2008-01-01','2011-01-01' ) ) )+
-  theme_bw()
+
 
 ##
 # Extra:
@@ -321,23 +314,8 @@ rm( agg_inflat, inflat )
 #     with the last closing price at each period
 #   Hint: when using group_by, use `filter( date == max( date ) )`
 
-# Add years and quarters
-sp500 <- sp500 %>% mutate( year = year( date ),
-                          quarter = quarter( date ) )
 
-# Last day for each quarters ('closing price')
-agg_sp500 <- sp500 %>% select( date, year, quarter, price ) %>% 
-            group_by( year, quarter ) %>% 
-            filter( date == max( date ) ) %>% 
-            ungroup()
 
-# Adjust the time for left_join
-agg_sp500 <- agg_sp500 %>% mutate( time = yq( paste0( year , "-" , quarter ) ) ) %>% 
-                           select( time , price )
-        
-# Join to df
-df <- left_join( df , agg_sp500 , by = "time" )
-rm( agg_sp500, sp500)
 
 # Filter data from 1997-10
 df <- df %>% filter( time >= ymd( '1997-10-01') )
