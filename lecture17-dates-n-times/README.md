@@ -31,7 +31,7 @@ After successfully completing [`date_time_manipulations.R`](https://github.com/g
 
 Ideal overall time: **35-40 mins**.
 
-Going through [`date_time_manipulations.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture17-dates-n-times/raw_codes/date_time_manipulations.R) takes around *30 minutes*. There are some discussions and interpretations of the time series (e.g. stationarity). Solving the tasks takes the remaining *5-10 minutes*. The lecture can be shortened by only showing the methods. It will be partially repeated in [lecture18-timeseries_regression](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression).
+Going through [`date_time_manipulations.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture17-dates-n-times/raw_codes/date_time_manipulations.R) takes around *30 minutes*. There are some discussions and interpretations of the time series (e.g. stationarity). Solving the tasks takes the remaining *5-10 minutes*. The lecture can be shortened by only showing the methods. It will be partially repeated in [lecture18-timeseries-regression](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression).
 
 
 ## Homework
