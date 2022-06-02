@@ -116,8 +116,8 @@ p1 <- ggplot(data = df, aes(x = date, y = Q))+
   xlab("Date (month)") +
   scale_y_continuous(limits = c(1000,5000), breaks = seq(1000,5000,1000)) +  
   scale_x_date(breaks = as.Date(c("2001-01-01","2004-01-01",  "2007-01-01", "2010-01-01","2013-01-01","2016-01-01")),
-               limits = as.Date(c("2001-01-01","2017-12-31")), labels = date_format("%b %Y")) +
-  theme_bw()
+             limits = as.Date(c("2001-01-01","2017-12-31")), labels = date_format("%b %Y")) +
+    theme_bw()
 p1
 
 # Log-consumption
@@ -154,10 +154,18 @@ p4 <- ggplot(data = df, aes(x = date, y = HTDD_avg))+
 p4
 
 # Plot all of them together - reset the labels
-ggarrange(p1 + scale_x_date(date_breaks = "3 years", date_labels = "%Y"),
-          p2 + scale_x_date(date_breaks = "3 years", date_labels = "%Y"),
-          p3 + scale_x_date(date_breaks = "3 years", date_labels = "%Y"),
-          p4 + scale_x_date(date_breaks = "3 years", date_labels = "%Y"),
+ggarrange(p1 + scale_x_date(date_breaks = "3 years", date_labels = "%Y") + 
+               theme( axis.title = element_text( size = 8 ),
+                      axis.text = element_text( size = 8 ) ) ,
+          p2 + scale_x_date(date_breaks = "3 years", date_labels = "%Y") + 
+            theme( axis.title = element_text( size = 8 ),
+                   axis.text = element_text( size = 8 ) ) ,
+          p3 + scale_x_date(date_breaks = "3 years", date_labels = "%Y") + 
+            theme( axis.title = element_text( size = 8 ),
+                   axis.text = element_text( size = 8 ) ) ,
+          p4 + scale_x_date(date_breaks = "3 years", date_labels = "%Y") + 
+            theme( axis.title = element_text( size = 8 ),
+                   axis.text = element_text( size = 8 ) ) ,
           hjust = -0.6, ncol = 2, nrow = 2 ) 
 
 
@@ -165,7 +173,7 @@ ggarrange(p1 + scale_x_date(date_breaks = "3 years", date_labels = "%Y"),
 # Time-series specific analysis
 
 # 1) Serial correlation: a.k.a. Auto-correlation
-source_url( 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture18-timeseries_regression/raw_codes/ggplot.acorr.R' )
+source_url( 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture18-timeseries-regression/raw_codes/ggplot.acorr.R' )
 
 # ACF - gives the correlation between y_t and lags: Corr(y_t,y_t-lag)
 # PACF - (Partial Autocorrelation Fnc)
@@ -189,9 +197,9 @@ ggplot.acorr( df$HTDD_avg , lag.max = 24, ci= 0.95,
 
 # Solution --> Create differences
 df <- df %>% mutate(DlnQ=lnQ-lag(lnQ),
-                    DCLDD_avg=CLDD_avg-lag(CLDD_avg),
-                    DHTDD_avg=HTDD_avg-lag(HTDD_avg)
-)
+                        DCLDD_avg=CLDD_avg-lag(CLDD_avg),
+                        DHTDD_avg=HTDD_avg-lag(HTDD_avg)
+                        )
 
 ##
 # functional form investigations 
@@ -222,7 +230,7 @@ ggplot(data = df, aes(x=DHTDD_avg, y=DlnQ)) +
 
 # Need to add a new variable which is telling fixest that it is a time-series data and not panel:
 #   period is changing as date, but id is the same
-df <- df %>% mutate( period = 1 : dim( df )[1] , id = 1 )
+df <- df %>% mutate( period = 1 : nrow( df ) , id = 1 )
 
 
 # Run reg1 with, Newey-West SE
@@ -258,6 +266,17 @@ etable( reg1 , reg2 , reg3 , reg4 , drop = "factor" , se.below = T )
 # Replicate these results, but now using the same sample for each model to ensure fair comparison!
 # You should have the same number of observations in the end
 
+reg1_s <- feols( DlnQ ~ DCLDD_avg + DHTDD_avg, data = filter( df , period > 3 ) , 
+                 panel.id = ~ id + period , vcov = NW(24) )
+reg2_s <- feols(DlnQ ~ DCLDD_avg + DHTDD_avg + as.factor(month), data = filter( df , period > 3 ), 
+                panel.id = ~ id + period , vcov = NW(24) )
+reg3_s <- feols( DlnQ ~ l( DlnQ , 1 ) + DCLDD_avg + DHTDD_avg + as.factor(month), 
+                 data = filter( df , period > 2 ) , panel.id = ~ id + period , vcov = NW(24) )
+reg4_s <- feols( DlnQ ~ l( DCLDD_avg , 0 : 2 ) + l( DHTDD_avg , 0 : 2 ) + as.factor(month), 
+                 data = df , panel.id = ~ id + period , vcov = NW(24) )
+
+etable( reg1_s , reg2_s , reg3_s , reg4_s , drop = "factor" , se.below = T )
+
 
 
 ####
@@ -267,7 +286,7 @@ df <- df %>% mutate( DDCLDD_avg = DCLDD_avg - lag( DCLDD_avg ) ,
                      DDHTDD_avg = DHTDD_avg - lag( DHTDD_avg ) )
 
 reg_cumSE <- feols( DlnQ ~ l( DCLDD_avg , 2 ) + l( DHTDD_avg , 2 ) +
-                      l( DDCLDD_avg , 0:1 ) + l( DDHTDD_avg , 0:1 ) + as.factor(month), 
+                           l( DDCLDD_avg , 0:1 ) + l( DDHTDD_avg , 0:1 ) + as.factor(month), 
                     data=df, panel.id = ~ id + period , vcov = NW(24) )
 reg_cumSE
 
