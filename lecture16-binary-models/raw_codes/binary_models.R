@@ -3,7 +3,7 @@
 #               Lecture 16                    #
 #                                             #
 #   Binary/Probability models                 #
-#     - Saturated Linear Probability Models   #
+#     - Saturated Probability Models          #
 #       - calculate weights and               #
 #           estimating models                 #
 #       - plot a simple binary model          #
