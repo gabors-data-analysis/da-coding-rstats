@@ -1,17 +1,15 @@
 # Lecture 18: Introduction to time-series regression
-*Coding course to complete Data Analysis in R*
 
-This lecture introduces time-series regression via the [arizona-electricity](https://gabors-data-analysis.com/datasets/#arizona-electricity) dataset. During this lecture, students manipulate time-series data along time dimensions, create multiple time-series related graphs and get familiar with (partial) autocorrelation. Based on this analysis, different time-series models are run via `feols` with Newey-West standard errors.
+This lecture introduces time-series regression via the [arizona-electricity](https://gabors-data-analysis.com/datasets/#arizona-electricity) dataset. During this lecture, students manipulate time-series data along time dimensions, create multiple time-series related graphs and get familiar with (partial) autocorrelation. Differenced variables, lags of the outcome, and lags of the explanatory variables, (deterministic) seasonality are used during regression models. Estimating these models are via `feols` with Newey-West standard errors. Model comparisons and estimating cumulative effects with valid SEs are shown.
 
-This lecture is based on [Chapter 12, B: *Electricity consumption and temperature*](https://gabors-data-analysis.com/casestudies/#ch12b-electricity-consumption-and-temperature)
+This lecture is based on [Chapter 12, B: Electricity consumption and temperature](https://gabors-data-analysis.com/casestudies/#ch12b-electricity-consumption-and-temperature)
 
 ## Learning outcomes
-After successfully completing codes in *raw_codes* you should be able:
+After successfully completing [`intro_time_series.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/raw_codes/intro_time_series.R), students should be able:
 
-[`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R)
-  - Merge different data
+  - Merge different time-series data
   - Create time-series related descriptives and graphs
-    - handle date as the axis
+    - handle date as the axis with different formatting
     - import source code from URL via `source_url` from `devtools`
     - create autocorrelation and partial autocorrelation graphs and interpret
   - Run time-series regression with `feols` from `fixest`
@@ -20,13 +18,17 @@ After successfully completing codes in *raw_codes* you should be able:
     - Control for seasonality via dummies
     - Add lagged variables to the model (and possibly leads as well)
     - How and why to use the same time interval when comparing competing time-series models
-    - Estimate the standard error for the cumulative effect
+    - Estimate the standard error(s) for the cumulative effect
+
+## Datasets used
+
+- [arizona-electricity](https://gabors-data-analysis.com/datasets/#arizona-electricity)
 
 ## Lecture Time
 
 Ideal overall time: **60-80 mins**.
 
-Going through [`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R) takes around *50-70 minutes* as there are some discussions and interpretations of the time series (e.g. stationarity, transformation of variables, etc). Solving the tasks takes the remaining *10 minutes*.
+Going through [`intro_time_series.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/raw_codes/intro_time_series.R) takes around *50-70 minutes* as there are some discussions and interpretations of the time series (e.g. stationarity, a transformation of variables, etc). Solving the tasks takes the remaining *5-10 minutes*.
 
 
 ## Homework
@@ -44,7 +46,8 @@ You will use the [case-shiller-la](https://gabors-data-analysis.com/datasets/#ca
 
 ## Folder structure
   
-  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture18-timeseries_regression/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
-    - [`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R), is the main material for this lecture.
-  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture18-timeseries_regression/complete_codes) includes code with solution for [`arizona_electricity.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/raw_codes/arizona_electricity.R) as [`arizona_electricity_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries_regression/complete_codes/arizona_electricity_fin.R)
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
+    - [`intro_time_series.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/raw_codes/intro_time_series.R), is the main material for this lecture.
+    - [`ggplot.acorr.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/raw_codes/ggplot.acorr.R) is an auxillary function to plot (partial) autocorrelation graphs, by [Kevin Liu](https://rh8liuqy.github.io/ACF_PACF_by_ggplot2.html). This file is `source_url`-ed to [`intro_time_series.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/raw_codes/intro_time_series.R).
+  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/complete_codes) includes code with solution for [`intro_time_series.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/raw_codes/intro_time_series.R) as [`intro_time_series_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture18-timeseries-regression/complete_codes/intro_time_series_fin.R)
 
