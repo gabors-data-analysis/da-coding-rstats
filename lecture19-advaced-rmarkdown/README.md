@@ -12,11 +12,11 @@ After successfully completing codes in *raw_codes* you should be able:
 
 [`advanced_rmarkdown.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture19-advaced-rmarkdown/raw_codes/advanced_rmarkdown.Rmd)
   - General understanding of the structure of a data analysis report
-  - Naming code chunks and why is it beneficial
+  - Naming code chunks and why is it beneficial (jumping, referencing, etc)
   - Set options for 
     - general formatting in the output document
     - for each chunks
-    - store data on `cache`
+    - store data in `cache`
     - use multi-line setting for a chunk of code
   - Formatting figures:
     - Set size of the figure (`fig.width`, `fig.height`, `fig.extra`, `fig.aligned`)
