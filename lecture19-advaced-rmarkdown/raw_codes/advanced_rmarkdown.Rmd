@@ -37,7 +37,13 @@ HERE COMES THE MOTIVATION FOR WHY THIS IS A MEANINGFUL PROJECT AND WHAT IS THE M
 
 ## Data
 
-```{r data import, echo=FALSE, message = FALSE}
+```{r data import, echo=FALSE, message = FALSE, cache = TRUE}
+# cache = TRUE will keep data in the cache, which means 
+#   if you re-run/re-knit your document you do not need to
+#   load/run these piece of codes again and again!
+#   Also useful if long-running estimation is used e.g. random forest later.
+# Note: be careful if there are already stuffs in your cache!
+
 ## Importing Data and Cleaning
 cps <- read_csv("https://osf.io/4ay9x/download", 
                 name_repair = "minimal" )
@@ -62,7 +68,14 @@ Some further information on the data is necessary to interpret the results.
 
 We have restricted our attention to age cohorts between 40 and 60 with a graduate degree as the participants in the CPS data are better balanced along these dimensions. Figure \ref{fig:age_dist} shows the age distribution of employees with a graduate degree by gender.
 
-```{r create figure wi label, echo=FALSE, warning=FALSE, fig.width=3, fig.height = 2.5, fig.align="center", fig.cap="\\label{fig:age_dist}Age distribution of employees with graduate degree by gender"}
+```{r create figure wi label}
+#| echo = FALSE,
+#| warning = FALSE,
+#| fig.width  = 3,
+#| fig.height = 2.5,
+#| fig.align  = "center",
+#| fig.cap    = "\\label{fig:age_dist}Age distribution of employees with graduate degree by gender"
+
 # Alternatively you can use one of fig.width or fig.height with fig.extra = 'keepaspectratio'
 #
 # Also good to know:
