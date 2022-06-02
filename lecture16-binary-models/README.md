@@ -1,6 +1,6 @@
 # Lecture 16: Binary outcome - modeling probabilities
 
-This lecture introduces binary outcome models with an analysis of health outcome with multiple variables based on [share-health](https://gabors-data-analysis.com/datasets/#share-health) dataset. First we introduce saturated models (smoking on health) and linear probability models with multiple explanatory variables. We check the predicted outcome probabilities for certain groups. Then we focus on non-linear binary models: the logit and probit model. We estimate marginal effects, to interpret the average (marginal) effects of variables on the outcome probabilities. We overview goodness of fit statistics (R2, Pseudo-R2, Brier score and Log-loss) along with visual and destricitve inspection of the predicted probabilities. Finally we calculate the estimed bias and the calibration curve to understand model performance better.
+This lecture introduces binary outcome models with an analysis of health outcomes with multiple variables based on the [share-health](https://gabors-data-analysis.com/datasets/#share-health) dataset. First, we introduce saturated models (smoking on health) and linear probability models with multiple explanatory variables. We check the predicted outcome probabilities for certain groups. Then we focus on non-linear binary models: the logit and probit model. We estimate marginal effects, to interpret the average (marginal) effects of variables on the outcome probabilities. We overview goodness of fit statistics (R2, Pseudo-R2, Brier score, and Log-loss) along with visual and descriptive inspection of the predicted probabilities. Finally, we calculate the estimated bias and the calibration curve to understand model perform better.
 
 This lecture is based on [Chapter 11, A: Does smoking pose a health risk?](https://gabors-data-analysis.com/casestudies/#ch11a-does-smoking-pose-a-health-risk)
 
@@ -32,15 +32,16 @@ After successfully completing codes in [`binary_models.R`](https://github.com/ga
 
 ## Lecture Time
 
-Ideal overall time: **80 mins**.
+Ideal overall time: **100 mins**.
 
-Going through [`binary_models.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture16-binary-models/raw_codes/binary_models.R) takes around *60-70 minutes* as there are many discussion and interpretation of the models. Solving the tasks takes the remaining *10-20 minutes*. 
+Going through [`binary_models.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture16-binary-models/raw_codes/binary_models.R) takes around *80-90 minutes* as there are many discussion and interpretation of the models. Solving the tasks takes the remaining *10-20 minutes*. 
 
 
 ## Homework
 
 *Type*: quick practice, approx 20 mins
 
+Use the same [share-health](https://gabors-data-analysis.com/datasets/#share-health) dataset, but now use `smoking` as your outcome variable as this task is going to ask you to predict if a person is a smoker or not. Use similar variables except `stayshealthy` to explain `smoking`. Run a LPM, logit and probit model. Compare the coefficients of these models along with the average marginal effects. Compute the goodness of fit statistics (R2, Pseudo-R2, Brier score, log-loss) of all of the models. Choose one, calculate the bias, and plot the calibration curve.
 
 
 
@@ -48,13 +49,13 @@ Going through [`binary_models.R`](https://github.com/gabors-data-analysis/da-cod
 
   - More materials on the case study can be found in Gabor's *da_case_studies* repository: [ch11-smoking-health-risk](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch11-smoking-health-risk)
   - Coding and multiple linear regression: partially related in Chapter 4, especially Ch 4.2 from [James-Witten-Hastie-Tibshirani (2013) - An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
-  - Some other useful resources which are R-related, using base-R methods: [Ramzi W. Nahhas: Introduction to Regression Methods for Public Health Using R
-](https://bookdown.org/rwnahhas/RMPH/blr.html) or [Cheng Hua, Dr. Youn-Jeng Choi, Qingzhou Shi: Companion to BER 642: Advanced Regression Methods](https://bookdown.org/chua/ber642_advanced_regression/binary-logistic-regression.html)
+  - Some other useful resources which are R-related, using base-R methods: [Christoph Hanck, Martin Arnold, Alexander Gerber, and Martin Schmelzer: Introduction to Econometrics with R, Chapter 11](https://www.econometrics-with-r.org/11-rwabdv.html) or [Ramzi W. Nahhas: Introduction to Regression Methods for Public Health Using R
+](https://bookdown.org/rwnahhas/RMPH/blr.html).
 
 
 ## Folder structure
   
-  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture15_advanced_regression/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
-    - [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture12_intro_to_regression/raw_codes/hotels_advanced_regression.R), is the main material for this lecture.
-  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture15_advanced_regression/complete_codes) includes code with solution for [`hotels_advanced_regression.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/raw_codes/hotels_advanced_regression.R) as [`hotels_advanced_regression_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture15_advanced_regression/complete_codes/hotels_advanced_regression.R)
+  - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture16-binary-models/raw_codes) includes codes, which are ready to use during the course but requires some live coding in class.
+    - [`binary_models.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture16-binary-models/raw_codes/binary_models.R), is the main material for this lecture.
+  - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/edit/main/lecture16-binary-models/complete_codes) includes code with solution for [`binary_models.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture16-binary-models/raw_codes/binary_models.R) as [`binary_models_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture16-binary-models/complete_codes/binary_models_fin.R)
 
