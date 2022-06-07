@@ -148,35 +148,22 @@ lfe_map + scale_fill_gradient(low = "red", high = "green",
 # Notes: you need to use lfe to compute and re-join the tibbles
   
 # Create log gdp/capita
-lfe <- lfe %>% mutate( ln_gdppc = log( gdppc ) )
+lfe <- 
 # Simple linear regression
-reg <- feols( lifeexp ~ ln_gdppc , data = lfe , vcov = "hetero" )
+reg <- 
 reg
 
-# Reminder:
 # Scatter plot for the model
-ggplot( data = lfe, aes( x = ln_gdppc, y = lifeexp ) ) + 
-  geom_point( color='blue') +
-  geom_smooth( method = lm , color = 'red' , formula = y ~ x ) +
-  labs( x = 'Log of GDP per Capita', y = 'Life Expectancy at birth') +
-  theme_bw()
+
 
 # save the residuals
-lfe <- lfe %>% mutate( lfe_res = reg$residuals )
+
 
 # tibble to show map
-world_map_exp2 <- left_join( world_map, rename( lfe , region = countryname ) , by = 'region')
+world_map_exp2 <- 
 
 # Show the life-expectancy
-world_map_exp2 %>% 
-  ggplot( aes( x = long, y = lat,
-               group = group, fill = lfe_res ) ) +
-  geom_polygon( ) + 
-  coord_equal( ) + 
-  scale_fill_gradient(low = "red", high = "green",
-                      name = "Deviance from Life Exp.") +
-  theme_map() + 
-  theme(legend.position = "top")
+
 
 
 ####
@@ -374,27 +361,8 @@ iL_price
 
 
 # Import shp file from https://www.data.gv.at/katalog/dataset/stadt-wien_bezirksgrenzenwien
-vienna_map <- readOGR("data_map/BEZIRKSGRENZEOGDPolygon.shp")
-head( vienna_map@data,2 )
+vienna_map <- 
 
-vienna_map_tibble <- as_tibble( fortify( vienna_map ) )
-
-# allocate an id variable to the sp data
-vienna_map$id <- row.names(vienna_map)
-
-# joins the data
-vienna_map_tibble <- as_tibble( left_join(vienna_map_tibble, vienna_map@data , by = 'id' ) )
-vienna_map <- vienna_map_tibble %>% mutate( district = NAMEK )
-rm( vienna_map_tibble )
-
-# Visualize Vienna districts
-ggplot( vienna_map , aes(long, lat, group = district ) ) +
-  geom_polygon() + 
-  geom_path( colour="white", lwd=0.05 ) + 
-  coord_equal() +
-  theme_bw()+
-  ggtitle("Vienna districts") +
-  theme_map()
 
 # Matching variable
 #                  neighbourhood, district
@@ -405,35 +373,9 @@ match_vienna <- c("17. Hernals","Hernals",
                   "Rudolfsheim-Funfhaus","Rudolfsheim-F\xfcnfhaus",
                   "Wahring","W\xe4hring",
                   "Schonbrunn","Meidling")
-# Rename the variable
-for ( i in 1 : ( length( match_vienna ) / 2 ) ){
-  heu$borough[ heu$borough == match_vienna[ i*2 - 1 ] ] <- match_vienna[ i *2 ]
-}
 
 
-# Average prices in vienna districts
-v_dist <- heu %>% filter( city_actual == 'Vienna' ) %>%  group_by( borough ) %>% 
-  summarise( price = mean( price , na.rm = T ) )
-
-# Check matches ('Vienna' is not identified)
-v_dist$borough %in% sort(unique( vienna_map$district ))
-
-# add prices
-vp <- left_join( vienna_map , v_dist %>% rename( district = borough ) , by = 'district' )
-
-
-# Create graph for Vienna
-V_price <- ggplot(vp, aes(long, lat, group = district , fill = price ) ) +
-  geom_polygon() + 
-  geom_path( colour="white", lwd=0.05 ) + 
-  coord_equal() +
-  labs(x = "lat", y = "lon",
-       fill = "Price") +
-  scale_fill_gradient(low = "green",high = "red",
-                      name = "Price") +
-  ggtitle("Average hotel prices: Vienna ($,2017)") +
-  theme_map()
-
+# name the graph as:
 V_price
 
 # Show together with common legend
