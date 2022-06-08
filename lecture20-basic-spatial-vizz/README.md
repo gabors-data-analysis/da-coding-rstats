@@ -2,6 +2,10 @@
 
 This lecture introduces spatial data visualization using maps. During the lecture, students learn how to use the `maps` package which offers built-in maps with the [worldbank-lifeexpectancy](https://gabors-data-analysis.com/datasets/#worldbank-lifeexpectancy) data. Plotting the raw life expectancy at birth on a world map is already a powerful tool, but students will learn how to show deviance from the expected value given by the regression model. In the second part, students import raw `shp` files with auxiliary files, which contain the map of London boroughs and Vienna districts. With the [hotels-europe](https://gabors-data-analysis.com/datasets/#hotels-europe) dataset the average price for each unit on the map is shown.
 
+| Life eexpectancy map    | Hotel prices in cities  |
+|-------------------------|-------------------------|
+| ![alt text 1](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture20-basic-spatial-vizz/output/lifeexpectancy_world.png) | ![alt text 2](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture20-basic-spatial-vizz/output/heu_prices.png) |
+
 Case studies used during the lecture:
   - [Chapter 08, B: How is life expectancy related to the average income of a country?](https://gabors-data-analysis.com/casestudies/#ch08b-how-is-life-expectancy-related-to-the-average-income-of-a-country)
   - [Chapter 03, B: Comparing hotel prices in Europe: Vienna vs London](https://gabors-data-analysis.com/casestudies/#ch03b-comparing-hotel-prices-in-europe-vienna-vs-london)
