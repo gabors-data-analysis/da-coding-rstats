@@ -1,5 +1,18 @@
 # Lecture 10: Random Numbers and Random Sampling
 
+## Motivation
+
+While dealing with data, the use of random numbers is essential to understanding modern data analytics. In many cases, you will not use them directly, but many advanced models (e.g. Machine Learning techniques) use them indeed directly. Therefore a general understanding is always beneficial. Some examples of usage:
+
+  - get a random (sub)-sample (e.g. cross-validation techniques)
+  - bootstrapping (e.g. calculate standard errors)
+  - estimating models (e.g. random forest or (quasi) maximum-likelihood methods)
+  - ‘stochastic’ optimization methods (e.g. genetic algorithms)
+
+We cover the main properties and how to use them if we would like to have reproducible results.
+
+## This lecture
+
 This lecture introduces students to how to generate random numbers and deal with random sampling in R.
 
 Relates to case studies:
