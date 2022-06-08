@@ -2,9 +2,9 @@
 
 ## Motivation
 
-Does smoking make you sick? And can smoking make you sick in late middle age even if you stopped years earlier? You have data on many healthy people in their fifties from various countries, and you know whether they stayed healthy four years later. You have variables on their smoking habits, their age, income, and many other characteristics. How can you use this data to estimate how much more likely non-smokers are to stay healthy? How can you uncover ifthat depends on whether they never smoked or are former smokers? And how can you tell if that association is the result of smoking itself or, instead, underlying differences in smoking by education, income, and other factors?
+Does smoking make you sick? And can smoking make you sick in late middle age even if you stopped years earlier? You have data on many healthy people in their fifties from various countries, and you know whether they stayed healthy four years later. You have variables on their smoking habits, age, income, and many other characteristics. How can you use this data to estimate how much more likely non-smokers are to stay healthy? How can you uncover if that depends on whether they never smoked or are former smokers? And how can you tell if that association is the result of smoking itself or, instead, underlying differences in smoking by education, income, and other factors?
 
-The lecture is related to thechapter that discusses probability models: regressions with binary y variables. In a sense, we can treat a binary y variable just like any other variable and use regression analysis as we would otherwise. with a binary y variable, we can estimate nonlinear probability models instead of the linear one. Data analystsneed to have a good understanding of when to use these different probability models, and how to interpret and evaluate their results.
+The lecture is related to the chapter that discusses probability models: regressions with binary y variables. In a sense, we can treat a binary y variable just like any other variable and use regression analysis as we would otherwise. with a binary y variable, we can estimate nonlinear probability models instead of the linear ones. Data analysts need to have a good understanding of when to use these different probability models, and how to interpret and evaluate their results.
 
 ## This lecture
 
