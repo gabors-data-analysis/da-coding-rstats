@@ -1,5 +1,11 @@
 # Lecture 02: Import and Export data to R
 
+## Motivation
+
+Data doesn’t grow on trees but needs to be collected with a lot of effort, and it’s essential to have high-quality data to get meaningful answers to our questions. In the end, data quality is determined by how the data was collected. Thus, it’s fundamental for data analysts to understand various data collection methods, how they affect data quality in general, and what the details of the actual collection of their data imply for its quality. Most important methods of data collection used in business, economics, and policy analysis, such as web scraping, using administrative sources, and conducting surveys all imply these sources need to be imported to R.
+
+## This lecture
+
 This lecture introduces students to importing and exporting data to R with `readr` from `tidyverse`. Various importation technique and format is discussed and several options on how to export data to the local computer.
 
 
