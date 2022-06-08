@@ -1,5 +1,13 @@
 # Lecture 04: Data Munging with dplyr
 
+## Motivation
+
+Before analyzing the data, data analysts spend a lot of time organizing, managing, and cleaning it to prepare it for analysis. This is called data wrangling or data munging. It is often said that 80 percent of data analysis time is spent on these tasks. Data wrangling is an iterative process: we usually start by organizing and cleaning our data, then start doing the analysis, and then go back to the cleaning process as problems emerge during analysis.
+
+Here we introduce students to a (relatively) easy way of carrying out this task and use the case study of [finding a good deal among hotels]((https://gabors-data-analysis.com/casestudies/#ch02a-finding-a-good-deal-among-hotels-data-preparation)). The initial data preparation, continues to work towards finding hotels that are underpriced relative to their location and quality. In this lecture, we illustrate how to find problems with observations and variables and how to solve those problems.
+
+## This Lecture
+
 This lecture introduces students to how to manipulate raw data in various ways with `dplyr` from `tidyverse`.
 
 This lecture is based on [Chapter 02, A: Finding a good deal among hotels: data preparation](https://gabors-data-analysis.com/casestudies/#ch02a-finding-a-good-deal-among-hotels-data-preparation).
