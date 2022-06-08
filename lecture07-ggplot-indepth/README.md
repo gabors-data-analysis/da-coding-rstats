@@ -1,5 +1,22 @@
 # Lecture 07: ggplot in depth
 
+## Motivation
+
+You should look at your data. Graphs and charts let you explore and learn about the structure of the information you collect. Good data visualizations also make it easier to communicate your ideas and findings to other people. Beyond that, producing effective plots from your own data is the best way to develop a good eye for reading and understanding graphs — good and bad — made by others, whether presented in research articles, business slide decks, public policy advocacy, or media reports.([Kieran Healy: Data Visualization](https://socviz.co/index.html#preface)).
+
+To create a powerful graph, it is a good starting principle that all of our decisions should be guided by the *usage of the graph*: a summary concept to capture what we want to show and to whom. Its main elements are purpose, focus, and audience. Once usage is clear, the first set of decisions to make is about how we convey information: how to show what we want to show. For those decisions it is helpful to understand the entire graph as the
+overlay of three graphical objects:
+
+  1. Geometric object; the geometric visualization of the information we want to convey, such as a
+  set of bars, a set of points, or a line; multiple geometric objects may be combined.
+  2. Scaffolding: elements that support understanding the geometric object, such as axes, labels, and
+  legends.
+  3. Annotation: adding anything else to emphasize specific values or explain more detail.
+
+Keeping these in mind this lecture introduces students to how to create graphs that take into account these principles.
+
+## This lecture
+
 This lecture extends the tools to create and manipulate plots with `ggplot2`. After the lecture students should be able to create their personalized theme and create reportable graphs for almost all cases.
 
 Case studies used/related in/to this lecture:
