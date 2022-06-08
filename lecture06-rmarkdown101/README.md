@@ -1,5 +1,14 @@
 # Lecture 06: Introduction to RMarkdown
 
+## Motivation
+
+You want to know and articulate whether online and offline prices differ in your country for products that are sold in both ways. You have access to data on a sample of products with their online and offline prices. How would you use this data to establish whether prices tend to be different or the same for all products?
+
+We introduce RMarkdown, which is a powerful tool to create R-based reports in many formats and, where the report can be easily updated. By the end of this lecture students should know how to put together a descriptive based report with hypothesis testing with simple formatting.
+
+
+## This lecture
+
 This lecture introduces students to *RMarkdown*, which is a great tool to create reports in pdf or Html. The aim of this session is to prepare students to create a simple report in pdf or Html on a descriptive analysis. This lecture uses exploratory analysis of [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration) and put it into an RMarkdown document.
 
 Case studies connected to this lecture are similar to [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration), but this lecture focuses on how to create a report and does not cover patterns of associations.
