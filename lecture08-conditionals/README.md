@@ -1,5 +1,11 @@
 # Lecture 08: Conditional Programming
 
+## Motivation
+
+Deciding what to do on a case by case is widely used in decision making and also in programming. Conditional programming enables writing codes with this in mind. If a certain condition holds execute a command otherwise do something different. Conditional programming is an element of the basic programming technique, which emerges in multiple situations. Adding this technique to the programming toolbox is a must for data scientists.
+
+## This lecture
+
 This lecture introduces students to conditional programming with `if-else` statements. It covers the essentials as well as logical operations with vectors, creating new variables with conditionals and some extra material.
 
 
