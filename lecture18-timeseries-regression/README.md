@@ -1,5 +1,13 @@
 # Lecture 18: Introduction to time-series regression
 
+## Motivation
+
+Heating and cooling are potentially important uses of electricity. To investigate how weather conditions affect electricity consumption, you have collected data on temperature and residential electricity consumption in a hot region. How should you estimate the association between temperature and electricity consumption? How should you define the variables of interest, and how should you prepare the data, which has daily observations on temperature and monthly observations on electricity consumption? Should you worry about the fact that both electricity consumption and temperature vary a lot across months within years, and if yes, what should you do about it?
+
+Time series data is often used to analyze business, economic, and policy questions. Time series data presents additional opportunities as well as additional challenges for regression analysis. Unlike cross-sectional data, it enables examining how y changes when x changes, and it also allows us to examine what happens to y right away or with a delay. However, variables in time series data come with some special features that affect how we should estimate regressions, and how we can interpret their coefficients.
+
+## This lecture
+
 This lecture introduces time-series regression via the [arizona-electricity](https://gabors-data-analysis.com/datasets/#arizona-electricity) dataset. During this lecture, students manipulate time-series data along time dimensions, create multiple time-series related graphs and get familiar with (partial) autocorrelation. Differenced variables, lags of the outcome, and lags of the explanatory variables, (deterministic) seasonality are used during regression models. Estimating these models are via `feols` with Newey-West standard errors. Model comparisons and estimating cumulative effects with valid SEs are shown.
 
 This lecture is based on [Chapter 12, B: Electricity consumption and temperature](https://gabors-data-analysis.com/casestudies/#ch12b-electricity-consumption-and-temperature)
