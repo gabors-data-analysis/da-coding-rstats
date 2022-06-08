@@ -1,5 +1,11 @@
 # Lecture 01: Coding basics
 
+## Motivation
+
+Coding has its charm you can do anything if you know the basics. We take the traditional programming approach to first introduce the building blocks of coding. This may seem cumbersome at first sight (e.g. in contrast to Hadley Wickham and Garrett Grolemund R for Data Science), but it leads to understanding the basic principles of coding. It is also a great help when searching for solutions on the web as among the many options most of them use blocks of these basic blocks.
+
+## This lecture
+
 This is the first coding lecture, which introduces students to coding in R.
 It is a **live coding class**, where the teaching material is detailed in [`coding_basics.md`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture01-coding-basics/coding_basics.md).
 
