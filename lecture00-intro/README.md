@@ -1,5 +1,13 @@
 # Lecture 00: Introduction to R and RStudio
 
+## Motivation
+
+In this course, we focus on R and its IDE: RStudio. This means, you won’t learn anything about Python, Julia, or any other programming language useful for data science. They’re also excellent choices, and in practice, most data science teams use a mix of languages, often at least R and Python.
+
+We also believe that R is a great place to start your data science carrier as it is an environment designed from the ground up to support data science. R is not just a programming language, but it is also an interactive environment for doing data science. To support interaction, R is a much more flexible language than many of its peers. This flexibility comes with its downsides, but the big upside is how easy it is to evolve tailored grammars for specific parts of the data science process. These mini languages help you think about problems as a data scientist, while supporting fluent interaction between your brain and the computer. ([Hadley Wickham and Garrett Grolemund R for Data Science](https://r4ds.had.co.nz/introduction.html))
+
+## This lecture
+
 This is the starting lecture, that introduces students to R and RStudio (download and install), runs a pre-written script, asks them to knit a pdf/Html document, and highlights the importance of version control.
 
 The aim of this class is not to teach coding, but to make sure that everybody has R and RStudio on their laptop, installs `tidyverse` package, and (tries to) knit an RMarkdown document. The main aim of these steps is to reveal possible OS mismatches or other problems with R and RStudio. 
