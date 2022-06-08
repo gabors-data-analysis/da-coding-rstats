@@ -1,12 +1,19 @@
 # Lecture 14: Analysis of life expectancy and GDP
 
+## Motivation
+
+Life expectancy at birth shows how long residents of a country live; it is a summary measure of their health. Residents of richer countries tend to live longer, but you want to know the strength of that pattern. You also want to identify countries where people live especially long for the income level of their country, to start thinking about what may cause their exceptional health. You download cross-country data from the World Bank database on life expectancy and GDP per capita, and you want to uncover the pattern of association between them. How would you do that in a way that accommodates potentially nonlinear patterns and, at the same time, produces results that you can interpret?
+
+Linear regression gives a meaningful approximation to the patterns of association, but real-life data can be messy, and the patterns may be nonlinear. What those mean for regression analysis and what we can do about them is important to understand. There are several tools that we can apply to make linear regression approximate nonlinear patterns of association, but whether we want to do so depends on the goal of the analysis. The fact that real-life data tends to be messy, with errors and extreme values, poses other challenges for regression analysis.
+
+## This lecture
 
 This lecture provides materials to analyze the association between life expectancy and GDP measures for various countries in 2019 (or later), inspired by the dataset [worldbank-lifeexpectancy](https://gabors-data-analysis.com/datasets/#worldbank-lifeexpectancy). During this exercise, students get familiar with creating simple linear regression-based models with different transformations, such as level-level, log-level, level-log, and log-log models, or using polynomials and piecewise linear splines transformation of the explanatory variable.
 
 This lecture is a practice (or similar to live coding) lecture, as it does not teaches much new material, but provides students to deepen their understanding with simple regressions and the reasoning behind them.
 
 **Check out 
-[`life_exp_analysis.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture14-simple-regression/raw_codes/life_exp_analysis.R), which is basically a skeleton for live coding!** Although, this lecture has similar folder structure as a pre-written class.
+[`life_exp_analysis.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture14-simple-regression/raw_codes/life_exp_analysis.R), which is basically a skeleton for live coding!** Although, this lecture has a similar folder structure as a pre-written class.
 
 This lecture is based on [Chapter 08, B: How is life expectancy related to the average income of a country?](https://gabors-data-analysis.com/casestudies/#ch08b-how-is-life-expectancy-related-to-the-average-income-of-a-country)
 
