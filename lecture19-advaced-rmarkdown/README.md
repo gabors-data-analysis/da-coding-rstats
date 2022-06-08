@@ -1,5 +1,11 @@
 # Lecture 19: Advanced RMarkdown
 
+## Motivation
+
+There is a substantial difference in the average earnings of women and men in all countries. You want to understand, analyze and present more about the potential origins of that difference, focusing on employees with a graduate degree in your country. You have data on a large sample of employees with a graduate degree, with their earnings and some of their characteristics, such as age and the kind of graduate degree they have. Women and men differ in those characteristics, which may affect their earnings. How should you use this data to uncover gender differences that are not due to differences in those other characteristics? And can you use regression analysis to uncover patterns of associations between earnings and those other characteristics that may help understand the origins of gender differences in earnings? How should you present your results in a conscious, way that is easy to update as well? How to format your report in a compact and easy-to-read way?
+
+## This lecture
+
 This lecture shows the tricks and tips on how to write and format a complete report for data analysis, using the [cps-earnings](https://gabors-data-analysis.com/datasets/#cps-earnings) dataset in RMarkdown. Using RMarkdown in our experience is one of the most challenging and time-consuming parts of the work when creating a complete data analysis. This lecture uses a script file to prepare the analysis on the topic (see [`advanced_rmarkdown_prep.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture19-advaced-rmarkdown/raw_codes/advanced_rmarkdown_prep.R) ) and when the main results and messages are crystallized, we propose to create an `.Rmd` file to present and communicate the results.
 During this lecture, students will learn, what is the general structure of a data analysis report, and how to format figures and tables to efficiently communicate the results.
 
