@@ -1,5 +1,17 @@
 # Lecture 05: Data Exploration
 
+## Motivation
+
+You want to know whether online and offline prices differ in your country for products that are sold in both ways. You have access to data on a sample of products with their online and offline prices. How would you use this data to establish whether prices tend to be different or the same for all products?
+
+After collecting the data, assessing its quality, cleaning it, and structuring it, the next step is exploratory data analysis (EDA). Exploratory data analysis aims to describe variables in a dataset. EDA is important for understanding potential problems with the data and making analysts and their audiences familiar with the most important variables. The results of EDA help additional data cleaning, decisions for further steps of the analysis, and giving context to the results of the following hypothesis testing.
+
+The lecture discusses some basic concepts such as frequencies, probabilities, distributions, and extreme values. It includes guidelines
+for producing informative graphs and tables for presentation and describes the most important summary statistics. Furthermore, we cover the logic and practice of testing hypotheses. We describe the steps of hypothesis testing and discuss two alternative ways to carry it out: one with the help of a test statistic and a critical value, and another one with the help of a p-value. We focus on testing hypotheses about averages, but, as we show in one of our case studies, this focus is less restrictive than it may appear.
+
+
+## This lecture
+
 This lecture introduces students to data exploration. `modelsummary` is used for data descriptive tables, `ggplot2` for creating graphs, and `t.stat` for hypothesis testing. 
 Descriptive statistics and descriptive graphs for one variable are concerned to decide on further data munging.
 Moreover, simple hypothesis testing is covered as well as association graphs and statistics between two variables.
