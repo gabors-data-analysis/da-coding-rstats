@@ -2,14 +2,14 @@
 
 ## Motivation
 
-While dealing with data, the use of random numbers is essential to understanding modern data analytics. In many cases, you will not use them directly, but many advanced models (e.g. Machine Learning techniques) use them indeed directly. Therefore a general understanding is always beneficial. Some examples of usage:
+While dealing with data, the use of random numbers is essential to understanding modern data analytics. In many cases, you will not use them directly, but many advanced models (e.g. Machine Learning techniques) use them. A general understanding how these methods work, and what are the limitations is beneficial. Some examples of random number usage:
 
   - get a random (sub)-sample (e.g. cross-validation techniques)
   - bootstrapping (e.g. calculate standard errors)
-  - estimating models (e.g. random forest or (quasi) maximum-likelihood methods)
+  - estimating models (e.g. random forest, Markov-Chain-Monte-Carlo or (quasi) maximum-likelihood methods)
   - ‘stochastic’ optimization methods (e.g. genetic algorithms)
 
-We cover the main properties and how to use them if we would like to have reproducible results.
+We cover the main properties of random number generators and how to use them for reproducible results.
 
 ## This lecture
 
