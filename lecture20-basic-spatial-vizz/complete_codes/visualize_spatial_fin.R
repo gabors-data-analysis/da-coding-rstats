@@ -45,6 +45,11 @@ if (!require(rgdal)){
   install.packages("rgdal")
   library(rgdal)
 }
+# Cool color palettes
+if (!{require(wesanderson)}){
+  install.packages("wesanderson")
+  library(wesanderson)
+}
 
 
 #################################
@@ -138,7 +143,8 @@ lfe_map
 
 # Change coloring life-expectancy: scale from green to red
 lfe_map + scale_fill_gradient(low = "red", high = "green",
-                              name = "Life Exp.")
+                              name = "") +
+          ggtitle("Life expectancy at birth in years (2017)")
 
 
 ###
@@ -352,18 +358,41 @@ ggplot( lp , aes( long, lat, group = borough , fill = price ) ) +
 
 
 # Create graph with prices: inner-London
+# first define a nice color palette with `wesanderson` package 
+#   check out for more here: https://rforpoliticalscience.com/2020/07/26/make-wes-anderson-themed-graphs-with-wesanderson-package-in-r/
+#     or here: https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
+pal <- wes_palette("Zissou1", 100, type = "continuous")
+
+# Create tibble for inner london, prices added as it is needed for graph
+b_names_il <- filter( left_join( b_names, l_bor , by = 'borough' ), inner_london )
+
+# Adjust some names and coordinate (always check the scale of coordinates before adjusting)
+b_names_il$borough[ b_names_il$borough == 'Hammersmith and Fulham' ] <- 'H&F'
+b_names_il$borough[ b_names_il$borough == 'Kensington and Chelsea' ] <- 'K&C'
+b_names_il$borough[ b_names_il$borough == 'City of London' ] <- 'C.London'
+b_names_il$lat[ b_names_il$borough == 'H&F' ] <- b_names_il$lat[ b_names_il$borough == 'H&F' ] - 1000
+b_names_il$lat[ b_names_il$borough == 'K&C' ] <- b_names_il$lat[ b_names_il$borough == 'K&C' ] - 1000
+
+
+# Do the graph with annotation
 iL_price <- ggplot( filter( lp , inner_london ), 
                     aes(long, lat, group = borough , fill = price ) ) +
   geom_polygon() + 
   geom_path( colour="white", lwd=0.05 ) + 
   coord_equal() +
+  geom_text( data = b_names_il ,
+             aes( long, lat, label = borough ), size = 2 ) +
   labs(x = "lat", y = "lon",
        fill = "Price") +
-  scale_fill_gradient(low = "green",high = "red", 
-                      name = "Price") + 
+  scale_fill_gradientn(colours=pal,
+                       na.value = 'grey', name = "",
+                       limits = c( 0 , 400 )) +
   ggtitle("Average hotel prices: inner-London ($,2017)") +
-  theme_map()
+  theme_map() 
 iL_price
+
+# Note: `scale_fill_gradientn()` is used to compare the prices with Vienna (have common limits),
+#   if comparison is not needed, can use `scale_fill_gradient` or `scale_fill_gradient2`
 
 
 
@@ -405,39 +434,69 @@ match_vienna <- c("17. Hernals","Hernals",
                   "Rudolfsheim-Funfhaus","Rudolfsheim-F\xfcnfhaus",
                   "Wahring","W\xe4hring",
                   "Schonbrunn","Meidling")
-# Rename the variable
+
+# Rename the variable: if ugly name from vienna_map, use the pretty name instead!
 for ( i in 1 : ( length( match_vienna ) / 2 ) ){
-  heu$borough[ heu$borough == match_vienna[ i*2 - 1 ] ] <- match_vienna[ i *2 ]
+  if ( match_vienna[ i*2 - 1 ] %in% c("Landstrasse","Rudolfsheim-Funfhaus","Wahring") ){
+    heu$borough[ heu$borough == match_vienna[ i*2 - 1 ] ] <- match_vienna[ i*2 - 1 ]
+    vienna_map$district[ vienna_map$district ==  match_vienna[ i *2 ] ] <-  match_vienna[ i*2 - 1 ]
+  } else{
+    heu$borough[ heu$borough == match_vienna[ i*2 - 1 ] ] <- match_vienna[ i *2 ]
+  }
 }
 
 
 # Average prices in vienna districts
 v_dist <- heu %>% filter( city_actual == 'Vienna' ) %>%  group_by( borough ) %>% 
-  summarise( price = mean( price , na.rm = T ) )
+  summarise( price = mean( price , na.rm = T ) ) %>% rename( district = borough )
 
 # Check matches ('Vienna' is not identified)
-v_dist$borough %in% sort(unique( vienna_map$district ))
+v_dist$district %in% sort(unique( vienna_map$district ))
 
 # add prices
-vp <- left_join( vienna_map , v_dist %>% rename( district = borough ) , by = 'district' )
+vp <- left_join( vienna_map , v_dist , by = 'district' )
+
+# Get names by each district
+v_names <- aggregate( cbind(long, lat) ~ district, 
+                      data = vienna_map , FUN=function( x ){ mean( range( x ) ) } )
+
+# Re-set the last ugly names and shorten the followings
+v_names$district[ v_names$district == 'D\xf6bling' ] <- 'Dobling'
+v_names$district[ v_names$district == 'Rudolfsheim-Funfhaus' ] <- 'R-F'
+v_names$district[ v_names$district == 'Innere Stadt' ] <- 'I.S.'
+v_names$district[ v_names$district == 'Josefstadt' ] <- 'Josefs.'
+v_names$district[ v_names$district == 'Alsergrund' ] <- 'Agrund'
+v_names$district[ v_names$district == 'Mariahilf' ] <- 'Mhilf.'
+v_names$district[ v_names$district == 'Margareten' ] <- 'Mgaret.'
+
+# Adjust some coordinates for pretty plot
+v_names$long[ v_names$district == 'Penzing' ] <- v_names$long[ v_names$district == 'Penzing' ] - 0.02
+v_names$long[ v_names$district == 'Hernals' ] <- v_names$long[ v_names$district == 'Hernals' ] - 0.02
+v_names$lat[ v_names$district == 'Hernals' ]  <- v_names$lat[ v_names$district == 'Hernals' ] - 0.005
+
 
 
 # Create graph for Vienna
-V_price <- ggplot(vp, aes(long, lat, group = district , fill = price ) ) +
+V_price <- ggplot( vp, aes(long, lat, group = district , fill = price ) ) +
   geom_polygon() + 
   geom_path( colour="white", lwd=0.05 ) + 
   coord_equal() +
+  geom_text( data = left_join( v_names, v_dist , by = 'district' ),
+             aes( long, lat, label = district ), size = 2 ) +
   labs(x = "lat", y = "lon",
        fill = "Price") +
-  scale_fill_gradient(low = "green",high = "red",
-                      name = "Price") +
+  scale_fill_gradientn(colours=pal,
+                       na.value = 'grey', name = "",
+                       limits = c( 0 , 400 )) +
   ggtitle("Average hotel prices: Vienna ($,2017)") +
   theme_map()
 
 V_price
 
-# Show together with common legend
-ggarrange( iL_price + ggtitle("Inner-London")  , 
-           V_price + ggtitle("Vienna") ,
-           ncol = 1 , common.legend = TRUE, legend="top" )
+# Show together with common legend (this is why we use `scale_fill_gradientn()`)
+cities_plot <- ggarrange( iL_price + ggtitle("Inner-London")  , 
+           V_price  + ggtitle("Vienna") ,
+           ncol = 1 , common.legend = TRUE, legend="right" )
 
+annotate_figure(cities_plot, top = text_grob("Average price of a hotel for one night ($)", 
+                                      color = "black", face = "italic", size = 12))
