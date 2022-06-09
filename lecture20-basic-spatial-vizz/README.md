@@ -41,9 +41,11 @@ After successfully completing [`visualize_spatial.R`](https://github.com/gabors-
     - Convert an `S4 object` to a tibble and format, such that it can be used for `ggplot2`
     - `geom_path` to color the edges of the map
     - Map manipulations to show only inner-London boroughs
-    - Add (borough) names to a map with `aggregate` and `geom_text`
+    - Add (borough or district) names to a map with `aggregate` and `geom_text`
+    - Control for limits of legend colors with `scale_fill_gradientn()`
+    - Use nice color maps with `wesanderson` package
     - Task for Vienna: replicate the same as for London
-    - `ggarrange` with a common legend
+    - `ggarrange` with a common legend and add common title with `annotate_figure()`
 
 ## Lecture Time
 
