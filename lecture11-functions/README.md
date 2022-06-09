@@ -8,7 +8,7 @@ One of the best ways to improve your reach as a data scientist is to write funct
 2. As requirements change, you only need to update code in one place, instead of many.
 3. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
 
-Writing good functions is a lifetime journey. Even after using R for many years, one can still learn new techniques and better ways of approaching old problems. The goal is not to teach you every esoteric detail of functions but to get you started with some pragmatic advice that you can apply immediately. ([Hadley Wickham and Garrett Grolemund: R for Data Science, Ch. 19](https://r4ds.had.co.nz/functions.html)
+Writing good functions is a lifetime journey. Even after using R for many years, one can still learn new techniques and better ways of approaching old problems. The goal is not to teach you every esoteric detail of functions but to get you started with some pragmatic advice that you can apply immediately. ([Hadley Wickham and Garrett Grolemund: R for Data Science, Ch. 19](https://r4ds.had.co.nz/functions.html))
 
 ## This lecture
 
