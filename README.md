@@ -11,13 +11,13 @@ Textbook information: [gabors-data-analysis.com](https://gabors-data-analysis.co
 
 This is very much in development. We hope to have a beta version by August 2022. 
 
-Comments are really welcome in email or as a github issue. 
+Comments are really welcome in email or as a GitHub issue. 
 
 ## Overview
 
 The course serves as an introduction to the R programming language and software environment for data exploration, data munging, data visualization, reporting, and modeling. 
 
-Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 course -- and focuses on basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing.
+Lectures 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 course -- and focuses on basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing.
 
 Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) -- Data Analysis 2 -- and focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting.
 
@@ -27,30 +27,31 @@ The material is based on multiple years of teaching coding courses at CEU as wel
   - Winston Chang: [R Graphics Cookbook](https://r-graphics.org/) 
   - Andrew Heiss: [Data Visualization with R ](https://datavizs21.classes.andrewheiss.com) 
 
+and many others, listed in the lecture's readme.
 
 ## How to use
 
-This course material may be used as a basis for course on learning coding with R for the purpose of analyzing data. It is developed to be taught simultaneously with the textbook, but may be used independently. It is rather comprehensive and thus, may be used without any textbook to prepare. 
+This course material may be used as a basis for a course on learning coding with R for the purpose of analyzing data. It is developed to be taught simultaneously with the textbook but may be used independently. It is rather comprehensive and thus, may be used without any textbook to prepare. 
 
-We have not invented the coding wheel. Instead tried to adopt best practices and combine it with real life case studies from the textbook.
+We have not invented the coding wheel. Instead tried to adopt best practices and combine them with real-life case studies from the textbook.
 
-There are no slides, but codes are commented heavily thus it should be easy to follow. In some cases it is beneficial to read the related case-study and/or the chapter to fully appreciate the codes and comments, but not necessary. 
+There are no slides, but codes are commented heavily thus it should be easy to follow. In some cases, it is beneficial to read the related case study and/or the chapter to fully appreciate the codes and comments, but not necessary. 
 
-Within each lecture there is an estimated time that the lecture would need with suggestions on how to shorten the lecture if it would be too long. The lectures are -- in purpose -- contain more material than what a classical 100-mins class per week for 12 weeks would take. It is always easier to cut material than add to it and the taste of each intructor and/or class may differ. We highly encourage to use each lecture as a starting point and modify accordingly. Later, we propose an example for this 100-mins class per week for a semester (12 weeks).
+Within each lecture, there is an estimated time that the lecture would need with suggestions on how to shorten the lecture if it would be too long. The lectures are -- in purpose -- contain more material than what a classical 100-mins class per week for 12 weeks would take. It is always easier to cut material than add to it and the taste of each instructor and/or class may differ. We highly encourage you to use each lecture as a starting point and modify it accordingly. Later, we propose an example for this 100-mins class per week for a semester (12 weeks).
 
 ## Teaching philosophy
 
-We believe, students will learn using R by writing scripts and solving problems on their own. We provide and show them good practices on how to carry out such tasks, but extensive usage is needed.
+We believe students will learn using R by writing scripts and solving problems on their own. We provide and show them good practices on how to carry out such tasks, but extensive usage is needed.
 
 This is not a hardcore coding course, but a course to supplement data analysis. The material focuses on specific issues in this topic and balances between higher levels of coding such as `tidyverse` -- which is more intuitive, easier to learn, but less flexible -- and lower levels in form of basic coding principles -- which allows greater complexity, deeper understanding, but requires much more practice and has a steeper learning curve. 
 
-The material structure reflects these principles. The majority of the lectures have pre-written codes which include in-class tasks to practice and face problems along with regular homework. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding, while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding, while showing alternative methods as well.
+The material structure reflects these principles. The majority of the lecturers have pre-written codes which include in-class tasks to practice and face problems along with regular homework. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding, while showing alternative methods as well.
 
-It is always a good question if solutions for the tasks or homework should be made available for students. We belive show students the in-class solution is beneficial and does not distort motivation as slower learners may want to revise and compare the true solution to their owns. Hence, for each lecture we provide the solutions for these tasks. However, this is not the case for the homework. We found that showing solutions to the students is rather depresses the motivation and creativity, therefore there are no solutions for the homework. (It is important that there are (infinitely) many good solution for a HW, thus we usually encourage students to try out different paths as well.)
+It is always a good question if solutions for the tasks or homework should be made available for students. We believe show students the in-class solution is beneficial and does not distort motivation as slower learners may want to revise and compare the true solution to their own. Hence, for each lecture, we provide the solutions for these tasks. However, this is not the case for the homework. We found that showing solutions to the students rather depresses their motivation and creativity, therefore there are no solutions for the homework. (It is important that there are (infinitely) many good solutions for an HW, thus we usually encourage students to try out different paths as well.)
 
 ### Lectures, learning outcomes, and case-studies
 
-The following table shows a brief summary about the lectures: what is the type of the lecture, what is the expected learning outcome and how it relates to the textbook's case studies and datasets.
+The following table shows a brief summary of the lectures: what is the type of the lecture, what is the expected learning outcome, and how it relates to the textbook's case studies and datasets.
 
 | Lecture  | Lecture Type | Learning outcomes | Case-study | Dataset |
 | -------  | -------------| ----------------- | ---------- | ------- |
@@ -93,7 +94,7 @@ Within each lecture there is the following folder structure:
 
 ## Learning outcomes and relation to the book
 
-Probably, the largest difference compared to the book is that, data handling is the most challenging and most time-consuming part of coding, while it is a relatively little (but as important!) part of the book. It is always a challenge to keep up with the material if the two courses (Data Analysis and Coding) are running parallel. Experience shows that [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration) in this course is the first truly common point with the book and [lecture06-rmarkdown101](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture06-rmarkdown101) enables students to submit data analysis material via pdf or HTML. This coding material was developed such that it catches up with the book as quickly as possible, showing truly essential tools to do data handling in the dastest way. The result is that after 6 lectures from both courses (teaching Part I. of the book) there is room for common assignment in the form of a descriptive analysis: e.g. carry out a data-collection exercise, clean the data and do exploratory analysis. The 'cost' is that apart from some references or homework there is no true connection between the two courses before [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration) in coding and the data handling skills can be improved even more. Therefore do not expect students to be able to solve (all) of the data exercises from the book (however, there were some positive surprises during the years).
+Probably, the largest difference compared to the book is that data handling is the most challenging and most time-consuming part of coding, while it is a relatively little (but as important!) part of the book. It is always a challenge to keep up with the material if the two courses (Data Analysis and Coding) are running parallel. Experience shows that [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration) in this course is the first truly common point with the book and [lecture06-rmarkdown101](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture06-rmarkdown101) enables students to submit data analysis material via pdf or HTML. This coding material was developed such that it catches up with the book as quickly as possible, showing truly essential tools to do data handling with the data in an easy way. The result is that after 6 lectures from both courses (teaching Part I. of the book) there is room for common assignment in the form of a descriptive analysis: e.g. carry out a data-collection exercise, clean the data and do exploratory analysis. The 'cost' is that apart from some references or homework there is no true connection between the two courses before [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration) in coding and the data handling skills can be improved even more. Therefore do not expect students to be able to solve (all) of the data exercises from the book (however, there were some positive surprises during the years).
 
 In contrast, Part II in the book deals with regressions of various forms. This is fairly simple from the coding perspective, which allows the lecturer to deepen students' knowledge of 
 
@@ -101,10 +102,10 @@ In contrast, Part II in the book deals with regressions of various forms. This i
 2. add further data handling practices to students' toolkit, and 
 3. provide more skills on Rmarkdown, while following the material of the book. 
  
-If material is properly taught -- for Part III of the book -- there is no need for an extra coding course, but a simple seminar type of supplement, which put emphasis on *interpretation* and *practice* of machine learning methods. In principle after these materials, students should be able to code by themself, understand and work with case study materials related to Part IV.
+If material is properly taught -- for Part III of the book -- there is no need for an extra coding course, but a simple seminar type of supplement, which put emphasis on *interpretation* and *practice* of machine learning methods. In principle after these materials, students should be able to code by themself and understand and work with case study materials related to Part IV.
 
 
-### Case-studies and coding lectures
+### Case studies and coding lectures
 Or one can relate each case study from the book to specific lectures.
 
 |Chapter | Case-study | Lecture |
@@ -138,17 +139,34 @@ Or one can relate each case study from the book to specific lectures.
 |            | [ch12-stock-returns-risk](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-stock-returns-risk)| [lecture17-dates-n-times](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture17-dates-n-times)** |
 |            | [ch12-time-series-simulations](https://github.com/gabors-data-analysis/da_case_studies/tree/master/ch12-time-series-simulations) | All of the following**: [lecture17-dates-n-times](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture17-dates-n-times), [lecture09-loops](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture09-loops) and [lecture10-random-numbers](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture10-random-numbers) |
 
-*partial match: case study is only used as a starting point for the lecture.
+*partial match: the case study is only used as a starting point for the lecture.
 
 **students can understand and replicate material based on that lecture
 
 ## Example course
 
-As an example for a coding course
+As an example for a coding course, which takes one 100-mins class per week for a semester (12 weeks), we have taught the followings:
+
+|   Class  | Lecture(s) | Comments |
+| -------- | ---------- | -------- |
+| Class 01 | [lecture00-intro](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture00-intro), [lecture01-coding-basics](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture01-coding-basics) | Installation of R, RStudio, and `tidyverse` package along with knitting an RMarkdown is asked to be done before the class. From coding basics some materials (e.g. numeric vs integer vs double, or indexing or lists) are left out if I run out of time. |
+| Class 02 | [lecture02-data-imp-n-exp](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture02-data-imp-n-exp), [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles) | Sometimes [lecture03-tibbles](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture03-tibbles) finished on next class. |
+| Class 03 | [lecture04-data-munging](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture04-data-munging), start: [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration)  | Ask about RMarkdown knitting. |
+| Class 04 | Finish: [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration), [lecture06-rmarkdown101](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture06-rmarkdown101)| At this point, should assess students that they understand the basics of coding and make sure nobody is struggling. From this class they should be able to prepare for submitting a project for 6th week's assessment, which should be 2 weeks from this point. |
+| Class 05 | [lecture07-ggplot-indepth](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture07-ggplot-indepth), [lecture08-conditionals](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture08-conditionals) | This class provides some room for repetition or clarifying concepts.
+| Class 06 | [lecture09-loops](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture09-loops), [lecture10-random-numbers](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture10-random-numbers) and [lecture11-functions](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture11-functions) | Should be a more relaxed class as during these days there are many (other) assessment for student and concentrate more on the joy of programming. Many students may already know this material, try to come up with some entertaining tasks for them as well. |
+| Class 07 | [lecture12-intro-to-regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture12-intro-to-regression), [lecture13-feature-engineering](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture13-feature-engineering) | Feature engineering is new material, but fits here quite well. Class 07 should be **after** first class from Data Analysis 2, which discusses Chapter 7. |
+| Class 08 | [lecture14-simple-regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture14-simple-regression) | Great opportunity for in-class (team) work for students with live coding. |
+| Class 09 | [lecture15-advanced-linear-regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture15-advanced-linear-regression) | Make sure students covered Chapter 10 from the book. If not, spatial data visualization is a great substitute here. |
+| Class 10 | [lecture16-binary-models](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture16-binary-models) | In some cases this material is covered as a Data Analysis 2 seminar class. This provides an opportunity to fill any gaps or make class 12 not so dense, by jumping to the next class's material. |
+| Class 11 | [lecture17-dates-n-times](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture17-dates-n-times), [lecture18-timeseries-regression](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture18-timeseries-regression) | If short in time, skip [lecture17-dates-n-times](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture17-dates-n-times) |
+| Class 12 | [lecture19-advaced-rmarkdown](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture19-advaced-rmarkdown), [lecture20-basic-spatial-vizz](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture20-basic-spatial-vizz) | Two paths: discuss [lecture19-advaced-rmarkdown](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture19-advaced-rmarkdown) in detail with the whys as well, but then there is no time for [lecture20-basic-spatial-vizz](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture20-basic-spatial-vizz). Or stick with the technical details in both lectures, which allows higher probability to finish. |
+| Class * | [lecture20-basic-spatial-vizz](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture20-basic-spatial-vizz) | This lecture seldomly fits into the timeframe of the class, especially if this coding class runs along with Data Analysis 1 and 2 (DA1 and DA2) and serves as a supplement both in coding and understanding the material. However, if there is a mismatch, this class can be flexibly used as a substitute (e.g. DA1 or DA2 are lagging behind) |
+
 
 ## Our thanks
 
-Thanks to all folks who contributed to the codebase for the course, especially Gábor Kézdi, co-author of the book. But also thanks to [Zsuzsa Holler](https://www.linkedin.com/in/zsuzsa-holler-70bba031/), [Kinga Ritter](https://www.linkedin.com/in/kinga-ritter/?originalSubdomain=es), [Ádám Víg](https://github.com/adamvig96), [Jenő Pál](https://github.com/paljenczy/), [János Divényi](https://divenyijanos.github.io/pages/about-me.html), Gábors' many students. Big thanks to [Laurent Bergé](https://sites.google.com/site/laurentrberge/software?authuser=0), [Grant McDermott](https://grantmcdermott.com/software/) and [Vincent Arel-Bundock](https://arelbundock.com/#code) for awesome packages and all the help on coding over several years.
+Thanks to all folks who contributed to the codebase for the course, especially Gábor Kézdi, co-author of the book. But also thanks to [Zsuzsa Holler](https://www.linkedin.com/in/zsuzsa-holler-70bba031/), [Kinga Ritter](https://www.linkedin.com/in/kinga-ritter/?originalSubdomain=es), [Ádám Víg](https://github.com/adamvig96), [Jenő Pál](https://github.com/paljenczy/), [János Divényi](https://divenyijanos.github.io/pages/about-me.html), Gábors' and Ágoston's many students. Big thanks to [Laurent Bergé](https://sites.google.com/site/laurentrberge/software?authuser=0), [Grant McDermott](https://grantmcdermott.com/software/) and [Vincent Arel-Bundock](https://arelbundock.com/#code) for awesome packages and all the help on coding over several years. Finally, for the financial support of the Department of Economics and Business at CEU.
 
 
 ## Found an error or have a suggestion?
