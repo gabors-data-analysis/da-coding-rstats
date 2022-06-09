@@ -17,11 +17,11 @@ Comments are really welcome in email or as a github issue.
 
 The course serves as an introduction to the R programming language and software environment for data exploration, data munging, data visualization, reporting, and modeling. 
 
-Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 course -- and focuses on the basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing.
+Lecture 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 course -- and focuses on basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing.
 
 Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) -- Data Analysis 2 -- and focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting.
 
-The material is based on 3 years of teaching a coding course as well as advice from many many great resources such as 
+The material is based on multiple years of teaching coding courses at CEU as well as advice from many many great resources such as 
   - Hadley Wickham and Garrett Grolemund [R for Data Science](https://r4ds.had.co.nz) 
   - Jae Yeon Kim: [R Fundamentals for Public Policy, Course material](https://github.com/KDIS-DSPPM/r-fundamentals) 
   - Winston Chang: [R Graphics Cookbook](https://r-graphics.org/) 
@@ -34,17 +34,23 @@ This course material may be used as a basis for course on learning coding with R
 
 We have not invented the coding wheel. Instead tried to adopt best practices and combine it with real life case studies from the textbook.
 
-There are no slides. But codes are commented heavily. 
+There are no slides, but codes are commented heavily thus it should be easy to follow. In some cases it is beneficial to read the related case-study and/or the chapter to fully appreciate the codes and comments, but not necessary. 
+
+Within each lecture there is an estimated time that the lecture would need with suggestions on how to shorten the lecture if it would be too long. The lectures are -- in purpose -- contain more material than what a classical 100-mins class per week for 12 weeks would take. It is always easier to cut material than add to it and the taste of each intructor and/or class may differ. We highly encourage to use each lecture as a starting point and modify accordingly. Later, we propose an example for this 100-mins class per week for a semester (12 weeks).
 
 ## Teaching philosophy
 
-We believe, students will learn using R by writing scripts, solving problems on their own and we can provide and show them good practices on how to do it. 
+We believe, students will learn using R by writing scripts and solving problems on their own. We provide and show them good practices on how to carry out such tasks, but extensive usage is needed.
 
-This is not a hardcore coding course, but a course to supplement data analysis. The material focuses on specific issues in this topic and balances between higher levels of coding such as `tidyverse` -- which is more intuitive, easier to learn but less flexible -- and lower levels in form of basic coding principles -- which allows greater complexity, but requires much more practice and has a steeper learning curve. 
+This is not a hardcore coding course, but a course to supplement data analysis. The material focuses on specific issues in this topic and balances between higher levels of coding such as `tidyverse` -- which is more intuitive, easier to learn, but less flexible -- and lower levels in form of basic coding principles -- which allows greater complexity, deeper understanding, but requires much more practice and has a steeper learning curve. 
 
-The material structure also reflects this principle. The majority of the lectures have pre-written codes which include in-class tasks. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills via practice. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding.
+The material structure reflects these principles. The majority of the lectures have pre-written codes which include in-class tasks to practice and face problems along with regular homework. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding, while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding, while showing alternative methods as well.
+
+It is always a good question if solutions for the tasks or homework should be made available for students. We belive show students the in-class solution is beneficial and does not distort motivation as slower learners may want to revise and compare the true solution to their owns. Hence, for each lecture we provide the solutions for these tasks. However, this is not the case for the homework. We found that showing solutions to the students is rather depresses the motivation and creativity, therefore there are no solutions for the homework. (It is important that there are (infinitely) many good solution for a HW, thus we usually encourage students to try out different paths as well.)
 
 ### Lectures, learning outcomes, and case-studies
+
+The following table shows a brief summary about the lectures: what is the type of the lecture, what is the expected learning outcome and how it relates to the textbook's case studies and datasets.
 
 | Lecture  | Lecture Type | Learning outcomes | Case-study | Dataset |
 | -------  | -------------| ----------------- | ---------- | ------- |
@@ -87,9 +93,15 @@ Within each lecture there is the following folder structure:
 
 ## Learning outcomes and relation to the book
 
-Probably, the largest difference compared to the book is that data handling is the most challenging and most time-consuming part of coding, while it is a relatively little part of the book. It is always a challenge to keep up with the material if the two courses (Data Analysis and Coding) are running parallel. Experience shows that lecture 05 - data exploration in this course is the first truly common point with the book and lecture 06 - rmarkdown101 enables students to submit data analysis material via pdf or HTML. This coding material was developed such that it catches up with the book as quickly as possible, showing truly essential tools to do data handling. The result is that after 6 lectures from both courses (teaching Part I. of the book) there is room for common assignment in the form of a descriptive analysis: e.g. carry out a data-collection exercise, clean the data and do exploratory analysis. The 'cost' is that apart from some references or homework there is no true connection between the two courses before lecture 05 in coding and the data handling skills can be improved even more. Therefore do not expect students to be able to solve (all) of the data exercises from the book (however, there were some positive surprises during the years).
+Probably, the largest difference compared to the book is that, data handling is the most challenging and most time-consuming part of coding, while it is a relatively little (but as important!) part of the book. It is always a challenge to keep up with the material if the two courses (Data Analysis and Coding) are running parallel. Experience shows that [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration) in this course is the first truly common point with the book and [lecture06-rmarkdown101](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture06-rmarkdown101) enables students to submit data analysis material via pdf or HTML. This coding material was developed such that it catches up with the book as quickly as possible, showing truly essential tools to do data handling in the dastest way. The result is that after 6 lectures from both courses (teaching Part I. of the book) there is room for common assignment in the form of a descriptive analysis: e.g. carry out a data-collection exercise, clean the data and do exploratory analysis. The 'cost' is that apart from some references or homework there is no true connection between the two courses before [lecture05-data-exploration](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture05-data-exploration) in coding and the data handling skills can be improved even more. Therefore do not expect students to be able to solve (all) of the data exercises from the book (however, there were some positive surprises during the years).
 
-In contrast, Part II in the book deals with regressions of various forms. This is fairly simple from the coding perspective, which allows the lecturer to deepen students' knowledge of a) basic coding principles; b) add further data handling practices to students' toolkit, and c) provide more skills on Rmarkdown, while following the material of the book. If material is properly taught -- for Part III of the book -- there is no need for an extra coding course, but a simple seminar type of supplement, which put emphasis on *interpretation* and *practice* of machine learning methods. In principle after these materials, students should be able to code by themself and understand and work with case study materials related to Part IV.
+In contrast, Part II in the book deals with regressions of various forms. This is fairly simple from the coding perspective, which allows the lecturer to deepen students' knowledge of 
+
+1. basic coding principles;
+2. add further data handling practices to students' toolkit, and 
+3. provide more skills on Rmarkdown, while following the material of the book. 
+ 
+If material is properly taught -- for Part III of the book -- there is no need for an extra coding course, but a simple seminar type of supplement, which put emphasis on *interpretation* and *practice* of machine learning methods. In principle after these materials, students should be able to code by themself, understand and work with case study materials related to Part IV.
 
 
 ### Case-studies and coding lectures
@@ -129,6 +141,10 @@ Or one can relate each case study from the book to specific lectures.
 *partial match: case study is only used as a starting point for the lecture.
 
 **students can understand and replicate material based on that lecture
+
+## Example course
+
+As an example for a coding course
 
 ## Our thanks
 
