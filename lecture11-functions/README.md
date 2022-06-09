@@ -1,12 +1,24 @@
 # Lecture 11: Writing Functions
 
-This lecture introduces functions, how they are structured and how to write them. Students will know how to write basic functions, control for input(s) and output(s) and error-handling.
+## Motivation
+
+One of the best ways to improve your reach as a data scientist is to write functions. Functions allow automating common tasks in a more powerful and general way than copy-and-pasting. Writing a function has three big advantages over using copy-and-paste:
+
+1. You can give a function an evocative name that makes your code easier to understand.
+2. As requirements change, you only need to update code in one place, instead of many.
+3. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
+
+Writing good functions is a lifetime journey. Even after using R for many years, one can still learn new techniques and better ways of approaching old problems. The goal is not to teach you every esoteric detail of functions but to get you started with some pragmatic advice that you can apply immediately. ([Hadley Wickham and Garrett Grolemund: R for Data Science, Ch. 19](https://r4ds.had.co.nz/functions.html)
+
+## This lecture
+
+This lecture introduces functions, how they are structured and how to write them. Students will know how to write basic functions, control for input(s) and output(s), and error-handling.
 
 Case studies related to lecture:
-  - [Chapter 05, A: What likelihood of loss to expect on a stock portfolio?](https://gabors-data-analysis.com/casestudies/#ch05a-what-likelihood-of-loss-to-expect-on-a-stock-portfolio) as a homework to calculate bootstrap standard errors and calculate confidence intervals.
+  - [Chapter 05, A: What likelihood of loss to expect on a stock portfolio?](https://gabors-data-analysis.com/casestudies/#ch05a-what-likelihood-of-loss-to-expect-on-a-stock-portfolio) as homework to calculate bootstrap standard errors and calculate confidence intervals.
   - [Chapter 06, A: Comparing online and offline prices: testing the difference](https://gabors-data-analysis.com/casestudies/#ch06a-comparing-online-and-offline-prices-testing-the-difference) and [Chapter 06, B: Testing the likelihood of loss on a stock portfolio](https://gabors-data-analysis.com/casestudies/#ch06b-testing-the-likelihood-of-loss-on-a-stock-portfolio) as at the end of the lecture we build a function to show the distribution of t-statistics.
 
-In addition for writing functions, it uses data from the case study [Chapter 04, A: Management quality and firm size: describing patterns of association](https://gabors-data-analysis.com/casestudies/#ch04a-management-quality-and-firm-size-describing-patterns-of-association).
+In addition to writing functions, it uses data from the case study [Chapter 04, A: Management quality and firm size: describing patterns of association](https://gabors-data-analysis.com/casestudies/#ch04a-management-quality-and-firm-size-describing-patterns-of-association).
 
 
 ## Learning outcomes
