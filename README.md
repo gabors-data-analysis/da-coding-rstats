@@ -2,14 +2,16 @@
 Introduction to Data Analysis with R - lecture materials
 by [Ágoston Reguly](https://regulyagoston.github.io/) (CEU) with [Gábor Békés](https://sites.google.com/site/bekesg/) ([CEU](https://people.ceu.edu/gabor_bekes), [KRTK](https://kti.krtk.hu/en/kutatok/gabor-bekes/5896/), [CEPR](https://voxeu.org/users/gaborbekes0)) 
 
-This course material is a supplement to *Data Analysis for Business, Economics, and Policy 
+This course material is a supplement to ***Data Analysis for Business, Economics, and Policy** 
 by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan),  Cambridge University Press, 2021*
 
-Textbook information: [gabors-data-analysis.com](https://gabors-data-analysis.com/)
+*Textbook* information: see the textbook's website [gabors-data-analysis.com](https://gabors-data-analysis.com/) or visit [Camridge University Press](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20)    
+To get a copy: [Inspection copy for instructors](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20/examination-copy/personal-details) or [Order online](https://gabors-data-analysis.com/order)
+
 
 ## Status
 
-This is very much in development. We hope to have a beta version by August 2022. 
+This is version 0.1.
 
 Comments are really welcome in email or as a GitHub issue. 
 
@@ -17,17 +19,20 @@ Comments are really welcome in email or as a GitHub issue.
 
 The course serves as an introduction to the R programming language and software environment for data exploration, data munging, data visualization, reporting, and modeling. 
 
-Lectures 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) -- which is the basis of Data Analysis 1 course -- and focuses on basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing.
+Lectures 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://gabors-data-analysis.com/chapters/#part-i-data-exploration) focuses on basic programming principles, data structures, data cleaning and data exploration with descriptives and graphs, and simple hypothesis testing. This is an intro package to learning R and using it for exploration and some basic analysis. 
 
-Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) -- Data Analysis 2 -- and focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting.
+Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting. This is a regression focused package with advnaced features for analysis including markdown.
 
-The material is based on multiple years of teaching coding courses at CEU as well as advice from many many great resources such as 
-  - Hadley Wickham and Garrett Grolemund [R for Data Science](https://r4ds.had.co.nz) 
-  - Jae Yeon Kim: [R Fundamentals for Public Policy, Course material](https://github.com/KDIS-DSPPM/r-fundamentals) 
-  - Winston Chang: [R Graphics Cookbook](https://r-graphics.org/) 
-  - Andrew Heiss: [Data Visualization with R ](https://datavizs21.classes.andrewheiss.com) 
+## Teaching philosophy
 
-and many others, listed in the lecture's readme.
+We believe students will learn using R by writing scripts and solving problems on their own. We provide and show them good practices on how to carry out such tasks, but extensive usage is needed.
+
+This is not a hardcore coding course, but a course to supplement data analysis. The material focuses on specific issues in this topic and balances between higher levels of coding such as `tidyverse` -- which is more intuitive, easier to learn, but less flexible -- and lower levels in form of basic coding principles -- which allows greater complexity, deeper understanding, but requires much more practice and has a steeper learning curve. 
+
+The material structure reflects these principles. The majority of the lecturers have pre-written codes which include in-class tasks to practice and face problems along with regular homework. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding, while showing alternative methods as well.
+
+It is always a good question if solutions for the tasks or homework should be made available for students. We believe show students the in-class solution is beneficial and does not distort motivation as slower learners may want to revise and compare the true solution to their own. Hence, for each lecture, we provide the solutions for these tasks. However, this is not the case for the homework. We found that showing solutions to the students rather depresses their motivation and creativity, therefore there are no solutions for the homework. (It is important that there are (infinitely) many good solutions for an HW, thus we usually encourage students to try out different paths as well.)
+
 
 ## How to use
 
@@ -39,15 +44,17 @@ There are no slides, but codes are commented heavily thus it should be easy to f
 
 Within each lecture, there is an estimated time that the lecture would need with suggestions on how to shorten the lecture if it would be too long. The lectures are -- in purpose -- contain more material than what a classical 100-mins class per week for 12 weeks would take. It is always easier to cut material than add to it and the taste of each instructor and/or class may differ. We highly encourage you to use each lecture as a starting point and modify it accordingly. Later, we propose an example for this 100-mins class per week for a semester (12 weeks).
 
-## Teaching philosophy
+## Sources 
 
-We believe students will learn using R by writing scripts and solving problems on their own. We provide and show them good practices on how to carry out such tasks, but extensive usage is needed.
+The material is based on multiple years of teaching coding courses at [Central European University](https://courses.ceu.edu/programs/ms/master-science-business-analytics) as well as advice from many many great resources such as 
+  - Hadley Wickham and Garrett Grolemund [R for Data Science](https://r4ds.had.co.nz) 
+  - Jae Yeon Kim: [R Fundamentals for Public Policy, Course material](https://github.com/KDIS-DSPPM/r-fundamentals) 
+  - Winston Chang: [R Graphics Cookbook](https://r-graphics.org/) 
+  - Andrew Heiss: [Data Visualization with R ](https://datavizs21.classes.andrewheiss.com) 
 
-This is not a hardcore coding course, but a course to supplement data analysis. The material focuses on specific issues in this topic and balances between higher levels of coding such as `tidyverse` -- which is more intuitive, easier to learn, but less flexible -- and lower levels in form of basic coding principles -- which allows greater complexity, deeper understanding, but requires much more practice and has a steeper learning curve. 
+and many others, listed in the lecture's READMEs.
 
-The material structure reflects these principles. The majority of the lecturers have pre-written codes which include in-class tasks to practice and face problems along with regular homework. This enables the instructor to show a greater variety of codes, good examples for coding, and way more commands and functions than live coding while providing room for practicing. For this type of lecture, homework is essential, as it helps students to deepen their coding skills. There are also few live-coding lectures, which require flexibility and more preparation from the teacher (material provides detailed instructions). These lectures are focusing on basic coding principles such as the introduction to coding, functions, loops, conditionals, etc., and show students possible paths to hardcore coding, while showing alternative methods as well.
 
-It is always a good question if solutions for the tasks or homework should be made available for students. We believe show students the in-class solution is beneficial and does not distort motivation as slower learners may want to revise and compare the true solution to their own. Hence, for each lecture, we provide the solutions for these tasks. However, this is not the case for the homework. We found that showing solutions to the students rather depresses their motivation and creativity, therefore there are no solutions for the homework. (It is important that there are (infinitely) many good solutions for an HW, thus we usually encourage students to try out different paths as well.)
 
 ### Lectures, learning outcomes, and case-studies
 
