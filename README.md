@@ -5,7 +5,7 @@ by [Ágoston Reguly](https://regulyagoston.github.io/) (CEU) with [Gábor Béké
 This course material is a supplement to ***Data Analysis for Business, Economics, and Policy** 
 by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan),  Cambridge University Press, 2021*
 
-*Textbook* information: see the textbook's website [gabors-data-analysis.com](https://gabors-data-analysis.com/) or visit [Camridge University Press](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20)    
+*Textbook* information: see the textbook's website [gabors-data-analysis.com](https://gabors-data-analysis.com/) or visit [Cambridge University Press](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20)    
 To get a copy: [Inspection copy for instructors](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20/examination-copy/personal-details) or [Order online](https://gabors-data-analysis.com/order)
 
 
