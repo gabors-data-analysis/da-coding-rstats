@@ -4,7 +4,8 @@
 #                                #
 #    Introduction to tibble      #
 #                                #
-#     - Tibble as 'Data' var     #
+#     - Tibble as 'Data'         #
+#         type of variable       #
 #     - Indexing                 #
 #     - Simple functions         #
 #     - Reset values,            #
@@ -22,10 +23,10 @@ rm(list = ls())
 library(tidyverse)
 
 #####
-# a) Tibble as a 'Data' variable
+# a) Tibble as a 'Data' type of variable
 #
 # In tidyverse, data is stored in 'tibble':
-#   this creates a special 'Data' variable:
+#   this creates a special 'Data' type of variable:
 #     it consists: rows    = observations
 #                  columns = variables
 #   there are certain rules of creating 'Data' variables!
