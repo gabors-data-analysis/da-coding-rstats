@@ -51,6 +51,7 @@ The material is based on multiple years of teaching coding courses at [Central E
   - Jae Yeon Kim: [R Fundamentals for Public Policy, Course material](https://github.com/KDIS-DSPPM/r-fundamentals) 
   - Winston Chang: [R Graphics Cookbook](https://r-graphics.org/) 
   - Andrew Heiss: [Data Visualization with R ](https://datavizs21.classes.andrewheiss.com) 
+  - Grant McDermott: [Data Science for Economists](https://github.com/uo-ec607/lectures/) 
 
 and many others, listed in the lecture's READMEs.
 
