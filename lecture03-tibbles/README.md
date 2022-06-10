@@ -6,7 +6,7 @@ How to start working with data? Clarifying the concept of tidy data helps us to 
 
 ## This lecture
 
-This lecture introduces `tibble`-s as the 'Data' variable in `tidyverse`. It shows multiple columns and row manipulations with one `tibble` as well as how to merge two `tibble`s. It uses pre-written codes with tasks during the class.
+This lecture introduces `tibble`-s as the 'Data' type of variable in `tidyverse`. It shows multiple columns and row manipulations with one `tibble` as well as how to merge two `tibble`s. It uses pre-written codes with tasks during the class.
 
 Data merging is based on [Chapter 02, C: Identifying successful football managers](https://gabors-data-analysis.com/casestudies/#ch02c-identifying-successful-football-managers).
 
