@@ -1,6 +1,8 @@
 #####################################
 #                                   #
-#     Class 1 for Part III          #
+#   Seminar 1 for Part III          #
+#     Model selection with          #
+#       cross-validation            #
 #                                   #
 # Topics covered:                   #
 #   - Data cleaning & refactoring   #

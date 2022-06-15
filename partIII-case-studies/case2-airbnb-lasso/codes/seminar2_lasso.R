@@ -1,9 +1,36 @@
-#########################################
-# Chapter 14                            #
-# Predicting AirBnB apartment prices:   #
-#     selecting a regression model      #
-# using the airbnb dataset              #
-#########################################
+#####################################
+#                                   #
+#     Seminar 2 for Part III        #
+#     Prediction with Lasso         #
+#                                   #
+# Topics covered:                   #
+#   - Data cleaning & refactoring   #
+#   - Basic feature engineering II  #
+#   - 3 sample approach:            #
+#       - train and test sample     #
+#         to do cross-validation    #
+#         or tuning                 #
+#       - hold-out sample to        #
+#         evaluate prediction       #
+#   - Model selection with:         #
+#     - lin.regression with cv      #
+#     - lasso (ridge & elastic net) #
+#   - Diagnostics and evaluation    #
+#     - which model gives           #
+#       best prediction on hold-out #
+#     - stability of the prediction #
+#     - further diagnostics with    #
+#         figures                   #
+#                                   #
+# Case studies:                     #
+#  -CH14B Predicting AirBnB         #
+#     apartment prices:             #
+#     selecting a regression model  #
+#                                   #
+# dataset:                          #
+#   airbnb                          #
+#                                   #
+#####################################
 
 
 
@@ -34,8 +61,8 @@ if (!require(glmnet)){
 ########################################
 #####
 # Load data
-
-data <- read_csv( "https://raw.githubusercontent.com/regulyagoston/BA21_Coding/main/Class_2/data/airbnb_hackney_workfile_adj_book1.csv") %>% 
+url_data <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/partIII-case-studies/case2-airbnb-lasso/data/airbnb_hackney_workfile_adj_book1.csv'
+data <- read_csv( url_data ) %>% 
   mutate_if(is.character, factor)
 
 ######################
