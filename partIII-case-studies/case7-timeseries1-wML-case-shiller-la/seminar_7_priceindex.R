@@ -1,7 +1,7 @@
 ###########################################
 #                                         #
 #     Seminar 46 for Part III             #
-#  Forecasting a time-series object       #
+#  Forecasting a time-series object: 1    #
 #                                         #
 # Topics covered:                         #
 #   - Data munging with time-series (ts)  #
