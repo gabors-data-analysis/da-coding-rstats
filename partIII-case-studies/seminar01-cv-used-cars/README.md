@@ -10,6 +10,10 @@ We introduce point prediction versus interval prediction; we discuss the compone
 
 This seminar refreshes methods for data cleaning and refactoring data as well as some basic feature engineering practices. After data is set, multiple competing regressions are run and compared via BIC and k-fold cross validation. Cross validation is carried out by the `caret` package as well. After the best-performing model is chosen (by RMSE), prediction performance and risks associated are discussed. In the case, when log-transformed outcome is used as the model, transformation back to level and evaluation of the prediction performance is also covered.
 
+Case studies used:
+  - [Chapter 13, A: Predicting used car value with linear regressions](https://gabors-data-analysis.com/casestudies/#ch13a-predicting-used-car-value-with-linear-regressions)
+  - [Chapter 14, A: Predicting used car value: log prices](https://gabors-data-analysis.com/casestudies/#ch14a-predicting-used-car-value-log-prices)
+
 ## Learning outcomes
 After successfully completing [`seminar1_crossvalidation.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/partIII-case-studies/seminar01-cv-used-cars/seminar1_crossvalidation.R), students should be able:
 
@@ -21,6 +25,10 @@ After successfully completing [`seminar1_crossvalidation.R`](https://github.com/
   - Understand what happens if a log-transformed outcome is used
     - convert prediction back to level
     - compare prediction performance of other (non-log) models 
+
+## Dataset used
+
+- [used-cars](https://gabors-data-analysis.com/datasets/#used-cars)
 
 ## Seminar Time
 
