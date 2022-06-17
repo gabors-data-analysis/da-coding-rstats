@@ -16,6 +16,8 @@ to predict
 
 Part III also covers time-series data and offers cross-validation techniques for simple time series, ARIMA and VAR models with an outlook of using the `prophet` package.
 
+Our general approach is to use `caret` as an umbrella package and then supply it with different packages containing different ML tools.
+
 ## Seminars
 
 There are 7 seminars connecting to Part III, however usually only 6 classes, as the last two seminars are coveres in one class. The usual way how this material is organized is the following:
