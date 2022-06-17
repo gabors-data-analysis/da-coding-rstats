@@ -27,9 +27,13 @@ After successfully completing [`seminar_6_swimming.R`](https://github.com/gabors
     - Comparing model based on forecasting performance (RMSE)
     - Graphical representation: fan-chart  
 
+## Dataset used
+
+ - [swim-transactions](https://gabors-data-analysis.com/datasets/#swim-transactions)
+
 ## Seminar Time
 
-Ideal overall time: **100 mins**.
+Ideal overall time: **50-60 mins**.
 
 
 ## Further material
