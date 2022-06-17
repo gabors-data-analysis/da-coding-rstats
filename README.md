@@ -23,6 +23,8 @@ Lectures 1 to 11 complements [Part I: Data Exploration (Chapter 1-6)](https://ga
 
 Lecture 12 to 19 complements [PART II: Regression Analysis (Chapter 7-12)](https://gabors-data-analysis.com/chapters/#part-ii-regression-analysis) focuses on statistical methods such as nonparametric regression, single and multiple linear cross-sections, binary models and simple time-series analysis while adding more advanced toolkit for visualization and reporting. This is a regression focused package with advnaced features for analysis including markdown.
 
+There is a specific folder, which contains coding material for [PART III: Prediction (Chapter 13-18)](https://gabors-data-analysis.com/chapters/#part-iii-prediction). This folder, [part-III-case-studies](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/part-III-case-studies) is not intended to be part of an introductory R course, but rather a more advanced seminar to support Data Analysis with machine learning tools for prediction. In this seminar-style course, students will cover topics such as model selection with cross-validation, LASSO, RIDGE or Elastic Net regularization, regression trees with CART, random forest, and boosting. These methods are applied to cross-sectional data, especially to the continuous outcome, and also for binary outcomes to model probability and handle classification problems. Time series modeling on the long run and short run via ARIMA and VAR models are also covered. For properly understanding this material, the prerequisite is to complete the coding lectures from 1 to 19.
+
 ## Teaching philosophy
 
 We believe students will learn using R by writing scripts and solving problems on their own. We provide and show them good practices on how to carry out such tasks, but extensive usage is needed.
@@ -110,7 +112,7 @@ In contrast, Part II in the book deals with regressions of various forms. This i
 2. add further data handling practices to students' toolkit, and 
 3. provide more skills on Rmarkdown, while following the material of the book. 
  
-If material is properly taught -- for Part III of the book -- there is no need for an extra coding course, but a simple seminar type of supplement, which put emphasis on *interpretation* and *practice* of machine learning methods. In principle after these materials, students should be able to code by themself and understand and work with case study materials related to Part IV.
+If material is properly taught -- for Part III of the book -- there is no need for an extra coding course, but a simple seminar type of supplement, which put emphasis on *interpretation* and *practice* of machine learning methods. This material is provided in the folder [part-III-case-studies](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/part-III-case-studies). In principle after these materials, students should be able to code by themself and understand and work with case study materials related to Part IV.
 
 
 ### Case studies and coding lectures
