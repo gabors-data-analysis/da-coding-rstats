@@ -19,7 +19,7 @@ Case study:
 
 Lecturer/students should be aware that there is a separate file at the official case studies repository: [`ch17-firm-exit-data-prep.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch17-predicting-firm-exit/ch17-firm-exit-data-prep.R) for this seminar, overviewing only the data cleaning and feature engineering process for binary outcomes. This is extremely important and powerful to understand how to prepare the data for these methods, as without it data analysts do garbage-in garbage-out analysis... Usually, due to time constraints, this part is not covered in the seminar but asked students to cover it before the seminar.
 
-After successfully completing [`seminar_5_binary_w_ML.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/partIII-case-studies/seminar05-binary-wML-predicting-firm-exit/codes/seminar_5_binary_w_ML.R), students should be able:
+After successfully completing [`seminar_5_binary_w_ML.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar05-binary-wML-predicting-firm-exit/codes/seminar_5_binary_w_ML.R), students should be able:
 
   - What is winsorizing and how it helps
   - Basic linear models for predicting probabilities
