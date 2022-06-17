@@ -25,7 +25,7 @@ After successfully completing [`seminar_6_swimming.R`](https://github.com/gabors
   - `prophet` package
   - Forecasting
     - Comparing model based on forecasting performance (RMSE)
-    - Graphical representation: fan-chart  
+    - Graphical representation of model fit and forecasts
 
 ## Dataset used
 
