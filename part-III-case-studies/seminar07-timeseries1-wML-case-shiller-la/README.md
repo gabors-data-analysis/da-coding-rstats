@@ -12,7 +12,7 @@ Case study:
   - [Chapter 18, B: Forecasting a house price index](https://gabors-data-analysis.com/casestudies/#ch18b-forecasting-a-house-price-index)
 
 ## Learning outcomes
-After successfully completing [`seminar_7_priceindex.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/partIII-case-studies/seminar07-timeseries1-wML-case-shiller-la/seminar_7_priceindex.R), students should be able:
+After successfully completing [`seminar_7_priceindex.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar07-timeseries1-wML-case-shiller-la/seminar_7_priceindex.R), students should be able:
 
   - Decide if a conversion of data to stationarity is needed
   - ARIMA models with `fpp3` package
