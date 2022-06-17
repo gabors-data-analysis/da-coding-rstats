@@ -19,9 +19,9 @@ Case study:
 
 ## Learning outcomes
 
-Lecturer/students should be aware that there is a separate file: [`seminar_4_airbnb_prepare.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/partIII-case-studies/seminar04-random-forest-airbnb/codes/seminar_4_airbnb_prepare.R) for this seminar, overviewing only the data cleaning and feature engineering process. This is extremely important and powerful to understand how to prepare the data for these methods, as without it data analysts do garbage-in garbage-out analysis... Usually, due to time constraints, this part is not covered in the seminar but asked students to cover it before the seminar.
+Lecturer/students should be aware that there is a separate file: [`seminar_4_airbnb_prepare.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar04-random-forest-airbnb/codes/seminar_4_airbnb_prepare.R) for this seminar, overviewing only the data cleaning and feature engineering process. This is extremely important and powerful to understand how to prepare the data for these methods, as without it data analysts do garbage-in garbage-out analysis... Usually, due to time constraints, this part is not covered in the seminar but asked students to cover it before the seminar.
 
-After successfully completing [`seminar_4_rf.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/partIII-case-studies/seminar04-random-forest-airbnb/codes/seminar_4_rf.R), students should be able:
+After successfully completing [`seminar_4_rf.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar04-random-forest-airbnb/codes/seminar_4_rf.R), students should be able:
 
   - Estimate random forest via `ranger`
     - unsderstand `mytr` parameter and other setup
