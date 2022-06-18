@@ -173,6 +173,13 @@ As an example for a coding course, which takes one 100-mins class per week for a
 | Class 12 | [lecture19-advaced-rmarkdown](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture19-advaced-rmarkdown), [lecture20-basic-spatial-vizz](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture20-basic-spatial-vizz) | Two paths: discuss [lecture19-advaced-rmarkdown](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture19-advaced-rmarkdown) in detail with the whys as well, but then there is no time for [lecture20-basic-spatial-vizz](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture20-basic-spatial-vizz). Or stick with the technical details in both lectures, which allows higher probability to finish. |
 | Class * | [lecture20-basic-spatial-vizz](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture20-basic-spatial-vizz) | This lecture seldomly fits into the timeframe of the class, especially if this coding class runs along with theory classes for Part I and II and serves as a supplement both in coding and understanding the material. However, if there is a mismatch, this class can be flexibly used as a substitute (e.g. theory class is lagging behind) |
 
+## Our decisions -- you may alter
+
+* Tidyverse and not data.table. Some friends love data.table. But it seems, tidyverse has become the more popular choice, especially at a starter level. 
+* Starting with `rm(list = ls()) ` Yes, we know. There is a strong view suggesting [project based workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) "If the first line of your R script is rm(list = ls()) I will come into your office and SET YOUR COMPUTER ON FIRE". We are [warned directly](https://github.com/gabors-data-analysis/da-coding-rstats/issues/2), too. At the same time, for beginners, this seems a good start. So we kept it for lectures 01-20, not beyond. Feel free to use a version without. 
+* Do descriptive tables with [`Datasummary`](https://vincentarelbundock.github.io/modelsummary/articles/datasummary.html) -- takes a bit of time to get used to be nice.
+* All regressions (except when we start) is with [`fixest`](https://cran.r-project.org/web/packages/fixest/vignettes/fixest_walkthrough.html).  We think it is the future regression command for *all* uses. 
+
 
 ## Our thanks
 
