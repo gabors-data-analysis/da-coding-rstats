@@ -25,7 +25,7 @@ library(devtools)
 library(kableExtra)
 
 # Import Gabor's book theme for pretty plots
-source_url("https://raw.githubusercontent.com/gabors-data-analysis/da_case_studies/master/ch00-tech-prep/theme_bg.R")
+source_url('https://raw.githubusercontent.com/gabors-data-analysis/da_case_studies/master/ch00-tech-prep/theme_bg.R')
 
 ```
 
@@ -45,8 +45,8 @@ HERE COMES THE MOTIVATION FOR WHY THIS IS A MEANINGFUL PROJECT AND WHAT IS THE M
 # Note: be careful if there are already stuffs in your cache!
 
 ## Importing Data and Cleaning
-cps <- read_csv("https://osf.io/4ay9x/download", 
-                name_repair = "minimal" )
+cps <- read_csv('https://osf.io/4ay9x/download', 
+                name_repair = 'minimal' )
 cps <- cps %>% rename( 'id' = '' )
 
 # Select observations
@@ -92,14 +92,14 @@ We have restricted our attention to age cohorts between 40 and 60 with a graduat
 # Kernel density to show age distribution -> one source of the bias
 ggplot(data = cps, aes(x=age, y = stat(density), color = female_fac)) +
   geom_density(adjust=1.5, show.legend=F, na.rm =TRUE, size=0.7) +
-  labs(x="Age (years)", y="Density", color = "") +
-  scale_color_manual(name="", 
+  labs(x='Age (years)', y='Density', color = '') +
+  scale_color_manual(name='', 
                      values=c(color[1],color[2]),
-                     labels=c("Female","Male")) +
+                     labels=c('Female','Male')) +
   scale_x_continuous(expand = c(0.01, 0.01), limits = c(24, 64), breaks = seq(25, 65, by = 5)) +
   scale_y_continuous(expand = c(0.0, 0.0), limits = c(0, 0.04), breaks = seq(0, 0.04, by = 0.01)) +
-  annotate("text",x = 55, y = 0.03, label = "Female", color = color[2], size=4) +
-  annotate("text",x = 55, y = 0.020, label = "Male", color = color[1], size=4) +
+  annotate('text',x = 55, y = 0.03, label = 'Female', color = color[2], size=4) +
+  annotate('text',x = 55, y = 0.020, label = 'Male', color = color[1], size=4) +
   theme_bg()
 
 ```
@@ -118,10 +118,10 @@ P05 <- function(x){quantile(x,0.05,na.rm=T)}
 datasummary( ( `gender` = female_fac ) * ( ( `wage` = w ) + ( `log-wage` = lnw ) ) ~
              Mean + Median + SD + P05 + P95 + Max + Min , data = filter(cps, age>=40 & age<=60),
              title = ' \\label{tab:wage_desc}Descriptive statistics of hourly wage by gender' ) %>% 
-    kable_styling(latex_options = c("HOLD_position"))
+    kable_styling(latex_options = c('HOLD_position'))
 
 # Good-to-know: 
-#   if output is larger than the page's width, use: kable_styling(latex_options ="scale_down") )
+#   if output is larger than the page's width, use: kable_styling(latex_options ='scale_down') )
 #   if output is longer than the page's lenght, use: kable_styling( font_size = X ) , where X is positive integer.
 
 ```
@@ -136,32 +136,32 @@ As the focus is the price difference, Figure \ref{fig:wage_dist} shows the condi
 # Wage-pretty
 gw <- ggplot( data = filter(cps, age>=40 & age<=60), aes( x = w, color= female_fac ) ) +
         geom_density( bw = 10 ) +
-        labs( x = "Wage", y = "Density", color = "",
+        labs( x = 'Wage', y = 'Density', color = '',
               caption = 'Hourly wage') +
-        scale_color_manual( name="", 
+        scale_color_manual( name='', 
                             values=c(color[1],color[2]),
-                            labels=c("Female","Male") ) +
+                            labels=c('Female','Male') ) +
         scale_x_continuous( limits = c(0, 100)  , breaks = seq(0,  100, by = 25)) +
         scale_y_continuous( limits = c(0, 0.03), breaks = seq(0, 0.03, by = 0.01)) +
-        annotate("text",x = 55, y = 0.020, label = "Male"  , color = color[2] , size = 4 ) +
-        annotate("text",x = 25, y = 0.025, label = "Female", color = color[1], size = 4 ) +
+        annotate('text',x = 55, y = 0.020, label = 'Male'  , color = color[2] , size = 4 ) +
+        annotate('text',x = 25, y = 0.025, label = 'Female', color = color[1], size = 4 ) +
         theme_bg( ) +
-        theme(legend.position = "none", plot.caption = element_text(hjust = 0.5))
+        theme(legend.position = 'none', plot.caption = element_text(hjust = 0.5))
 
 # Log-wage pretty
 glnw <- ggplot( data = filter( cps, age>=40 & age<=60), aes( x = lnw, color= female_fac ) ) +
           geom_density( bw = .25 ) +
-          labs( x = "Log-Wage", y = "Density", color = "",
+          labs( x = 'Log-Wage', y = 'Density', color = '',
                 caption = 'Hourly log-wage') +
-          scale_color_manual( name="", 
+          scale_color_manual( name='', 
                               values=c(color[1],color[2]),
-                              labels=c("Female","Male") ) +
+                              labels=c('Female','Male') ) +
           scale_x_continuous( limits = c(-1, 6) , breaks = seq(-1,  6, by = 1)) +
           scale_y_continuous( limits = c(0, 0.8), breaks = seq(0, 0.8, by = 0.2)) +
-          annotate("text",x = 5, y = 0.65, label = "Male"  , color = color[2] , size = 4 ) +
-          annotate("text",x = 2, y = 0.65, label = "Female", color = color[1], size = 4 ) +
+          annotate('text',x = 5, y = 0.65, label = 'Male'  , color = color[2] , size = 4 ) +
+          annotate('text',x = 2, y = 0.65, label = 'Female', color = color[1], size = 4 ) +
           theme_bg( ) +
-          theme(legend.position = "none", plot.caption = element_text(hjust = 0.5))
+          theme(legend.position = 'none', plot.caption = element_text(hjust = 0.5))
 
 
 # Plot together
@@ -205,8 +205,8 @@ cps <- cps %>% mutate(white = as.numeric( race == 1 ),
                       asian = as.numeric( race == 4 ),
                       hisp  = as.numeric( !is.na(ethnic) ),
                       othernonw = as.numeric(white==0 & afram==0 & asian==0 & hisp==0),
-                      nonUSborn = as.numeric( prcitshp=="Foreign Born, US Cit By Naturalization" 
-                                              | prcitshp=="Foreign Born, Not a US Citizen") )
+                      nonUSborn = as.numeric( prcitshp=='Foreign Born, US Cit By Naturalization' 
+                                              | prcitshp=='Foreign Born, Not a US Citizen') )
 
 
 # Potentially important (confounder) family background variables
@@ -221,13 +221,13 @@ cps <- cps %>% mutate(married  = as.numeric(marital==1 | marital==2),
                       child4pl = as.numeric(chldpres>=4))
 
 # Work-related confounder variables
-cps <- cps %>% mutate(fedgov  = as.numeric(class=="Government - Federal"),
-                      stagov  = as.numeric(class=="Government - State"),
-                      locgov  = as.numeric(class=="Government - Local"),
-                      nonprof = as.numeric(class=="Private, Nonprofit"),
+cps <- cps %>% mutate(fedgov  = as.numeric(class=='Government - Federal'),
+                      stagov  = as.numeric(class=='Government - State'),
+                      locgov  = as.numeric(class=='Government - Local'),
+                      nonprof = as.numeric(class=='Private, Nonprofit'),
                       ind2dig = as.integer(as.numeric(as.factor(ind02))/100),
                       occ2dig = as.integer(occ2012/100),
-                      union   = as.numeric(unionmme=="Yes" | unioncov=="Yes"))
+                      union   = as.numeric(unionmme=='Yes' | unioncov=='Yes'))
 
 
 # Control for hours in polynomial
@@ -242,9 +242,9 @@ cps <- cps %>% mutate(uhourssq = uhours^2,
 cps_f <- cps %>% filter(age>=40 & age<=60)
 
 # Simple benchmark
-reg1_e <- feols(lnw ~ female                            , data=cps_f, vcov = "HC1")
+reg1_e <- feols(lnw ~ female                            , data=cps_f, vcov = 'HC1')
 # Age and Education
-reg2_e <- feols(lnw ~ female + age + ed_Profess + ed_PhD, data=cps_f,vcov = "HC1")
+reg2_e <- feols(lnw ~ female + age + ed_Profess + ed_PhD, data=cps_f,vcov = 'HC1')
 # Age, Education, demographics, socio-economic and work related
 reg3_e <- feols(lnw ~ female + age + afram + hisp + 
                       asian + othernonw + nonUSborn + 
@@ -252,7 +252,7 @@ reg3_e <- feols(lnw ~ female + age + afram + hisp +
                       divorced+ widowed + child1 + child2 + 
                       child3 +child4pl + as.factor(stfips) + 
                       uhours + fedgov + stagov + locgov + nonprof + 
-                      union + as.factor(ind2dig) + as.factor(occ2dig) , data=cps_f,vcov = "HC1")
+                      union + as.factor(ind2dig) + as.factor(occ2dig) , data=cps_f,vcov = 'HC1')
 # Age, Education, demographics, socio-economic and work related with polynomials
 reg4_e <- feols(lnw ~ female + age + afram + hisp + 
                       asian + othernonw + nonUSborn + 
@@ -261,7 +261,7 @@ reg4_e <- feols(lnw ~ female + age + afram + hisp +
                       child3 +child4pl + as.factor(stfips) + 
                       uhours + fedgov + stagov + locgov + nonprof + 
                       union + as.factor(ind2dig) + as.factor(occ2dig) + 
-                      agesq + agecu + agequ + uhoursqu + uhourscu + uhourssq , data=cps_f,vcov = "HC1")
+                      agesq + agecu + agequ + uhoursqu + uhourscu + uhourssq , data=cps_f,vcov = 'HC1')
 
 # Naming the coefficients for pretty output
 alpha  <- round( reg4_e$coeftable[1,1] , 2 )
@@ -284,20 +284,20 @@ I have compared multiple models to learn about the stability of the parameters. 
 ```{r, echo = FALSE }
 ##
 # Summarize our findings:
-groupConf <- list("Age and Education" = c("age","ed_"),
-                  "Family background" = c("married","divorced","widowed","child",
-                                          "afram","hisp","asian","othernonw"),
-                  "Hours worked" = c("uhours"),
-                  "Government or private" = c("fedgov","stagov","locgov","nonprof"),
-                  "Union member" = c("union"),
-                  "Not born in USA" = c("nonUSborn"),
-                  "Age in polynomial" = c("agesq","agecu","agequ"),
-                  "Hours in polynomial" = c("uhourssq","uhourscu","uhoursqu") )
+groupConf <- list('Age and Education' = c('age','ed_'),
+                  'Family background' = c('married','divorced','widowed','child',
+                                          'afram','hisp','asian','othernonw'),
+                  'Hours worked' = c('uhours'),
+                  'Government or private' = c('fedgov','stagov','locgov','nonprof'),
+                  'Union member' = c('union'),
+                  'Not born in USA' = c('nonUSborn'),
+                  'Age in polynomial' = c('agesq','agecu','agequ'),
+                  'Hours in polynomial' = c('uhourssq','uhourscu','uhoursqu') )
 
-varname_report <- c("female" = 'Female' )
+varname_report <- c('female' = 'Female' )
 
 # Note: coefstat = 'confint' is just an example, usually you need to report se.
-style_noHeaders = style.tex(var.title = "", fixef.title = "", stats.title = " ")
+style_noHeaders = style.tex(var.title = '', fixef.title = '', stats.title = ' ')
 
 
 kable( etable( reg1_e , reg2_e , reg3_e , reg4_e ,
@@ -313,9 +313,9 @@ kable( etable( reg1_e , reg2_e , reg3_e , reg4_e ,
                 se.row = F,
                 fitstat = c('r2','n') ) , 
         col.names = c('(1)','(2)','(3)','(4)'),
-       "latex", booktabs = TRUE,
+       'latex', booktabs = TRUE,
        caption = '\\label{tab:model_res}Models to uncover gender wage gap') %>% 
-  kable_styling(latex_options = c("hold_position","scale_down"))
+  kable_styling(latex_options = c('hold_position','scale_down'))
 
 
 ```
@@ -331,7 +331,7 @@ Task: run a model on the full sample. Report a similar table, with the model (4)
 
 ```{r, echo = FALSE }
 # Re-run the models on the full sample
-# use: kable_styling(latex_options = c("hold_position","scale_down")) when reporting!
+# use: kable_styling(latex_options = c('hold_position','scale_down')) when reporting!
 
 
 ```

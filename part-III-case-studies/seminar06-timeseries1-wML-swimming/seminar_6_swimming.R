@@ -38,14 +38,14 @@ library(modelsummary)
 # Add time related properties with timeDate
 #   - weekdays/holidays, etc.
 if (!require(timeDate)){
-  install.packages("timeDate")
+  install.packages('timeDate')
   library(timeDate)  
 }
 library(lubridate)
 library(caret)
 # ML for time-series package (by FB)
 if (!require(prophet)){
-  install.packages("prophet")
+  install.packages('prophet')
   library(prophet)  
 }
 # for plots
@@ -71,7 +71,7 @@ daily_agg <- daily_agg %>%
          quarter = quarter(date),
          month = factor(month(date)),
          day = day(date)) %>%
-  mutate(dow = factor(lubridate::wday(date, week_start = getOption("lubridate.week.start", 1)))) %>%
+  mutate(dow = factor(lubridate::wday(date, week_start = getOption('lubridate.week.start', 1)))) %>%
   mutate(weekend = factor(as.integer(dow %in% c(6,7))))
 
 # School off days -> specific dates (domain knowledge)
@@ -120,9 +120,9 @@ daily_agg <-
   ungroup()
 
 # named date vars for graphs
-mydays <- c("Mon","Tue","Wed",
-            "Thu","Fri","Sat",
-            "Sun")
+mydays <- c('Mon','Tue','Wed',
+            'Thu','Fri','Sat',
+            'Sun')
 daily_agg$dow_abb   <-factor(   mydays[daily_agg$dow],  levels=mydays)
 daily_agg$month_abb <-factor(month.abb[daily_agg$month],levels=month.abb)
 
@@ -141,52 +141,52 @@ daily_agg$month_abb <-factor(month.abb[daily_agg$month],levels=month.abb)
 ggplot(data=daily_agg[daily_agg$year==2015,], aes(x=date, y=QUANTITY)) +
   geom_line(size=0.4, color='red') +
   theme_bw() +
-  scale_x_date(breaks = as.Date(c("2015-01-01","2015-04-01","2015-07-01","2015-10-01","2016-01-01")),
-               labels = date_format("%d%b%Y"),
-               date_minor_breaks = "1 month" ) +
-  labs( x = "Date (day)", y="Daily ticket sales" ) +
-  scale_color_discrete(name = "")
+  scale_x_date(breaks = as.Date(c('2015-01-01','2015-04-01','2015-07-01','2015-10-01','2016-01-01')),
+               labels = date_format('%d%b%Y'),
+               date_minor_breaks = '1 month' ) +
+  labs( x = 'Date (day)', y='Daily ticket sales' ) +
+  scale_color_discrete(name = '')
 
 # Daily ticket sales 2010 - 2014
 ggplot(data=daily_agg[(daily_agg$year>=2010) & (daily_agg$year<=2014),], aes(x=date, y=QUANTITY)) +
   geom_line(size=0.2, color='red') +
   theme_bw() +
-  scale_x_date(breaks = as.Date(c("2010-01-01","2011-01-01","2012-01-01","2013-01-01","2014-01-01","2015-01-01")),
-               labels = date_format("%d%b%Y"),
-               minor_breaks = "3 months") +
-  labs( x = "Date (day)", y="Daily ticket sales" ) +
-  scale_color_discrete(name = "")
+  scale_x_date(breaks = as.Date(c('2010-01-01','2011-01-01','2012-01-01','2013-01-01','2014-01-01','2015-01-01')),
+               labels = date_format('%d%b%Y'),
+               minor_breaks = '3 months') +
+  labs( x = 'Date (day)', y='Daily ticket sales' ) +
+  scale_color_discrete(name = '')
 
 # Monthly box-plots for ticket sales
 ggplot(data=daily_agg, aes(x=month_abb, y=QUANTITY)) +
   theme_bw() +
-  labs( x = "Date (month)", y="Daily ticket sales" ) +
+  labs( x = 'Date (month)', y='Daily ticket sales' ) +
   geom_boxplot(color='red',outlier.color = 'green', outlier.alpha = 0.9, outlier.size = 1)
 
 # Daily box-plots for ticket sales
 ggplot(data=daily_agg, aes(x=dow_abb, y=QUANTITY)) +
   theme_bw() +
-  labs( x = "Day of the week", y="Daily ticket sales" ) +
+  labs( x = 'Day of the week', y='Daily ticket sales' ) +
   geom_boxplot(color='red',outlier.color = 'green', outlier.alpha = 0.9, outlier.size = 1)
   #geom_boxplot(color='red', outlier.shape = NA)
 
 
 # to check for interactions between months and days look at the heatmap
 ggplot(daily_agg, aes(x = dow_abb, y = month_abb, fill = tickets)) +
-  geom_tile(colour = "white") +
+  geom_tile(colour = 'white') +
   labs(x = 'Day of the week', y = 'Month ') +
-  scale_fill_viridis(alpha = 0.7, begin = 1, end = 0.2, direction = 1, option = "D") +
+  scale_fill_viridis(alpha = 0.7, begin = 1, end = 0.2, direction = 1, option = 'D') +
   theme_bw() +
-  theme(legend.position = "right",
+  theme(legend.position = 'right',
     legend.text = element_text(size=6),
     legend.title =element_text(size=6))
 
 
 # Same but with log sales
 ggplot(daily_agg, aes(x = dow_abb, y = month_abb, fill = tickets_ln)) +
-  geom_tile(colour = "white") +
+  geom_tile(colour = 'white') +
   labs(x = 'Day of week', y = 'Month ') +
-  scale_fill_viridis(alpha = 0.7, begin = 1, end = 0.2, direction = 1, option = "D") +
+  scale_fill_viridis(alpha = 0.7, begin = 1, end = 0.2, direction = 1, option = 'D') +
   theme_bw()  
 
 
@@ -224,7 +224,7 @@ train_index_list <- test_index_list %>%
   
 # Set the samples for cv
 train_control <- trainControl(
-  method = "cv",
+  method = 'cv',
   index = train_index_list, #index of train data for each fold
   # indexOut = index of test data for each fold, complement of index by default
   # indexFinal = index of data to use to train final model, whole train data by default
@@ -237,7 +237,7 @@ train_control <- trainControl(
 model1 <- as.formula(QUANTITY ~ 1 + trend + month)
 reg1 <- train(
   model1,
-  method = "lm",
+  method = 'lm',
   data = data_train,
   trControl = train_control
 )
@@ -249,7 +249,7 @@ reg1$finalModel
 model2 <- as.formula(QUANTITY ~ 1 + trend + month + dow)
 reg2 <- train(
   model2,
-  method = "lm",
+  method = 'lm',
   data = data_train,
   trControl = train_control
 )
@@ -258,7 +258,7 @@ reg2 <- train(
 model3 <- as.formula(QUANTITY ~ 1 + trend + month + dow + isHoliday)
 reg3 <- train(
   model3,
-  method = "lm",
+  method = 'lm',
   data = data_train,
   trControl = train_control
 )
@@ -267,7 +267,7 @@ reg3 <- train(
 model4 <- as.formula(QUANTITY ~ 1 + trend + month + dow + isHoliday + school_off*dow)
 reg4 <- train(
   model4,
-  method = "lm",
+  method = 'lm',
   data = data_train,
   trControl = train_control
 )
@@ -276,7 +276,7 @@ reg4 <- train(
 model5 <- as.formula(QUANTITY ~ 1 + trend + month + dow + isHoliday + school_off*dow + weekend*month)
 reg5 <- train(
   model5,
-  method = "lm",
+  method = 'lm',
   data = data_train,
   trControl = train_control
 )
@@ -285,14 +285,14 @@ reg5 <- train(
 model6 <- as.formula(q_ln ~ 1 + trend + month + dow + isHoliday + school_off*dow)
 reg6 <- train(
   model6,
-  method = "lm",
+  method = 'lm',
   data = data_train,
   trControl = train_control
 )
 
 # Get CV RMSE ----------------------------------------------
 
-model_names <- c("reg1","reg2","reg3","reg4","reg5")
+model_names <- c('reg1','reg2','reg3','reg4','reg5')
 rmse_CV <- c()
 
 for (i in model_names) {
@@ -304,14 +304,14 @@ rmse_CV
 #   had to cheat and use train error on full train set 
 #     because could not obtain CV fold train errors
 corrb <- mean((reg6$finalModel$residuals)^2)
-rmse_CV["reg6"] <- reg6$pred %>% 
+rmse_CV['reg6'] <- reg6$pred %>% 
   mutate(pred = exp(pred  + corrb/2)) %>% 
   group_by(Resample) %>% 
   summarise(rmse = RMSE(pred, exp(obs))) %>% 
   as.data.frame() %>% 
   summarise(mean(rmse)) %>% 
   as.numeric()
-rmse_CV["reg6"] 
+rmse_CV['reg6'] 
 
 rmse_CV
 
@@ -324,13 +324,13 @@ rmse_CV
 
 
 model_prophet <- prophet( fit=F, 
-                          seasonality.mode = "additive", 
-                          yearly.seasonality = "auto",
-                          weekly.seasonality = "auto",
-                          growth = "linear",
+                          seasonality.mode = 'additive', 
+                          yearly.seasonality = 'auto',
+                          weekly.seasonality = 'auto',
+                          growth = 'linear',
                           daily.seasonality=TRUE)
 
-model_prophet <-  add_country_holidays(model_prophet, "US")
+model_prophet <-  add_country_holidays(model_prophet, 'US')
 model_prophet <- fit.prophet(model_prophet, df= data.frame(ds = data_train$date,
                                                            y = data_train$QUANTITY ))
 
@@ -354,8 +354,8 @@ rmse_holdout_best
 
 #graph relative RMSE (on holdout) per month 
 rmse_monthly <- data_holdout %>% 
-  mutate(month = factor(format(date,"%b"), 
-                        levels= unique(format(sort(.$date),"%b")), 
+  mutate(month = factor(format(date,'%b'), 
+                        levels= unique(format(sort(.$date),'%b')), 
                         ordered=TRUE)) %>% 
   group_by(month) %>% 
   summarise(
@@ -367,50 +367,50 @@ rmse_monthly
 # Graph
 ggplot(rmse_monthly, aes(x = month, y = RMSE_norm)) +
   geom_col(bg='red', color='red') +
-  labs( x = "Date (month)", y="RMSE (normalized by monthly sales)" ) +
+  labs( x = 'Date (month)', y='RMSE (normalized by monthly sales)' ) +
     theme_bw() 
 
 # Prediction on training sample
 ggplot(data=data_holdout, aes(x=date, y=QUANTITY)) +
-  geom_line(aes(size="Actual", colour="Actual", linetype = "Actual") ) +
-  geom_line(aes(y=y_hat_5, size="Predicted" ,colour="Predicted",  linetype= "Predicted")) +
+  geom_line(aes(size='Actual', colour='Actual', linetype = 'Actual') ) +
+  geom_line(aes(y=y_hat_5, size='Predicted' ,colour='Predicted',  linetype= 'Predicted')) +
   scale_y_continuous(expand = c(0,0))+
-  scale_x_date(expand=c(0,0), breaks = as.Date(c("2016-01-01","2016-03-01","2016-05-01","2016-07-01","2016-09-01","2016-11-01", "2017-01-01")),
-               labels = date_format("%d%b%Y"),
-               date_minor_breaks = "1 month" )+
-  scale_color_manual(values=c('red','blue'), name="")+
-  scale_size_manual(name="", values=c(0.4,0.7))+
-  scale_linetype_manual(name = "", values=c("solid", "twodash")) +
-  labs( x = "Date (day)", y="Daily ticket sales" ) +
+  scale_x_date(expand=c(0,0), breaks = as.Date(c('2016-01-01','2016-03-01','2016-05-01','2016-07-01','2016-09-01','2016-11-01', '2017-01-01')),
+               labels = date_format('%d%b%Y'),
+               date_minor_breaks = '1 month' )+
+  scale_color_manual(values=c('red','blue'), name='')+
+  scale_size_manual(name='', values=c(0.4,0.7))+
+  scale_linetype_manual(name = '', values=c('solid', 'twodash')) +
+  labs( x = 'Date (day)', y='Daily ticket sales' ) +
   theme_bw() +
   theme(legend.position=c(0.7,0.8),
-      legend.direction = "horizontal",
+      legend.direction = 'horizontal',
       legend.text = element_text(size = 6),
-      legend.key.width = unit(.8, "cm"),
-      legend.key.height = unit(.3, "cm")) + 
+      legend.key.width = unit(.8, 'cm'),
+      legend.key.height = unit(.3, 'cm')) + 
   guides(linetype = guide_legend(override.aes = list(size = 0.8))
          )
 
 
 # Prediction on hold-out sample
 ggplot(data=data_holdout %>% filter(month==8), aes(x=date, y=QUANTITY)) +
-  geom_line(aes(size="Actual", colour="Actual", linetype = "Actual") ) +
-  geom_line(aes(y=y_hat_5, size="Predicted" ,colour="Predicted",  linetype= "Predicted")) +
+  geom_line(aes(size='Actual', colour='Actual', linetype = 'Actual') ) +
+  geom_line(aes(y=y_hat_5, size='Predicted' ,colour='Predicted',  linetype= 'Predicted')) +
   geom_ribbon(aes(ymin=QUANTITY,ymax=y_hat_5), fill='green', alpha=0.3) +
   scale_y_continuous(expand = c(0.01,0.01), limits = c(0,150))+
-  scale_x_date(expand=c(0.01,0.01), breaks = as.Date(c("2016-08-01","2016-08-08","2016-08-15","2016-08-22","2016-08-29")),
-               limits = as.Date(c("2016-08-01","2016-08-31")),
-               labels = date_format("%d%b")) +
-  scale_color_manual(values=c('red','blue'), name="")+
-  scale_size_manual(name="", values=c(0.4,0.7))+
-  scale_linetype_manual(name = "", values=c("solid", "twodash")) +
-  labs( x = "Date (day)", y="Daily ticket sales" ) +
+  scale_x_date(expand=c(0.01,0.01), breaks = as.Date(c('2016-08-01','2016-08-08','2016-08-15','2016-08-22','2016-08-29')),
+               limits = as.Date(c('2016-08-01','2016-08-31')),
+               labels = date_format('%d%b')) +
+  scale_color_manual(values=c('red','blue'), name='')+
+  scale_size_manual(name='', values=c(0.4,0.7))+
+  scale_linetype_manual(name = '', values=c('solid', 'twodash')) +
+  labs( x = 'Date (day)', y='Daily ticket sales' ) +
   theme_bw() +
   theme(legend.position=c(0.7,0.8),
-        legend.direction = "horizontal",
+        legend.direction = 'horizontal',
         legend.text = element_text(size = 4),
-        legend.key.width = unit(.8, "cm"),
-        legend.key.height = unit(.2, "cm")) + 
+        legend.key.width = unit(.8, 'cm'),
+        legend.key.height = unit(.2, 'cm')) + 
   guides(linetype = guide_legend(override.aes = list(size = 0.6))
   )
 

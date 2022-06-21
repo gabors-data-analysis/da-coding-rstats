@@ -38,7 +38,7 @@ rm(list=ls())
 # Call packages
 library(tidyverse)
 # new package we use for descriptive purposes
-# install.packages("modelsummary")
+# install.packages('modelsummary')
 library(modelsummary)
 
 
@@ -137,20 +137,20 @@ datasummary( price + price_online + p_diff ~
 #   simple - built in histogram with `geom_histogram()`
 ggplot( data = bpp_orig ) +
   geom_histogram( aes( x = price ) , fill = 'navyblue' ) +
-  labs(x = "Price",
-       y = "Count" )
+  labs(x = 'Price',
+       y = 'Count' )
 # Lets just ignore the warning, we will discuss it later!
 
 ##
 # It is clear: need to filter out some data
-# FILTER DATA -> filter for "PRICETYPE" is a too large restriction!
+# FILTER DATA -> filter for 'PRICETYPE' is a too large restriction!
 #     may check without that filter!
 # for reasons of this check the discussion in the book, Chapter 6.
 bpp <- bpp_orig %>%  
   filter( is.na(sale_online) ) %>%
   filter(!is.na(price)) %>%
   filter(!is.na(price_online)) %>% 
-  filter( PRICETYPE == "Regular Price" )
+  filter( PRICETYPE == 'Regular Price' )
 
 # Check our newly created data:
 datasummary( price + price_online + p_diff ~ 
@@ -169,8 +169,8 @@ datasummary( price + price_online + p_diff ~
 # Histogram for filtered data
 ggplot( data = bpp ) +
   geom_histogram( aes( x = price ) , fill = 'navyblue' ) +
-  labs(x = "Price",
-       y = "Count" )
+  labs(x = 'Price',
+       y = 'Count' )
 
 ##
 # Role of number of bins (or binwidth)
@@ -180,22 +180,22 @@ ggplot( data = bpp ) +
 ggplot( data = bpp ) +
   geom_histogram( aes( x = price ) , fill = 'navyblue',
                   bins = 50 ) +
-  labs(x = "Price",
-       y = "Count" )
+  labs(x = 'Price',
+       y = 'Count' )
 
 # 2) too many
 ggplot( data = bpp ) +
   geom_histogram( aes( x = price ) , fill = 'navyblue',
                   bins = 150 ) +
-  labs(x = "Price",
-       y = "Count" )
+  labs(x = 'Price',
+       y = 'Count' )
 
 # 3) too few
 ggplot( data = bpp ) +
   geom_histogram( aes( x = price ) , fill = 'navyblue',
                   bins = 5 ) +
-  labs(x = "Price",
-       y = "Count" )
+  labs(x = 'Price',
+       y = 'Count' )
 ##
 # Task:
 # Play with the binwidth - instead of `bins=`, use `binwidth=`
@@ -206,22 +206,22 @@ ggplot( data = bpp ) +
 ggplot( data = bpp ) +
   geom_histogram( aes( x = price ) , fill = 'navyblue',
                   binwidth = 20 ) +
-  labs(x = "Price",
-       y = "Count" )
+  labs(x = 'Price',
+       y = 'Count' )
 
 # 2) too large
 ggplot( data = bpp ) +
   geom_histogram( aes( x = price ) , fill = 'navyblue',
                   binwidth = 200 ) +
-  labs(x = "Price",
-       y = "Count" )
+  labs(x = 'Price',
+       y = 'Count' )
 
 # 3) too narrow
 ggplot( data = bpp ) +
   geom_histogram( aes( x = price ) , fill = 'navyblue',
                   binwidth = 2 ) +
-  labs(x = "Price",
-       y = "Count" )
+  labs(x = 'Price',
+       y = 'Count' )
 
 ##
 # Relation: they are inversely proportional
@@ -234,8 +234,8 @@ ggplot( data = bpp ) +
 ggplot( data = bpp ) +
   geom_histogram( aes(  y = ..density.. , x = price ) , fill = 'navyblue',
                   bins = 50 ) +
-  labs(x = "Price",
-       y = "Relative Frequency" )
+  labs(x = 'Price',
+       y = 'Relative Frequency' )
 
 
 ##
@@ -245,8 +245,8 @@ ggplot( data = bpp ) +
 # Now, let us name our ggplot:
 my_graph <- ggplot( data = bpp ) +
             geom_density( aes( x = price ) , color = 'red'  , bw = 20 ) +
-            labs(x = "Price",
-                 y = "Relative Frequency" )
+            labs(x = 'Price',
+                 y = 'Relative Frequency' )
 
 # to make it visible we need to call it
 my_graph
@@ -286,7 +286,7 @@ rm( chck )
 
 ggplot( data = bpp , aes( x = p_diff , fill = country_f ) ) +
   geom_histogram( aes( y = ..density.. ), alpha =0.4 , bins = 15 ) +
-  labs( x = "Price" , y = 'Relative Frequency' ,
+  labs( x = 'Price' , y = 'Relative Frequency' ,
         fill = 'Country' ) +
   xlim(-4,4)
 
@@ -295,7 +295,7 @@ ggplot( data = bpp , aes( x = p_diff , fill = country_f ) ) +
 
 ggplot( data = bpp , aes( x = p_diff , fill = country_f ) ) +
   geom_histogram( aes( y = ..density.. ), alpha =0.4 , bins = 15 ) +
-  labs( x = "Price" , y = 'Relative Frequency' ,
+  labs( x = 'Price' , y = 'Relative Frequency' ,
         fill = 'Country' ) +
   facet_wrap(~country_f)+
   xlim(-4,4)
@@ -307,7 +307,7 @@ ggplot( data = bpp , aes( x = p_diff , fill = country_f ) ) +
 # Use color instead
 ggplot( data = bpp , aes( x = p_diff , color = country_f ) ) +
   geom_histogram( aes( y = ..density.. ), alpha =0.4 , bins = 15 ) +
-  labs( x = "Price" , y = 'Relative Frequency' ,
+  labs( x = 'Price' , y = 'Relative Frequency' ,
         color = 'Country' ) +
   facet_wrap(~country_f)+
   xlim(-4,4)
@@ -315,7 +315,7 @@ ggplot( data = bpp , aes( x = p_diff , color = country_f ) ) +
 # Use group instead
 ggplot( data = bpp , aes( x = p_diff , group = country_f ) ) +
   geom_histogram( aes( y = ..density.. ), alpha =0.4 , bins = 15 ) +
-  labs( x = "Price" , y = 'Relative Frequency' ,
+  labs( x = 'Price' , y = 'Relative Frequency' ,
         group = 'Country' ) +
   facet_wrap(~country_f)+
   xlim(-4,4)
@@ -332,7 +332,7 @@ ggplot( data = bpp , aes( x = p_diff , group = country_f ) ) +
 # 1) Density with multiple graphs
 ggplot( data = bpp , aes( x = p_diff , fill = country_f ) ) +
   geom_density( aes( y = ..density.. ) , alpha =0.4 ) +
-  labs( x = "Price" , y = 'Relative Frequency' ,
+  labs( x = 'Price' , y = 'Relative Frequency' ,
         fill = 'Country' ) +
   facet_wrap(~country_f)+
   xlim(-1,1)
@@ -341,21 +341,21 @@ ggplot( data = bpp , aes( x = p_diff , fill = country_f ) ) +
 # fill
 ggplot( data = bpp , aes( x = p_diff , fill = country_f ) ) +
   geom_density( alpha = 0.2 ) +
-  labs( x = "Price" , y = 'Relative Frequency' ,
+  labs( x = 'Price' , y = 'Relative Frequency' ,
         fill = 'Country' ) +
   xlim(-1,1)
 
 # color
 ggplot( data = bpp , aes( x = p_diff , color = country_f ) ) +
   geom_density( alpha =0.4 ) +
-  labs( x = "Price" , y = 'Relative Frequency' ,
+  labs( x = 'Price' , y = 'Relative Frequency' ,
         color = 'Country' ) +
   xlim(-1,1)
 
 # group
 ggplot( data = bpp , aes( x = p_diff , group = country_f ) ) +
   geom_density( alpha =0.4 ) +
-  labs( x = "Price" , y = 'Relative Frequency' ,
+  labs( x = 'Price' , y = 'Relative Frequency' ,
         group = 'Country' ) +
   xlim(-1,1)
 
@@ -374,12 +374,12 @@ t.test( bpp$p_diff , mu = 0 )
 # Test 2: The online prices are smaller or equal to offline prices
 #   H0: price_online - price = 0
 #   HA: price_online - price >  0
-t.test( bpp$p_diff , mu = 0 , alternative = "greater" )
+t.test( bpp$p_diff , mu = 0 , alternative = 'greater' )
 
 # Test 3: The online prices are larger or equal to offline prices
 #   H0: price_online - price = 0
 #   HA: price_online - price <  0
-t.test( bpp$p_diff , mu = 0 , alternative = "less" )
+t.test( bpp$p_diff , mu = 0 , alternative = 'less' )
 
 ###
 # summarise and group_by functions in tidyverse:
@@ -434,7 +434,7 @@ ggplot( bpp , aes( x = price_online , y = price ) )+
 # in many case there are too many observations for a simple graph 
 #   and it does not tells the story we would like to.
 # One solution is to do a `bin-scatter`, which put observations into bins.
-#   The simplest way to do is use "equal distances": cut x-variable's range into k equally sized bins
+#   The simplest way to do is use 'equal distances': cut x-variable's range into k equally sized bins
 #     and then calculate the same observations' y-variable e.g. mean (or median).
 #     - this is great: simple and intuitive (similar to histogram),
 #       BUT it hides, how many observations are in each bin. 
@@ -460,10 +460,10 @@ ggplot( bpp , aes( x = price_online , y = price ,
   stat_summary_bin( fun = 'mean' , bins = 10, 
                     geom = 'point',  size = 2 ) +
   labs( x = 'Price online' , y = 'Price offline' , 
-        color = "Country" ) +
-  facet_wrap(~country_f,scales = "free",ncol = 2 )+
-  theme(legend.position = "none")+
-  geom_smooth(method="lm",formula = y~x, se=F)
+        color = 'Country' ) +
+  facet_wrap(~country_f,scales = 'free',ncol = 2 )+
+  theme(legend.position = 'none')+
+  geom_smooth(method='lm',formula = y~x, se=F)
 
 ##
 # Bin-scatter 2
@@ -496,9 +496,9 @@ bs_summary
 # separate into three parts: (, lower_bound, upper_bound (and the remaining)
 bs_summary <- bs_summary %>% 
   separate( price_online_10b , 
-            into = c("trash","lower_bound",
-                     "upper_bound" ) , 
-            sep = "[^0-9\\.]" )
+            into = c('trash','lower_bound',
+                     'upper_bound' ) , 
+            sep = '[^0-9\\.]' )
 
 # transform to numeric and drop trash
 bs_summary <- bs_summary %>% 

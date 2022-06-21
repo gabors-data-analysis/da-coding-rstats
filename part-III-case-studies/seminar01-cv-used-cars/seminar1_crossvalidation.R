@@ -36,7 +36,7 @@ library(fixest)
 library(modelsummary)
 library(grid)
 if (!require( caret ) ){
-  install.packages("caret")
+  install.packages('caret')
   library(caret)
 }
 
@@ -55,42 +55,42 @@ glimpse( cars )
 # 
 
 # manage missing: set as factors
-cars$fuel         <- fct_explicit_na(cars$fuel, na_level = "Missing")
-cars$condition    <- fct_explicit_na(cars$condition, na_level = "Missing")
-cars$drive        <- fct_explicit_na(cars$drive, na_level = "Missing")
-cars$cylinders    <- fct_explicit_na(cars$cylinders, na_level = "Missing")
-cars$transmission <- fct_explicit_na(cars$transmission, na_level = "Missing")
-cars$type         <- fct_explicit_na(cars$type, na_level = "Missing")
+cars$fuel         <- fct_explicit_na(cars$fuel, na_level = 'Missing')
+cars$condition    <- fct_explicit_na(cars$condition, na_level = 'Missing')
+cars$drive        <- fct_explicit_na(cars$drive, na_level = 'Missing')
+cars$cylinders    <- fct_explicit_na(cars$cylinders, na_level = 'Missing')
+cars$transmission <- fct_explicit_na(cars$transmission, na_level = 'Missing')
+cars$type         <- fct_explicit_na(cars$type, na_level = 'Missing')
 
 # check frequency by fuel type
 datasummary( fuel ~ N + Percent() , data = cars)
 
 # keep the gas-fuelled vehicles only
-cars <- cars %>% filter( fuel=="gas" )
+cars <- cars %>% filter( fuel=='gas' )
 
 # check frequency by vehicle condition
 datasummary( condition ~ N + Percent() , data = cars )
 
 # drop vehicles in fair and new condition
-cars <- cars %>% filter(!condition %in% c("new", "fair"))
+cars <- cars %>% filter(!condition %in% c('new', 'fair'))
 
 # drop unrealistic values for price and odometer reading
 cars <- cars %>% filter(price %in% c(500:25000), odometer <=100)
 
 # drop if price is smaller than 1000 and condition is like new or age is less than 8
-cars <- cars %>% filter(!(price < 1000 & (condition == "like new"|age < 8)))
+cars <- cars %>% filter(!(price < 1000 & (condition == 'like new'|age < 8)))
 
 # check frequency by transmission
 datasummary( transmission ~ N + Percent(), data = cars )
 
 # remove obs w manual transmission,
-cars <- cars %>% filter(!(transmission == "manual"))
+cars <- cars %>% filter(!(transmission == 'manual'))
 
 # Check the types
 datasummary( type ~ N + Percent(), data = cars )
 
 # drop if truck
-cars <- cars %>% filter(!(type == "truck"))
+cars <- cars %>% filter(!(type == 'truck'))
  
 # drop pricestr
 cars <- cars %>% dplyr::select(-pricestr)
@@ -101,13 +101,13 @@ cars <- cars %>% dplyr::select(-pricestr)
 
 # condition
 cars <- cars %>%
-  mutate(cond_excellent = ifelse(condition == "excellent", 1,0),
-         cond_good = ifelse(condition == "good", 1,0),
-         cond_likenew = ifelse(condition == "like new", 1,0))
+  mutate(cond_excellent = ifelse(condition == 'excellent', 1,0),
+         cond_good = ifelse(condition == 'good', 1,0),
+         cond_likenew = ifelse(condition == 'like new', 1,0))
 
 # cylinders
 cars <- cars %>%
-  mutate(cylind6 = ifelse(cylinders=="6 cylinders",1,0))
+  mutate(cylind6 = ifelse(cylinders=='6 cylinders',1,0))
 
 datasummary( cylinders + as.factor( cylind6 ) ~ N + Percent() , data = cars )
 
@@ -127,7 +127,7 @@ datasummary( area * price ~ N + Mean , data = cars )
 
 # focus only on Chicago
 cars <- cars %>%
-  filter(area=="chicago")
+  filter(area=='chicago')
 
 # condition
 datasummary( condition * price ~ N + Mean , data = cars )
@@ -145,7 +145,7 @@ ggplot(data=cars, aes(x=price)) +
   geom_histogram(aes(y = (..count..)/sum(..count..)), binwidth = 1000, boundary=0,
                  fill = 'navyblue', color = 'white', size = 0.25, alpha = 0.8,  show.legend=F, na.rm=TRUE) +
   coord_cartesian(xlim = c(0, 20000)) +
-  labs(x = "Price (US dollars)",y = "Percent")+
+  labs(x = 'Price (US dollars)',y = 'Percent')+
   theme_bw() +
   expand_limits(x = 0.01, y = 0.01) +
   scale_y_continuous(expand = c(0.01,0.01),labels = scales::percent_format(accuracy = 1)) +
@@ -157,7 +157,7 @@ ggplot(data=cars, aes(x=lnprice)) +
   geom_histogram(aes(y = (..count..)/sum(..count..)), binwidth = 0.2, boundary=0,
                  fill = 'navyblue', color = 'white', size = 0.25, alpha = 0.8,  show.legend=F, na.rm=TRUE) +
   coord_cartesian(xlim = c(6, 10)) +
-  labs(x = "ln(Price, US dollars)",y = "Percent")+
+  labs(x = 'ln(Price, US dollars)',y = 'Percent')+
   expand_limits(x = 0.01, y = 0.01) +
   scale_y_continuous(expand = c(0.01,0.01),labels = scales::percent_format(accuracy = 0.1)) +
   scale_x_continuous(expand = c(0.01,0.01),breaks = seq(6,10, 1)) +
@@ -171,8 +171,8 @@ ggplot(data=cars, aes(x=lnprice)) +
 # lowess with observations
 ggplot(data = cars, aes(x=age, y=price)) +
   geom_point( color = 'blue', size = 2,  shape = 16, alpha = 0.8, show.legend=F, na.rm = TRUE) + 
-  geom_smooth(method="loess", se=F, colour='red', size=1, span=0.9) +
-  labs(x = "Age (years)",y = "Price (US dollars)") +
+  geom_smooth(method='loess', se=F, colour='red', size=1, span=0.9) +
+  labs(x = 'Age (years)',y = 'Price (US dollars)') +
   theme_bw() +
   expand_limits(x = 0.01, y = 0.01) +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,20000), breaks = seq(0,20000, 5000)) +
@@ -180,18 +180,18 @@ ggplot(data = cars, aes(x=age, y=price)) +
 
 # Lowess vs. quadratic specification with age
 ggplot(data = cars, aes(x=age,y=price)) +
-  geom_smooth( aes(colour='red'), method="loess", formula = y ~ x,se=F, size=1) +
-  geom_smooth( aes(colour='black'), method="lm", formula = y ~ poly(x,2) , se=F, size=1) +
+  geom_smooth( aes(colour='red'), method='loess', formula = y ~ x,se=F, size=1) +
+  geom_smooth( aes(colour='black'), method='lm', formula = y ~ poly(x,2) , se=F, size=1) +
   geom_point( aes( y = price ) , color = 'blue', size = 1,  shape = 16, alpha = 0.8, show.legend=F, na.rm = TRUE) + 
-  labs(x = "Age (years)",y = "Price (US dollars)") +
-  scale_color_manual(name="", values=c('red','black'),labels=c("Lowess in age","Quadratic in age")) +
+  labs(x = 'Age (years)',y = 'Price (US dollars)') +
+  scale_color_manual(name='', values=c('red','black'),labels=c('Lowess in age','Quadratic in age')) +
   theme_bw() +
   scale_x_continuous(limits = c(0,30), breaks = seq(0,30, 5)) +
   scale_y_continuous(limits = c(0,20000), breaks = seq(0,20000, 5000)) +
   theme(legend.position = c(0.7,0.7),
-        legend.direction = "horizontal",
+        legend.direction = 'horizontal',
         legend.background = element_blank(),
-        legend.box.background = element_rect(color = "white"))
+        legend.box.background = element_rect(color = 'white'))
 
 
 
@@ -218,7 +218,7 @@ reg4 <- feols(model4, data=cars, vcov = 'hetero')
 reg5 <- feols(model5, data=cars, vcov = 'hetero')
 
 # evaluation of the models: using all the sample
-fitstat_register("k", function(x){length( x$coefficients ) - 1}, "No. Variables")
+fitstat_register('k', function(x){length( x$coefficients ) - 1}, 'No. Variables')
 etable( reg1 , reg2 , reg3 , reg4 , reg5 , fitstat = c('aic','bic','rmse','r2','n','k') )
 
 
@@ -232,13 +232,13 @@ etable( reg1 , reg2 , reg3 , reg4 , reg5 , fitstat = c('aic','bic','rmse','r2','
 # Good to read if want to understand better: https://topepo.github.io/caret/
 
 # Simple k-fold cross validation setup:
-# 1) Used method for estimating the model: "lm" - linear model (y_hat = b0+b1*x1+b2*x2 + ...)
+# 1) Used method for estimating the model: 'lm' - linear model (y_hat = b0+b1*x1+b2*x2 + ...)
 # 2) set number of folds to use (must be less than the no. observations)
 k <- 4
 
 # We use the 'train' function which allows many type of model training -> use cross-validation
 set.seed(13505)
-cv1 <- train(model1, cars, method = "lm", trControl = trainControl(method = "cv", number = k))
+cv1 <- train(model1, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k))
 
 # Check the output:
 cv1
@@ -247,16 +247,16 @@ cv1$results
 cv1$resample
 
 set.seed(13505)
-cv2 <- train(model2, cars, method = "lm", trControl = trainControl(method = "cv", number = k))
+cv2 <- train(model2, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k))
 set.seed(13505)
-cv3 <- train(model3, cars, method = "lm", trControl = trainControl(method = "cv", number = k), na.action = "na.omit")
+cv3 <- train(model3, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k), na.action = 'na.omit')
 set.seed(13505)
-cv4 <- train(model4, cars, method = "lm", trControl = trainControl(method = "cv", number = k), na.action = "na.omit")
+cv4 <- train(model4, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k), na.action = 'na.omit')
 set.seed(13505)
-cv5 <- train(model5, cars, method = "lm", trControl = trainControl(method = "cv", number = k), na.action = "na.omit")
+cv5 <- train(model5, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k), na.action = 'na.omit')
 
 # Calculate RMSE for each fold and the average RMSE as well
-cv <- c("cv1", "cv2", "cv3", "cv4", "cv5")
+cv <- c('cv1', 'cv2', 'cv3', 'cv4', 'cv5')
 rmse_cv <- c()
 
 for(i in 1:length(cv)){
@@ -268,7 +268,7 @@ for(i in 1:length(cv)){
 
 
 # summarize results
-cv_mat <- data.frame(rbind(cv1$resample[4], "Average"),
+cv_mat <- data.frame(rbind(cv1$resample[4], 'Average'),
            rbind(cv1$resample[1], rmse_cv[1]),
            rbind(cv2$resample[1], rmse_cv[2]),
            rbind(cv3$resample[1], rmse_cv[3]),
@@ -276,12 +276,12 @@ cv_mat <- data.frame(rbind(cv1$resample[4], "Average"),
            rbind(cv5$resample[1], rmse_cv[5])
            )
 
-colnames(cv_mat)<-c("Resample","Model1", "Model2", "Model3", "Model4", "Model5")
+colnames(cv_mat)<-c('Resample','Model1', 'Model2', 'Model3', 'Model4', 'Model5')
 cv_mat 
 
 # Show model complexity and out-of-sample RMSE performance
 m_comp <- c()
-models <- c("reg1", "reg2", "reg3", "reg4", "reg5")
+models <- c('reg1', 'reg2', 'reg3', 'reg4', 'reg5')
 for( i in 1 : length(cv) ){
   m_comp[ i ] <- length( get( models[i] )$coefficient  - 1 ) 
 }
@@ -322,7 +322,7 @@ summary(resid_p1)
 sqrt( mean( resid_p1^2 ) )
 
 # predict value for newly added obs
-pred1_new <- predict(pred1, newdata = new ,se.fit = TRUE, interval = "prediction")
+pred1_new <- predict(pred1, newdata = new ,se.fit = TRUE, interval = 'prediction')
 p1 <- pred1_new$fit
 pred1_new
 
@@ -333,7 +333,7 @@ p3 <- predict(pred3, cars)
 resid_p3 <- p3-cars$price
 summary(resid_p3)
 # predict value for newly added obs
-pred3_new <- predict(pred3, newdata = new,se.fit = TRUE, interval = "prediction")
+pred3_new <- predict(pred3, newdata = new,se.fit = TRUE, interval = 'prediction')
 p3<- pred3_new$fit
 pred3_new 
 
@@ -353,9 +353,9 @@ sum1
 
 # Prediction with 80% PI:
 # predict value for newly added obs
-pred1_new80 <- predict(pred1, newdata = new, se.fit=TRUE, interval = "prediction", level=0.8)
+pred1_new80 <- predict(pred1, newdata = new, se.fit=TRUE, interval = 'prediction', level=0.8)
 p180<- pred1_new80$fit
-pred3_new80 <- predict(pred3, newdata = new,se.fit = TRUE, interval = "prediction", level=0.8)
+pred3_new80 <- predict(pred3, newdata = new,se.fit = TRUE, interval = 'prediction', level=0.8)
 p380<- pred3_new80$fit
 
 # Result summary
@@ -376,10 +376,10 @@ rbind(sum1,sum2[2:3,])
 # Reminder: lnprice
 ggplot(data = cars, aes(x = age, y = lnprice)) +
   geom_point(color = 'blue', size = 2,  shape = 16, alpha = 0.8, show.legend=FALSE, na.rm=TRUE) +
-  geom_smooth(method="loess", color='red', se=F, size=1, na.rm=T)+
+  geom_smooth(method='loess', color='red', se=F, size=1, na.rm=T)+
   scale_x_continuous(expand = c(0.01,0.01), limits = c(0,30), breaks = seq(0,30, 5)) +
   scale_y_continuous(expand = c(0.01,0.01), limits = c(6, 10), breaks = seq(6,10, 1)) +
-  labs(x = "Age (years)", y = "ln(price, US dollars)") +
+  labs(x = 'Age (years)', y = 'ln(price, US dollars)') +
   theme_bw() 
 
 
@@ -415,18 +415,18 @@ k <- 4
 
 # need to set the same seed again and again
 set.seed(13505)
-cv1log <- train(model1log, cars, method = "lm", trControl = trainControl(method = "cv", number = k))
+cv1log <- train(model1log, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k))
 set.seed(13505)
-cv2log <- train(model2log, cars, method = "lm", trControl = trainControl(method = "cv", number = k))
+cv2log <- train(model2log, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k))
 set.seed(13505)
-cv3log <- train(model3log, cars, method = "lm", trControl = trainControl(method = "cv", number = k), na.action = "na.omit")
+cv3log <- train(model3log, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k), na.action = 'na.omit')
 set.seed(13505)
-cv4log <- train(model4log, cars, method = "lm", trControl = trainControl(method = "cv", number = k), na.action = "na.omit")
+cv4log <- train(model4log, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k), na.action = 'na.omit')
 set.seed(13505)
-cv5log <- train(model5log, cars, method = "lm", trControl = trainControl(method = "cv", number = k), na.action = "na.omit")
+cv5log <- train(model5log, cars, method = 'lm', trControl = trainControl(method = 'cv', number = k), na.action = 'na.omit')
 
 # calculate average rmse
-cv <- c("cv1log", "cv2log", "cv3log", "cv4log", "cv5log")
+cv <- c('cv1log', 'cv2log', 'cv3log', 'cv4log', 'cv5log')
 rmse_cv <- c()
 
 for(i in 1:length(cv)){
@@ -438,7 +438,7 @@ for(i in 1:length(cv)){
 
 
 # summarize results
-cv_matlog <- data.frame(rbind(cv1log$resample[4], "Average"),
+cv_matlog <- data.frame(rbind(cv1log$resample[4], 'Average'),
                         rbind(cv1log$resample[1], rmse_cv[1]),
                         rbind(cv2log$resample[1], rmse_cv[2]),
                         rbind(cv3log$resample[1], rmse_cv[3]),
@@ -446,7 +446,7 @@ cv_matlog <- data.frame(rbind(cv1log$resample[4], "Average"),
                         rbind(cv5log$resample[1], rmse_cv[5])
 )
 
-colnames(cv_matlog)<-c("Resample","Model1log", "Model2log", "Model3log", "Model4log", "Model5log")
+colnames(cv_matlog)<-c('Resample','Model1log', 'Model2log', 'Model3log', 'Model4log', 'Model5log')
 cv_matlog
 
 
@@ -456,7 +456,7 @@ cv_matlog
 # Predict price with all predictors (Model3)
 pred3l <- feols(model3log, data=cars,vcov = 'hetero')
 # predict value for newly added obs
-pred3_new_log <- predict(pred3l, newdata = new,se.fit = TRUE, interval = "prediction")
+pred3_new_log <- predict(pred3l, newdata = new,se.fit = TRUE, interval = 'prediction')
 pred3_new_log 
 
 # get log model rmse
@@ -475,7 +475,7 @@ tibble( level = rmse3 , log = rmse3_log2lvl )
 
 ## Create the 80% PI and the 95% PI as well
 # prediction for new observation
-predln_new80 <- predict(pred3l, newdata = new,se.fit = TRUE, interval = "prediction", level=0.80)
+predln_new80 <- predict(pred3l, newdata = new,se.fit = TRUE, interval = 'prediction', level=0.80)
 
 # 95% prediction intervals (log to level)
 lnp2_PIlow <- pred3_new_log[3]

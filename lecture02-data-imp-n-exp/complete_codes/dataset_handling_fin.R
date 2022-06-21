@@ -47,8 +47,8 @@ library( tidyverse )
 #   2) Import by defining your path:
 #       a) use an absolute path (you have to know from root folder the path of your csv)
 
-data_in <- "~/Documents/Egyetem/Bekes_Kezdi_Textbook/da-coding-rstats/lecture02-data-imp_n_exp/data/hotels_vienna/"
-df_0      <- read_csv(paste0(data_in,"clean/hotels-vienna.csv"))
+data_in <- '~/Documents/Egyetem/Bekes_Kezdi_Textbook/da-coding-rstats/lecture02-data-imp_n_exp/data/hotels_vienna/'
+df_0      <- read_csv(paste0(data_in,'clean/hotels-vienna.csv'))
 
 #       b) use relative path:
 #           R works in a specific folder called `working directory`, that you can check by:
@@ -57,7 +57,7 @@ getwd()
 # after that, you can set your working directory by:
 setwd( data_in )
 # and simply call the data
-df_1      <- read_csv("clean/hotels-vienna.csv")
+df_1      <- read_csv('clean/hotels-vienna.csv')
 
 
 # delete your data
@@ -74,7 +74,7 @@ rm( hotels_vienna , df_0, df_1 )
 
 # Can access (almost) all the dat from 'ISF'
 # the hotels vienna dataset has the following url:
-df <- read_csv(url("https://osf.io/y6jvb/download")) 
+df <- read_csv(url('https://osf.io/y6jvb/download')) 
 
 
 ###
@@ -98,7 +98,7 @@ data_out <- paste0( data_in , '/export/' )
 write_csv( df , paste0( data_out , 'my_csvfile.csv' ) )
 
 # If due to some reason you would like to export as xls(x)
-install.packages( "writexl" )
+install.packages( 'writexl' )
 library( writexl )
 write_xlsx( df , paste0( data_out , 'my_csvfile.xlsx' ) )
 
@@ -112,13 +112,13 @@ save( df , file = paste0( data_out , 'my_rfile.RData' ) )
 #
 
 # tidyquant
-install.packages("tidyquant")
+install.packages('tidyquant')
 library(tidyquant)
 # Apple stock prices from Yahoo
 aapl <- tq_get('AAPL',
-               from = "2020-01-01",
-               to = "2021-10-01",
-               get = "stock.prices")
+               from = '2020-01-01',
+               to = '2021-10-01',
+               get = 'stock.prices')
 
 glimpse(aapl)
 
@@ -131,7 +131,7 @@ a <- WDIsearch('gdp')
 # Narrow down the serach for: GDP + something + capita + something + constant
 a <- WDIsearch('gdp.*capita.*constant')
 # Get data
-gdp_data <- WDI(indicator='NY.GDP.PCAP.PP.KD', country="all", start=2019, end=2019)
+gdp_data <- WDI(indicator='NY.GDP.PCAP.PP.KD', country='all', start=2019, end=2019)
 
 glimpse(gdp_data)
 
@@ -146,9 +146,9 @@ glimpse(gdp_data)
 # 5) write out this file as xlsx and as a .RData next to the original data.
 
 # Load from path
-df_t0 <- read_csv(paste0(data_in,"raw/hotelbookingdata.csv"))
+df_t0 <- read_csv(paste0(data_in,'raw/hotelbookingdata.csv'))
 # Load from wed
-df_t1 <- read_csv("https://osf.io/yzntm/download")
+df_t1 <- read_csv('https://osf.io/yzntm/download')
 # Write as xlsx
 write_xlsx( df_t1 , paste0( data_out , 'hotelbookingdata.xlsx' ) )
 # Write as .RData

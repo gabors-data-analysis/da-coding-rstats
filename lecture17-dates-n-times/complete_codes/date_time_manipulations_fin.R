@@ -37,11 +37,11 @@ rm( list = ls() )
 library(tidyverse)
 library(tidyquant)
 if (!require(lubridate)){
-  install.packages("lubridate")
+  install.packages('lubridate')
   library(lubridate)
 }
 if (!require(aTSA)){
-  install.packages("aTSA")
+  install.packages('aTSA')
   library(aTSA)
 }
 # For pretty plots
@@ -68,76 +68,76 @@ now()
 #
 # String to date: 
 #   usually you import string vector -> need to convert to datetime format
-str <- "2020-12-10"
+str <- '2020-12-10'
 dtt <- ymd( str )
 class( dtt )
 
 # with lubridate you should use different functions to read different formats of date
-#   alternatively you can use base function: `as.Date( str_vec , "%Y/%m/%d", tz="cet")'
+#   alternatively you can use base function: `as.Date( str_vec , '%Y/%m/%d', tz='cet')'
 #
 # Automatically recognise format (in most cases)
 # Month-Day-Year
 mdy('January 31st, 2017')
 mdy('01-31-2017')
 # Day-Month-Year
-dmy("31-01-2020")
+dmy('31-01-2020')
 dmy(31012020)
 # ect...
 
 # If hours-minutes-seconds are also important (Coordinated Universal Time - UTC := Greenwich Mean Time)
-ymd_hms("2020-02-13 13:15:58")
+ymd_hms('2020-02-13 13:15:58')
 # or
-mdy_hm("02/16/2023 09:01")
+mdy_hm('02/16/2023 09:01')
 
 # You can set the time zone as well to Central European Time (CET)
-ymd_hms("2020-02-13 13:15:58", tz = "CET" )
+ymd_hms('2020-02-13 13:15:58', tz = 'CET' )
 
 # Sometimes you have separately the year-month-day variables and want to combine them to one:
-make_date(year="1995",month="10",day='15')
+make_date(year='1995',month='10',day='15')
 # Also works with hours/minutes, and with doubles
-make_datetime(1995,10,15,5,32,tz="CET")
+make_datetime(1995,10,15,5,32,tz='CET')
 
 ##
 # Get parts of datetime
 #
 # In some cases you want to simplify/get parts of your date or want to control for seasonality:
 # Get the year component
-year("2020-12-20")
+year('2020-12-20')
 # Get quarter component
-quarter("2020-12-20")
+quarter('2020-12-20')
 # Get the month component
-month("2020-12-20")
+month('2020-12-20')
 # day of the month. day() would also work
-mday("2020-12-20") 
+mday('2020-12-20') 
 # But maybe you are interested which day of this is in a week (1-Monday, 2-Thuesday,ect.)
 #   This is handy if your seasonality has a week base.
-wday("2020-12-20") 
+wday('2020-12-20') 
 # Some occasion you are interested in the number of day within a year
-yday("2020-12-20") 
+yday('2020-12-20') 
 # Check for leap year
-leap_year("2020-12-20")
+leap_year('2020-12-20')
 
 ##
 # Rounding
 #
 # In some cases you want to round your datetime variable to a certain level (not really often used...)
-dt <- ymd("2020-12-20")
+dt <- ymd('2020-12-20')
 # Get the first day of the month
-floor_date(dt,"month")
+floor_date(dt,'month')
 # Get the first or last day in the month depending which is closer
-round_date(dt,"month")
+round_date(dt,'month')
 # Get the first day for the next month
-ceiling_date(dt,"month")
+ceiling_date(dt,'month')
 
 ##
 # Task:
 # Do the rounding for quarters
 # Get the first day of the month
-floor_date(dt,"quarter")
+floor_date(dt,'quarter')
 # Get the first or last day in the month depending which is closer
-round_date(dt,"quarter")
+round_date(dt,'quarter')
 # Get the first day for the next month
-ceiling_date(dt,"quarter")
+ceiling_date(dt,'quarter')
 
 ##
 # Time spans - duration vs periods
@@ -188,26 +188,26 @@ rm( list = ls())
 
 
 # GDP (millions of Dollars): using Fred database through tidyquant's tq_get package
-gdp <- tq_get( "GDP" , get = "economic.data", from = "1979-01-01") %>% 
+gdp <- tq_get( 'GDP' , get = 'economic.data', from = '1979-01-01') %>% 
         select( date , price ) %>% 
         rename( gdp = price )
 
 head( gdp )
 
 # Inflation (CPI): using Fred database through tidyquant's tq_get package
-inflat <- tq_get( "USACPIALLMINMEI" , get = "economic.data", from = "1978-01-01") %>% 
+inflat <- tq_get( 'USACPIALLMINMEI' , get = 'economic.data', from = '1978-01-01') %>% 
   select( date , price )
 
 head(inflat)
 # We want year-on-year changes
 inflat <- mutate( inflat, inflat = price - lag( price , 12 ) )
 # And filter from 1979-01-01
-inflat <- inflat %>% filter( date >= "1979-01-01")
+inflat <- inflat %>% filter( date >= '1979-01-01')
 
 head(inflat)
 
 # SP500 Stock Prices
-sp500 <- read_csv("https://osf.io/fpkm4/download") %>% 
+sp500 <- read_csv('https://osf.io/fpkm4/download') %>% 
   select( date , p_SP500 ) %>% 
   rename( price =  p_SP500 )
 
@@ -219,7 +219,7 @@ head(sp500)
 # Plot time-series
 ggplot( gdp , aes( x = date , y = gdp ) )+
   geom_line(color = 'red',size=1) +
-  labs(x="Year",y="GDP (billions)") +
+  labs(x='Year',y='GDP (billions)') +
   theme_bw()
 # Highly exponentially trending (and there is seasonality)...
 
@@ -228,7 +228,7 @@ ggplot( gdp , aes( x = date , y = gdp ) )+
 # Plot time-series
 ggplot( inflat , aes( x = date , y = inflat ) )+
   geom_line( color = 'red', size = 1 ) +
-  labs(x="Year", y="Inflation") +
+  labs(x='Year', y='Inflation') +
   theme_bw()
 # Seems like stationary, but it is not... (we will see)
 
@@ -238,7 +238,7 @@ ggplot( inflat , aes( x = date , y = inflat ) )+
 # Plot time-series
 ggplot( sp500 , aes( x = date , y = price) )+
   geom_line( color = 'red',size=0.5) +
-  labs(x="Date",y="Price ($)") +
+  labs(x='Date',y='Price ($)') +
   theme_bw()
 # Classical random walk
 
@@ -248,18 +248,18 @@ ggplot( sp500 , aes( x = date , y = price) )+
 # Yearly tickers with limits and minor breaks
 ggplot( sp500 , aes( x = date , y = price) )+
     geom_line( color = 'red',size=0.5) +
-    labs(x="Date",y="Price ($)") +
-    scale_x_date(date_breaks = "3 year", date_minor_breaks = "1 year",
-                 date_labels = "%Y", 
+    labs(x='Date',y='Price ($)') +
+    scale_x_date(date_breaks = '3 year', date_minor_breaks = '1 year',
+                 date_labels = '%Y', 
                  limits = ymd( c( '1997-01-01','2020-01-01' ) ) )+
     theme_bw()
 
 # Monthly tickers with limits and minor breaks
 ggplot( filter( sp500 , date > '2018-01-01' ) , aes( x = date , y = price) ) +
   geom_line( color = 'red',size=0.5) +
-  labs(x="Date",y="Price ($)") +
-  scale_x_date(date_breaks = "3 month", date_minor_breaks = "1 month",
-               date_labels = "%b %Y", 
+  labs(x='Date',y='Price ($)') +
+  scale_x_date(date_breaks = '3 month', date_minor_breaks = '1 month',
+               date_labels = '%b %Y', 
                limits = ymd( c( '2018-01-01','2019-01-01' ) ) )+
   theme_bw()
 
@@ -271,9 +271,9 @@ ggplot( filter( sp500 , date > '2018-01-01' ) , aes( x = date , y = price) ) +
 # Monthly tickers with limits and minor breaks
 ggplot( filter( sp500 , date > '2008-01-01' & date < '2011-01-01' ) , aes( x = date , y = price) ) +
   geom_line( color = 'red',size=0.5) +
-  labs(x="Date",y="Price ($)") +
-  scale_x_date(date_breaks = "6 month", date_minor_breaks = "3 month",
-               date_labels = "%Y-%m", 
+  labs(x='Date',y='Price ($)') +
+  scale_x_date(date_breaks = '6 month', date_minor_breaks = '3 month',
+               date_labels = '%Y-%m', 
                limits = ymd( c( '2008-01-01','2011-01-01' ) ) )+
   theme_bw()
 
@@ -282,9 +282,9 @@ ggplot( filter( sp500 , date > '2008-01-01' & date < '2011-01-01' ) , aes( x = d
 # Quarterly tickers are tricky: need to define a function and add to labels
 ggplot( filter( sp500 , date > '2016-01-01' ) , aes( x = date , y = price) ) +
   geom_line( color = 'red',size=0.5) +
-  labs(x="Date",y="Price ($)") +
-  scale_x_date(date_breaks = "6 month", date_minor_breaks = "3 month",
-               labels = function(x) zoo::format.yearqtr(x, "Q%q %Y"), 
+  labs(x='Date',y='Price ($)') +
+  scale_x_date(date_breaks = '6 month', date_minor_breaks = '3 month',
+               labels = function(x) zoo::format.yearqtr(x, 'Q%q %Y'), 
                limits = ymd( c( '2016-01-01','2019-01-01' ) ) )+
   theme_bw()
 
@@ -308,11 +308,11 @@ agg_inflat <- inflat %>% select( year, quarter , inflat ) %>%
   ungroup()
 
 # Add time and select variables
-agg_inflat <- agg_inflat %>% mutate( time = yq( paste0( year , "-" , quarter ) ) ) %>% 
+agg_inflat <- agg_inflat %>% mutate( time = yq( paste0( year , '-' , quarter ) ) ) %>% 
               select( time , inflat )
 
 # Join to df
-df <- left_join( df , agg_inflat , by = "time" )
+df <- left_join( df , agg_inflat , by = 'time' )
 rm( agg_inflat, inflat )
 
 ###
@@ -332,11 +332,11 @@ agg_sp500 <- sp500 %>% select( date, year, quarter, price ) %>%
             ungroup()
 
 # Adjust the time for left_join
-agg_sp500 <- agg_sp500 %>% mutate( time = yq( paste0( year , "-" , quarter ) ) ) %>% 
+agg_sp500 <- agg_sp500 %>% mutate( time = yq( paste0( year , '-' , quarter ) ) ) %>% 
                            select( time , price )
         
 # Join to df
-df <- left_join( df , agg_sp500 , by = "time" )
+df <- left_join( df , agg_sp500 , by = 'time' )
 rm( agg_sp500, sp500)
 
 # Filter data from 1997-10
@@ -349,21 +349,21 @@ df <- df %>% filter( time >= ymd( '1997-10-01') )
 # NO 1: check the time-series in different graphs:
 
 # need a trick to create a new stacked data to color by a variable
-df_aux <- df %>% pivot_longer( !time, names_to = "type" , values_to = "values" )
+df_aux <- df %>% pivot_longer( !time, names_to = 'type' , values_to = 'values' )
 
 ggplot( df_aux, aes( x = time, y = values , color = type ) ) + 
   geom_line() +
-  facet_wrap( ~ type , scales = "free" ,
+  facet_wrap( ~ type , scales = 'free' ,
               labeller = labeller( 
-                type = c("price" = "SP500 price",
-                         "gdp"="GDP (millions)",
-                         "inflat"="Inflation (%)") ),
+                type = c('price' = 'SP500 price',
+                         'gdp'='GDP (millions)',
+                         'inflat'='Inflation (%)') ),
               ncol = 1) +
   labs( x = 'Years' , y = '' ) +
-  scale_x_date(date_breaks = "3 year", date_minor_breaks = "1 year",
-               date_labels = "%Y", 
+  scale_x_date(date_breaks = '3 year', date_minor_breaks = '1 year',
+               date_labels = '%Y', 
                limits = ymd( c( '1997-01-01','2020-01-01' ) ) )+
-  guides(color = "none" ) +
+  guides(color = 'none' ) +
   theme_bw()
 
 rm(df_aux)
@@ -408,22 +408,22 @@ pp.test( df$return  , lag.short = F)
 stdd <- function( x ){ ( x - mean( x , rm.na = T ) ) / sd( x , na.rm = T ) }
 
 ggplot( filter(df,complete.cases(df)) , aes( x = time ) ) +
-  geom_line( aes( y = stdd( dgdp )    , color = "dgdp" ) ) +
-  geom_line( aes( y = stdd( dinflat )  , color = "dinflat" ) ) +
-  geom_line( aes( y = stdd( return )  , color = "return") ) +
-  scale_color_manual(name = "Variable",
-                     values = c( "dgdp" = "red", 
-                                 "dinflat" = "blue",
-                                 "return" = "green"),
-                     labels = c("dgdp" = "GDP change", 
-                                "dinflat"="Inflation change",
-                                "return"="SP500 return")) +
-  labs(x="Years",y="Standardized values" )+
-  scale_x_date(date_breaks = "3 year", date_minor_breaks = "1 year",
-               date_labels = "%Y", 
+  geom_line( aes( y = stdd( dgdp )    , color = 'dgdp' ) ) +
+  geom_line( aes( y = stdd( dinflat )  , color = 'dinflat' ) ) +
+  geom_line( aes( y = stdd( return )  , color = 'return') ) +
+  scale_color_manual(name = 'Variable',
+                     values = c( 'dgdp' = 'red', 
+                                 'dinflat' = 'blue',
+                                 'return' = 'green'),
+                     labels = c('dgdp' = 'GDP change', 
+                                'dinflat'='Inflation change',
+                                'return'='SP500 return')) +
+  labs(x='Years',y='Standardized values' )+
+  scale_x_date(date_breaks = '3 year', date_minor_breaks = '1 year',
+               date_labels = '%Y', 
                limits = ymd( c( '1997-01-01','2020-01-01' ) ) )+
   theme_bw() +
-  theme( legend.position="top" , legend.title = element_blank () ) # place legend to top and remove name
+  theme( legend.position='top' , legend.title = element_blank () ) # place legend to top and remove name
 # More or less moving together!
 
 

@@ -70,17 +70,17 @@ Running simple codes is great, but in many cases, we want to write
 elaborate multistage commands. In this case, we can create `variables`,
 which will store information in the memory and can be called later.
 
-E.g. we can save the command “Hello world!” into a variable, that we
+E.g. we can save the command ‘Hello world!’ into a variable, that we
 call `myString` in the following way:
 
 ``` r
-myString <- "Hello world!"
+myString <- 'Hello world!'
 ```
 
 If you run this piece of command, seemingly nothing happens - or at
 least in the console window does not print out anything only runs the
 command. However, a new variable shows up in the `Environment` window
-under the `Values` section, which says: ‘myString’ and “Hello world!”.
+under the `Values` section, which says: ‘myString’ and ‘Hello world!’.
 It shows that there is a `variable` stored in the memory with the name
 of `myString`.
 
@@ -203,6 +203,10 @@ collect all types, let us create a detailed list here:
 
 -   *character* - also known as a string. Any variable which contains
     letters, special characters, or numbers between `''` or `""` marks.
+    When creating a character, decide if you use `'` or `"` and use them
+    consistently. Here we use `'`. Note: when want to display a ’ or ”
+    character, you can do it by using the other to define as a
+    character.
 -   *numeric* - any numeric value, broadly speaking is called *double*.
 -   *integer* - a special numeric value, which is not a fraction. An
     extra ‘L’ is put next to the value in the Environment to show that
@@ -736,7 +740,7 @@ Lists are great to combine different types of R-objects. These are
 created via `list()` function:
 
 ``` r
-my_list <- list("a",2,0==1)
+my_list <- list('a',2,0==1)
 my_list
 ```
 
@@ -755,7 +759,7 @@ vector. Actually, it is structured such that it has 3 elements and
 within each element, there is an R-object or possibly a vector:
 
 ``` r
-my_list2 <- list(c("a","b"),c(1,2,3),sqrt(2)^2==2)
+my_list2 <- list(c('a','b'),c(1,2,3),sqrt(2)^2==2)
 my_list2
 ```
 

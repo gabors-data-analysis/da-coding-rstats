@@ -97,7 +97,7 @@ data <- data %>%
     )
 
 # C) drop variables if many missing and not that important to have them in the analysis
-to_drop <- c("usd_cleaning_fee", "p_host_response_rate","d_reviews_per_month")
+to_drop <- c('usd_cleaning_fee', 'p_host_response_rate','d_reviews_per_month')
 data <- data %>%
   select(-one_of(to_drop))
 
@@ -178,7 +178,7 @@ ggplot(data=datau, aes(x=price)) +
   geom_histogram(aes(y = (..count..)/sum(..count..)), binwidth = 10, boundary=0,
                   fill = 'navyblue', color = 'white', size = 0.25, alpha = 0.8,  show.legend=F,  na.rm=TRUE) +
   coord_cartesian(xlim = c(0, 400)) +
-  labs(x = "Price (US dollars)",y = "Percent")+
+  labs(x = 'Price (US dollars)',y = 'Percent')+
   scale_y_continuous(expand = c(0.00,0.00),limits=c(0, 0.15), breaks = seq(0, 0.15, by = 0.03), labels = scales::percent_format(1)) +
     scale_x_continuous(expand = c(0.00,0.00),limits=c(0,400), breaks = seq(0,400, 50)) +
   theme_bw() 
@@ -191,31 +191,31 @@ ggplot(data=datau, aes(x=ln_price)) +
   coord_cartesian(xlim = c(2.5, 6.5)) +
   scale_y_continuous(expand = c(0.00,0.00),limits=c(0, 0.15), breaks = seq(0, 0.15, by = 0.05), labels = scales::percent_format(5L)) +
   scale_x_continuous(expand = c(0.00,0.01),breaks = seq(2.4,6.6, 0.6)) +
-  labs(x = "ln(price, US dollars)",y = "Percent")+
+  labs(x = 'ln(price, US dollars)',y = 'Percent')+
   theme_bw() 
 
 
 ## Boxplot of price by room type
 ggplot(data = datau, aes(x = f_room_type, y = price)) +
-  stat_boxplot(aes(group = f_room_type), geom = "errorbar", width = 0.3,
+  stat_boxplot(aes(group = f_room_type), geom = 'errorbar', width = 0.3,
                color = c('red','blue', 'black'), size = 0.5, na.rm=T)+
   geom_boxplot(aes(group = f_room_type),
                color = c('red','blue', 'black'), fill = c('red','blue', 'black'),
                size = 0.5, width = 0.6, alpha = 0.3, na.rm=T, outlier.shape = NA) +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,300), breaks = seq(0,300,100)) +
-  labs(x = "Room type",y = "Price (US dollars)")+
+  labs(x = 'Room type',y = 'Price (US dollars)')+
   theme_bw()
 
 # Boxplot of price by number of persons
 ggplot(datau, aes(x = factor(n_accommodates), y = price,
                         fill = factor(f_property_type), color=factor(f_property_type))) +
   geom_boxplot(alpha=0.8, na.rm=T, outlier.shape = NA, width = 0.8) +
-    stat_boxplot(geom = "errorbar", width = 0.8, size = 0.3, na.rm=T)+
-    scale_color_manual(name="",
+    stat_boxplot(geom = 'errorbar', width = 0.8, size = 0.3, na.rm=T)+
+    scale_color_manual(name='',
                      values=c('red','blue')) +
-  scale_fill_manual(name="",
+  scale_fill_manual(name='',
                      values=c('red','blue')) +
-  labs(x = "Accomodates (Persons)",y = "Price (US dollars)")+
+  labs(x = 'Accomodates (Persons)',y = 'Price (US dollars)')+
   scale_y_continuous(expand = c(0.01,0.01), limits=c(0, 400), breaks = seq(0,400, 50))+
   theme_bw() +
   theme(legend.position = c(0.3,0.8)        )
@@ -233,35 +233,35 @@ ggplot(datau, aes(x = factor(n_accommodates), y = price,
 # A) Define grouping variables which contains variable names
 
 # Define basic levels
-basic_lev  <- c("n_accommodates", "n_beds", "f_property_type", "f_room_type", "n_days_since", "flag_days_since")
+basic_lev  <- c('n_accommodates', 'n_beds', 'f_property_type', 'f_room_type', 'n_days_since', 'flag_days_since')
 # Factorized variables
-basic_add <- c("f_bathroom","f_cancellation_policy","f_bed_type")
+basic_add <- c('f_bathroom','f_cancellation_policy','f_bed_type')
 # Reviews
-reviews <- c("f_number_of_reviews","n_review_scores_rating", "flag_review_scores_rating")
+reviews <- c('f_number_of_reviews','n_review_scores_rating', 'flag_review_scores_rating')
 # Higher orders
-poly_lev <- c("n_accommodates2", "n_days_since2", "n_days_since3")
+poly_lev <- c('n_accommodates2', 'n_days_since2', 'n_days_since3')
 
 # Create dummy variable names: 
 #   Extras -> collect all options and create dummies
-amenities <-  grep("^d_.*", names(data), value = TRUE)
+amenities <-  grep('^d_.*', names(data), value = TRUE)
 
 ##########################
 # B) Creating interactions:
 
 # let us call the ch14_aux_fncs funtion -> to plot interaction terms
-source("ch14_aux_fncs.R")
+source('ch14_aux_fncs.R')
 
 ##
 # a) Check the interactions for various variables and create a ggplot
 # Look up room type interactions
-p1 <- price_diff_by_variables2(data, "f_room_type", "d_familykidfriendly", "Room type", "Family kid friendly")
-p2 <- price_diff_by_variables2(data, "f_room_type", "f_property_type", "Room type", "Property type")
+p1 <- price_diff_by_variables2(data, 'f_room_type', 'd_familykidfriendly', 'Room type', 'Family kid friendly')
+p2 <- price_diff_by_variables2(data, 'f_room_type', 'f_property_type', 'Room type', 'Property type')
 #Look up canelation policy
-p3 <- price_diff_by_variables2(data, "f_cancellation_policy", "d_familykidfriendly", "Cancellation policy", "Family kid friendly")
-p4 <- price_diff_by_variables2(data, "f_cancellation_policy", "d_tv", "Cancellation policy", "TV")
+p3 <- price_diff_by_variables2(data, 'f_cancellation_policy', 'd_familykidfriendly', 'Cancellation policy', 'Family kid friendly')
+p4 <- price_diff_by_variables2(data, 'f_cancellation_policy', 'd_tv', 'Cancellation policy', 'TV')
 #Look up property type
-p5 <- price_diff_by_variables2(data, "f_property_type", "d_cats", "Property type", "Cats")
-p6 <- price_diff_by_variables2(data, "f_property_type", "d_dogs", "Property type", "Dogs")
+p5 <- price_diff_by_variables2(data, 'f_property_type', 'd_cats', 'Property type', 'Cats')
+p6 <- price_diff_by_variables2(data, 'f_property_type', 'd_dogs', 'Property type', 'Dogs')
 # combine plots
 g_interactions <- plot_grid(p1, p2, p3, p4, p5, p6, nrow=3, ncol=2)
 g_interactions
@@ -271,25 +271,25 @@ g_interactions
 # b) create the interaction terms
 
 # dummies suggested by graphs
-X1  <- c("f_room_type*f_property_type",  "f_room_type*d_familykidfriendly")
+X1  <- c('f_room_type*f_property_type',  'f_room_type*d_familykidfriendly')
 
 # Additional interactions of factors and dummies
-X2  <- c("d_airconditioning*f_property_type", "d_cats*f_property_type", "d_dogs*f_property_type")
-X3  <- c(paste0("(f_property_type + f_room_type + f_cancellation_policy + f_bed_type) * (",
-                paste(amenities, collapse=" + "),")"))
+X2  <- c('d_airconditioning*f_property_type', 'd_cats*f_property_type', 'd_dogs*f_property_type')
+X3  <- c(paste0('(f_property_type + f_room_type + f_cancellation_policy + f_bed_type) * (',
+                paste(amenities, collapse=' + '),')'))
 
 #######################
 # C) Create model setups
 #
 # Create models in levels models: 1-8
-modellev1 <- " ~ n_accommodates"
-modellev2 <- paste0(" ~ ",paste(basic_lev,collapse = " + "))
-modellev3 <- paste0(" ~ ",paste(c(basic_lev, basic_add,reviews),collapse = " + "))
-modellev4 <- paste0(" ~ ",paste(c(basic_lev,basic_add,reviews,poly_lev),collapse = " + "))
-modellev5 <- paste0(" ~ ",paste(c(basic_lev,basic_add,reviews,poly_lev,X1),collapse = " + "))
-modellev6 <- paste0(" ~ ",paste(c(basic_lev,basic_add,reviews,poly_lev,X1,X2),collapse = " + "))
-modellev7 <- paste0(" ~ ",paste(c(basic_lev,basic_add,reviews,poly_lev,X1,X2,amenities),collapse = " + "))
-modellev8 <- paste0(" ~ ",paste(c(basic_lev,basic_add,reviews,poly_lev,X1,X2,amenities,X3),collapse = " + "))
+modellev1 <- ' ~ n_accommodates'
+modellev2 <- paste0(' ~ ',paste(basic_lev,collapse = ' + '))
+modellev3 <- paste0(' ~ ',paste(c(basic_lev, basic_add,reviews),collapse = ' + '))
+modellev4 <- paste0(' ~ ',paste(c(basic_lev,basic_add,reviews,poly_lev),collapse = ' + '))
+modellev5 <- paste0(' ~ ',paste(c(basic_lev,basic_add,reviews,poly_lev,X1),collapse = ' + '))
+modellev6 <- paste0(' ~ ',paste(c(basic_lev,basic_add,reviews,poly_lev,X1,X2),collapse = ' + '))
+modellev7 <- paste0(' ~ ',paste(c(basic_lev,basic_add,reviews,poly_lev,X1,X2,amenities),collapse = ' + '))
+modellev8 <- paste0(' ~ ',paste(c(basic_lev,basic_add,reviews,poly_lev,X1,X2,amenities,X3),collapse = ' + '))
 
 #################################
 # 2) Manage different samples:
@@ -335,12 +335,12 @@ seed_val <- 20210117
 
 # Do the iteration
 for ( i in 1:8 ){
-  print(paste0( "Estimating model: " ,i ))
+  print(paste0( 'Estimating model: ' ,i ))
   # Get the model name
-  model_name <-  paste0("modellev",i)
-  model_pretty_name <- paste0("M",i,"")
+  model_name <-  paste0('modellev',i)
+  model_pretty_name <- paste0('M',i,'')
   # Specify the formula
-  yvar <- "price"
+  yvar <- 'price'
   xvars <- eval(parse(text = model_name))
   formula <- formula(paste0(yvar,xvars))
   
@@ -355,8 +355,8 @@ for ( i in 1:8 ){
   
   # Do the k-fold estimation
   set.seed(seed_val)
-  cv_i <- train( formula, data_work, method = "lm", 
-                 trControl = trainControl(method = "cv", number = k_folds))
+  cv_i <- train( formula, data_work, method = 'lm', 
+                 trControl = trainControl(method = 'cv', number = k_folds))
   rmse_test <- mean( cv_i$resample$RMSE )
   
   # Save the results
@@ -375,36 +375,36 @@ model_results
 
 
 # RMSE training vs test graph
-colors = c("Training RMSE"="green","Test RMSE" = "blue")
+colors = c('Training RMSE'='green','Test RMSE' = 'blue')
 ggplot( data = model_results, aes( x = factor( Coefficients ) , group = 1 ) )+
   geom_line(aes( y = Training_RMSE , color = 'Training RMSE'), size = 1 ) +
   geom_line(aes( y = Test_RMSE , color = 'Test RMSE') , size = 1 )+
-  labs(y='RMSE',x='Number of coefficients',color = "")+
+  labs(y='RMSE',x='Number of coefficients',color = '')+
   scale_color_manual(values = colors)+
   theme_bw()+
-  theme(legend.position="top")
+  theme(legend.position='top')
 
 
 #################################
 # 3) Use of LASSO
 
 # take model 8 (and find observations where there is no missing data)
-vars_model_8 <- c("price", basic_lev,basic_add,reviews,poly_lev,X1,X2,amenities,X3)
+vars_model_8 <- c('price', basic_lev,basic_add,reviews,poly_lev,X1,X2,amenities,X3)
 
 # Set lasso tuning parameters:
 # a) basic setup
-train_control <- trainControl( method = "cv", number = k_folds)
+train_control <- trainControl( method = 'cv', number = k_folds)
 # b) tell the actual lambda (penalty parameter) to use for lasso
-tune_grid     <- expand.grid("alpha" = c(1), "lambda" = seq(0.05, 1, by = 0.05))
+tune_grid     <- expand.grid('alpha' = c(1), 'lambda' = seq(0.05, 1, by = 0.05))
 # c) create a formula
-formula <- formula(paste0("price ~ ", paste(setdiff(vars_model_8, "price"), collapse = " + ")))
+formula <- formula(paste0('price ~ ', paste(setdiff(vars_model_8, 'price'), collapse = ' + ')))
 
 # Run LASSO
 set.seed(seed_val)
 lasso_model <- caret::train(formula,
                       data = data_work,
-                      method = "glmnet",
-                      preProcess = c("center", "scale"),
+                      method = 'glmnet',
+                      preProcess = c('center', 'scale'),
                       trControl = train_control,
                       tuneGrid = tune_grid,
                       na.action=na.exclude)
@@ -421,8 +421,8 @@ plot(lasso_model)
 lasso_coeffs <- coef(lasso_model$finalModel, lasso_model$bestTune$lambda) %>%
   as.matrix() %>%
   as.data.frame() %>%
-  rownames_to_column(var = "variable") %>%
-  rename(coefficient = `s1`)  # the column has a name "1", to be renamed
+  rownames_to_column(var = 'variable') %>%
+  rename(coefficient = `s1`)  # the column has a name '1', to be renamed
 
 print(lasso_coeffs)
 
@@ -450,7 +450,7 @@ model_results
 #     if you neglect you may end up with using different variables (but the prediction will not change tremendously)
 # b) tune_grid: can neglect specifying the grid (and usually you should), but it will slow down the calculation
 #     as LASSO will check much more possible values
-# c) in tune_grid "alpha" decides which "method" you use:
+# c) in tune_grid 'alpha' decides which 'method' you use:
 #     alpha = 1 -> LASSO regression
 #     alpha = 0 -> RIDGE regression
 #     alpha = any number -> ELASTIC NET
@@ -458,8 +458,8 @@ model_results
 set.seed(seed_val)
 elasticnet_model <- caret::train(formula,
                             data = data_work,
-                            method = "glmnet",
-                            preProcess = c("center", "scale"),
+                            method = 'glmnet',
+                            preProcess = c('center', 'scale'),
                             trControl = train_control,
                             na.action=na.exclude)
 
@@ -480,7 +480,7 @@ elasticnet_model$results %>%
 elastic_coeffs <- coef(elasticnet_model$finalModel, elasticnet_model$bestTune$lambda) %>%
   as.matrix() %>%
   as.data.frame() %>%
-  rownames_to_column(var = "variable") %>%
+  rownames_to_column(var = 'variable') %>%
   rename(coefficient = `s1`)
 elasticnet_model_nz<-elastic_coeffs %>%
   filter(coefficient!=0)
@@ -496,8 +496,8 @@ print(nrow(elasticnet_model_nz))
 # Let us check only Models: 3, 7 and LASSO
 
 # we need to re-run Model 3 and 7 on the work data
-m3 <- feols( formula(paste0("price",modellev3)) , data = data_work, vcov = 'hetero' )
-m7 <- feols( formula(paste0("price",modellev7)) , data = data_work, vcov = 'hetero' )
+m3 <- feols( formula(paste0('price',modellev3)) , data = data_work, vcov = 'hetero' )
+m7 <- feols( formula(paste0('price',modellev7)) , data = data_work, vcov = 'hetero' )
 
 # Make prediction for the hold-out sample with each models
 m3_p <- predict( m3 , newdata = data_holdout )
@@ -571,13 +571,13 @@ pred_persons
 
 # Create a bar graph with PIs
 ggplot(pred_persons, aes(x=factor(n_accommodates))) +
-  geom_bar(aes(y = fit ), stat="identity",  fill = 'blue', alpha=0.7 ) +
-  geom_errorbar(aes(ymin=pred_lwr, ymax=pred_upr, color = "Pred. interval"),width=.3,size=1) +
-  scale_y_continuous(name = "Predicted price (US dollars)") +
-  scale_x_discrete(name = "Accomodates (Persons)") +
+  geom_bar(aes(y = fit ), stat='identity',  fill = 'blue', alpha=0.7 ) +
+  geom_errorbar(aes(ymin=pred_lwr, ymax=pred_upr, color = 'Pred. interval'),width=.3,size=1) +
+  scale_y_continuous(name = 'Predicted price (US dollars)') +
+  scale_x_discrete(name = 'Accomodates (Persons)') +
   scale_color_manual(values=c('red', 'red')) +
   theme_bw() +
-  theme(legend.title= element_blank(),legend.position="none")
+  theme(legend.title= element_blank(),legend.position='none')
 
 #####
 # If we have time:
@@ -592,7 +592,7 @@ ggplot(pred_persons, aes(x=factor(n_accommodates))) +
 # Plot against L1 norm
 plot(lasso_model$finalModel)
 # Plot against log of lambda
-plot(lasso_model$finalModel , xvar = "lambda", label = TRUE)
+plot(lasso_model$finalModel , xvar = 'lambda', label = TRUE)
 
 # Using 1SE rule for selecting a more parsimonious model:
 # Get the 1SE value:
@@ -608,18 +608,18 @@ lasso_model$results
 set.seed(seed_val)
 lasso_simple <- caret::train(formula,
                             data = data_work,
-                            method = "glmnet",
-                            preProcess = c("center", "scale"),
+                            method = 'glmnet',
+                            preProcess = c('center', 'scale'),
                             trControl = train_control,
-                            tuneGrid = expand.grid("alpha" = c(1), "lambda" = 1 )  ,
+                            tuneGrid = expand.grid('alpha' = c(1), 'lambda' = 1 )  ,
                             na.action=na.exclude)
 
 # One can get the coefficients as well
 lasso_s_coeffs <- coef(lasso_simple$finalModel, lasso_simple$bestTune$lambda) %>%
   as.matrix() %>%
   as.data.frame() %>%
-  rownames_to_column(var = "variable") %>%
-  rename(coefficient = `s1`)  # the column has a name "1", to be renamed
+  rownames_to_column(var = 'variable') %>%
+  rename(coefficient = `s1`)  # the column has a name '1', to be renamed
 
 print(lasso_s_coeffs)
 

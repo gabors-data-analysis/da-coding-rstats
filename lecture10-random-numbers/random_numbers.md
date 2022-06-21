@@ -51,7 +51,7 @@ distribution between 0 and 1, we can run the following code:
 runif( 5 , min = 0 , max = 1)
 ```
 
-    ## [1] 0.4504302 0.4982766 0.3658106 0.9349943 0.5152275
+    ## [1] 0.7240127 0.7271296 0.5900146 0.9942719 0.3826112
 
 Note that if you re-run this piece of code it will result in different
 values. Naturally, the question emerges, how to write a code, which will
@@ -129,7 +129,7 @@ emp_height <- ggplot( df , aes( x = height ) ) +
                  fill = 'navyblue', alpha = 0.6 ) +
   stat_function( fun = dnorm, color = 'red',  
                  args = with( df, c( mean = mean( height , na.rm = T ), sd = sd( height , na.rm = T ) ) ) ) + 
-  labs(x="Height (meters)", y="Density" ) +
+  labs(x='Height (meters)', y='Density' ) +
     theme_bw()
 
 emp_height
@@ -157,7 +157,7 @@ emp_inc <- ggplot( filter( df , hhincome < 1000 ) , aes( x = hhincome ) ) +
                  fill = 'navyblue', alpha = 0.6 ) +
   stat_function( fun = dlnorm, colour= 'red',  
                  args = c( mean = mu , sd =  sigma ) ) + 
-  labs(x="Income (thousand $)", y="Density" ) +
+  labs(x='Income (thousand $)', y='Density' ) +
     theme_bw()
 
 emp_inc

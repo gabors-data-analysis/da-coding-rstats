@@ -36,7 +36,7 @@ rm( list = ls() )
 library( tidyverse )
 
 # Import raw data
-raw_df <- read_csv( "https://osf.io/yzntm/download" )
+raw_df <- read_csv( 'https://osf.io/yzntm/download' )
 
 # as this is a large file you may want to save it:
 # data_dir <- paste0( getwd() , '/data/' )
@@ -71,16 +71,16 @@ df$accommodationtype
 ##
 # 3) separating character vector with a unique sign 
 #
-# Check accomotationtype: it is a character with a clear separator "@"
+# Check accomotationtype: it is a character with a clear separator '@'
 #
 # To clean accommodationtype column: separate the characters at @ 
-#   and create two new variables: "garbage" and "acc_type".
+#   and create two new variables: 'garbage' and 'acc_type'.
 # garbage will contain all characters before @ sign and acc_type will take everything after!
 
 # with tidyverse it is simple, use:
 #   `separate( data , variable , separator , into = c( var1, var2) )` 
-df <- separate( df , accommodationtype , "@" ,
-                into = c("garbage","acc_type") )
+df <- separate( df , accommodationtype , '@' ,
+                into = c('garbage','acc_type') )
 
 # Check the two new variable, and that `accommodationtype` is removed.
 
@@ -126,21 +126,21 @@ is.factor( df$acc_type )
 #
 # Check the distance measure:
 df$center1distance
-# we have two numeric values than the format of the distance "miles"
+# we have two numeric values than the format of the distance 'miles'
 
 # to get it right let us check first how to find patterns in characters:
-eg1 <- "Coding is 123 fun!"
+eg1 <- 'Coding is 123 fun!'
 # Find numeric values in a vector and replace it: gsub(find,replace,variable):
-gsub( "12" , "extra fun" , eg1 )
+gsub( '12' , 'extra fun' , eg1 )
 # Find and replace any numeric value in a simple expression
-gsub("[0-9\\.]"," extra fun," , eg1)
-# Find all non-numeric values (negate with `^` sign) and replace with "" (none -> remove it)
-gsub("[^0-9\\.]","" , eg1)
+gsub('[0-9\\.]',' extra fun,' , eg1)
+# Find all non-numeric values (negate with `^` sign) and replace with '' (none -> remove it)
+gsub('[^0-9\\.]','' , eg1)
 
 # Create two new numeric vectors using the distance measures with gsub
 df <- mutate( df , 
-              distance = as.numeric(gsub("[^0-9\\.]","", center1distance ) ),
-              distance_alter = as.numeric(gsub("[^0-9\\.]","", center2distance ) ) )
+              distance = as.numeric(gsub('[^0-9\\.]','', center1distance ) ),
+              distance_alter = as.numeric(gsub('[^0-9\\.]','', center2distance ) ) )
 
 # Note: it will not remove the original variables
 
@@ -178,7 +178,7 @@ filter( df , acc_type == 'Hotel' )
 # Filtering: find missing values
 # look at one of our key variable: ratings
 # we can tabulate the frequencies of the ratings
-table( df$ratings , useNA = "ifany" )
+table( df$ratings , useNA = 'ifany' )
 # What can we do with the NA values?
 # First check them with 'filter'
 filter( df , is.na( ratings ) )
@@ -195,11 +195,11 @@ df <- filter( df , !is.na( ratings ) )
 ###
 ## Correcting wrongly documented observations:
 # In case of `stars` there are only values from 0-5
-table( df$stars , useNA = "ifany" )
+table( df$stars , useNA = 'ifany' )
 # what does 0 star means? It is missing, but recorded as 0...
 # we need to set these values to NA: re-define the stars variable:
 df <- mutate( df , stars = na_if( stars , 0 ) )
-table( df$stars , useNA = "ifany" )
+table( df$stars , useNA = 'ifany' )
 
 
 ###

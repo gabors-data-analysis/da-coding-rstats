@@ -45,13 +45,13 @@ library(ggpubr)
 library(fixest)
 # marginaleffects is for calculating non-linear models' marginal effects
 if (!require(marginaleffects)){
-  install.packages("marginaleffects")
+  install.packages('marginaleffects')
   library(marginaleffects)
 }
 
 
 # load cleaned data from OSF
-share <- read_csv("https://osf.io/3ze58/download")
+share <- read_csv('https://osf.io/3ze58/download')
 
 # Check all the data - quick description 
 #   (All except country_str, but it is implied in country_mod)
@@ -103,7 +103,7 @@ ggplot(data = share, label=smoking) +
   geom_point(aes(x = smoking, y = stayshealthy, size=weight_2), 
              fill = 'red', color='red', shape = 16, alpha=0.8, 
              show.legend=F, na.rm=TRUE)  +
-  labs(x = "Current smoker",y = "Staying healthy / Predicted probability of ")+
+  labs(x = 'Current smoker',y = 'Staying healthy / Predicted probability of ')+
   coord_cartesian(xlim = c(0, 1), ylim=c(0,1)) +
   scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1))+
   scale_x_continuous(limits = c(0,1), breaks = seq(0,1,1))+
@@ -119,7 +119,7 @@ lpm2
 # Compare models:
 #   - good to know: digits = 3 also works, but it does not rounds, but uses floor()
 etable( lpm1 , lpm2,
-        digits="r3")
+        digits='r3')
 
 ####
 # 2) Multiple variable regressions:
@@ -135,32 +135,32 @@ share <- share %>%
 # Education
 ggplot(data = share, aes(x=eduyears, y=stayshealthy)) +
   geom_point(aes(x = eduyears, y = stayshealthy, size=weight), color='blue', shape = 16, alpha=0.8, show.legend=F, na.rm=TRUE)  +
-  geom_smooth(method="loess", color='red', se = F , formula = y ~ x) +
+  geom_smooth(method='loess', color='red', se = F , formula = y ~ x) +
   scale_x_continuous(expand = c(0.01,0.01), limits = c(0,25), breaks = seq(0,25,4))+
   scale_y_continuous(expand = c(0.01,0.01), limits = c(0,1), breaks = seq(0,1,0.1)) +
-  labs(x = "Years of education",y = "Probability of staying healthy ") +
+  labs(x = 'Years of education',y = 'Probability of staying healthy ') +
   theme_bw() 
 
 # Income groups
 ggplot(data = share, aes(x=income10, y=stayshealthy)) +
-  geom_smooth(method="loess", color='red', se = F , formula = y ~ x) +
+  geom_smooth(method='loess', color='red', se = F , formula = y ~ x) +
   scale_x_continuous(expand = c(0.01,0.01), limits = c(1,10), breaks = seq(1,10,1))+
   scale_y_continuous(expand = c(0.01,0.01), limits = c(0,1), breaks = seq(0,1,0.1)) +
-  labs(x = "Income group within country (deciles)",y = "Probability of staying healthy ") +
+  labs(x = 'Income group within country (deciles)',y = 'Probability of staying healthy ') +
   theme_bw()
 
 # Age
 ggplot(data = share, aes(x=age, y=stayshealthy)) +
-  geom_smooth(method="loess", color='red', se = F , formula = y ~ x) +
+  geom_smooth(method='loess', color='red', se = F , formula = y ~ x) +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,1), breaks = seq(0,1,0.2), labels = scales::percent) +
-  labs(x = "Age at interview (years)",y = "Probability of staying healthy") +
+  labs(x = 'Age at interview (years)',y = 'Probability of staying healthy') +
   theme_bw() 
 
 # BMI
 ggplot(data = share, aes(x=bmi, y=stayshealthy)) +
-  geom_smooth(method="loess", se=F, color='red', size=1.5, formula = y ~ x) +
+  geom_smooth(method='loess', se=F, color='red', size=1.5, formula = y ~ x) +
   scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.2)) +
-  labs(x = "Body mass index",y = "Stays healthy") +
+  labs(x = 'Body mass index',y = 'Stays healthy') +
   scale_x_continuous(limits = c(10,50), breaks = seq(10,50, 10))+
   theme_bw() 
 
@@ -181,7 +181,7 @@ lpm3 <-feols( stayshealthy ~ smoking + ever_smoked + female +
               data = share , vcov = 'hetero')
 
 # compare the existing LPMs
-etable(lpm1, lpm2, lpm3, drop="country", digits="r3" )
+etable(lpm1, lpm2, lpm3, drop='country', digits='r3' )
 
 
 # Check predicted probabilities: is there any interesting values?
@@ -189,13 +189,13 @@ etable(lpm1, lpm2, lpm3, drop="country", digits="r3" )
 share$pred_lpm <- predict( lpm3 )
 # Make a descriptive summary of the predictions with 3 digits
 datasummary( pred_lpm ~ min + max + mean + median + sd , 
-             data = share, fmt="%.3f"  )
+             data = share, fmt='%.3f'  )
 
 # Show the predicted probabilities' distribution (ggplot)
 ggplot( share , aes( x = pred_lpm ) ) +
   geom_histogram( aes( y = ..density.. ), fill = 'navyblue' , color = 'grey90', binwidth=0.02) +
   coord_cartesian( xlim = c(0, 1.2) ) +
-  labs(x = "Predicted probability of staying healthy (LPM)",y = "Percent")+
+  labs(x = 'Predicted probability of staying healthy (LPM)',y = 'Percent')+
   scale_y_continuous(expand = c(0.00,0.0), limits = c(0,3), breaks = seq(0, 3, 0.5)) +
   scale_x_continuous(expand = c(0.001,0.01), limits = c(0,1.1), breaks = seq(0,1.1, 0.2)) +
   theme_bw() 
@@ -256,18 +256,18 @@ model_formula <- formula( stayshealthy ~ smoking + ever_smoked + female + age +
 
 # lpm (repeating the previous regression)
 lpm <-feols( model_formula , data=share, vcov = 'hetero')
-etable(lpm, drop="country", digits="r3")
+etable(lpm, drop='country', digits='r3')
 # Save predictions
 share$pred_lpm <- predict( lpm )
 
 # logit coefficients:
 #   alternatively: familiy='binomial' automatically gives you logit, but not probit...
-logit_model <- feglm( model_formula , data = share, family = binomial( link = "logit" ) )
-etable(logit_model, drop="country", digits="r3")
+logit_model <- feglm( model_formula , data = share, family = binomial( link = 'logit' ) )
+etable(logit_model, drop='country', digits='r3')
 
 
 # predicted probabilities 
-share$pred_logit <- predict( logit_model, type="response" )
+share$pred_logit <- predict( logit_model, type='response' )
 
 # Calculate the Average Marginal Effects via `marginaleffects`
 logit_marg <- marginaleffects( logit_model )
@@ -275,11 +275,11 @@ summary( logit_marg )
 
 ##
 # Probit coefficients: replicate logit, but now use 'probit'
-probit_model <- feglm( model_formula , data=share, family = binomial( link = "probit" ) )
+probit_model <- feglm( model_formula , data=share, family = binomial( link = 'probit' ) )
 etable(probit_model,drop=c('country'))
 
 # predicted probabilities 
-share$pred_probit<- predict( probit_model , type = "response" )
+share$pred_probit<- predict( probit_model , type = 'response' )
 
 # probit marginal differences
 probit_marg <- marginaleffects(  probit_model )
@@ -291,13 +291,13 @@ datasummary(pred_lpm + pred_logit + pred_probit ~ min + P25 + Median + Mean + P7
 ##
 # a) Creating a model summary output for base models
 etable( lpm, logit_model, probit_model,
-        drop="country", digits="r3" , fitstat = c('r2','pr2'))
+        drop='country', digits='r3' , fitstat = c('r2','pr2'))
 
 ##
 # b) To include marginal effects (on average...), we need modelsummary:
-modelsummary( list( "LPM" = lpm, "logit coeffs" = logit_model, 
-                    "logit marginals" = logit_marg, "probit coeffs" = probit_model,
-                    "probit marginals" = probit_marg ),
+modelsummary( list( 'LPM' = lpm, 'logit coeffs' = logit_model, 
+                    'logit marginals' = logit_marg, 'probit coeffs' = probit_model,
+                    'probit marginals' = probit_marg ),
               coef_omit = 'country|Intercept', gof_omit = 'Within|AIC|BIC|Log.Lik|Std.Errors|R2',
               stars=c('*' = .05, '**' = .01) )
 
@@ -312,31 +312,31 @@ modelsummary( list( "LPM" = lpm, "logit coeffs" = logit_model,
 # To have proper GoF stats, we need to define them to etable
 #
 # R2 for all models:
-fitstat_register("modr2", function(x){
+fitstat_register('modr2', function(x){
   y <- x$fitted.values + x$residuals
   ss_res <- sum(x$residual^2,na.rm=T)
   ss_tot <- sum( (y - mean( y , na.rm = T ) )^2 , na.rm = T )
-  1 - ss_res/ss_tot }, "R2")
+  1 - ss_res/ss_tot }, 'R2')
 # Log-loss 
-fitstat_register("logloss", function(x){
+fitstat_register('logloss', function(x){
   log_id <- !is.na( x$fitted.values ) & x$fitted.values < 1 & x$fitted.values > 0
   y   <- x$fitted.values[ log_id ] + x$residuals[ log_id ]
   lp  <- log( x$fitted.values[ log_id ] )
   lnp <- log( 1 - x$fitted.values[ log_id ] )
   nobs <- sum( log_id )
   return( 1 / nobs * sum( y * lp + ( 1 - y ) * lnp ) )
-}, "log-loss")
+}, 'log-loss')
 
 ##
 # Task:
 # define the `brier` score, which is the mean of squared residuals
-fitstat_register("brier", function(x){mean(x$residual^2)}, "Brier score")
+fitstat_register('brier', function(x){mean(x$residual^2)}, 'Brier score')
 
 ##
 # Model performance comparison
 etable( lpm, logit_model, probit_model ,
-        drop = "factor|Intercept",
-        digits.stats = "r3",
+        drop = 'factor|Intercept',
+        digits.stats = 'r3',
         fitstat = ~ modr2 + brier + pr2 + logloss )
 
 
@@ -346,16 +346,16 @@ etable( lpm, logit_model, probit_model ,
 #
 # a) Comparing predicted probabilities of logit and probit to LPM
 ggplot(data = share) +
-  geom_point(aes(x=pred_lpm, y=pred_probit, color="Probit"), size=0.2) +
-  geom_point(aes(x=pred_lpm, y=pred_logit,  color="Logit"), size=0.2) +
-  geom_line(aes(x=pred_lpm, y=pred_lpm,    color="45 degree line"), size=0.4) +
-  labs(x = "Predicted probability of staying healthy (LPM)", y="Predicted probability")+
+  geom_point(aes(x=pred_lpm, y=pred_probit, color='Probit'), size=0.2) +
+  geom_point(aes(x=pred_lpm, y=pred_logit,  color='Logit'), size=0.2) +
+  geom_line(aes(x=pred_lpm, y=pred_lpm,    color='45 degree line'), size=0.4) +
+  labs(x = 'Predicted probability of staying healthy (LPM)', y='Predicted probability')+
   scale_y_continuous(expand = c(0.00,0.0), limits = c(0,1), breaks = seq(0,1,0.1)) +
   scale_x_continuous(expand = c(0.00,0.0), limits = c(0,1), breaks = seq(0,1,0.1)) +
-  scale_color_manual(name = "", values=c('green', 'blue','red')) +
+  scale_color_manual(name = '', values=c('green', 'blue','red')) +
   theme_bw()+
   theme(legend.position=c(0.55,0.08),
-        legend.direction = "horizontal",
+        legend.direction = 'horizontal',
         legend.text = element_text(size = 6))
 
 
@@ -374,15 +374,15 @@ glpm1 <- ggplot(data = share,aes(x=pred_lpmbase)) +
   geom_histogram(data=subset(share[share$stayshealthy == 0, ]), 
                  aes(fill=as.factor(stayshealthy), color=as.factor(stayshealthy), y = (..count..)/sum(..count..)*100), 
                  binwidth = 0.05, boundary=0, alpha=0) +
-  scale_fill_manual(name="", values=c("0" = "white", "1" = 'blue'),labels=c("Did not stay healthy","Stayed healthy")) +
-  scale_color_manual(name="", values=c("0" = 'red', "1" = 'blue'),labels=c("Did not stay healthy","Stayed healthy")) +
-  ylab("Percent") +
-  xlab("Fitted values") +
+  scale_fill_manual(name='', values=c('0' = 'white', '1' = 'blue'),labels=c('Did not stay healthy','Stayed healthy')) +
+  scale_color_manual(name='', values=c('0' = 'red', '1' = 'blue'),labels=c('Did not stay healthy','Stayed healthy')) +
+  ylab('Percent') +
+  xlab('Fitted values') +
   scale_x_continuous(expand=c(0.01,0.01) ,limits = c(0,1), breaks = seq(0,1,0.2)) +
   scale_y_continuous(expand=c(0.00,0.00) ,limits = c(0,80), breaks = seq(0,80,20)) +
   theme_bw() +
   theme(legend.position = c(0.3,0.8),
-        legend.key.size = unit(x = 0.5, units = "cm"))
+        legend.key.size = unit(x = 0.5, units = 'cm'))
 
 # b2) LPM rich model
 glpm2 <- ggplot(data = share,aes(x=pred_lpm)) + 
@@ -392,15 +392,15 @@ glpm2 <- ggplot(data = share,aes(x=pred_lpm)) +
   geom_histogram(data=subset(share[share$stayshealthy == 0, ]), 
                  aes(fill=as.factor(stayshealthy), color=as.factor(stayshealthy), y = (..count..)/sum(..count..)*100), 
                  binwidth = 0.05, boundary=0, alpha=0) +
-  scale_fill_manual(name="", values=c("0" = "white", "1" = 'blue'),labels=c("Did not stay healthy","Stayed healthy")) +
-  scale_color_manual(name="", values=c("0" = 'red', "1" = 'blue'),labels=c("Did not stay healthy","Stayed healthy")) +
-  ylab("Percent") +
-  xlab("Fitted values") +
+  scale_fill_manual(name='', values=c('0' = 'white', '1' = 'blue'),labels=c('Did not stay healthy','Stayed healthy')) +
+  scale_color_manual(name='', values=c('0' = 'red', '1' = 'blue'),labels=c('Did not stay healthy','Stayed healthy')) +
+  ylab('Percent') +
+  xlab('Fitted values') +
   scale_x_continuous(expand=c(0.01,0.01) ,limits = c(0,1), breaks = seq(0,1,0.2)) +
   scale_y_continuous(expand=c(0.00,0.00) ,limits = c(0,20), breaks = seq(0,20,4)) +
   theme_bw() +
   theme(legend.position = c(0.3,0.8),
-        legend.key.size = unit(x = 0.5, units = "cm"))
+        legend.key.size = unit(x = 0.5, units = 'cm'))
 
 # Compare the two model's predicitons
 ggarrange(glpm1,glpm2,ncol=1)
@@ -411,8 +411,8 @@ ggarrange(glpm1,glpm2,ncol=1)
 #
 # Task:
 #   Create a CONDITIONAL descriptive statistics on stayhealth for:
-#     "pred_lpmbase","pred_lpm","pred_logit","pred_probit" 
-#   use: "mean","median","min","max","sd" as descriptives
+#     'pred_lpmbase','pred_lpm','pred_logit','pred_probit' 
+#   use: 'mean','median','min','max','sd' as descriptives
 #
 #   Hint: you may convert stayshealthy as factor and multiply the predicted values
 #  
@@ -455,7 +455,7 @@ ggplot( data = binned_data ) +
   geom_point(aes(mean_prob,mean_actual), color = 'blue', size = 1, shape = 16, alpha = 0.7, show.legend=F, na.rm = TRUE) +
   geom_segment(x=min(intervals), xend=max(intervals), y=min(intervals), yend=max(intervals), color='red', size=0.5) +
   theme_bw() +
-  labs(x= "Predicted event probability",
+  labs(x= 'Predicted event probability',
        y= 'Stays healthy') +
   coord_cartesian(xlim=c(0,1), ylim=c(0,1))+
   expand_limits(x = 0.01, y = 0.01) +
@@ -485,8 +485,8 @@ ggplot( data = binned_data ) +
   geom_point( aes( mean_prob_lpm , mean_actual_lpm ) , color = 'red' , size = 1, shape = 16, alpha = 0.7) +
   geom_segment( x=min(intervals), xend=max(intervals), y=min(intervals), yend=max(intervals), color='black', size=0.5) +
   theme_bw() +
-  annotate("text", x = c( 0.2 , 0.15 ), y = c( 0.35 , 0.25 ), label = c('logit','LPM'), color = c('blue','red') )+
-  labs(x= "Predicted event probability",
+  annotate('text', x = c( 0.2 , 0.15 ), y = c( 0.35 , 0.25 ), label = c('logit','LPM'), color = c('blue','red') )+
+  labs(x= 'Predicted event probability',
        y= 'Stays healthy') +
   coord_cartesian(xlim=c(0,1), ylim=c(0,1))+
   expand_limits(x = 0.01, y = 0.01) +

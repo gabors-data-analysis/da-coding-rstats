@@ -93,9 +93,9 @@ and to show a real example:
 ``` r
 x <- -5
 if ( x > 0 ){
-  print( "positive number")
+  print( 'positive number')
 } else if( x == 0 ){
-  print( "zero value")
+  print( 'zero value')
 } else{
   print('negative number')
 }
@@ -128,9 +128,9 @@ unintended results.
 ``` r
 y <- 10
 if ( x > 0 && y > 0 ){
-  print("x and y are positive numbers")
+  print('x and y are positive numbers')
 } else{
-  print("one of y or x is non-positive")
+  print('one of y or x is non-positive')
 }
 ```
 
@@ -282,7 +282,7 @@ data,
 ``` r
 library(tidyverse)
 # Import wms-management data
-wms <- read_csv("https://osf.io/uzpce/download")
+wms <- read_csv('https://osf.io/uzpce/download')
 ```
 
 Look at `emp_firm`, which is the number of employee in the firm. Let us
@@ -344,7 +344,7 @@ A simple example for `tidyverse`:
 
 ``` r
 if ( !require(tidyverse) ){
-  install.packages("tidyverse")
+  install.packages('tidyverse')
   library(tidyverse)
 }
 ```
@@ -355,7 +355,7 @@ Pseudo-code:
 
 ``` r
 if(!require(somepackage)){
-    install.packages("somepackage")
+    install.packages('somepackage')
     library(somepackage)
 }
 ```
@@ -397,7 +397,7 @@ switch(type,
        apple = 'I love apple!',
        banana = 'I love banana!',
        orange = 'I love orange!',
-       error("type must be either \"apple\",\"banana\", or \"orange\"")
+       error('type must be either \'apple\',\'banana\', or \'orange\'')
        )
 ```
 

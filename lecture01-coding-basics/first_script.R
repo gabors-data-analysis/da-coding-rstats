@@ -20,13 +20,13 @@
 # R-objects:
 
 # Character
-myString <- "Hello world!"
+myString <- 'Hello world!'
 
 # Convention to name your variables
-my_fav_var <- "bla"
-myFavVar <- "bla"
+my_fav_var <- 'bla'
+myFavVar <- 'bla'
 # Rarely use long names such as
-my_favourite_variable <- "bla"
+my_favourite_variable <- 'bla'
 
 
 # We can define numeric R-objects:
@@ -133,8 +133,8 @@ round( sqrt(2)^2 ) == 2
 
 ####
 # Lists
-my_list  <- list("a",2,0==1)
-my_list2 <- list(c("a","b"),c(1,2,3),sqrt(2)^2==2)
+my_list  <- list('a',2,0==1)
+my_list2 <- list(c('a','b'),c(1,2,3),sqrt(2)^2==2)
 
 # indexing with lists:
 # you get the list's value - still a list (typeof(my_list2[1]))

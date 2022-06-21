@@ -29,7 +29,7 @@ library(ggpubr)
 library(scales)
 library(lubridate)
 if (!require(devtools)){
-  install.packages("devtools")
+  install.packages('devtools')
   library(devtools)
 }
 
@@ -54,10 +54,10 @@ climate <-  climate %>% mutate( ndays = ifelse( month %in% c(1, 3, 5, 7, 8, 10, 
                                                 ifelse(month == 2,28,30 ) )
 )
 # Focus on cooling degree, heating degree 
-climate <- climate %>% mutate_at( c( "CLDD", "HTDD" ) , list( avg = ~./ndays) )
+climate <- climate %>% mutate_at( c( 'CLDD', 'HTDD' ) , list( avg = ~./ndays) )
 
 # Drop the others
-climate <- climate %>% select(-c("DATE", "tempdate", "STATION", "NAME","DX32","DX70","DX90"))
+climate <- climate %>% select(-c('DATE', 'tempdate', 'STATION', 'NAME','DX32','DX70','DX90'))
 
 # Check the descriptive
 datasummary( CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max , data = climate )
@@ -68,7 +68,7 @@ datasummary( CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max , data = clima
 electricity <- read_csv('https://osf.io/wbef4/download')
 
 # Convert 'MY' variable into numeric format
-electricity <- electricity %>% mutate( date = parse_date_time( as.character( MY ), orders = "my" ) )
+electricity <- electricity %>% mutate( date = parse_date_time( as.character( MY ), orders = 'my' ) )
 
 # Convert it into date-time
 electricity <- electricity %>% mutate( date = ymd( date ) )
@@ -82,7 +82,7 @@ electricity <- electricity %>% mutate(year  = year( date ),
                                       ym    = format( electricity$date,'%Ym%m') )
 
 # Remove MY, year and month variables
-electricity <- electricity %>% select(-c("MY","year","month"))
+electricity <- electricity %>% select(-c('MY','year','month'))
 
 # Take logs of q (used electricity)
 electricity <- electricity %>% mutate(lnQ = log(Q))
@@ -90,7 +90,7 @@ electricity <- electricity %>% mutate(lnQ = log(Q))
 
 ###
 # Merging the two data
-df <- inner_join( climate , electricity , by = "ym" )
+df <- inner_join( climate , electricity , by = 'ym' )
 rm(electricity, climate)
 
 # Restrict the sample between years 2001 and 2017
@@ -112,58 +112,58 @@ datasummary( Q + lnQ + CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max + N 
 # Consumption
 p1 <- ggplot(data = df, aes(x = date, y = Q))+
   geom_line(color = 'red', size = 0.7) +
-  ylab("Residential electricity consumption (GWh)") +
-  xlab("Date (month)") +
+  ylab('Residential electricity consumption (GWh)') +
+  xlab('Date (month)') +
   scale_y_continuous(limits = c(1000,5000), breaks = seq(1000,5000,1000)) +  
-  scale_x_date(breaks = as.Date(c("2001-01-01","2004-01-01",  "2007-01-01", "2010-01-01","2013-01-01","2016-01-01")),
-             limits = as.Date(c("2001-01-01","2017-12-31")), labels = date_format("%b %Y")) +
+  scale_x_date(breaks = as.Date(c('2001-01-01','2004-01-01',  '2007-01-01', '2010-01-01','2013-01-01','2016-01-01')),
+             limits = as.Date(c('2001-01-01','2017-12-31')), labels = date_format('%b %Y')) +
     theme_bw()
 p1
 
 # Log-consumption
 p2 <- ggplot(data = df, aes(x = date, y = lnQ))+
   geom_line(color = 'red', size = 0.7) +
-  ylab("ln(residential electricity consumption, GWh)") +
-  xlab("Date (month)") +
+  ylab('ln(residential electricity consumption, GWh)') +
+  xlab('Date (month)') +
   scale_y_continuous(limits = c(7,8.5), breaks = seq(7,8.5,0.25)) +  
-  scale_x_date(breaks = as.Date(c("2001-01-01","2004-01-01",  "2007-01-01", "2010-01-01","2013-01-01","2016-01-01")),
-               limits = as.Date(c("2001-01-01","2017-12-31")), labels = date_format("%b %Y")) +
+  scale_x_date(breaks = as.Date(c('2001-01-01','2004-01-01',  '2007-01-01', '2010-01-01','2013-01-01','2016-01-01')),
+               limits = as.Date(c('2001-01-01','2017-12-31')), labels = date_format('%b %Y')) +
   theme_bw()
 p2 
 
 # Cooling degrees
 p3 <- ggplot(data = df, aes(x = date, y = CLDD_avg))+
   geom_line(color = 'red', size = 0.7) +
-  ylab("Cooling degrees (Farenheit)") +
-  xlab("Date (month)") +
+  ylab('Cooling degrees (Farenheit)') +
+  xlab('Date (month)') +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,35), breaks = seq(0,35,5)) +  
-  scale_x_date(breaks = as.Date(c("2001-01-01","2004-01-01",  "2007-01-01", "2010-01-01","2013-01-01","2016-01-01")),
-               limits = as.Date(c("2001-01-01","2017-12-31")), labels = date_format("%b %Y")) +
+  scale_x_date(breaks = as.Date(c('2001-01-01','2004-01-01',  '2007-01-01', '2010-01-01','2013-01-01','2016-01-01')),
+               limits = as.Date(c('2001-01-01','2017-12-31')), labels = date_format('%b %Y')) +
   theme_bw()
 p3
 
 # Heating degrees
 p4 <- ggplot(data = df, aes(x = date, y = HTDD_avg))+
   geom_line(color = 'red', size = 0.7) +
-  ylab("Heating degrees (Farenheit)") +
-  xlab("Date (month)") +
+  ylab('Heating degrees (Farenheit)') +
+  xlab('Date (month)') +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,14), breaks = seq(0,14,2)) +  
-  scale_x_date(breaks = as.Date(c("2001-01-01","2004-01-01",  "2007-01-01", "2010-01-01","2013-01-01","2016-01-01")),
-               limits = as.Date(c("2001-01-01","2017-12-31")), labels = date_format("%b %Y")) +
+  scale_x_date(breaks = as.Date(c('2001-01-01','2004-01-01',  '2007-01-01', '2010-01-01','2013-01-01','2016-01-01')),
+               limits = as.Date(c('2001-01-01','2017-12-31')), labels = date_format('%b %Y')) +
   theme_bw()
 p4
 
 # Plot all of them together - reset the labels
-ggarrange(p1 + scale_x_date(date_breaks = "3 years", date_labels = "%Y") + 
+ggarrange(p1 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') + 
                theme( axis.title = element_text( size = 8 ),
                       axis.text = element_text( size = 8 ) ) ,
-          p2 + scale_x_date(date_breaks = "3 years", date_labels = "%Y") + 
+          p2 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') + 
             theme( axis.title = element_text( size = 8 ),
                    axis.text = element_text( size = 8 ) ) ,
-          p3 + scale_x_date(date_breaks = "3 years", date_labels = "%Y") + 
+          p3 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') + 
             theme( axis.title = element_text( size = 8 ),
                    axis.text = element_text( size = 8 ) ) ,
-          p4 + scale_x_date(date_breaks = "3 years", date_labels = "%Y") + 
+          p4 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') + 
             theme( axis.title = element_text( size = 8 ),
                    axis.text = element_text( size = 8 ) ) ,
           hjust = -0.6, ncol = 2, nrow = 2 ) 
@@ -204,18 +204,18 @@ df <- df %>% mutate(DlnQ=lnQ-lag(lnQ),
 ##
 # functional form investigations 
 ggplot(data = df, aes(x=DCLDD_avg, y=DlnQ)) +
-  geom_point(size=1,  shape=20, stroke=2, fill="blue", color="blue") +
-  geom_smooth(method="loess", se=F, colour="black", size=1.5, span=0.9 , formula = y ~ x) +
-  labs(x = "Cooling degrees (Farenheit), first difference",
-       y = "ln(monthly electricity consumption), first difference") +
+  geom_point(size=1,  shape=20, stroke=2, fill='blue', color='blue') +
+  geom_smooth(method='loess', se=F, colour='black', size=1.5, span=0.9 , formula = y ~ x) +
+  labs(x = 'Cooling degrees (Farenheit), first difference',
+       y = 'ln(monthly electricity consumption), first difference') +
   scale_x_continuous(limits = c(-20,20), breaks = seq(-20,20, 10)) +
   theme_bw()
 
 ggplot(data = df, aes(x=DHTDD_avg, y=DlnQ)) +
-  geom_point(size=1,  shape=20, stroke=2, fill="blue", color="blue") +
-  geom_smooth(method="loess", se=F, colour="black", size=1.5, span=0.9 , formula = y ~ x) +
-  labs(x = "Heating degrees (Farenheit), first difference",
-       y = "ln(monthly electricity consumption), first difference") +
+  geom_point(size=1,  shape=20, stroke=2, fill='blue', color='blue') +
+  geom_smooth(method='loess', se=F, colour='black', size=1.5, span=0.9 , formula = y ~ x) +
+  labs(x = 'Heating degrees (Farenheit), first difference',
+       y = 'ln(monthly electricity consumption), first difference') +
   scale_x_continuous(limits = c(-10,10), breaks = seq(-10,10, 10)) +
   theme_bw()
 
@@ -260,7 +260,7 @@ reg4
 etable( reg1 , reg2 , reg3 , reg4 )
 # Note: to be fair, one needs to use a restricted sample with 201 observations in this case!
 
-etable( reg1 , reg2 , reg3 , reg4 , drop = "factor" , se.below = T )
+etable( reg1 , reg2 , reg3 , reg4 , drop = 'factor' , se.below = T )
 
 # Task:
 # Replicate these results, but now using the same sample for each model to ensure fair comparison!

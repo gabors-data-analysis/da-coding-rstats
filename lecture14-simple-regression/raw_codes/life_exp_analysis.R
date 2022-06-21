@@ -34,7 +34,7 @@ library(fixest)
 require(scales)
 
 # Call the data from github
-my_url <- "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture14-simple-regression/data/clean/WDI_lifeexp_clean.csv"
+my_url <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture14-simple-regression/data/clean/WDI_lifeexp_clean.csv'
 df     <- read_csv( my_url )
 
 
@@ -46,7 +46,7 @@ df %>%
   keep(is.numeric) %>% 
   gather() %>% 
   ggplot(aes(value)) +
-  facet_wrap(~key, scales = "free") +
+  facet_wrap(~key, scales = 'free') +
   geom_histogram(bins=20)+
   theme_bw()
 
@@ -207,11 +207,11 @@ cutoff <- 50
 # Created a pretty graph for visualize this method:
 ggplot(data = df, aes(x = ln_gdppc, y = lifeexp)) +
   geom_point(data = df, aes(size=population),  color = 'blue', shape = 16, alpha = 0.6,  show.legend=F) +
-  geom_smooth(aes(weight = population), method = "lm", color='red')+
+  geom_smooth(aes(weight = population), method = 'lm', color='red')+
   scale_size(range = c(1, 15)) +
   coord_cartesian(ylim = c(50, 85)) +
-  labs(x = "ln(GDP per capita, thousand US dollars) ",y = "Life expectancy  (years)")+
-  annotate("text", x = c( 4.5 , 2.7 , 2 ), y = c( 78 , 80 , 67 ), label = c( "USA", "China", "India" ) , size=5)+
+  labs(x = 'ln(GDP per capita, thousand US dollars) ',y = 'Life expectancy  (years)')+
+  annotate('text', x = c( 4.5 , 2.7 , 2 ), y = c( 78 , 80 , 67 ), label = c( 'USA', 'China', 'India' ) , size=5)+
   theme_bw()
 
 
@@ -247,9 +247,9 @@ best5 <-
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
   geom_smooth( method = lm , color = 'red' ) +
-  annotate("text", x = worst5$ln_gdppc, y = worst5$lifeexp - 1 , label = worst5$country ,
+  annotate('text', x = worst5$ln_gdppc, y = worst5$lifeexp - 1 , label = worst5$country ,
            color = 'purple') +
-  annotate("text", x = best5$ln_gdppc, y = best5$lifeexp + 1 , label = best5$country ,
+  annotate('text', x = best5$ln_gdppc, y = best5$lifeexp + 1 , label = best5$country ,
            color = 'green') +
   theme_bw()
 

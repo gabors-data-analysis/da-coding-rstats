@@ -26,9 +26,9 @@ if ( x2 == 5){
 # play around with the value of x
 x <- -5
 if ( x > 0 ){
-  print( "positive number")
+  print( 'positive number')
 } else if( x == 0 ){
-  print( "zero value")
+  print( 'zero value')
 } else{
   print('negative number')
 }
@@ -40,9 +40,9 @@ if ( x > 0 ){
 # Multiple logical statements
 y <- 10
 if ( x > 0 && y > 0 ){
-  print("x and y are positive numbers")
+  print('x and y are positive numbers')
 } else{
-  print("one of y or x is non-positive")
+  print('one of y or x is non-positive')
 }
 
 ###
@@ -87,7 +87,7 @@ any( v & q > 0 )
 
 # Import wms-management data
 library(tidyverse)
-wms <- read_csv("https://osf.io/uzpce/download")
+wms <- read_csv('https://osf.io/uzpce/download')
 
 # Method 1: use base-R commands
 wms$firm_size <- NA_character_
@@ -124,7 +124,7 @@ switch(type,
        apple = 'I love apple!',
        banana = 'I love banana!',
        orange = 'I love orange!',
-       error("type must be either \"apple\",\"banana\", or \"orange\"")
+       error('type must be either \'apple\',\'banana\', or \'orange\'')
 )
 
 # try different inputs for types which are not in the listed values!

@@ -37,22 +37,22 @@ library(glmnet)
 library(modelsummary)
 library(fixest)
 if (!require(rpart)){
-  install.packages("rpart")
+  install.packages('rpart')
   library(rpart)
 }
 if (!require(rattle)){
-  install.packages("rattle")
+  install.packages('rattle')
   library(rattle)
 }
 if (!require(rpart.plot)){
-  install.packages("rpart.plot")
+  install.packages('rpart.plot')
   library(rpart.plot)
 }
 
 
 #####
 # DATA IMPORT
-cars <- read_csv( "https://osf.io/7gvz9/download" )
+cars <- read_csv( 'https://osf.io/7gvz9/download' )
 # convert to factor
 cars <- cars %>% mutate_if(is.character, factor)
 
@@ -61,25 +61,25 @@ glimpse( cars )
 # SAMPLE DESIGN
 
 # manage missing
-cars$fuel         <- fct_explicit_na(cars$fuel, na_level = "Missing")
-cars$drive        <- fct_explicit_na(cars$drive, na_level = "Missing")
-cars$cylinders    <- fct_explicit_na(cars$cylinders, na_level = "Missing")
-cars$transmission <- fct_explicit_na(cars$transmission, na_level = "Missing")
-cars$type         <- fct_explicit_na(cars$type, na_level = "Missing")
+cars$fuel         <- fct_explicit_na(cars$fuel, na_level = 'Missing')
+cars$drive        <- fct_explicit_na(cars$drive, na_level = 'Missing')
+cars$cylinders    <- fct_explicit_na(cars$cylinders, na_level = 'Missing')
+cars$transmission <- fct_explicit_na(cars$transmission, na_level = 'Missing')
+cars$type         <- fct_explicit_na(cars$type, na_level = 'Missing')
 
 
 # missing changed to good not missing
-cars$condition[is.na(cars$condition)] <- "good"
+cars$condition[is.na(cars$condition)] <- 'good'
 datasummary( condition ~ N + Percent() , data = cars )
 
 # same steps as in ch13, see code in ch13 for details
 cars <- cars %>% filter(Hybrid ==0) %>% dplyr::select(-Hybrid)
-cars <- cars %>% filter(fuel=="gas")
-cars <- cars %>% filter(!condition %in% c("new", "fair"))
+cars <- cars %>% filter(fuel=='gas')
+cars <- cars %>% filter(!condition %in% c('new', 'fair'))
 cars <- cars %>% filter(price %in% c(500:25000), odometer <=100)
-cars <- cars %>% filter(!(price < 1000 & (condition == "like new"|age < 8)))
-cars <- cars %>% filter(!(transmission == "manual"))
-cars <- cars %>% filter(!type %in% c("truck", "pickup"))
+cars <- cars %>% filter(!(price < 1000 & (condition == 'like new'|age < 8)))
+cars <- cars %>% filter(!(transmission == 'manual'))
+cars <- cars %>% filter(!type %in% c('truck', 'pickup'))
 cars <- cars %>% dplyr::select(-pricestr)
 
 # to be on the safe side
@@ -93,17 +93,17 @@ cars <- cars %>% drop_na(price)
 
 # condition
 cars <- cars %>%
-  mutate(cond_excellent = ifelse(condition == "excellent", 1,0),
-         cond_good = ifelse(condition == "good", 1,0),
-         cond_likenew = ifelse(condition == "like new", 1,0))
+  mutate(cond_excellent = ifelse(condition == 'excellent', 1,0),
+         cond_good = ifelse(condition == 'good', 1,0),
+         cond_likenew = ifelse(condition == 'like new', 1,0))
 
 # cylinders
 cars <- cars %>%
-  mutate(cylind6 = ifelse(cylinders=="6 cylinders",1,0))
+  mutate(cylind6 = ifelse(cylinders=='6 cylinders',1,0))
 
 
 #chicago
-cars$chicago <- ifelse(cars$area=="chicago",1,0)
+cars$chicago <- ifelse(cars$area=='chicago',1,0)
 
 # age: quadratic, cubic
 cars <- cars %>%
@@ -154,12 +154,12 @@ datasummary( price + age ~ Mean + Median + P75 + P25 + Min + Max , data = cars )
 model1 <- formula(price ~ age)
 
 # Single split
-# (make sure it's a single split by setting "maxdepth" to 1)
+# (make sure it's a single split by setting 'maxdepth' to 1)
 cart1 <- train(
   model1, 
   data = data_train, 
-  method = "rpart2",
-  trControl = trainControl(method="none"),
+  method = 'rpart2',
+  trControl = trainControl(method='none'),
   tuneGrid= data.frame(maxdepth=1) )
 
 # Summary
@@ -184,16 +184,16 @@ ggplot(data = data_train, aes(x = age, y=price)) +
                color='blue', size=1, na.rm=TRUE) +
   scale_y_continuous(expand=c(0.01,0.01), limits=c(0, 20000), breaks=seq(0, 20000, by=2500)) +
   scale_x_continuous(expand=c(0.01,0.01),limits=c(0, 25), breaks=seq(0, 25, by=5)) +
-  labs(x = "Age (years)", y = "Price (US dollars)") +
+  labs(x = 'Age (years)', y = 'Price (US dollars)') +
   theme_bw() 
 
 ###########
 # Splits at two levels
-# (make sure it stops by setting "maxdepth" to 2)
+# (make sure it stops by setting 'maxdepth' to 2)
 
 cart2 <- train(
-  model1, data = data_train, method = "rpart2",
-  trControl = trainControl(method="none"),
+  model1, data = data_train, method = 'rpart2',
+  trControl = trainControl(method='none'),
   tuneGrid= data.frame(maxdepth=2))
 
 # Tree
@@ -201,9 +201,9 @@ rpart.plot(cart2$finalModel, tweak=1.2, digits=-1, extra=1)
 
 # Put it into a tibble
 tab_cart2 <- tibble(
-  "Category" = c("Age 1-4", "Age 5-7","Age 8-12","Age 13 or more"),
-  "Count" = c( summary(cart2)$frame$n[7], summary(cart2)$frame$n[6], summary(cart2)$frame$n[4], summary(cart2)$frame$n[3]),
-  "Average_price" = c(summary(cart2)$frame$yval[7], summary(cart2)$frame$yval[6], summary(cart2)$frame$yval[4], summary(cart2)$frame$yval[3])
+  'Category' = c('Age 1-4', 'Age 5-7','Age 8-12','Age 13 or more'),
+  'Count' = c( summary(cart2)$frame$n[7], summary(cart2)$frame$n[6], summary(cart2)$frame$n[4], summary(cart2)$frame$n[3]),
+  'Average_price' = c(summary(cart2)$frame$yval[7], summary(cart2)$frame$yval[6], summary(cart2)$frame$yval[4], summary(cart2)$frame$yval[3])
   )
 tab_cart2
 # Calculate RMSE
@@ -221,7 +221,7 @@ ggplot(data = data_train, aes(x=age , y=price)) +
                color='blue', size=1, na.rm=TRUE) +
   scale_y_continuous(expand=c(0.01,0.01), limits=c(0, 20000), breaks=seq(0, 20000, by=2500)) +
   scale_x_continuous(expand=c(0.01,0.01),limits=c(0, 25), breaks=seq(0, 25, by=5)) +
-  labs(x = "Age (years)", y = "Price (US dollars)") +
+  labs(x = 'Age (years)', y = 'Price (US dollars)') +
   theme_bw() 
 
 
@@ -229,8 +229,8 @@ ggplot(data = data_train, aes(x=age , y=price)) +
 # Splits go on according to rpart defaults
 # 
 cart3 <- train(
-  model1, data = data_train, method = "rpart",
-  trControl = trainControl(method="none"),
+  model1, data = data_train, method = 'rpart',
+  trControl = trainControl(method='none'),
   tuneGrid= expand.grid(cp = 0.01))
 
 # Tree graph
@@ -249,7 +249,7 @@ ggplot(data = data_train, aes(x=age , y=price)) +
   geom_segment(data = plot_helper_df, aes(x = age, y=yend, xend=xend, yend=yend), color='blue', size=1, na.rm=TRUE) +
   scale_y_continuous(expand=c(0.01,0.01), limits=c(0, 20000), breaks=seq(0, 20000, by=2500)) +
   scale_x_continuous(expand=c(0.01,0.01),limits=c(0, 25), breaks=seq(0, 25, by=5)) +
-  labs(x = "Age (years)", y = "Price (US dollars)") +
+  labs(x = 'Age (years)', y = 'Price (US dollars)') +
   theme_bw() 
 
 
@@ -270,7 +270,7 @@ ggplot(data = data_train) +
   geom_line(aes(x=age,y=pred_linreg1t), colour='blue', size=0.7) +
   scale_y_continuous(expand=c(0.01,0.01), limits=c(0, 20000), breaks=seq(0, 20000, by=2500)) +
   scale_x_continuous(expand=c(0.01,0.01), limits=c(0, 25), breaks=seq(0, 25, by=5)) +
-  labs(x = "Age (years)", y = "Price (US dollars)") +
+  labs(x = 'Age (years)', y = 'Price (US dollars)') +
   theme_bw() 
 
 
@@ -287,10 +287,10 @@ lowess1 <- loess(model1, data=data_train)
 pred_lowess1t <- predict(lowess1, data_train)
 
 ggplot(data = data_train, aes(x=age , y=price)) +
-  geom_point(size=1, colour="black" ) +
-  labs(x = "Age", y = "Price") +
+  geom_point(size=1, colour='black' ) +
+  labs(x = 'Age', y = 'Price') +
   coord_cartesian(xlim=c(0, 25), ylim=c(0, 20000)) +
-  geom_smooth(method="loess", colour="darkblue", se=F, size=1.5) +
+  geom_smooth(method='loess', colour='darkblue', se=F, size=1.5) +
   theme_bw()
 
 
@@ -317,10 +317,10 @@ rmse_linreg3 <- sqrt(mean((pred_linreg3 - data_test$price)^2))
 # Tree - maybe cut cart4...
 
 # Splits at four levels, for illustrative purposes
-# (make sure it stops by setting "maxdepth" to 4)
+# (make sure it stops by setting 'maxdepth' to 4)
 cart4 <- train(
-  model2, data=data_train, method = "rpart2",
-  trControl = trainControl(method="none"),
+  model2, data=data_train, method = 'rpart2',
+  trControl = trainControl(method='none'),
   tuneGrid= data.frame(maxdepth=4),
   na.action = na.pass)
 
@@ -334,8 +334,8 @@ rmse_cart4 <- sqrt(mean((pred_cart4 - data_test$price)^2))
 
 
 cart5 <- train(
-  model2, data=data_train, method = "rpart",
-  trControl = trainControl(method="none"),
+  model2, data=data_train, method = 'rpart',
+  trControl = trainControl(method='none'),
   tuneGrid= expand.grid(cp = 0.002),
   control = rpart.control(minsplit = 20),
   na.action = na.pass)
@@ -358,8 +358,8 @@ rmse_cart5 <- sqrt(mean((pred_cart5 - data_test$price)^2))
 # build very large tree
 
 cart6 <- train(
-  model2, data=data_train, method = "rpart",
-  trControl = trainControl(method="none"),
+  model2, data=data_train, method = 'rpart',
+  trControl = trainControl(method='none'),
   tuneGrid= expand.grid(cp = 0.0001),
   control = rpart.control(minsplit = 4),
   na.action = na.pass)
@@ -393,9 +393,9 @@ printcp(pfit)
 ######## summary performance table
 
 tab_rmse <- tibble(
-  "Model" = c("CART1", "CART2","CART3","CART4", "CART5","CART6","CART7", "OLS multivar", "OLS extended"),
-  "Describe" = c("2 term. nodes", "4 term. nodes","5 term. nodes","cp = 0.01","cp = 0.002","cp = 0.0001","pruned", "multi-var", "w/ squared vars"),
-  "RMSE" = c(rmse_cart1, rmse_cart2, rmse_cart3, rmse_cart4,rmse_cart5,rmse_cart6,rmse_cart7, rmse_linreg2, rmse_linreg3)
+  'Model' = c('CART1', 'CART2','CART3','CART4', 'CART5','CART6','CART7', 'OLS multivar', 'OLS extended'),
+  'Describe' = c('2 term. nodes', '4 term. nodes','5 term. nodes','cp = 0.01','cp = 0.002','cp = 0.0001','pruned', 'multi-var', 'w/ squared vars'),
+  'RMSE' = c(rmse_cart1, rmse_cart2, rmse_cart3, rmse_cart4,rmse_cart5,rmse_cart6,rmse_cart7, rmse_linreg2, rmse_linreg3)
 )
 tab_rmse
 
@@ -410,15 +410,15 @@ cart4_var_imp
 # Make it pretty for the plot
 cart4_var_imp_df <-
   data.frame(varname = rownames(cart4_var_imp),imp = cart4_var_imp$Overall) %>%
-  mutate(varname = gsub("cond_", "Condition:", varname) ) %>%
+  mutate(varname = gsub('cond_', 'Condition:', varname) ) %>%
   arrange(desc(imp)) %>%
   mutate(imp_percentage = imp/sum(imp))
 
 ggplot(cart4_var_imp_df, aes(x=reorder(varname, imp), y=imp_percentage)) +
   geom_point(color='red', size=2) +
   geom_segment(aes(x=varname,xend=varname,y=0,yend=imp_percentage), color='red', size=1.5) +
-  ylab("Importance") +
-  xlab("Variable Name") +
+  ylab('Importance') +
+  xlab('Variable Name') +
   coord_flip() +
   scale_y_continuous(expand = c(0.01,0.01),labels = scales::percent_format(accuracy = 1)) +
   theme_bw()
@@ -438,8 +438,8 @@ ggplot(cart4_var_imp_df, aes(x=reorder(varname, imp), y=imp_percentage)) +
 # To avoid this, we can rerun cart4 with a new control fn to ensure matching 
   
 cart4 <- train(
-  model2, data=data_train, method = "rpart",
-  trControl = trainControl(method="none"),
+  model2, data=data_train, method = 'rpart',
+  trControl = trainControl(method='none'),
   tuneGrid= expand.grid(cp = 0.01),
   control = rpart.control(minsplit = 20, maxcompete = FALSE),
   na.action = na.pass)
@@ -447,15 +447,15 @@ cart4 <- train(
 cart4_var_imp <- varImp(cart4)$importance
 cart4_var_imp_df <-
     data.frame(varname = rownames(cart4_var_imp),imp = cart4_var_imp$Overall) %>%
-    mutate(varname = gsub("cond_", "Condition:", varname) ) %>%
+    mutate(varname = gsub('cond_', 'Condition:', varname) ) %>%
     arrange(desc(imp)) %>%
     mutate(imp_percentage = imp/sum(imp))
   
 ggplot(cart4_var_imp_df, aes(x=reorder(varname, imp), y=imp_percentage)) +
     geom_point(color='red', size=2) +
     geom_segment(aes(x=varname,xend=varname,y=0,yend=imp_percentage), color='red', size=1.5) +
-    ylab("Importance") +
-    xlab("Variable Name") +
+    ylab('Importance') +
+    xlab('Variable Name') +
     coord_flip() +
     scale_y_continuous(expand = c(0.01,0.01),labels = scales::percent_format(accuracy = 1)) +
     theme_bw()

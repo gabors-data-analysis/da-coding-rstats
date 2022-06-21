@@ -38,7 +38,7 @@ library(tidyverse)
 
 df <- tibble(id=c(1,2,3,4,5,6),
              age=c(25,30,33,NA,26,38),
-             grade=c("A","A+","B","B-","B+","A"))
+             grade=c('A','A+','B','B-','B+','A'))
 
 # Check the data
 View(df)
@@ -52,13 +52,13 @@ View(df)
 #   are not supported, thus may cause a problem later.
 df_old1 <- data_frame(id=c(1,2,3,4,5,6),
                  age=c(25,30,33,NA,26,38),
-                 grade=c("A","A+","B","B-","B+","A"))
+                 grade=c('A','A+','B','B-','B+','A'))
 
 # data.frame is the built-in Data variable in R. It seems also nice, 
 #   but tidyverse functions and manipulations will not work with them.
 df_old2 <- data.frame(id=c(1,2,3,4,5,6),
                       age=c(25,30,33,NA,26,38),
-                      grade=c("A","A+","B","B-","B+","A"))
+                      grade=c('A','A+','B','B-','B+','A'))
 
 # remove unnecessary variables
 rm( df_old1, df_old2 )
@@ -89,7 +89,7 @@ df[ 2 , 1 ]
 df[ 1:3 , c( 1 , 3 ) ]
 
 # Note that all these still result in a tibble variable
-# if you want specific values: aka vectors in with one R-object type"
+# if you want specific values: aka vectors in with one R-object type'
 #   use double '[[ ]]'
 
 # e.g. df[[1]] will give you the first column
@@ -191,12 +191,12 @@ sd( df$age , na.rm = TRUE )
 #       for students with grade lower or equal than B+
 #   - what are the issues that you have encountered?
 #   - what are the potential solutions? Name at least two of them!
-logID <- df$grade == "B+" | df$grade == 'B' | df$grade == 'B-' | df$grade == 'C'
+logID <- df$grade == 'B+' | df$grade == 'B' | df$grade == 'B-' | df$grade == 'C'
 new_group <- df$age[ logID ]
 mean( df$age[ logID ] , na.rm = TRUE )
 sd( df$age[ logID ] , na.rm = TRUE ) 
 # What happens if using NOT A or A+
-logNID <- !(df$grade == "A" | df$grade == "A+")
+logNID <- !(df$grade == 'A' | df$grade == 'A+')
 
 all( logID == logNID )
 
@@ -218,7 +218,7 @@ df$age[ df$id == 1 ] <- 40
 ##
 # Add columns
 # Next let us add a new variable, the gender of the students to the tibble
-gender <- c("F","F","M","M","M","F")
+gender <- c('F','F','M','M','M','F')
 # There are two ways to do it:
 # 1) The simplest is to define a new variable:
 df$gender <- gender
@@ -260,9 +260,9 @@ df <- df[df$id != 7 , ]
 rm( list = ls() )
 
 # url for modified dataset
-path_url <- "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture03-tibbles/data/"
+path_url <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture03-tibbles/data/'
 # Football managers and played games
-games  <- read_csv( paste0( path_url, "games.csv") )
+games  <- read_csv( paste0( path_url, 'games.csv') )
 
 ##
 # Wide format: from tidy to non-tidy format
@@ -277,7 +277,7 @@ wide_format <- pivot_wider( games , names_from = team , values_from = manager_ga
 # To convert back to longer format:
 # first we need a new variable, which contains the team names
 name_teams  <- unique( games$team )
-long_format <- pivot_longer( wide_format, name_teams , names_to = "team" , values_to = "manager_games")
+long_format <- pivot_longer( wide_format, name_teams , names_to = 'team' , values_to = 'manager_games')
 
 ##
 # Task: 
@@ -302,7 +302,7 @@ rm(wide_format,name_team,long_format)
 # For more see e.g.: Chapter 13 in Hadley's book: https://r4ds.had.co.nz/relational-data.html
 
 # Get football managers and earned points via games
-points <- read_csv(paste0( path_url, "points.csv") )
+points <- read_csv(paste0( path_url, 'points.csv') )
 
 
 # Left-join by team, manager_id and manager_name:

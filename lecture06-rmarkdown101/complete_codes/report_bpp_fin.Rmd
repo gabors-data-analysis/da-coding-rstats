@@ -36,7 +36,7 @@ bpp <- bpp_orig %>%
   filter( is.na(sale_online) ) %>%
   filter(!is.na(price)) %>%
   filter(!is.na(price_online)) %>% 
-  filter( PRICETYPE == "Regular Price" ) %>% 
+  filter( PRICETYPE == 'Regular Price' ) %>% 
   filter( price < 1000 ) %>% 
   filter( p_diff < 500 & p_diff > -500 )
 
@@ -61,7 +61,7 @@ datasummary( (`Retail` = price ) + (`Online` = price_online ) + (`Price differen
              data = bpp ,
              title = 'Descriptive statistics of prices',
              notes = 'Data are available from: https://osf.io/yhbr5/' ) %>% 
-  kableExtra::kable_styling(latex_options = "hold_position")
+  kableExtra::kable_styling(latex_options = 'hold_position')
 ```
 
 The number of observations is `r sum(!is.na(bpp$price))` for all of our key variables.
@@ -77,8 +77,8 @@ As the focus is the price difference, the next Figure shows the histogram for th
 # add simple plot: take care of labels and limits (and theme)
 ggplot( data = bpp ) +
   geom_density( aes( x = p_diff ) , fill = 'navyblue'  , bins = 30 ) +
-  labs(x = "Price differences",
-       y = "Relative Frequency" ) +
+  labs(x = 'Price differences',
+       y = 'Relative Frequency' ) +
   # following commands will be covered more in details in lecture-07-ggplot-indepth
   xlim(-4,4) + # limits for x-axis
   theme_bw() + # add a built-in theme
@@ -125,8 +125,8 @@ Hints:
 
 ```{r, eval=FALSE}
   kable(...,
-        "html", booktabs = F,  position = "H") %>%
-        kable_classic(full_width = F, html_font = "Cambria")
+        'html', booktabs = F,  position = 'H') %>%
+        kable_classic(full_width = F, html_font = 'Cambria')
 ```
 
 ```{r test countries, echo = FALSE }
@@ -155,9 +155,9 @@ testing <- mutate( testing ,  p_val = round( p_val , digit = 4 ) )
 kable( testing , digits = 4, 
        caption = 'Online and retail price differences by countries and t-tests',
        col.names = c('Country','Mean','SE','Num.Obs','t-stat','p-val'),
-       "latex", booktabs = TRUE,  position = "H")             # Comment out if html
-      #"html", booktabs = F,  position = "H") %>%             # Uncomment if html
-      #  kable_classic(full_width = F, html_font = "Cambria")
+       'latex', booktabs = TRUE,  position = 'H')             # Comment out if html
+      #'html', booktabs = F,  position = 'H') %>%             # Uncomment if html
+      #  kable_classic(full_width = F, html_font = 'Cambria')
 
 ```
 

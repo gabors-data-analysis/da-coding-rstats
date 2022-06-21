@@ -36,18 +36,18 @@ library(ggpubr)
 library(fixest)
 # Cool package with maps
 if (!require(maps)){
-  install.packages("maps")
-  install.packages("mapproj")
+  install.packages('maps')
+  install.packages('mapproj')
   library(maps)
 }
 # Import custom 'shp' file to draw maps
 if (!require(rgdal)){
-  install.packages("rgdal")
+  install.packages('rgdal')
   library(rgdal)
 }
 # Cool color palettes
 if (!{require(wesanderson)}){
-  install.packages("wesanderson")
+  install.packages('wesanderson')
   library(wesanderson)
 }
 
@@ -61,7 +61,7 @@ if (!{require(wesanderson)}){
 rm( list = ls() )
 
 # Use the US map -> but it includes many other maps! (check ?map_data())
-world_map <- map_data("world")
+world_map <- map_data('world')
 
 # What we need is a 'polygon'
 # Note: it has longitude and latitude data with groups and order -> this is important to draw a map
@@ -72,7 +72,7 @@ world_map <- map_data("world")
 #   - unscaled, with guides and axis labels
 wm <- world_map %>% 
         ggplot( aes(x = long, y = lat, group = group ) ) +
-        geom_polygon( fill = "white", color = "black")
+        geom_polygon( fill = 'white', color = 'black')
 wm
 
 # Set coordinates are equally distanced
@@ -91,13 +91,13 @@ world_map %>%
   geom_polygon( ) + 
   coord_equal( ) + 
   theme_map() + 
-  theme(legend.position = "none")
+  theme(legend.position = 'none')
 
 ### 
 # We want to show life-expectancy on this map
 
 # Load WB: life-expectancy
-lfe <- read_csv("https://osf.io/sh9mu/download")
+lfe <- read_csv('https://osf.io/sh9mu/download')
 
 # take year 2017 only
 lfe <- lfe %>% filter( year == 2017 )
@@ -109,7 +109,7 @@ lfe <- lfe %>% filter( year == 2017 )
 countries <- distinct( world_map , region , group ) %>% rename( countryname = region ) %>% arrange() 
 
 # b) Check not-matching observations
-check <- anti_join( lfe , countries,  by = "countryname" )
+check <- anti_join( lfe , countries,  by = 'countryname' )
 
 # c) From these there are some which has different names
 rename_list <- tibble( old_name = c('Bahamas, The','Brunei Darussalam','Congo, Dem. Rep.',
@@ -142,9 +142,9 @@ lfe_map <- world_map_exp %>%
 lfe_map
 
 # Change coloring life-expectancy: scale from green to red
-lfe_map + scale_fill_gradient(low = "red", high = "green",
-                              name = "") +
-          ggtitle("Life expectancy at birth in years (2017)")
+lfe_map + scale_fill_gradient(low = 'red', high = 'green',
+                              name = '') +
+          ggtitle('Life expectancy at birth in years (2017)')
 
 
 ###
@@ -156,7 +156,7 @@ lfe_map + scale_fill_gradient(low = "red", high = "green",
 # Create log gdp/capita
 lfe <- lfe %>% mutate( ln_gdppc = log( gdppc ) )
 # Simple linear regression
-reg <- feols( lifeexp ~ ln_gdppc , data = lfe , vcov = "hetero" )
+reg <- feols( lifeexp ~ ln_gdppc , data = lfe , vcov = 'hetero' )
 reg
 
 # Reminder:
@@ -179,10 +179,10 @@ world_map_exp2 %>%
                group = group, fill = lfe_res ) ) +
   geom_polygon( ) + 
   coord_equal( ) + 
-  scale_fill_gradient(low = "red", high = "green",
-                      name = "Deviance from Life Exp.") +
+  scale_fill_gradient(low = 'red', high = 'green',
+                      name = 'Deviance from Life Exp.') +
   theme_map() + 
-  theme(legend.position = "top")
+  theme(legend.position = 'top')
 
 
 ####
@@ -193,11 +193,11 @@ lfe %>%
   ggplot(aes( fill = lfe_res, map_id = countryname ) ) +
   geom_map( map = world_map ) +
   expand_limits( x = world_map$long, y = world_map$lat ) +
-  coord_map("albers", lat0 = 0, lat1 = 0) +
-  scale_fill_gradient(low = "red", high = "green",
-                      name = "Deviance from Life Exp.") +
+  coord_map('albers', lat0 = 0, lat1 = 0) +
+  scale_fill_gradient(low = 'red', high = 'green',
+                      name = 'Deviance from Life Exp.') +
   theme_map() +
-  theme(legend.position = "top")
+  theme(legend.position = 'top')
 
 
 #################################
@@ -210,8 +210,8 @@ rm( list = ls() )
 
 ###
 # Import Hotels-Europe data
-heu_p <- read_csv("https://osf.io/p6tyr/download")
-heu_f <- read_csv("https://osf.io/utwjs/download")
+heu_p <- read_csv('https://osf.io/p6tyr/download')
+heu_f <- read_csv('https://osf.io/utwjs/download')
 heu <- left_join( heu_f, heu_p , by = 'hotel_id' ) 
 rm(heu_p,heu_f)
 
@@ -231,7 +231,7 @@ setwd()
 #   https://data.london.gov.uk/dataset/statistical-gis-boundary-files-london
 # Import shp file for London
 # Note: you always need an 'shx' and 'dbf' file with the same name to read
-london_map <- readOGR( "data_map/London_Borough_Excluding_MHW.shp" )
+london_map <- readOGR( 'data_map/London_Borough_Excluding_MHW.shp' )
 # It imports as a 'S4 object'
 head(london_map@data,2)
 
@@ -252,16 +252,16 @@ rm( london_map_tibble )
 # Show London boroughs
 ggplot( london_map , aes( long , lat , group = borough ) ) +
   geom_polygon() + 
-  geom_path( colour="white", lwd = 0.1 ) + 
+  geom_path( colour='white', lwd = 0.1 ) + 
   coord_equal() +
-  ggtitle("London Boroughs") +
+  ggtitle('London Boroughs') +
   theme_map()
 
 # Define inner-London boroughs 
 #   Note: City of London officially is not inner-London
-inner_boroughs <- c( "Camden","Greenwich","Hackney","Hammersmith and Fulham","Islington","Kensington and Chelsea",
-                     "Lambeth","Lewisham","Southwark","Tower Hamlets","Wandsworth","Westminster",
-                     "City of London")
+inner_boroughs <- c( 'Camden','Greenwich','Hackney','Hammersmith and Fulham','Islington','Kensington and Chelsea',
+                     'Lambeth','Lewisham','Southwark','Tower Hamlets','Wandsworth','Westminster',
+                     'City of London')
 
 # Defining inner boroughs for inner London
 london_map <- london_map %>% mutate( inner_london = borough %in% inner_boroughs  )
@@ -269,9 +269,9 @@ london_map <- london_map %>% mutate( inner_london = borough %in% inner_boroughs 
 # Show inner-London boroughs
 iL <- ggplot( filter( london_map , inner_london ) , aes( long , lat , group = borough ) ) +
   geom_polygon( colour = 'black', fill = NA ) + 
-  geom_path( colour="white", lwd = 0.01 ) + 
+  geom_path( colour='white', lwd = 0.01 ) + 
   coord_equal( ) +
-  ggtitle("Inner-London Borough") +
+  ggtitle('Inner-London Borough') +
   theme_map()
 iL
 
@@ -296,39 +296,39 @@ heu <- heu %>% mutate( borough =  neighbourhood )
 
 # Hand-written matching...
 #                     neighbour , borough  
-match_london <- c(   "Blackheath", "Lewisham",
-                     "Bloomsbury","Camden",
-                     "Camden Town","Camden",
-                     "Canary Wharf","Tower Hamlets",
-                     "Chelsea","Kensington and Chelsea",
-                     "Covent Garden","Westminster",
-                     "Earl\\u0027s Court","Kensington and Chelsea",
-                     "Euston","Camden",
-                     "Hammersmith and Fulham","Hammersmith and Fulham",
-                     "Hampstead","Camden",
-                     "Kensington","Kensington and Chelsea",
-                     "Kings Cross","Islington",
-                     "Kings Cross St. Pancras","Islington",
-                     "Knightsbridge","Westminster",
-                     "Lillington and Longmoore Gardens","Westminster",
-                     "London","City of London",
-                     "Maida Vale","Westminster",
-                     "Marylebone","Westminster",
-                     "Mayfair","Westminster",
-                     "North Maida Vale","Westminster",
-                     "Notting Hill","Kensington and Chelsea",
-                     "Paddington","Westminster",
-                     "Poplar","Tower Hamlets",
-                     "Royal Borough of Kensington and Chelsea","Hammersmith and Fulham",
-                     "Shoreditch","Hackney",
-                     "Soho","Westminster",
-                     "South Bank","Lambeth",
-                     "St Katharine\\u0027s \\u0026 Wapping","Tower Hamlets",
-                     "Stratford","Newham",
-                     "The City of London","City of London",
-                     "Victoria","Westminster",
-                     "West End","Camden",
-                     "White City","Hammersmith and Fulham")
+match_london <- c(   'Blackheath', 'Lewisham',
+                     'Bloomsbury','Camden',
+                     'Camden Town','Camden',
+                     'Canary Wharf','Tower Hamlets',
+                     'Chelsea','Kensington and Chelsea',
+                     'Covent Garden','Westminster',
+                     'Earl\\u0027s Court','Kensington and Chelsea',
+                     'Euston','Camden',
+                     'Hammersmith and Fulham','Hammersmith and Fulham',
+                     'Hampstead','Camden',
+                     'Kensington','Kensington and Chelsea',
+                     'Kings Cross','Islington',
+                     'Kings Cross St. Pancras','Islington',
+                     'Knightsbridge','Westminster',
+                     'Lillington and Longmoore Gardens','Westminster',
+                     'London','City of London',
+                     'Maida Vale','Westminster',
+                     'Marylebone','Westminster',
+                     'Mayfair','Westminster',
+                     'North Maida Vale','Westminster',
+                     'Notting Hill','Kensington and Chelsea',
+                     'Paddington','Westminster',
+                     'Poplar','Tower Hamlets',
+                     'Royal Borough of Kensington and Chelsea','Hammersmith and Fulham',
+                     'Shoreditch','Hackney',
+                     'Soho','Westminster',
+                     'South Bank','Lambeth',
+                     'St Katharine\\u0027s \\u0026 Wapping','Tower Hamlets',
+                     'Stratford','Newham',
+                     'The City of London','City of London',
+                     'Victoria','Westminster',
+                     'West End','Camden',
+                     'White City','Hammersmith and Fulham')
 
 for ( i in 1 : ( length( match_london ) / 2 ) ){
   heu$borough[ heu$borough == match_london[ i*2 - 1 ] ] <- match_london[ i *2 ]
@@ -347,13 +347,13 @@ lp <- left_join( london_map , l_bor , by = 'borough' )
 # Create graph with prices: London
 ggplot( lp , aes( long, lat, group = borough , fill = price ) ) +
   geom_polygon( ) + 
-  geom_path( colour="white", lwd=0.05 ) + 
+  geom_path( colour='white', lwd=0.05 ) + 
   coord_equal( ) +
-  labs(x = "lat", y = "lon",
-       fill = "Price") +
-  scale_fill_gradient(low = "green",high = "red", # colors
-                      name = "Price") + # legend options
-  ggtitle("Average hotel prices in London ($,2017)") +
+  labs(x = 'lat', y = 'lon',
+       fill = 'Price') +
+  scale_fill_gradient(low = 'green',high = 'red', # colors
+                      name = 'Price') + # legend options
+  ggtitle('Average hotel prices in London ($,2017)') +
   theme_map()
 
 
@@ -361,7 +361,7 @@ ggplot( lp , aes( long, lat, group = borough , fill = price ) ) +
 # first define a nice color palette with `wesanderson` package 
 #   check out for more here: https://rforpoliticalscience.com/2020/07/26/make-wes-anderson-themed-graphs-with-wesanderson-package-in-r/
 #     or here: https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
-pal <- wes_palette("Zissou1", 100, type = "continuous")
+pal <- wes_palette('Zissou1', 100, type = 'continuous')
 
 # Create tibble for inner london, prices added as it is needed for graph
 b_names_il <- filter( left_join( b_names, l_bor , by = 'borough' ), inner_london )
@@ -378,16 +378,16 @@ b_names_il$lat[ b_names_il$borough == 'K&C' ] <- b_names_il$lat[ b_names_il$boro
 iL_price <- ggplot( filter( lp , inner_london ), 
                     aes(long, lat, group = borough , fill = price ) ) +
   geom_polygon() + 
-  geom_path( colour="white", lwd=0.05 ) + 
+  geom_path( colour='white', lwd=0.05 ) + 
   coord_equal() +
   geom_text( data = b_names_il ,
              aes( long, lat, label = borough ), size = 2 ) +
-  labs(x = "lat", y = "lon",
-       fill = "Price") +
+  labs(x = 'lat', y = 'lon',
+       fill = 'Price') +
   scale_fill_gradientn(colours=pal,
-                       na.value = 'grey', name = "",
+                       na.value = 'grey', name = '',
                        limits = c( 0 , 400 )) +
-  ggtitle("Average hotel prices: inner-London ($,2017)") +
+  ggtitle('Average hotel prices: inner-London ($,2017)') +
   theme_map() 
 iL_price
 
@@ -403,7 +403,7 @@ iL_price
 
 
 # Import shp file from https://www.data.gv.at/katalog/dataset/stadt-wien_bezirksgrenzenwien
-vienna_map <- readOGR("data_map/BEZIRKSGRENZEOGDPolygon.shp")
+vienna_map <- readOGR('data_map/BEZIRKSGRENZEOGDPolygon.shp')
 head( vienna_map@data,2 )
 
 vienna_map_tibble <- as_tibble( fortify( vienna_map ) )
@@ -419,25 +419,25 @@ rm( vienna_map_tibble )
 # Visualize Vienna districts
 ggplot( vienna_map , aes(long, lat, group = district ) ) +
   geom_polygon() + 
-  geom_path( colour="white", lwd=0.05 ) + 
+  geom_path( colour='white', lwd=0.05 ) + 
   coord_equal() +
   theme_bw()+
-  ggtitle("Vienna districts") +
+  ggtitle('Vienna districts') +
   theme_map()
 
 # Matching variable
 #                  neighbourhood, district
-match_vienna <- c("17. Hernals","Hernals",
-                  "Graben","Innere Stadt",
-                  "Kaerntner Strasse","Innere Stadt",
-                  "Landstrasse","Landstra\xdfe",
-                  "Rudolfsheim-Funfhaus","Rudolfsheim-F\xfcnfhaus",
-                  "Wahring","W\xe4hring",
-                  "Schonbrunn","Meidling")
+match_vienna <- c('17. Hernals','Hernals',
+                  'Graben','Innere Stadt',
+                  'Kaerntner Strasse','Innere Stadt',
+                  'Landstrasse','Landstra\xdfe',
+                  'Rudolfsheim-Funfhaus','Rudolfsheim-F\xfcnfhaus',
+                  'Wahring','W\xe4hring',
+                  'Schonbrunn','Meidling')
 
 # Rename the variable: if ugly name from vienna_map, use the pretty name instead!
 for ( i in 1 : ( length( match_vienna ) / 2 ) ){
-  if ( match_vienna[ i*2 - 1 ] %in% c("Landstrasse","Rudolfsheim-Funfhaus","Wahring") ){
+  if ( match_vienna[ i*2 - 1 ] %in% c('Landstrasse','Rudolfsheim-Funfhaus','Wahring') ){
     heu$borough[ heu$borough == match_vienna[ i*2 - 1 ] ] <- match_vienna[ i*2 - 1 ]
     vienna_map$district[ vienna_map$district ==  match_vienna[ i *2 ] ] <-  match_vienna[ i*2 - 1 ]
   } else{
@@ -479,24 +479,24 @@ v_names$lat[ v_names$district == 'Hernals' ]  <- v_names$lat[ v_names$district =
 # Create graph for Vienna
 V_price <- ggplot( vp, aes(long, lat, group = district , fill = price ) ) +
   geom_polygon() + 
-  geom_path( colour="white", lwd=0.05 ) + 
+  geom_path( colour='white', lwd=0.05 ) + 
   coord_equal() +
   geom_text( data = left_join( v_names, v_dist , by = 'district' ),
              aes( long, lat, label = district ), size = 2 ) +
-  labs(x = "lat", y = "lon",
-       fill = "Price") +
+  labs(x = 'lat', y = 'lon',
+       fill = 'Price') +
   scale_fill_gradientn(colours=pal,
-                       na.value = 'grey', name = "",
+                       na.value = 'grey', name = '',
                        limits = c( 0 , 400 )) +
-  ggtitle("Average hotel prices: Vienna ($,2017)") +
+  ggtitle('Average hotel prices: Vienna ($,2017)') +
   theme_map()
 
 V_price
 
 # Show together with common legend (this is why we use `scale_fill_gradientn()`)
-cities_plot <- ggarrange( iL_price + ggtitle("Inner-London")  , 
-           V_price  + ggtitle("Vienna") ,
-           ncol = 1 , common.legend = TRUE, legend="right" )
+cities_plot <- ggarrange( iL_price + ggtitle('Inner-London')  , 
+           V_price  + ggtitle('Vienna') ,
+           ncol = 1 , common.legend = TRUE, legend='right' )
 
-annotate_figure(cities_plot, top = text_grob("Average price of a hotel for one night ($)", 
-                                      color = "black", face = "italic", size = 12))
+annotate_figure(cities_plot, top = text_grob('Average price of a hotel for one night ($)', 
+                                      color = 'black', face = 'italic', size = 12))

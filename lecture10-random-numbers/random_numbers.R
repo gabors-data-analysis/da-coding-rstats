@@ -48,7 +48,7 @@ emp_height <- ggplot( df , aes( x = height ) ) +
                   fill = 'navyblue', alpha = 0.6 ) +
   stat_function( fun = dnorm, color = 'red',  
                  args = with( df, c( mean = mean( height , na.rm = T ), sd = sd( height , na.rm = T ) ) ) ) + 
-  labs(x="Height (meters)", y="Density" ) +
+  labs(x='Height (meters)', y='Density' ) +
   theme_bw()
 
 emp_height
@@ -64,7 +64,7 @@ emp_inc <- ggplot( filter( df , hhincome < 1000 ) , aes( x = hhincome ) ) +
                   fill = 'navyblue', alpha = 0.6 ) +
   stat_function( fun = dlnorm, colour= 'red',  
                  args = c( mean = mu , sd =  sigma ) ) + 
-  labs(x="Income (thousand $)", y="Density" ) +
+  labs(x='Income (thousand $)', y='Density' ) +
   theme_bw()
 
 emp_inc
@@ -101,7 +101,7 @@ ggplot( df ) +
   stat_function( fun = dnorm, colour= 'red',  
                  args = with( df , c( mean = mean( lninc , na.rm = T ) , 
                                       sd =  sd( lninc, na.rm = T) ) ) ) + 
-  labs(x="Log-Income (thousand $)", y="Density" ) +
+  labs(x='Log-Income (thousand $)', y='Density' ) +
   theme_bw()
 
 

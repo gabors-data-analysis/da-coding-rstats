@@ -13,7 +13,7 @@ my_avg <- function( x ){
 
 # Import wms-management data
 library(tidyverse)
-wms <- read_csv( "https://osf.io/uzpce/download" )
+wms <- read_csv( 'https://osf.io/uzpce/download' )
 # save management score x1
 x1 <- wms$management
 # Remove wms to keep environment tidy
@@ -69,7 +69,7 @@ my_fun3 <- function( x ){
   var_x  <- sum( ( x - mean_x )^2 ) / ( N - 1 )
   # Standard deviation of x
   sd_x <- sqrt( var_x )
-  out <- list( "sum" = sum_x , "mean" = mean_x , "var" = var_x ,"sd" = sd_x )
+  out <- list( 'sum' = sum_x , 'mean' = mean_x , 'var' = var_x ,'sd' = sd_x )
   return( out )
 }
 
@@ -108,9 +108,9 @@ conf_interval <- function( x , level = 0.95 ){
   } else if ( level == 0.99 ){
     CI_mean <- c( mean_x - 2.58*se_mean_x , mean_x + 2.58*se_mean_x )
   } else {
-    stop("No such level implemented for confidence interval, use 0.95 or 0.99")
+    stop('No such level implemented for confidence interval, use 0.95 or 0.99')
   }
-  out <- list("mean"=mean_x,"CI_mean" = CI_mean )
+  out <- list('mean'=mean_x,'CI_mean' = CI_mean )
   return( out )
 }
 # Get some CI values
@@ -134,9 +134,9 @@ conf_interval2 <- function( x , level = 0.95 ){
     crit_val <- qnorm( level + ( 1 - level )/2 )
     CI_mean <- c( mean_x - crit_val*se_mean_x , mean_x + crit_val*se_mean_x )
   } else {
-    stop("level must be between 0 and 1")
+    stop('level must be between 0 and 1')
   }
-  out <- list("mean"=mean_x,"CI_mean" = CI_mean )
+  out <- list('mean'=mean_x,'CI_mean' = CI_mean )
   return( out )
 }
 # Get some CI values
@@ -187,7 +187,7 @@ sampling_y <- get_sampling_dists( y , rep_num = 1000 , sample_size = 100 )
 # Plot these distributions
 ggplot( sampling_y , aes( x = mean_stat ) ) +
   geom_histogram( aes( y = ..density.. ) , bins = 60, color = 'navyblue', fill = 'navyblue' ) +
-  geom_vline( xintercept = 1 , linetype = "dashed" , color = 'blue' , size = 1 )+
+  geom_vline( xintercept = 1 , linetype = 'dashed' , color = 'blue' , size = 1 )+
   geom_vline( xintercept = mean( y ) , color = 'red' , size = 1 ) +
   geom_vline( xintercept = mean( sampling_y$mean_stat ) , color = 'black' , size = 1 )+
   stat_function( fun = dnorm , args = list( mean = mean( y ) , sd = sd( y ) / sqrt(100) ) ,

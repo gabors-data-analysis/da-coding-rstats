@@ -36,22 +36,22 @@ library(modelsummary)
 library(caret)
 # Pretty plots
 if (!require(rattle)){
-  install.packages("rattle")
+  install.packages('rattle')
   library(rattle)
 }
 # Random forest package
 if (!require(ranger)){
-  install.packages("ranger")
+  install.packages('ranger')
   library(ranger)
 }
 # Partial dependence plot package
 if (!require(pdp)){
-  install.packages("pdp")
+  install.packages('pdp')
   library(pdp)
 }
 # Gradient boosting machine
 if (!require(gbm)){
-  install.packages("gbm")
+  install.packages('gbm')
   library(gbm)
 }
 
@@ -102,24 +102,24 @@ dim(data_holdout)
 
 # Basic Variables inc neighnourhood
 basic_vars <- c(
-  "n_accommodates", "n_beds", "n_days_since",
-  "f_property_type","f_room_type", "n_bathrooms", "f_cancellation_policy", "f_bed_type",
-  "f_neighbourhood_cleansed")
+  'n_accommodates', 'n_beds', 'n_days_since',
+  'f_property_type','f_room_type', 'n_bathrooms', 'f_cancellation_policy', 'f_bed_type',
+  'f_neighbourhood_cleansed')
 
 # reviews
-reviews <- c("n_number_of_reviews", "flag_n_number_of_reviews" ,
-             "n_review_scores_rating", "flag_review_scores_rating")
+reviews <- c('n_number_of_reviews', 'flag_n_number_of_reviews' ,
+             'n_review_scores_rating', 'flag_review_scores_rating')
 
 # Dummy variables
-amenities <-  grep("^d_.*", names(airbnb), value = TRUE)
+amenities <-  grep('^d_.*', names(airbnb), value = TRUE)
 
 #interactions for the LASSO
 # from ch14
-X1  <- c("n_accommodates*f_property_type",  "f_room_type*f_property_type",  "f_room_type*d_familykidfriendly",
-         "d_airconditioning*f_property_type", "d_cats*f_property_type", "d_dogs*f_property_type")
+X1  <- c('n_accommodates*f_property_type',  'f_room_type*f_property_type',  'f_room_type*d_familykidfriendly',
+         'd_airconditioning*f_property_type', 'd_cats*f_property_type', 'd_dogs*f_property_type')
 # with boroughs
-X2  <- c("f_property_type*f_neighbourhood_cleansed", "f_room_type*f_neighbourhood_cleansed",
-         "n_accommodates*f_neighbourhood_cleansed" )
+X2  <- c('f_property_type*f_neighbourhood_cleansed', 'f_room_type*f_neighbourhood_cleansed',
+         'n_accommodates*f_neighbourhood_cleansed' )
 
 
 predictors_1 <- c(basic_vars)
@@ -137,14 +137,14 @@ predictors_E <- c(basic_vars, reviews, amenities, X1,X2)
 #
 
 # do 5-fold CV
-train_control <- trainControl(method = "cv",
+train_control <- trainControl(method = 'cv',
                               number = 5,
                               verboseIter = FALSE)
 
 # set tuning
 tune_grid <- expand.grid(
   .mtry = c(8),
-  .splitrule = "variance",
+  .splitrule = 'variance',
   .min.node.size = c(50)
 )
 
@@ -154,12 +154,12 @@ tune_grid <- expand.grid(
 set.seed(1234)
 system.time({
 rf_model_1 <- train(
-  formula(paste0("price ~", paste0(predictors_1, collapse = " + "))),
+  formula(paste0('price ~', paste0(predictors_1, collapse = ' + '))),
   data = data_train,
-  method = "ranger",
+  method = 'ranger',
   trControl = train_control,
   tuneGrid = tune_grid,
-  importance = "impurity"
+  importance = 'impurity'
 )
 })
 rf_model_1
@@ -170,12 +170,12 @@ rf_model_1
 set.seed(1234)
 system.time({
 rf_model_2 <- train(
-  formula(paste0("price ~", paste0(predictors_2, collapse = " + "))),
+  formula(paste0('price ~', paste0(predictors_2, collapse = ' + '))),
   data = data_train,
-  method = "ranger",
+  method = 'ranger',
   trControl = train_control,
   tuneGrid = tune_grid,
-  importance = "impurity"
+  importance = 'impurity'
 )
 })
 rf_model_2
@@ -188,11 +188,11 @@ rf_model_2
 #set.seed(1234)
 #system.time({
 #   rf_model_2auto <- train(
-#     formula(paste0("price ~", paste0(predictors_2, collapse = " + "))),
+#     formula(paste0('price ~', paste0(predictors_2, collapse = ' + '))),
 #     data = data_train,
-#     method = "ranger",
+#     method = 'ranger',
 #     trControl = train_control,
-#     importance = "impurity"
+#     importance = 'impurity'
 #   )
 #})
 #rf_model_2auto 
@@ -230,8 +230,8 @@ summary(results)
 rf_model_2_var_imp <- ranger::importance(rf_model_2$finalModel)/1000
 rf_model_2_var_imp_df <-
   data.frame(varname = names(rf_model_2_var_imp),imp = rf_model_2_var_imp) %>%
-  mutate(varname = gsub("f_neighbourhood_cleansed", "Borough:", varname) ) %>%
-  mutate(varname = gsub("f_room_type", "Room type:", varname) ) %>%
+  mutate(varname = gsub('f_neighbourhood_cleansed', 'Borough:', varname) ) %>%
+  mutate(varname = gsub('f_room_type', 'Room type:', varname) ) %>%
   arrange(desc(imp)) %>%
   mutate(imp_percentage = imp/sum(imp))
 
@@ -248,8 +248,8 @@ ggplot(rf_model_2_var_imp_df[rf_model_2_var_imp_df$imp>cutoff,],
                                   aes(x=reorder(varname, imp), y=imp_percentage)) +
   geom_point(color='red', size=1.5) +
   geom_segment(aes(x=varname,xend=varname,y=0,yend=imp_percentage), color='red', size=1) +
-  ylab("Importance (Percent)") +
-  xlab("Variable Name") +
+  ylab('Importance (Percent)') +
+  xlab('Variable Name') +
   coord_flip() +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   theme_bw() +
@@ -265,8 +265,8 @@ ggplot(rf_model_2_var_imp_df[rf_model_2_var_imp_df$imp>cutoff,],
 ggplot(rf_model_2_var_imp_df[1:10,], aes(x=reorder(varname, imp), y=imp_percentage)) +
   geom_point(color='red', size=1) +
   geom_segment(aes(x=varname,xend=varname,y=0,yend=imp_percentage), color='red', size=0.75) +
-  ylab("Importance (Percent)") +
-  xlab("Variable Name") +
+  ylab('Importance (Percent)') +
+  xlab('Variable Name') +
   coord_flip() +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   theme_bw()
@@ -278,28 +278,28 @@ ggplot(rf_model_2_var_imp_df[1:10,], aes(x=reorder(varname, imp), y=imp_percenta
 # grouped variable importance - keep binaries created off factors together
 
 varnames <- rf_model_2$finalModel$xNames
-f_neighbourhood_cleansed_varnames <- grep("f_neighbourhood_cleansed",varnames, value = TRUE)
-f_cancellation_policy_varnames <- grep("f_cancellation_policy",varnames, value = TRUE)
-f_bed_type_varnames <- grep("f_bed_type",varnames, value = TRUE)
-f_property_type_varnames <- grep("f_property_type",varnames, value = TRUE)
-f_room_type_varnames <- grep("f_room_type",varnames, value = TRUE)
+f_neighbourhood_cleansed_varnames <- grep('f_neighbourhood_cleansed',varnames, value = TRUE)
+f_cancellation_policy_varnames <- grep('f_cancellation_policy',varnames, value = TRUE)
+f_bed_type_varnames <- grep('f_bed_type',varnames, value = TRUE)
+f_property_type_varnames <- grep('f_property_type',varnames, value = TRUE)
+f_room_type_varnames <- grep('f_room_type',varnames, value = TRUE)
 
 groups <- list(f_neighbourhood_cleansed=f_neighbourhood_cleansed_varnames,
                f_cancellation_policy = f_cancellation_policy_varnames,
                f_bed_type = f_bed_type_varnames,
                f_property_type = f_property_type_varnames,
                f_room_type = f_room_type_varnames,
-               f_bathroom = "f_bathroom",
-               n_days_since = "n_days_since",
-               n_accommodates = "n_accommodates",
-               n_beds = "n_beds")
+               f_bathroom = 'f_bathroom',
+               n_days_since = 'n_days_since',
+               n_accommodates = 'n_accommodates',
+               n_beds = 'n_beds')
 
 # Need a function to calculate grouped varimp
 group.importance <- function(rf.obj, groups) {
   var.imp <- as.matrix(sapply(groups, function(g) {
     sum(ranger::importance(rf.obj)[g], na.rm = TRUE)
   }))
-  colnames(var.imp) <- "MeanDecreaseGini"
+  colnames(var.imp) <- 'MeanDecreaseGini'
   return(var.imp)
 }
 
@@ -311,7 +311,7 @@ rf_model_2_var_imp_grouped_df <- data.frame(varname = rownames(rf_model_2_var_im
 ggplot(rf_model_2_var_imp_grouped_df, aes(x=reorder(varname, imp), y=imp_percentage)) +
   geom_point(color='red', size=1) +
   geom_segment(aes(x=varname,xend=varname,y=0,yend=imp_percentage), color='red', size=0.7) +
-  ylab("Importance (Percent)") +   xlab("Variable Name") +
+  ylab('Importance (Percent)') +   xlab('Variable Name') +
   coord_flip() +
   # expand=c(0,0),
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
@@ -323,29 +323,29 @@ ggplot(rf_model_2_var_imp_grouped_df, aes(x=reorder(varname, imp), y=imp_percent
 #########################################################################################
 
 # 1) Number of accommodates
-pdp_n_acc <- pdp::partial(rf_model_2, pred.var = "n_accommodates", 
-                          pred.grid = distinct_(data_holdout, "n_accommodates"), 
+pdp_n_acc <- pdp::partial(rf_model_2, pred.var = 'n_accommodates', 
+                          pred.grid = distinct_(data_holdout, 'n_accommodates'), 
                           train = data_train)
 
 pdp_n_acc %>%
   autoplot( ) +
   geom_point(color='red', size=2) +
   geom_line(color='red', size=1) +
-  ylab("Predicted price") +
-  xlab("Accommodates (persons)") +
+  ylab('Predicted price') +
+  xlab('Accommodates (persons)') +
   scale_x_continuous(limit=c(1,7), breaks=seq(1,7,1))+
 theme_bw()
 
 
 # 2) Room type
-pdp_n_roomtype <- pdp::partial(rf_model_2, pred.var = "f_room_type", 
-                               pred.grid = distinct_(data_holdout, "f_room_type"), 
+pdp_n_roomtype <- pdp::partial(rf_model_2, pred.var = 'f_room_type', 
+                               pred.grid = distinct_(data_holdout, 'f_room_type'), 
                                train = data_train)
 pdp_n_roomtype %>%
   autoplot( ) +
   geom_point(color='red', size=4) +
-  ylab("Predicted price") +
-  xlab("Room type") +
+  ylab('Predicted price') +
+  xlab('Room type') +
   scale_y_continuous(limits=c(60,120), breaks=seq(60,120, by=10)) +
   theme_bw()
 
@@ -361,7 +361,7 @@ data_holdout_w_prediction <- data_holdout %>%
 
 ######### create nice summary table of heterogeneity
 a <- data_holdout_w_prediction %>%
-  mutate(is_low_size = ifelse(n_accommodates <= 3, "small apt", "large apt")) %>%
+  mutate(is_low_size = ifelse(n_accommodates <= 3, 'small apt', 'large apt')) %>%
   group_by(is_low_size) %>%
   dplyr::summarise(
     rmse = RMSE(predicted_price, price),
@@ -371,9 +371,9 @@ a <- data_holdout_w_prediction %>%
 
 
 b <- data_holdout_w_prediction %>%
-  filter(f_neighbourhood_cleansed %in% c("Westminster", "Camden",
-                                         "Kensington and Chelsea", "Tower Hamlets",
-                                         "Hackney", "Newham")) %>%
+  filter(f_neighbourhood_cleansed %in% c('Westminster', 'Camden',
+                                         'Kensington and Chelsea', 'Tower Hamlets',
+                                         'Hackney', 'Newham')) %>%
   group_by(f_neighbourhood_cleansed) %>%
   dplyr::summarise(
     rmse = RMSE(predicted_price, price),
@@ -382,7 +382,7 @@ b <- data_holdout_w_prediction %>%
   )
 
 c <- data_holdout_w_prediction %>%
-  filter(f_property_type %in% c("Apartment", "House")) %>%
+  filter(f_property_type %in% c('Apartment', 'House')) %>%
   group_by(f_property_type) %>%
   dplyr::summarise(
     rmse = RMSE(predicted_price, price),
@@ -399,15 +399,15 @@ d <- data_holdout_w_prediction %>%
   )
 
 # Save output
-colnames(a) <- c("", "RMSE", "Mean price", "RMSE/price")
-colnames(b) <- c("", "RMSE", "Mean price", "RMSE/price")
-colnames(c) <- c("", "RMSE", "Mean price", "RMSE/price")
-d<- cbind("All", d)
-colnames(d) <- c("", "RMSE", "Mean price", "RMSE/price")
+colnames(a) <- c('', 'RMSE', 'Mean price', 'RMSE/price')
+colnames(b) <- c('', 'RMSE', 'Mean price', 'RMSE/price')
+colnames(c) <- c('', 'RMSE', 'Mean price', 'RMSE/price')
+d<- cbind('All', d)
+colnames(d) <- c('', 'RMSE', 'Mean price', 'RMSE/price')
 
-line1 <- c("Type", "", "", "")
-line2 <- c("Apartment size", "", "", "")
-line3 <- c("Borough", "", "", "")
+line1 <- c('Type', '', '', '')
+line2 <- c('Apartment size', '', '', '')
+line3 <- c('Borough', '', '', '')
 
 result_3 <- rbind(line2, a, line1, c, line3, b, d) %>%
   transform(RMSE = as.numeric(RMSE), `Mean price` = as.numeric(`Mean price`),
@@ -429,19 +429,19 @@ result_3
 set.seed(1234)
 system.time({
 ols_model <- train(
-  formula(paste0("price ~", paste0(predictors_2, collapse = " + "))),
+  formula(paste0('price ~', paste0(predictors_2, collapse = ' + '))),
   data = data_train,
-  method = "lm",
+  method = 'lm',
   trControl = train_control
 )
 })
 
 ols_model_coeffs <-  ols_model$finalModel$coefficients
 ols_model_coeffs_df <- data.frame(
-  "variable" = names(ols_model_coeffs),
-  "ols_coefficient" = ols_model_coeffs
+  'variable' = names(ols_model_coeffs),
+  'ols_coefficient' = ols_model_coeffs
 ) %>%
-  mutate(variable = gsub("`","",variable))
+  mutate(variable = gsub('`','',variable))
 
 # * LASSO
 # using extended model w interactions
@@ -449,11 +449,11 @@ ols_model_coeffs_df <- data.frame(
 set.seed(1234)
 system.time({
 lasso_model <- train(
-  formula(paste0("price ~", paste0(predictors_E, collapse = " + "))),
+  formula(paste0('price ~', paste0(predictors_E, collapse = ' + '))),
   data = data_train,
-  method = "glmnet",
-  preProcess = c("center", "scale"),
-  tuneGrid =  expand.grid("alpha" = 1, "lambda" = seq(0.01, 0.25, by = 0.01)),
+  method = 'glmnet',
+  preProcess = c('center', 'scale'),
+  tuneGrid =  expand.grid('alpha' = 1, 'lambda' = seq(0.01, 0.25, by = 0.01)),
   trControl = train_control
 )
 })
@@ -463,27 +463,27 @@ lasso_coeffs <- coef(
     lasso_model$bestTune$lambda) %>%
   as.matrix() %>%
   as.data.frame() %>%
-  rownames_to_column(var = "variable") %>%
-  rename(lasso_coefficient = `s1`)  # the column has a name "1", to be renamed
+  rownames_to_column(var = 'variable') %>%
+  rename(lasso_coefficient = `s1`)  # the column has a name '1', to be renamed
 
 lasso_coeffs_non_null <- lasso_coeffs[!lasso_coeffs$lasso_coefficient == 0,]
 
-regression_coeffs <- merge(ols_model_coeffs_df, lasso_coeffs_non_null, by = "variable", all=TRUE)
+regression_coeffs <- merge(ols_model_coeffs_df, lasso_coeffs_non_null, by = 'variable', all=TRUE)
 
 # CART with built-in pruning
 set.seed(1234)
 system.time({
 cart_model <- train(
-  formula(paste0("price ~", paste0(predictors_2, collapse = " + "))),
+  formula(paste0('price ~', paste0(predictors_2, collapse = ' + '))),
   data = data_train,
-  method = "rpart",
+  method = 'rpart',
   tuneLength = 10,
   trControl = train_control
 )
 })
 cart_model
 # Showing an alternative for plotting a tree
-fancyRpartPlot(cart_model$finalModel, sub = "")
+fancyRpartPlot(cart_model$finalModel, sub = '')
 
 # GBM  -------------------------------------------------------
 # See more e.g.:
@@ -497,9 +497,9 @@ gbm_grid <-  expand.grid(interaction.depth = 5, # complexity of the tree
 
 set.seed(1234)
 system.time({
-  gbm_model <- train(formula(paste0("price ~", paste0(predictors_2, collapse = " + "))),
+  gbm_model <- train(formula(paste0('price ~', paste0(predictors_2, collapse = ' + '))),
                      data = data_train,
-                     method = "gbm",
+                     method = 'gbm',
                      trControl = train_control,
                      verbose = FALSE,
                      tuneGrid = gbm_grid)
@@ -515,21 +515,21 @@ gbm_model$finalModel
 # ---- compare these models
 
 final_models <-
-  list("OLS" = ols_model,
-  "LASSO (model w/ interactions)" = lasso_model,
-  "CART" = cart_model,
-  "Random forest 1: smaller model" = rf_model_1,
-  "Random forest 2: extended model" = rf_model_2,
-  "GBM"  = gbm_model)
+  list('OLS' = ols_model,
+  'LASSO (model w/ interactions)' = lasso_model,
+  'CART' = cart_model,
+  'Random forest 1: smaller model' = rf_model_1,
+  'Random forest 2: extended model' = rf_model_2,
+  'GBM'  = gbm_model)
 
 results <- resamples(final_models) %>% summary()
 results
 
 # Model selection is carried out on this CV RMSE
 result_4 <- imap(final_models, ~{
-  mean(results$values[[paste0(.y,"~RMSE")]])
+  mean(results$values[[paste0(.y,'~RMSE')]])
 }) %>% unlist() %>% as.data.frame() %>%
-  rename("CV RMSE" = ".")
+  rename('CV RMSE' = '.')
 
 result_4
 
@@ -538,8 +538,8 @@ result_4
 # evaluate preferred model on the holdout set -----------------------------
 
 result_5 <- map(final_models, ~{
-  RMSE(predict(.x, newdata = data_holdout), data_holdout[["price"]])
+  RMSE(predict(.x, newdata = data_holdout), data_holdout[['price']])
 }) %>% unlist() %>% as.data.frame() %>%
-  rename("Holdout RMSE" = ".")
+  rename('Holdout RMSE' = '.')
 
 result_5

@@ -29,15 +29,15 @@ rm( list= ls())
 # Load packages
 library( tidyverse )
 # ggthemes is providing many built in themes for ggplot
-# install.library("ggthemes")
+# install.library('ggthemes')
 library(ggthemes)
 # scales manipulate ggplot in various ways, 
 #   we use it here to convert axis numbering to percentages
-#install.packages("scales")
+#install.packages('scales')
 library(scales)
 # devtools package is for developing tools in R (great package)
 #   we use it here to import script/function from web
-# install.packages("devtools")
+# install.packages('devtools')
 library(devtools)
 
 #####
@@ -45,8 +45,8 @@ library(devtools)
 # Use the london-vienna dataset to introduce different aspects of ggplot
 
 # import the prices and features of hotels
-heu_price   <- read_csv("https://osf.io/p6tyr/download")
-heu_feature <- read_csv("https://osf.io/utwjs/download")
+heu_price   <- read_csv('https://osf.io/p6tyr/download')
+heu_feature <- read_csv('https://osf.io/utwjs/download')
 df <- left_join( heu_feature , heu_price , by = 'hotel_id' )
 
 # filter
@@ -90,7 +90,7 @@ ggplot( filter( df , city == 'Vienna' ) , aes( x = price ) ) +
 
 # Import your source code. 
 #   Note: need to be in the working directory or specify the path!
-source("theme_bluewhite.R")
+source('theme_bluewhite.R')
 
 # Using our new imported theme
 ggplot( filter( df , city == 'Vienna' ) , aes( x = price ) ) +
@@ -144,7 +144,7 @@ f1
 
 # add annotation which says it is the mean
 f1 <- f1 + 
-  annotate( "text" , x = mean( df$price , na.rm = T ) + 20 ,
+  annotate( 'text' , x = mean( df$price , na.rm = T ) + 20 ,
             y = yval - 5 , label = 'Mean' , color = 'red')
 f1
 
@@ -154,7 +154,7 @@ f1
 median_price <- quantile( df$price , .50)
 # Add both of them to the figure
 f1 <- f1 + 
-  annotate( "text" , x = median_price + 10 , y = yval + 5 ,
+  annotate( 'text' , x = median_price + 10 , y = yval + 5 ,
             label = 'Median' , color = 'blue') +
   geom_segment( aes(x = median_price, y = 0, 
                     xend = median_price, yend = yval) ,
@@ -192,30 +192,30 @@ ds0
 
 ## Do the plot:
 f3 <- ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
-  geom_bar(stat = "identity", position = "dodge", width = 0.6,  size = 0.5)+ 
-  labs(x = "Citys", y = "Number of hotels", fill = "Distance") +
+  geom_bar(stat = 'identity', position = 'dodge', width = 0.6,  size = 0.5)+ 
+  labs(x = 'Citys', y = 'Number of hotels', fill = 'Distance') +
   theme_bw()
 f3
 
 # Make the legends more pretty: put to the top
-f3 + scale_fill_discrete(name="Distance from city center:") +
-  theme(legend.position = "top") 
+f3 + scale_fill_discrete(name='Distance from city center:') +
+  theme(legend.position = 'top') 
 
 
 ## Stacked bar
 ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
-  geom_bar(stat = "identity", position = "stack", width = 0.6,  size = 0.5) +
-  labs(x = "Citys", y = "Number of hotels") +
-  scale_fill_discrete(name="Distance from city center:") +
-  theme(legend.position = "top") 
+  geom_bar(stat = 'identity', position = 'stack', width = 0.6,  size = 0.5) +
+  labs(x = 'Citys', y = 'Number of hotels') +
+  scale_fill_discrete(name='Distance from city center:') +
+  theme(legend.position = 'top') 
 
 ## Stacked bar with percentages: using scales package
 ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
-  geom_bar(stat = "identity", position = "fill", width = 0.6,  size = 0.5) +
-  labs(x = "Citys", y = "Share of the hotels") +
+  geom_bar(stat = 'identity', position = 'fill', width = 0.6,  size = 0.5) +
+  labs(x = 'Citys', y = 'Share of the hotels') +
   scale_y_continuous(labels = scales::percent) +
-  scale_fill_discrete(name="Distance from city center:") +
-  theme(legend.position = "top") 
+  scale_fill_discrete(name='Distance from city center:') +
+  theme(legend.position = 'top') 
 
 
 ###
@@ -223,17 +223,17 @@ ggplot(ds0, aes(x=city, y=numObs, fill = dis_f)) +
 #   Remember: extreme values, lower/upper adjacent = 1.5*IQR, IQR(25%,75%) and median (NO MEAN!)
 #
 f4 <- ggplot(df, aes(y = price, x = city)) +
-  geom_boxplot(color = "blue", size = 0.5, width = 0.1, alpha = 0.5) +
+  geom_boxplot(color = 'blue', size = 0.5, width = 0.1, alpha = 0.5) +
   labs(x='Cities',y='Price') +
   theme_bw()
 f4
 
 # Make it a bit more fancy by adding error-bars
-f4 <- f4 + stat_boxplot(geom = "errorbar", width = 0.05,  size = 0.5, color = 'blue')
+f4 <- f4 + stat_boxplot(geom = 'errorbar', width = 0.05,  size = 0.5, color = 'blue')
 f4
 
 # Add the mean as a dot
-f4 + stat_summary(fun=mean, geom="point", shape=20, size=5, color="red", fill="red")
+f4 + stat_summary(fun=mean, geom='point', shape=20, size=5, color='red', fill='red')
 
 ###
 # C) Violin plot (+boxplot)
@@ -242,7 +242,7 @@ f4 + stat_summary(fun=mean, geom="point", shape=20, size=5, color="red", fill="r
 ggplot(df, aes(y = price, x = city)) +
   geom_violin( size=1,  width = 0.5, color = 'blue', 
                fill = 'lightblue', trim = T, show.legend=F, alpha = 0.3) +
-  geom_boxplot(color = "black", fill='lightblue', 
+  geom_boxplot(color = 'black', fill='lightblue', 
                size = 0.5, width = 0.1, alpha = 0.5 ,  outlier.shape = NA) +
   labs(x='Cities', y='Price')+
   theme_bw()
@@ -253,7 +253,7 @@ ggplot(df, aes(y = price, x = city)) +
 #
 
 # Using devtools package to source a script from the web
-source_url("https://raw.githubusercontent.com/gabors-data-analysis/da_case_studies/master/ch00-tech-prep/theme_bg.R")
+source_url('https://raw.githubusercontent.com/gabors-data-analysis/da_case_studies/master/ch00-tech-prep/theme_bg.R')
 
 f4 + theme_bg()
 
@@ -269,7 +269,7 @@ f4 + theme_bg()
 #   3) Add error bars to box-plot
 #   4) Add conditional mean as dots
 #   5) Annotate everything with arrows:
-#       `geom_segment(aes(x=,y=,xend=,yend=),arrow=arrow(length=unit(x,"cm")),color=)`
+#       `geom_segment(aes(x=,y=,xend=,yend=),arrow=arrow(length=unit(x,'cm')),color=)`
 #   6) use theme_bg()
 #   7) Instead of using 'color = 'blue'', or other colors, use 'color = color[1]' or color[x]
 #       these are defined colors in theme_bg()

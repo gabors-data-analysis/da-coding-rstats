@@ -19,11 +19,11 @@ rm(list=ls())
 library(tidyverse)
 library(modelsummary)
 if ( !require( fixest ) ){
-  install.packages("fixest")
+  install.packages('fixest')
   library(fixest)
 }
 if ( !require( grid ) ){
-  install.packages("grid")
+  install.packages('grid')
   library(grid)
 }
 
@@ -32,12 +32,12 @@ if ( !require( grid ) ){
 # 0) Import and clean the data
 
 # from OSF import hotel-vienna data
-hotels <- read_csv("https://osf.io/y6jvb/download")
+hotels <- read_csv('https://osf.io/y6jvb/download')
 
 # Apply filters:  3-4 stars, Vienna actual, without  extreme prices
 hotels <- hotels %>% 
-          filter(accommodation_type=="Hotel",
-                 city_actual=="Vienna",
+          filter(accommodation_type=='Hotel',
+                 city_actual=='Vienna',
                  stars>=3 & stars<=4,
                  !is.na(stars),
                  price<=600)
@@ -57,7 +57,7 @@ p1 <- ggplot( data = hotels ) +
   expand_limits(x = 0.01, y = 0.01 ) +
   scale_x_continuous(expand = c(0.01,0.01), limits=c(0, 7),     breaks=seq(0, 7, by=1)) + 
   scale_y_continuous(expand = c(0.01,0.01), limits = c(0, 400), breaks = seq(0, 400, by = 50)) +
-  labs(x = "Distance to city center (miles)",y = "Price (US dollars)")
+  labs(x = 'Distance to city center (miles)',y = 'Price (US dollars)')
 p1
 
 
@@ -73,7 +73,7 @@ dist2 <- hotels %>% group_by( dist2 ) %>%
 hotels<-left_join( hotels , dist2 )
 
 # Recode it to a factor with 'close' and 'far' values
-hotels <- hotels %>%  mutate(dist2 = recode( dist2 ,`0` = "Close",`1` = "Far" ) )
+hotels <- hotels %>%  mutate(dist2 = recode( dist2 ,`0` = 'Close',`1` = 'Far' ) )
 
 # Check the descriptives for the two categories:
 datasummary( dist2* distance + dist2*price ~ 
@@ -84,22 +84,22 @@ ggplot(data = hotels) +
   geom_point(aes(x = dist2, y = Eprice_cat2), 
              size = 5, shape = 21, alpha = 0.4, fill = 'red', na.rm=T) +
   geom_text(aes(x = dist2, y = Eprice_cat2, label = round(Eprice_cat2)), 
-            hjust = -0.8, vjust = 0, color = "black", size = 3) +
+            hjust = -0.8, vjust = 0, color = 'black', size = 3) +
   scale_y_continuous(expand=c(0.01,0.01),limits = c(0, 400), breaks = seq(0,400, by=50)) +
   expand_limits( y = 0.01) +
   scale_x_discrete() +
-  labs(x = "Distance to city center (categories)", y = "Average price (US dollars)")
+  labs(x = 'Distance to city center (categories)', y = 'Average price (US dollars)')
 
 ####
 # Task:
 # Instead of a simple dot, use a box-plot, which shows the underlying (conditional) distribution better!
 ggplot( data = hotels, aes(x = dist2, y = price ) ) +
-  geom_boxplot( color = "navyblue" ) +
-  stat_boxplot( geom = "errorbar", width = 0.05,  size = 0.5, color = 'navyblue') +
+  geom_boxplot( color = 'navyblue' ) +
+  stat_boxplot( geom = 'errorbar', width = 0.05,  size = 0.5, color = 'navyblue') +
   scale_y_continuous(expand=c(0.01,0.01),limits = c(0, 400), breaks = seq(0,400, by=50)) +
   expand_limits( y = 0.01) +
   scale_x_discrete() +
-  labs(x = "Distance to city center (categories)", y = "Average price (US dollars)")
+  labs(x = 'Distance to city center (categories)', y = 'Average price (US dollars)')
 
 
 
@@ -124,12 +124,12 @@ ggplot(data = hotels) +
   geom_point(aes(x = dist4, y = Eprice_cat4), 
              size = 2.5, fill='red', shape = 21, alpha = 0.4, na.rm=T ) +
   geom_text(aes(x = dist4, y = Eprice_cat4, label = round( Eprice_cat4 ) ) ,
-              hjust = -0.6, vjust = 0, color = "black", size = 3) +
+              hjust = -0.6, vjust = 0, color = 'black', size = 3) +
   expand_limits(x = 0.01, y = 0.01) +
   coord_cartesian(xlim = c(0,7), ylim = c(0, 400)) +
   scale_y_continuous(expand=c(0.01,0.01),limits = c(0, 400), breaks = seq(0, 400, by=50)) +
   scale_x_continuous(expand=c(0.01,0.01), limits= c(0,7), breaks = c(0, 1, 2, 3,4,5, 6,7)) +
-  labs(x = "Distance to city center (miles)", y = "Price (US dollars)")
+  labs(x = 'Distance to city center (miles)', y = 'Price (US dollars)')
 
 
 # What actually is happening is a:
@@ -271,7 +271,7 @@ hotels %>% top_n( 5 , e ) %>%
 ggplot(data = hotels, aes (x = e)) +
   geom_histogram(aes(y = (..count..)/sum(..count..)), binwidth = 20, fill = 'navyblue', color='white',
                  size = 0.2, alpha = 0.8,  show.legend=F, na.rm=TRUE, boundary=1)+
-  labs(x = "Residuals", y = "Percent") +
+  labs(x = 'Residuals', y = 'Percent') +
   scale_x_continuous(limits = c(-100, 300), breaks = seq(-100, 300, by = 100)) +
   scale_y_continuous(expand = c(0.0,0.0), limits = c(0, 0.3), breaks = seq(0, 0.3, by = 0.05), 
                      labels = scales::percent_format(accuracy = 1)) +
@@ -281,27 +281,27 @@ ggplot(data = hotels, aes (x = e)) +
 # We can make a pretty graph with the bottom and top 5 deals:
 
 # create a factor variable with 4 possible values
-hotels$reg1_res <- ifelse(hotels$e >=0, "overpriced", "underpriced")
-hotels$reg1_res <- ifelse(hotels$e %in% tail( sort(reg$residuals, decreasing=TRUE) , 5 ) , "bottom5",
-                          ifelse(hotels$e %in% head(sort(reg$residuals, decreasing=TRUE), 5), "top5", hotels$reg1_res))
+hotels$reg1_res <- ifelse(hotels$e >=0, 'overpriced', 'underpriced')
+hotels$reg1_res <- ifelse(hotels$e %in% tail( sort(reg$residuals, decreasing=TRUE) , 5 ) , 'bottom5',
+                          ifelse(hotels$e %in% head(sort(reg$residuals, decreasing=TRUE), 5), 'top5', hotels$reg1_res))
 
 # Create a pretty graph with the 4 factor types:
 ggplot(data= hotels, aes(x = distance, y = price)) +
-  geom_point(data = filter(hotels,reg1_res=="overpriced"), aes(color=factor(reg1_res)), 
+  geom_point(data = filter(hotels,reg1_res=='overpriced'), aes(color=factor(reg1_res)), 
              size = 2, shape = 16, alpha = 0.6, show.legend=F) +
-  geom_point(data = filter(hotels,reg1_res=="underpriced"), aes(color=factor(reg1_res)), 
+  geom_point(data = filter(hotels,reg1_res=='underpriced'), aes(color=factor(reg1_res)), 
              size = 2, shape = 16, alpha = 0.6, show.legend=F) +
-  geom_point(data = filter(hotels,reg1_res=="bottom5"), 
+  geom_point(data = filter(hotels,reg1_res=='bottom5'), 
              size = 5, color = 'red',shape = 21, alpha = 1, show.legend=F) +
-  geom_point(data = filter(hotels,reg1_res=="top5"),  
+  geom_point(data = filter(hotels,reg1_res=='top5'),  
              size = 5, color = 'black', shape = 16, alpha = 1, show.legend=F) +
-  geom_smooth(method="lm", size=1, se = F, formula = y ~ x )+
+  geom_smooth(method='lm', size=1, se = F, formula = y ~ x )+
   coord_cartesian( xlim = c(0, 7), ylim = c(0, 400)) +
   expand_limits(x = 0.01, y = 0.01) +
   scale_x_continuous(expand = c(0.01,0.01), limits=c(0, 7)   , breaks=seq(0, 7, by=1)) + 
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0, 400), breaks = seq(0, 400, by = 50)) +
-  labs(x = "Distance to city center (miles)",y = "Price (US dollars)")+
-  geom_segment(aes(x = 2, y = 25, xend = 1.15, yend = 50), arrow = arrow(length = unit(0.1, "cm")))+
-  annotate("text", x = 3, y = 25, label = "Most underpriced hotels", size=3)+
+  labs(x = 'Distance to city center (miles)',y = 'Price (US dollars)')+
+  geom_segment(aes(x = 2, y = 25, xend = 1.15, yend = 50), arrow = arrow(length = unit(0.1, 'cm')))+
+  annotate('text', x = 3, y = 25, label = 'Most underpriced hotels', size=3)+
   theme_bw()
 

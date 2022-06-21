@@ -51,14 +51,14 @@ cs_v2
 #  print out Good job! otherwise: there is a mistake!
 
 if ( all( cs_v == cumsum( v ) ) ){
-  print( "Good job!" )
+  print( 'Good job!' )
 } else {
-  print( "There is a mistake!")
+  print( 'There is a mistake!')
 }
 
 ## Measure CPU time
 if (!require(tictoc)){
-  install.packages("tictoc")
+  install.packages('tictoc')
   library(tictoc)
 }
 
@@ -66,7 +66,7 @@ if (!require(tictoc)){
 iter_num <- 10000
 
 # Sloppy way to do loops:
-tic("Sloppy way")
+tic('Sloppy way')
 q <- c()
 for ( i in 1 : iter_num ){
   q <- c( q , i )
@@ -74,7 +74,7 @@ for ( i in 1 : iter_num ){
 toc()
 
 # Proper way
-tic("Good way")
+tic('Good way')
 r <- double( length = iter_num )
 for ( i in 1 : iter_num ){
   r[ i ] <- i
@@ -104,16 +104,16 @@ for ( i in 1 : max_iter ){
 }
 x
 if ( flag ) {
-  print("Successful iteration!")
+  print('Successful iteration!')
 }else{
-  print("Did not satisfied stopping criterion!")
+  print('Did not satisfied stopping criterion!')
 }
 
 ####
 # Exercise sp500
 library(tidyverse)
 # Load data
-sp500 <- read_csv("https://osf.io/h64z2/download" , na = c("", "#N/A") )
+sp500 <- read_csv('https://osf.io/h64z2/download' , na = c('', '#N/A') )
 # Filter out missing and create a year variable
 sp500 <- sp500 %>% filter( !is.na( VALUE ) ) %>% 
   mutate( year = format( DATE , '%Y' ) ) 

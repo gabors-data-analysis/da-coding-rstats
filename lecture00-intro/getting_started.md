@@ -107,7 +107,7 @@ ggplot(diamonds, aes(cut)) + geom_bar()
 However, in this case, do not forget to tell them:
 
 -   In R there are packages, which are called via
-    `install.packages("*name*")`
+    `install.packages('*name*')`
 -   After you installed a package, you can load the package via
     `library(*name*)`
 -   Packages are great as they include many different functions, which

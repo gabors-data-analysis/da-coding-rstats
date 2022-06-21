@@ -47,19 +47,19 @@ library(modelsummary)
 # Multiple ggplot in one graph (has dependencies)
 if (!require(ggpubr)){
   if (!require(car)){
-    install.packages("car")
+    install.packages('car')
   }
-  install.packages("ggpubr")
+  install.packages('ggpubr')
   library(ggpubr)
 }
 # Country details
 if (!require( countrycode ) ){
-  install.packages("countrycode")
+  install.packages('countrycode')
   library(countrycode)
 }
 # Creating dummies
 if (!require( fastDummies ) ){
-  install.packages("fastDummies")
+  install.packages('fastDummies')
   library(fastDummies)
 }
 
@@ -78,7 +78,7 @@ if (!require( fastDummies ) ){
 
 ###
 # Import World-Management Survey Data
-wms <- read_csv( "https://osf.io/uzpce/download" )
+wms <- read_csv( 'https://osf.io/uzpce/download' )
 
 
 # Creating a continuous variable out of ordered variables:
@@ -118,8 +118,8 @@ datasummary( country ~ N + Percent() , data = wms )
 # Create continent variable with `countrycode` function
 wms <- wms %>%  mutate( continent =
                           countrycode(sourcevar = wms$country,
-                              origin = "country.name",
-                              destination = "continent") )
+                              origin = 'country.name',
+                              destination = 'continent') )
 
 # It says 'Northern Ireland' is not detected...
 wms <- wms %>% mutate( continent = replace( continent, country == 'Northern Ireland' , 'Europe' ) )
@@ -135,8 +135,8 @@ datasummary( continent ~ N + Percent() , data = wms )
 
 wms <- wms %>%  mutate( region =
                           countrycode(sourcevar = wms$country,
-                                      origin = "country.name",
-                                      destination = "region") )
+                                      origin = 'country.name',
+                                      destination = 'region') )
 
 # It says 'Northern Ireland' is not detected...
 wms <- wms %>% mutate( region = replace( region, country == 'Northern Ireland' , 'Europe & Central Asia' ) )
@@ -151,10 +151,10 @@ unique(wms$ownership)
 
 wms <- wms %>% 
   mutate(owner = fct_collapse(ownership,
-                                other   = c("Other"),
-                                family  = grep("Family", unique( ownership ), value = TRUE),
-                                gov     = c("Government"),
-                                private = c('Dispersed Shareholders',"Private Individuals",
+                                other   = c('Other'),
+                                family  = grep('Family', unique( ownership ), value = TRUE),
+                                gov     = c('Government'),
+                                private = c('Dispersed Shareholders','Private Individuals',
                                             'Founder owned, CEO unknown','Private Equity/Venture Capital',
                                             'Founder owned, external CEO','Founder owned, founder CEO') ) )
 unique(wms$owner)
@@ -275,10 +275,10 @@ pca <- wms %>%
 # As PCA is an information reductionist approach, we can see, 
 #     which transformed variable explains what percent of the overall information (variation)
 pca %>%
-  tidy(matrix = "eigenvalues")
+  tidy(matrix = 'eigenvalues')
 
 # Let us decide to use only the first variable, which explains 45.6%
-pca_tibble <- pca %>% tidy( matrix = "x" ) %>% 
+pca_tibble <- pca %>% tidy( matrix = 'x' ) %>% 
   pivot_wider( names_from = PC, 
                values_from = value, 
                names_prefix = 'PC' )
@@ -333,7 +333,7 @@ rm( list = ls() )
 
 ##
 # Using bisnode data for firm exit
-bisnode <- read_csv("https://osf.io/3qyut/download")
+bisnode <- read_csv('https://osf.io/3qyut/download')
 
 # Sample selection
 # drop variables with many NAs
@@ -427,10 +427,10 @@ bisnode_s <- bisnode %>% filter( comp_id %in% comp_id_f$comp_id )
 
 # Numeric representation (good)
 ggplot( bisnode_s , aes(x=sales_mil_log, y=default)) +
-  geom_point(size=2,  shape=20, stroke=2, color="blue") +
-  geom_smooth(method = "lm", formula = y ~ poly(x,2), color='black', se = F, size=1)+
-  geom_smooth(method="loess", se=F, colour='red', size=1.5, span=0.9) +
-  labs(x = "sales_mil_log",y = "default") +
+  geom_point(size=2,  shape=20, stroke=2, color='blue') +
+  geom_smooth(method = 'lm', formula = y ~ poly(x,2), color='black', se = F, size=1)+
+  geom_smooth(method='loess', se=F, colour='red', size=1.5, span=0.9) +
+  labs(x = 'sales_mil_log',y = 'default') +
   theme_bw()
 
 ##
@@ -438,10 +438,10 @@ ggplot( bisnode_s , aes(x=sales_mil_log, y=default)) +
 #   what is the problem? It is a bad idea to convert to a factor?
 
 ggplot( bisnode_s , aes(x=sales_mil_log, y=factor(default))) +
-  geom_point(size=2,  shape=20, stroke=2, color="blue") +
-  geom_smooth(method = "lm", formula = y ~ poly(x,2), color='black', se = F, size=1)+
-  geom_smooth(method="loess", se=F, colour='red', size=1.5, span=0.9) +
-  labs(x = "sales_mil_log",y = "default") +
+  geom_point(size=2,  shape=20, stroke=2, color='blue') +
+  geom_smooth(method = 'lm', formula = y ~ poly(x,2), color='black', se = F, size=1)+
+  geom_smooth(method='loess', se=F, colour='red', size=1.5, span=0.9) +
+  labs(x = 'sales_mil_log',y = 'default') +
   theme_bw()
 
 ###
@@ -458,8 +458,8 @@ bisnode_s <- bisnode %>% filter( comp_id %in% comp_id_f$comp_id )
 # First measure for change in sales: take the sale change in logs
 nw <- ggplot(bisnode_s, aes(x=d1_sales_mil_log, y=default)) +
           geom_point(size=0.1,  shape=20, stroke=2, fill='blue', color='blue') +
-          geom_smooth(method="loess", se=F, colour='red', size=1.5, span=0.9) +
-          labs(x = "Growth rate (Diff of ln sales)",y = "default") +
+          geom_smooth(method='loess', se=F, colour='red', size=1.5, span=0.9) +
+          labs(x = 'Growth rate (Diff of ln sales)',y = 'default') +
           theme_bw() +
           scale_x_continuous(limits = c(-6,10), breaks = seq(-5,10, 5))
 nw
@@ -489,8 +489,8 @@ bisnode_s <- bisnode %>% filter( comp_id %in% comp_id_f$comp_id )
 # First measure for change in sales: take the sale change in logs but now winsorized!
 w<- ggplot(bisnode_s, aes(x=d1_sales_mil_log_mod, y=default)) +
       geom_point(size=0.1,  shape=20, stroke=2, fill='blue', color='blue') +
-      geom_smooth(method="loess", se=F, colour='red', size=1.5, span=0.9) +
-      labs(x = "Growth rate (Diff of ln sales)",y = "default") +
+      geom_smooth(method='loess', se=F, colour='red', size=1.5, span=0.9) +
+      labs(x = 'Growth rate (Diff of ln sales)',y = 'default') +
       theme_bw() +
       scale_x_continuous(limits = c(-1.5,1.5), breaks = seq(-1.5,1.5, 0.5))
 w
@@ -506,8 +506,8 @@ ggarrange( nw , w + scale_x_continuous(limits = c(-6,10), breaks = seq(-5,10, 5)
 
 ggplot(bisnode_s, aes(x=d1_sales_mil_log, y=d1_sales_mil_log_mod)) +
   geom_point(size=0.1,  shape=20, stroke=2, fill='blue', color='blue') +
-  labs(x = "Growth rate (Diff of ln sales) (original)",
-       y = "Growth rate (Diff of ln sales) (winsorized)") +
+  labs(x = 'Growth rate (Diff of ln sales) (original)',
+       y = 'Growth rate (Diff of ln sales) (winsorized)') +
   theme_bw() +
   scale_x_continuous(limits = c(-5,5), breaks = seq(-5,5, 1)) +
   scale_y_continuous(limits = c(-3,3), breaks = seq(-3,3, 1))

@@ -34,7 +34,7 @@ library(fixest)
 require(scales)
 
 # Call the data from github
-my_url <- "https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture14-simple-regression/data/clean/WDI_lifeexp_clean.csv"
+my_url <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture14-simple-regression/data/clean/WDI_lifeexp_clean.csv'
 df     <- read_csv( my_url )
 
 
@@ -46,7 +46,7 @@ df %>%
   keep(is.numeric) %>% 
   gather() %>% 
   ggplot(aes(value)) +
-  facet_wrap(~key, scales = "free") +
+  facet_wrap(~key, scales = 'free') +
   geom_histogram(bins=20)+
   theme_bw()
 
@@ -74,8 +74,8 @@ df <- df %>% mutate( gdptot = gdppc*population )
 # 1) lifeexp - gdptot: level-level model without scaling
 ggplot( df , aes(x = gdptot, y = lifeexp)) +
   geom_point() +
-  geom_smooth(method="loess",formula = 'y~x')+
-  labs(x = "Total GDP (2017 int. const. $, PPP )",y = "Life expectancy  (years)") +
+  geom_smooth(method='loess',formula = 'y~x')+
+  labs(x = 'Total GDP (2017 int. const. $, PPP )',y = 'Life expectancy  (years)') +
   theme_bw()
 
 # 2) Change the scale for Total GDP for checking log-transformation
@@ -83,16 +83,16 @@ ggplot( df , aes(x = gdptot, y = lifeexp)) +
 #   this is good as you can check without creating a new variable
 ggplot( df , aes(x = gdptot, y = lifeexp)) +
   geom_point() +
-  geom_smooth(method="loess",formula = 'y~x')+
-  labs(x = "Total GDP (2017 int. const. $, PPP , ln scale )",y = "Life expectancy  (years)") +
+  geom_smooth(method='loess',formula = 'y~x')+
+  labs(x = 'Total GDP (2017 int. const. $, PPP , ln scale )',y = 'Life expectancy  (years)') +
   scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )+
   theme_bw()
 
 # 3) Change the scale for Total GDP and life-expectancy for checking log-transformation
 ggplot( df , aes(x = gdptot, y = lifeexp ))  +
   geom_point() +
-  geom_smooth(method="loess")+
-  labs(x = "Total GDP (2017 int. const. $, PPP , ln scale )",y = "Life expectancy  (years, ln scale)") +
+  geom_smooth(method='loess')+
+  labs(x = 'Total GDP (2017 int. const. $, PPP , ln scale )',y = 'Life expectancy  (years, ln scale)') +
   scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )+
   scale_y_continuous( trans = log_trans() )+
   theme_bw()
@@ -102,23 +102,23 @@ ggplot( df , aes(x = gdptot, y = lifeexp ))  +
 # 4) lifeexp - gdppc: level-level model without scaling
 ggplot( df , aes(x = gdppc, y = lifeexp)) +
   geom_point() +
-  geom_smooth(method="loess")+
-  labs(x = "GDP/capita (2017 int. const. $, PPP )",y = "Life expectancy  (years)") +
+  geom_smooth(method='loess')+
+  labs(x = 'GDP/capita (2017 int. const. $, PPP )',y = 'Life expectancy  (years)') +
   theme_bw()
 
 # 5) Change the scale for GDP/capita for checking log-transformation
 ggplot( df , aes(x = gdppc, y = lifeexp)) +
   geom_point() +
-  geom_smooth(method="loess")+
-  labs(x = "GDP/capita (2017 int. const. $, PPP , ln scale )",y = "Life expectancy  (years)") +
+  geom_smooth(method='loess')+
+  labs(x = 'GDP/capita (2017 int. const. $, PPP , ln scale )',y = 'Life expectancy  (years)') +
   scale_x_continuous( trans = log_trans(), breaks = seq(0, 120, by = 20))+
   theme_bw()
 
 # 6) Change the scale for GDP/capita and life-expectancy for checking log-transformation
 ggplot( df , aes(x = gdppc, y = lifeexp ))  +
   geom_point() +
-  geom_smooth(method="loess")+
-  labs(x = "GDP/capita (2017 int. const. $, PPP , ln scale )",y = "Life expectancy  (years, ln scale)") +
+  geom_smooth(method='loess')+
+  labs(x = 'GDP/capita (2017 int. const. $, PPP , ln scale )',y = 'Life expectancy  (years, ln scale)') +
   scale_x_continuous( trans = log_trans(), breaks = seq(0, 120, by = 20)) +
   scale_y_continuous( trans = log_trans() ) +
   theme_bw()
@@ -182,7 +182,7 @@ reg_b <- feols( lifeexp ~ ln_gdptot , data = df )
 reg_b
 
 # First model:
-reg1 <- feols( lifeexp ~ ln_gdptot , data = df , vcov = "hetero" )
+reg1 <- feols( lifeexp ~ ln_gdptot , data = df , vcov = 'hetero' )
 reg1
 
 # Visual inspection:
@@ -192,14 +192,14 @@ ggplot( data = df, aes( x = ln_gdptot, y = lifeexp ) ) +
   theme_bw()
 
 # Second and third model with gdptot
-reg2 <- feols( lifeexp ~ ln_gdptot + ln_gdptot_sq , data = df , vcov = "hetero" )
+reg2 <- feols( lifeexp ~ ln_gdptot + ln_gdptot_sq , data = df , vcov = 'hetero' )
 reg2
 # Plot
 ggplot( data = df, aes( x = ln_gdptot, y = lifeexp ) ) + 
   geom_point( color='blue') +
   geom_smooth( formula = y ~ poly(x,2) , method = lm , color = 'red' )
 
-reg3 <- feols( lifeexp ~ ln_gdptot + ln_gdptot_sq + ln_gdptot_cb , data = df , vcov = "hetero" )
+reg3 <- feols( lifeexp ~ ln_gdptot + ln_gdptot_sq + ln_gdptot_cb , data = df , vcov = 'hetero' )
 ggplot( data = df, aes( x = ln_gdptot, y = lifeexp ) ) + 
   geom_point( color='blue') +
   geom_smooth( formula = y ~ poly(x,3) , method = lm , color = 'red' ) +
@@ -214,7 +214,7 @@ etable( reg1 , reg2 , reg3 )
 # Models with gdp per capita:
 # reg4: lifeexp = alpha + beta * ln_gdppc
 # + plot
-reg4 <- feols( lifeexp ~ ln_gdppc , data = df , vcov = "hetero" )
+reg4 <- feols( lifeexp ~ ln_gdppc , data = df , vcov = 'hetero' )
 reg4
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
@@ -222,7 +222,7 @@ ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) +
 
 # reg5: lifeexp = alpha + beta_1 * ln_gdppc + beta_2 * ln_gdppc^2
 # + plot
-reg5 <- feols( lifeexp ~ ln_gdppc + ln_gdppc_sq , data = df, vcov = "hetero" )
+reg5 <- feols( lifeexp ~ ln_gdppc + ln_gdppc_sq , data = df, vcov = 'hetero' )
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
   geom_smooth( formula = y ~ poly(x,2) , method = lm , color = 'red' ) +
@@ -248,7 +248,7 @@ cutoff <- 50
 cutoff_ln <- log( cutoff )
 # Use simple regression with the lspline function
 ?lspline
-reg6 <- feols(lifeexp ~ lspline( ln_gdppc , cutoff_ln ), data = df , vcov = "hetero" )
+reg6 <- feols(lifeexp ~ lspline( ln_gdppc , cutoff_ln ), data = df , vcov = 'hetero' )
 reg6
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
@@ -260,17 +260,17 @@ ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) +
 # Extra
 # Weighted-OLS: use reg4 setup and weight with population
 # Can be done with the `weights = df$population` input!
-reg7 <- feols(lifeexp ~ ln_gdppc, data = df , weights = df$population , vcov = "hetero" )
+reg7 <- feols(lifeexp ~ ln_gdppc, data = df , weights = df$population , vcov = 'hetero' )
 reg7
 
 # Created a pretty graph for visualize this method:
 ggplot(data = df, aes(x = ln_gdppc, y = lifeexp)) +
   geom_point(data = df, aes(size=population),  color = 'blue', shape = 16, alpha = 0.6,  show.legend=F) +
-  geom_smooth(aes(weight = population), method = "lm", color='red')+
+  geom_smooth(aes(weight = population), method = 'lm', color='red')+
   scale_size(range = c(1, 15)) +
   coord_cartesian(ylim = c(50, 85)) +
-  labs(x = "ln(GDP per capita, thousand US dollars) ",y = "Life expectancy  (years)")+
-  annotate("text", x = c( 4.5 , 2.7 , 2 ), y = c( 78 , 80 , 67 ), label = c( "USA", "China", "India" ) , size=5)+
+  labs(x = 'ln(GDP per capita, thousand US dollars) ',y = 'Life expectancy  (years)')+
+  annotate('text', x = c( 4.5 , 2.7 , 2 ), y = c( 78 , 80 , 67 ), label = c( 'USA', 'China', 'India' ) , size=5)+
   theme_bw()
 
 
@@ -311,9 +311,9 @@ best5
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
   geom_smooth( method = lm , color = 'red' ) +
-  annotate("text", x = worst5$ln_gdppc, y = worst5$lifeexp - 1 , label = worst5$country ,
+  annotate('text', x = worst5$ln_gdppc, y = worst5$lifeexp - 1 , label = worst5$country ,
            color = 'purple') +
-  annotate("text", x = best5$ln_gdppc, y = best5$lifeexp + 1 , label = best5$country ,
+  annotate('text', x = best5$ln_gdppc, y = best5$lifeexp + 1 , label = best5$country ,
            color = 'green') +
   theme_bw()
 

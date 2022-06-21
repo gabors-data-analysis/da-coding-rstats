@@ -29,7 +29,7 @@ a <- WDIsearch('gdp')
 a <- WDIsearch('gdp.*capita.*constant')
 
 # Get GDP data
-gdp_data = WDI(indicator='NY.GDP.PCAP.PP.KD', country="all", start=2019, end=2019)
+gdp_data = WDI(indicator='NY.GDP.PCAP.PP.KD', country='all', start=2019, end=2019)
 
 ##
 # Task: get the GDP data, along with `population, total' and `life expectancy at birth'
@@ -40,7 +40,7 @@ b <- WDIsearch('life expectancy at birth')
 
 # Get all the data for year 2019
 data_raw <- WDI(indicator=c('NY.GDP.PCAP.PP.KD','SP.DYN.LE00.IN','SP.POP.TOTL'), 
-                country="all", start=2019, end=2019)
+                country='all', start=2019, end=2019)
 
 # Save the raw data file for your working directory
 my_path <- 'ENTER YOUR OWN PATH'

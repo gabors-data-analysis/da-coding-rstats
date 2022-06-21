@@ -103,7 +103,7 @@ pre-allocating memory. To measure CPU-time, we will use the package
 
 ``` r
 if (!require(tictoc)){
-  install.packages("tictoc")
+  install.packages('tictoc')
   library(tictoc)
 }
 ```
@@ -114,7 +114,7 @@ if (!require(tictoc)){
 iter_num <- 10000
 
 # Sloppy way to do loops:
-tic("Sloppy way")
+tic('Sloppy way')
 q <- c()
 for ( i in 1 : iter_num ){
   q <- c( q , i )
@@ -122,11 +122,11 @@ for ( i in 1 : iter_num ){
 toc()
 ```
 
-    ## Sloppy way: 0.289 sec elapsed
+    ## Sloppy way: 0.295 sec elapsed
 
 ``` r
 # Proper way
-tic("Good way")
+tic('Good way')
 r <- double( length = iter_num )
 for ( i in 1 : iter_num ){
   r[ i ] <- i
@@ -134,7 +134,7 @@ for ( i in 1 : iter_num ){
 toc()
 ```
 
-    ## Good way: 0.008 sec elapsed
+    ## Good way: 0.01 sec elapsed
 
 You may play along with `iter_num` to find how strong your computer is
 and when the ‘good way’ is outperformed by the ‘sloppy way’ in CPU time.
@@ -219,9 +219,9 @@ x
 
 ``` r
 if ( flag ) {
-  print("Successful iteration!")
+  print('Successful iteration!')
 }else{
-  print("Did not satisfied stopping criterion!")
+  print('Did not satisfied stopping criterion!')
 }
 ```
 
@@ -250,7 +250,7 @@ returns.
 ``` r
 library(tidyverse)
 # Load data
-sp500 <- read_csv("https://osf.io/h64z2/download" , na = c("", "#N/A") )
+sp500 <- read_csv('https://osf.io/h64z2/download' , na = c('', '#N/A') )
 # Filter out missing and create a year variable
 sp500 <- sp500 %>% filter( !is.na( VALUE ) ) %>% 
                   mutate( year = format( DATE , '%Y' ) ) 

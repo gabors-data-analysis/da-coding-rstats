@@ -30,9 +30,9 @@ library(modelsummary)
 library(fixest)
 if (!require(ggpubr)){
   if (!require(car)){
-    install.packages("car")
+    install.packages('car')
   }
-  install.packages("ggpubr")
+  install.packages('ggpubr')
   library(ggpubr)
 }
 library(lspline)
@@ -40,11 +40,11 @@ library(lspline)
 #####
 # Import Data:
 # now we use all the observations from Europe:
-hotels_europe_price    <- read_csv("https://osf.io/p6tyr/download")
-hotels_europe_features <- read_csv("https://osf.io/utwjs/download")
+hotels_europe_price    <- read_csv('https://osf.io/p6tyr/download')
+hotels_europe_features <- read_csv('https://osf.io/utwjs/download')
 
 # Join them by hotel_id
-europe <- left_join(hotels_europe_price, hotels_europe_features, by = "hotel_id")
+europe <- left_join(hotels_europe_price, hotels_europe_features, by = 'hotel_id')
 rm(hotels_europe_price,hotels_europe_features)
 
 ###
@@ -52,9 +52,9 @@ rm(hotels_europe_price,hotels_europe_features)
 #
 # A) Data management:
 #   a) get the needed sample:
-vienna <- europe %>% filter(accommodation_type=="Hotel") %>%
+vienna <- europe %>% filter(accommodation_type=='Hotel') %>%
   filter( year == 2017, month == 11 , weekend == 0) %>% 
-  filter(city_actual=="Vienna") %>%
+  filter(city_actual=='Vienna') %>%
   filter(stars>=3 & stars<=4) %>% filter(!is.na(stars)) %>%
   filter(price<=600)
 
@@ -74,7 +74,7 @@ datasummary( price + lnprice + distance + stars + rating ~
 p1 <- ggplot( data = vienna , aes( x = distance, y = lnprice )) +
   geom_point( color = 'red', size = 2, shape = 16, ) + 
   geom_smooth( method = 'loess', formula = y ~ x) +
-  labs(x = "Distance to city center (miles)",y = "Log of price (US dollars)")
+  labs(x = 'Distance to city center (miles)',y = 'Log of price (US dollars)')
 p1
 # Log for price, Distance: check linear spline with knots at 1 and 4
 
@@ -82,7 +82,7 @@ p1
 p2 <- ggplot( data = vienna , aes( x = stars, y = lnprice )) +
   geom_point( color = 'red', size = 2, shape = 16, ) + 
   geom_smooth( method = 'loess', formula = y ~ x) +
-  labs(x = "Star of the Hotel",y = "Log of price (US dollars)")
+  labs(x = 'Star of the Hotel',y = 'Log of price (US dollars)')
 p2
 # Star of a hotel is discrete value: may use as it is, 
 #   but using it as dummies would make our model more flexible!
@@ -93,7 +93,7 @@ p2
 p3 <- ggplot( data = vienna , aes( x = rating, y = lnprice )) +
   geom_point( color = 'red', size = 2, shape = 16, ) + 
   geom_smooth( method = 'loess', formula = y ~ x) +
-  labs(x = "Ratings of the hotel",y = "Log of price (US dollars)")
+  labs(x = 'Ratings of the hotel',y = 'Log of price (US dollars)')
 p3
 # Rating: check with simple linear and with linear spline around value of 3.5
 
@@ -173,12 +173,12 @@ vienna %>%  top_n( -5 , lnprice_resid) %>% select( hotel_id , price , price_hat,
 # 1) y - yhat graph (regression line must be the same as the 45 degree line!)
 ggplot(data = vienna, aes(x = lnprice_hat, y = lnprice)) +
   geom_point( ) + 
-  geom_smooth(method="lm",formula=y~x,se=F) +
-  labs(x = "ln(predicted price, US dollars) ",y = "ln(price, US dollars)")+
+  geom_smooth(method='lm',formula=y~x,se=F) +
+  labs(x = 'ln(predicted price, US dollars) ',y = 'ln(price, US dollars)')+
   geom_segment(aes(x = 4.8, y = 4.1, xend = 4.68, yend = 4.1), 
-               arrow = arrow(length = unit(0.1, "cm") ),
+               arrow = arrow(length = unit(0.1, 'cm') ),
                color = 'red' )+
-  annotate("text", x = 4.95, y = 4.1, label = "Best deal", size=5,color = 'red')+
+  annotate('text', x = 4.95, y = 4.1, label = 'Best deal', size=5,color = 'red')+
   geom_abline(intercept = 0, slope = 1, size = 0.5, color = 'red', linetype = 'dashed' ) +
   coord_cartesian(xlim = c(4, 5.5), ylim = c(4, 5.5)) +
   theme_bw()
@@ -187,8 +187,8 @@ ggplot(data = vienna, aes(x = lnprice_hat, y = lnprice)) +
 # 2) residual - yhat graph: it needs to be flat
 ggplot(data = vienna, aes(x = lnprice_hat, y = lnprice_resid)) +
   geom_point(color = 'red', size = 2 ) + 
-  geom_smooth( method="lm", colour='blue', se=F , formula = y~x) +
-  labs(x = "ln(Predicted hotel price, US dollars)",y = "Residuals")+
+  geom_smooth( method='lm', colour='blue', se=F , formula = y~x) +
+  labs(x = 'ln(Predicted hotel price, US dollars)',y = 'Residuals')+
   theme_bw() 
 
 # Helps to evaluate where we tend to make larger errors. It can be used for different regressors!
@@ -213,9 +213,9 @@ vienna <- vienna %>% mutate( CI_up  = pred_CI$ci_high,
 ggplot( data = vienna ) +
   geom_point( aes( x = distance, y = lnprice ) , color = 'blue', size = 2 ) + 
   geom_line( aes( x = distance , y = lnprice_hat ) , color = 'red' , size = 1 ) +
-  geom_line( aes( x = distance , y = CI_up ) , color = 'red' , size = .5 , linetype = "dashed" ) +
-  geom_line( aes( x = distance , y = CI_low ) , color = 'red' , size = .5 , linetype = "dashed" ) +
-  labs(x = "Distance to city center (miles)",y = "Log of price (US dollars)")
+  geom_line( aes( x = distance , y = CI_up ) , color = 'red' , size = .5 , linetype = 'dashed' ) +
+  geom_line( aes( x = distance , y = CI_low ) , color = 'red' , size = .5 , linetype = 'dashed' ) +
+  labs(x = 'Distance to city center (miles)',y = 'Log of price (US dollars)')
 
 ###
 # Price a new hotel with the model
@@ -293,8 +293,8 @@ europe <- europe %>% mutate( lnprice = log( price ),
 
 
 # 1) First let check for different time: Vienna multiple time
-vienna_m_time <- europe %>% filter(accommodation_type=="Hotel") %>%
-  filter(city_actual=="Vienna") %>%
+vienna_m_time <- europe %>% filter(accommodation_type=='Hotel') %>%
+  filter(city_actual=='Vienna') %>%
   filter( nnights == 1 ) %>% 
   filter(stars>=3 & stars<=4) %>% filter(!is.na(stars)) %>%
   filter(price<=600)
@@ -337,8 +337,8 @@ regt_3 <- feols( m_form , vcov = 'hetero', data = filter( vienna_m_time ,  year 
 
 # Compare the results:
 etable( regt_0 , regt_1 , regt_2 , regt_3 ,
-        headers = c("2017/11 weekday","2017/11 on a weekend",
-                    "2017 December, holiday","2018 June, weekend") )
+        headers = c('2017/11 weekday','2017/11 on a weekend',
+                    '2017 December, holiday','2018 June, weekend') )
 
 # With prediction look at: R2, and stability of the parameters!
 # Note: we have slightly different results than in the slides as we use rating and stars as well.
@@ -351,8 +351,8 @@ etable( regt_0 , regt_1 , regt_2 , regt_3 ,
 #  Compare hotels with Apartments:
 # Note: we only change one thing at a time!
 
-vienna_h_vs_a <- europe %>% filter( accommodation_type=="Hotel" | accommodation_type == "Apartment") %>%
-  filter(city_actual=="Vienna") %>%
+vienna_h_vs_a <- europe %>% filter( accommodation_type=='Hotel' | accommodation_type == 'Apartment') %>%
+  filter(city_actual=='Vienna') %>%
   filter( year == 2017 & month == 11 & weekend == 1  ) %>% 
   filter( nnights == 1 ) %>% 
   filter(stars>=3 & stars<=4) %>% filter(!is.na(stars)) %>%
@@ -362,13 +362,13 @@ vienna_h_vs_a <- europe %>% filter( accommodation_type=="Hotel" | accommodation_
 # Note: here we can not compare the same observations as they are inherently different!
 
 # Run regression for the hotels
-regh <- feols(  m_form , vcov = 'hetero', data = filter( vienna_h_vs_a ,  accommodation_type=="Hotel" ) )
+regh <- feols(  m_form , vcov = 'hetero', data = filter( vienna_h_vs_a ,  accommodation_type=='Hotel' ) )
 
 # Run regression for the apartments
-rega <- feols(  m_form , vcov = 'hetero', data = filter( vienna_h_vs_a ,  accommodation_type == "Apartment" ) )
+rega <- feols(  m_form , vcov = 'hetero', data = filter( vienna_h_vs_a ,  accommodation_type == 'Apartment' ) )
 
 # Compare the results:
-etable( regh , rega , headers = c("Hotels","Apartments") )
+etable( regh , rega , headers = c('Hotels','Apartments') )
 
 ##
 # Task: 3) Compare different cities:

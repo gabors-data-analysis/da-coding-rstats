@@ -83,7 +83,7 @@ y <- rnorm( n , mean = 1 , sd = 2 )
 df <- tibble( rnd_norm = y , lbl = factor( c(rep(10,10),rep(100,100),rep(1000,1000),rep(10000,10000) ) ) )
 ggplot( df ) +
   geom_histogram( aes( y = ..density.., x = rnd_norm, group = lbl ) , fill = 'navyblue', bins = 30 ) +
-  labs(x='X',y='Density',title=("Num obs: {closest_state}")) +
+  labs(x='X',y='Density',title=('Num obs: {closest_state}')) +
   transition_states( lbl , transition_length = 3, state_length = 1)
 
 
@@ -119,7 +119,7 @@ emp_height <- ggplot( df , aes( x = height ) ) +
                  fill = 'navyblue', alpha = 0.6 ) +
   stat_function( fun = dnorm, color = 'red',  
                  args = with( df, c( mean = mean( height , na.rm = T ), sd = sd( height , na.rm = T ) ) ) ) + 
-  labs(x="Height (meters)", y="Density" ) +
+  labs(x='Height (meters)', y='Density' ) +
     theme_bw()
 
 emp_height
@@ -143,7 +143,7 @@ emp_inc <- ggplot( filter( df , hhincome < 1000 ) , aes( x = hhincome ) ) +
                  fill = 'navyblue', alpha = 0.6 ) +
   stat_function( fun = dlnorm, colour= 'red',  
                  args = c( mean = mu , sd =  sigma ) ) + 
-  labs(x="Income (thousand $)", y="Density" ) +
+  labs(x='Income (thousand $)', y='Density' ) +
     theme_bw()
 
 emp_inc
