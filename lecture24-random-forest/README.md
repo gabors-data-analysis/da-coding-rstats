@@ -19,9 +19,9 @@ Case study:
 
 ## Learning outcomes
 
-Lecturer/students should be aware that there is a separate file: [`seminar_4_airbnb_prepare.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar04-random-forest-airbnb/codes/seminar_4_airbnb_prepare.R) for this seminar, overviewing only the data cleaning and feature engineering process. This is extremely important and powerful to understand how to prepare the data for these methods, as without it data analysts do garbage-in garbage-out analysis... Usually, due to time constraints, this part is not covered in the seminar but asked students to cover it before the seminar.
+Lecturer/students should be aware that there is a separate file: [`airbnb_prepare.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture24-random-forest/codes/airbnb_prepare.R) for this seminar, overviewing only the data cleaning and feature engineering process. This is extremely important and powerful to understand how to prepare the data for these methods, as without it data analysts do garbage-in garbage-out analysis... Usually, due to time constraints, this part is not covered in the seminar but asked students to cover it before the seminar.
 
-After successfully completing [`seminar_4_rf.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar04-random-forest-airbnb/codes/seminar_4_rf.R), students should be able:
+After successfully completing [`randomforest_airbnb.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture24-random-forest/codes/randomforest_airbnb.R), students should be able:
 
   - Estimate random forest via `ranger`
     - unsderstand `mytr` parameter and other setup
@@ -48,5 +48,5 @@ Ideal overall time: **100 mins**.
 
 ## Further material
 
-  - This seminar is a modified version of [Ch16-airbnb-random-forest.R](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch16-airbnb-random-forest/Ch16-airbnb-random-forest.R) from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
+  - This lecture is a modified version of [Ch16-airbnb-random-forest.R](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch16-airbnb-random-forest/Ch16-airbnb-random-forest.R) from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
 
