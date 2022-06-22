@@ -13,7 +13,7 @@ Case study:
  - [Chapter 18, A: Forecasting daily ticket sales for a swimming pool](https://gabors-data-analysis.com/casestudies/#ch18a-forecasting-daily-ticket-sales-for-a-swimming-pool)
 
 ## Learning outcomes
-After successfully completing [`seminar_6_swimming.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar06-timeseries1-wML-swimming/seminar_6_swimming.R), students should be able:
+After successfully completing [`long_term_swimming.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture26-long-term-time-series-wML/long_term_swimming.R), students should be able:
 
   - Data munging with time series (review)
   - Adding deterministic variables such as trends, yearly/mounthly/weekly seasonality
