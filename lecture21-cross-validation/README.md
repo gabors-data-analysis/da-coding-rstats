@@ -15,7 +15,7 @@ Case studies used:
   - [Chapter 14, A: Predicting used car value: log prices](https://gabors-data-analysis.com/casestudies/#ch14a-predicting-used-car-value-log-prices)
 
 ## Learning outcomes
-After successfully completing [`seminar1_crossvalidation.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar01-cv-used-cars/seminar1_crossvalidation.R), students should be able:
+After successfully completing [`crossvalidation_usedcars.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture21-cross-validation/crossvalidation_usedcars.R), students should be able:
 
   - Clean and prepare data for modeling
   - Decide for functional forms and do meaningful variable transformations
