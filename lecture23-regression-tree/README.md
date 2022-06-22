@@ -15,7 +15,7 @@ Case study:
   - [Chapter 15, A: Predicting used car value with regression trees](https://gabors-data-analysis.com/casestudies/#ch15a-predicting-used-car-value-with-regression-trees)
 
 ## Learning outcomes
-After successfully completing [`seminar_3_cart.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar03-cart-used-cars/seminar_3_cart.R), students should be able:
+After successfully completing [`cart_usedcars.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture23-regression-tree/cart_usedcars.R), students should be able:
 
   - Understand the how regression tree works
   - Estimate a regression tree via `rpart` package through `caret`
@@ -42,5 +42,5 @@ Ideal overall time: **100 mins**.
 
 ## Further material
 
-  - This seminar is a modified version of [`ch15-used-cars-cart.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch15-used-cars-cart/ch15-used-cars-cart.R) from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
+  - This lecture is a modified version of [`ch15-used-cars-cart.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch15-used-cars-cart/ch15-used-cars-cart.R) from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
 
