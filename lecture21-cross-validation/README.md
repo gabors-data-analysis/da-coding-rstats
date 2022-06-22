@@ -37,5 +37,5 @@ Ideal overall time: **100 mins**.
 
 ## Further material
 
-  - This seminar is a modified and combined version of [`ch13-used-cars.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch13-used-cars-reg/ch13-used-cars.R) and [`ch14-used-cars-log.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch14-used-cars-log/ch14-used-cars-log.R) codes from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
+  - This lecture is a modified and combined version of [`ch13-used-cars.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch13-used-cars-reg/ch13-used-cars.R) and [`ch14-used-cars-log.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch14-used-cars-log/ch14-used-cars-log.R) codes from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
 
