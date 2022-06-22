@@ -1,4 +1,4 @@
-# Seminar 02: Prediction with LASSO 
+# Lecture 22: Prediction with LASSO 
 
 ## Motivation
 
@@ -6,9 +6,9 @@ You want to predict the rental prices of apartments in a big city using their lo
 
 How should we specify the regression models? In particular, when we have many candidate predictor variables, how should we select from them, and how should we decide on their functional forms?
 
-## This seminar
+## This lecture
 
-This seminar discusses how to build regression models for prediction and how to evaluate the predictions they produce. We discuss how to select
+This lecture discusses how to build regression models for prediction and how to evaluate the predictions they produce. We discuss how to select
 variables out of a large pool of candidate x variables, and how to decide on their functional forms. We introduce LASSO via `glmnet`, an algorithm that can help with variable selection. With respect to evaluating predictions, we discuss why we need a holdout sample for evaluation that is separate from all of the rest of the data we use for model building and selection.
 
 Case study:
@@ -34,7 +34,7 @@ After successfully completing [`seminar2_lasso.R`](https://github.com/gabors-dat
 
   - [airbnb](https://gabors-data-analysis.com/datasets/#airbnb)
 
-## Seminar Time
+## Lecture Time
 
 Ideal overall time: **100 mins**.
 
