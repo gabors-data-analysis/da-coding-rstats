@@ -74,7 +74,7 @@ if (!require(pROC)){
 }
 
 # Call aux function
-source('seminar_5_auxfuncs.R')
+source('auxfuncs_binarywML.R')
 
 
 
