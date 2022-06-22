@@ -15,7 +15,7 @@ Case study:
   - [Chapter 14, B: Predicting AirBnB apartment prices: selecting a regression model](https://gabors-data-analysis.com/casestudies/#ch14b-predicting-airbnb-apartment-prices-selecting-a-regression-model)
 
 ## Learning outcomes
-After successfully completing [`seminar2_lasso.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/part-III-case-studies/seminar02-lasso-airbnb/codes/seminar2_lasso.R), students should be able:
+After successfully completing [`lasso_aribnb.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture22-lasso/codes/lasso_aribnb.R), students should be able:
 
   - Data cleaning and refactoring to prepare for LASSO type modelling
   - Basic feature engineering for LASSO
@@ -41,5 +41,5 @@ Ideal overall time: **100 mins**.
 
 ## Further material
 
-  - This seminar is a modified version of [`Ch16-airbnb-random-forest.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch16-airbnb-random-forest/Ch16-airbnb-random-forest.R) from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
+  - This lecture is a modified version of [`Ch16-airbnb-random-forest.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch16-airbnb-random-forest/Ch16-airbnb-random-forest.R) from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
 
