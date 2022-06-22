@@ -1,4 +1,4 @@
-# Seminar 05: Prediction and classification of binary outcome with ML tools
+# Lecture 25: Prediction and classification of binary outcome with ML tools
 
 ## Motivation
 
@@ -8,9 +8,9 @@ Many companies have relationships with other companies, as suppliers or clients.
 
 In the previous seminars we covered the logic of predictive analytics and its most important steps, and we introduced specific methods to predict a quantitative y variable. But sometimes our y variable is not quantitative. The most important case is when y is binary: y = 1 or y = 0. How can we predict such a variable?
 
-## This seminar
+## This lecture
 
-This seminar introduces the framework and methods of probability prediction and classification analysis for binary y variables. Probability prediction means predicting the probability that y = 1, with the help of the predictor variables. Classification means predicting the binary y variable itself, with the help of the predictor variables: putting each observation in one of the y categories, also called classes. We build on what we know about probability models and the basics of probability prediction from [lecture16-binary-models](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture16-binary-models). In this seminar, we put that into the framework of predictive analytics to arrive at the best probability model for prediction purposes and to evaluate its performance. We then discuss how we can turn probability predictions into classification with the help of a classification threshold and how we should use a loss function to find the optimal threshold. We discuss how to evaluate a classification by making use of a confusion table and expected loss. We introduce the ROC curve, which illustrates the trade-off of selecting different classification threshold values. We discuss how we can use random forests based on classification trees. 
+This lecture introduces the framework and methods of probability prediction and classification analysis for binary y variables. Probability prediction means predicting the probability that y = 1, with the help of the predictor variables. Classification means predicting the binary y variable itself, with the help of the predictor variables: putting each observation in one of the y categories, also called classes. We build on what we know about probability models and the basics of probability prediction from [lecture16-binary-models](https://github.com/gabors-data-analysis/da-coding-rstats/tree/main/lecture16-binary-models). In this seminar, we put that into the framework of predictive analytics to arrive at the best probability model for prediction purposes and to evaluate its performance. We then discuss how we can turn probability predictions into classification with the help of a classification threshold and how we should use a loss function to find the optimal threshold. We discuss how to evaluate a classification by making use of a confusion table and expected loss. We introduce the ROC curve, which illustrates the trade-off of selecting different classification threshold values. We discuss how we can use random forests based on classification trees. 
 
 Case study:
   - [Chapter 17, A: Predicting firm exit: probability and classification](https://gabors-data-analysis.com/casestudies/#ch17a-predicting-firm-exit-probability-and-classification)
@@ -44,12 +44,12 @@ After successfully completing [`seminar_5_binary_w_ML.R`](https://github.com/gab
 
   -[bisnode-firms](https://gabors-data-analysis.com/datasets/#bisnode-firms)
 
-## Seminar Time
+## Lecture Time
 
 Ideal overall time: **100 mins**.
 
 
 ## Further material
 
-  - This seminar is a modified version of [`ch17-predicting-firm-exit.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch17-predicting-firm-exit/ch17-predicting-firm-exit.R) from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
+  - This lecture is a modified version of [`ch17-predicting-firm-exit.R`](https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch17-predicting-firm-exit/ch17-predicting-firm-exit.R) from [Gabor's case study repository](https://github.com/gabors-data-analysis/da_case_studies).
 
