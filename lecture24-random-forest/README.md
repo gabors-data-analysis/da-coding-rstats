@@ -1,4 +1,4 @@
-# Seminar 04: Predicting with Random Forest and Boosting
+# Lecture 24: Predicting with Random Forest and Boosting
 
 ## Motivation
 
@@ -8,9 +8,9 @@ How can you grow a random forest, the most widely used tree-based method, to car
 
 A regression tree can capture complicated interactions and nonlinearities for predicting a quantitative y variable, but it is prone to overfit the original data, even after appropriate pruning. It turns out, however, that combining multiple regression trees grown on the same data can yield a much better prediction. Such methods are called ensemble methods. There are many ensemble methods based on regression trees, and some are known to produce very good predictions. But these methods are rather complex, and some of them are not straightforward to use.
 
-## This seminar
+## This lecture
 
-This seminar introduces two ensemble methods based on regression trees: random forest and boosting. We start by introducing the main idea of ensemble methods: combining results from many imperfect models can lead to a much better prediction than a single model that we try to build to perfection. Of the two methods, we discuss the random forest (RF) via `ranger` package in more detail. The random forest is perhaps the most frequently used method to predict a quantitative y variable, both because of its excellent predictive performance and because it is relatively simple to use. Even more than with a single tree, it is hard to understand the underlying patterns of association between y and x that drive the predictions of ensemble methods. We discuss some diagnostic tools that can help with that: variable importance plots, partial dependence plots, and examining the quality of predictions in subgroups. Finally, we show another method: boosting, an alternative approach to making predictions based on an ensemble of regression trees via `gbm`.
+This lecture introduces two ensemble methods based on regression trees: random forest and boosting. We start by introducing the main idea of ensemble methods: combining results from many imperfect models can lead to a much better prediction than a single model that we try to build to perfection. Of the two methods, we discuss the random forest (RF) via `ranger` package in more detail. The random forest is perhaps the most frequently used method to predict a quantitative y variable, both because of its excellent predictive performance and because it is relatively simple to use. Even more than with a single tree, it is hard to understand the underlying patterns of association between y and x that drive the predictions of ensemble methods. We discuss some diagnostic tools that can help with that: variable importance plots, partial dependence plots, and examining the quality of predictions in subgroups. Finally, we show another method: boosting, an alternative approach to making predictions based on an ensemble of regression trees via `gbm`.
 
 Note that some of the used methods take a considerable amount of time to run on a simple PC, thus pre-run model results are also uploaded to the repository, to speed up the seminar.
 
@@ -41,7 +41,7 @@ After successfully completing [`seminar_4_rf.R`](https://github.com/gabors-data-
 
 - [airbnb](https://gabors-data-analysis.com/datasets/#airbnb)
 
-## Seminar Time
+## Lecture Time
 
 Ideal overall time: **100 mins**.
 
