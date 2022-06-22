@@ -1,4 +1,4 @@
-# Seminar 01: Cross-validating linear models 
+# Lecture 21: Cross-validating linear models 
 
 ## Motivation
 
@@ -6,9 +6,9 @@ You have a car that you want to sell in the near future. You want to know what p
 
 We introduce point prediction versus interval prediction; we discuss the components of prediction error and how to find the best prediction model that will likely produce the best fit (smallest prediction error) in the live data, using observations in the original data. We introduce loss functions in general and mean squared error (MSE) and its square root (RMSE) in particular, to evaluate predictions. We discuss three ways of finding the best predictor model, using all data and the Bayesian Information Criterion (BIC) as the measure of fit, using training–test splitting of the data, and using k-fold cross-validation, which is an improvement on the training–test split.
 
-## This seminar
+## This lecture
 
-This seminar refreshes methods for data cleaning and refactoring data as well as some basic feature engineering practices. After data is set, multiple competing regressions are run and compared via BIC and k-fold cross validation. Cross validation is carried out by the `caret` package as well. After the best-performing model is chosen (by RMSE), prediction performance and risks associated are discussed. In the case, when log-transformed outcome is used as the model, transformation back to level and evaluation of the prediction performance is also covered.
+This lecture refreshes methods for data cleaning and refactoring data as well as some basic feature engineering practices. After data is set, multiple competing regressions are run and compared via BIC and k-fold cross validation. Cross validation is carried out by the `caret` package as well. After the best-performing model is chosen (by RMSE), prediction performance and risks associated are discussed. In the case, when log-transformed outcome is used as the model, transformation back to level and evaluation of the prediction performance is also covered.
 
 Case studies used:
   - [Chapter 13, A: Predicting used car value with linear regressions](https://gabors-data-analysis.com/casestudies/#ch13a-predicting-used-car-value-with-linear-regressions)
@@ -30,7 +30,7 @@ After successfully completing [`seminar1_crossvalidation.R`](https://github.com/
 
 - [used-cars](https://gabors-data-analysis.com/datasets/#used-cars)
 
-## Seminar Time
+## Lecture Time
 
 Ideal overall time: **100 mins**.
 
