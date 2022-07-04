@@ -26,6 +26,15 @@ Different windows:
 -   Environment/History/Connection/Tutorial window
 -   Files/Plots/Packages/Help/Viewer window
 
+Before jumping into coding, it is **strongly advised to set R not to
+save your working environment**. It is a good starting habit not to rely
+on this as it may confuse later. To do this one need to go to the
+‘Preferences’ -\> ‘R General’ tab and untick ‘Restore .RData into
+workspace at startup’ and set ‘Save workspace to .RData on exit’ to
+‘Never’.
+[Here](https://r4ds.had.co.nz/workflow-projects.html#what-is-real) is
+graphical guidance on how to do it.
+
 ## Using the console
 
 R can be used as a calculator through the console! E.g. you can type in:
