@@ -39,9 +39,9 @@ df <- df %>% filter( !grepl('[[:digit:]]', df$iso2c) )
 # 1st drop specific values
 drop_id <- c('EU','HK','OE')
 # Check for filtering
-df %>% filter( grepl( paste( drop_id , collapse='|'), df$iso2c ) ) 
+df %>% filter( grepl( paste( drop_id, collapse='|'), df$iso2c ) ) 
 # Save the opposite
-df <- df %>% filter( !grepl( paste( drop_id , collapse='|'), df$iso2c ) ) 
+df <- df %>% filter( !grepl( paste( drop_id, collapse='|'), df$iso2c ) ) 
 
 # 2nd drop values with certain starting char
 # Get the first letter from iso2c
@@ -49,13 +49,13 @@ fl_iso2c <- substr(df$iso2c, 1, 1)
 retain_id <- c('XK','ZA','ZM','ZW')
 # Check
 d1 <- df %>% filter( grepl( 'X', fl_iso2c ) | grepl( 'Z', fl_iso2c ) & 
-                       !grepl( paste( retain_id , collapse='|'), df$iso2c ) ) 
+                       !grepl( paste( retain_id, collapse='|'), df$iso2c ) ) 
 # Save observations which are the opposite (use of !)
 df <- df %>% filter( !( grepl( 'X', fl_iso2c ) | grepl( 'Z', fl_iso2c ) & 
-                        !grepl( paste( retain_id , collapse='|'), df$iso2c ) ) ) 
+                        !grepl( paste( retain_id, collapse='|'), df$iso2c ) ) ) 
 
 # Clear non-needed variables
-rm( d1 , drop_id, fl_iso2c , retain_id )
+rm( d1, drop_id, fl_iso2c, retain_id )
   
 ### 
 # Check for missing observations

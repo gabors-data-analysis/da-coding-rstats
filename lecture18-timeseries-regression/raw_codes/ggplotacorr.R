@@ -2,7 +2,7 @@
 # by: https://rh8liuqy.github.io/ACF_PACF_by_ggplot2.html
 
 
-ggplot.acorr <- function(data, lag.max = 24, ci = 0.95, large.sample.size = TRUE, horizontal = TRUE,...) {
+ggplotacorr <- function(data, lag.max = 24, ci = 0.95, large.sample.size = TRUE, horizontal = TRUE,...) {
   
   require(ggplot2)
   require(dplyr)

@@ -30,7 +30,7 @@ The `for` loop repeats the same command multiple times.
 
 Pseudo-code:
 
-```{r , eval = FALSE}
+```{r, eval = FALSE}
 for ( i in vector ) {
   do_something_i_times
 }
@@ -58,7 +58,7 @@ k
 
 But many other definitions for the `vector` are possible. The most commonly used are `seq` or `seq_along` functions, but lists or basically anything can be used.
 
-**Task:** Build a cumulative sum function and calculate the cumulative sum for `v<-c( 10 , 6 , 5 , 32 , 45 , 23 )!` At the end check with a conditional statement if the last value in the vector is the same as if you have been used `cumsum()` function! Hints: define `cs_v` variable before and then use a for-loop with indexing.
+**Task:** Build a cumulative sum function and calculate the cumulative sum for `v<-c( 10, 6, 5, 32, 45, 23 )!` At the end check with a conditional statement if the last value in the vector is the same as if you have been used `cumsum()` function! Hints: define `cs_v` variable before and then use a for-loop with indexing.
 
 ## Computational issues
 
@@ -78,7 +78,7 @@ iter_num <- 10000
 tic('Sloppy way')
 q <- c()
 for ( i in 1 : iter_num ){
-  q <- c( q , i )
+  q <- c( q, i )
 }
 toc()
 
@@ -156,10 +156,10 @@ To exercise for-loops, we use the `sp-500` data to calculate yearly returns.
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
 # Load data
-sp500 <- read_csv('https://osf.io/h64z2/download' , na = c('', '#N/A') )
+sp500 <- read_csv('https://osf.io/h64z2/download', na = c('', '#N/A') )
 # Filter out missing and create a year variable
 sp500 <- sp500 %>% filter( !is.na( VALUE ) ) %>% 
-                  mutate( year = format( DATE , '%Y' ) ) 
+                  mutate( year = format( DATE, '%Y' ) ) 
 # Note: later we will learn to convert date format to year more elegantly
 
 ```
@@ -172,7 +172,7 @@ where $t$ stands for the last day's price at year $t$.
 
 ```{r}
 years <- unique( sp500$year )
-return_yearly <- tibble( years = years , return = NA )
+return_yearly <- tibble( years = years, return = NA )
 
 aux <- sp500$VALUE[ sp500$year == years[ 1 ] ]
 lyp <- aux[ length( aux ) ]

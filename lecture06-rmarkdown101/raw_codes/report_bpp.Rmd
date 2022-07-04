@@ -49,15 +49,15 @@ Our main interest is whether online prices are lower or higher than simple retai
 ```{r data descriptive, echo=FALSE}
 
 # Descriptive statistics with pretty names
-P95 <- function(x){ quantile( x , 0.95 , na.rm=T ) }
-P05 <- function(x){ quantile( x , 0.05 , na.rm=T ) }
+P95 <- function(x){ quantile( x, 0.95, na.rm=T ) }
+P05 <- function(x){ quantile( x, 0.05, na.rm=T ) }
 
 # Use datasummary:
 # - rewrite names to human readable
 # - add title and notes
 # - fix position with kable_styling()
 datasummary( (`Retail` = price ) + (`Online` = price_online ) + (`Price difference` = p_diff ) ~
-             Mean + Median + SD + Min + Max + P05 + P95 , 
+             Mean + Median + SD + Min + Max + P05 + P95, 
              data = bpp ,
              title = 'Descriptive statistics of prices',
              notes = 'Data are available from: https://osf.io/yhbr5/' ) %>% 
@@ -76,7 +76,7 @@ As the focus is the price difference, the next Figure shows the histogram for th
 #
 # add simple plot: take care of labels and limits (and theme)
 ggplot( data = bpp ) +
-  geom_density( aes( x = p_diff ) , fill = 'navyblue'  , bins = 30 ) +
+  geom_density( aes( x = p_diff ), fill = 'navyblue' , bins = 30 ) +
   labs(x = 'Price differences',
        y = 'Relative Frequency' ) +
   # following commands will be covered more in details in lecture-07-ggplot-indepth
@@ -94,13 +94,13 @@ DESCRIPTION OF THE FIGURE. WHAT DOES IT TELS US?
 
 ```{r test, echo = FALSE }
 
-test_out <- t.test( bpp$p_diff , mu = 0 )
+test_out <- t.test( bpp$p_diff, mu = 0 )
 
 ```
 
 We test the hypothesis, whether the price difference is zero, therefore there is no difference between retail and online prices:
 
-$$H_0:=\text{price online} - \text{price retail} = 0$$ $$H_A:=\text{price online} - \text{price retail} \neq 0$$ Running a two-sided t-test, we have the t-statistic as `r round( test_out$statistic , 2 )` and the p-value as `r round( test_out$p.value , 2 )`. The 95% confidence intervals are: `r round( test_out$conf.int[1] , 2 )` and `r round( test_out$conf.int[2] , 2 )`. **Based on these results with 95% confidence we can reject the hypothesis that the two price would be the same in this particular sample.**
+$$H_0:=\text{price online} - \text{price retail} = 0$$ $$H_A:=\text{price online} - \text{price retail} \neq 0$$ Running a two-sided t-test, we have the t-statistic as `r round( test_out$statistic, 2 )` and the p-value as `r round( test_out$p.value, 2 )`. The 95% confidence intervals are: `r round( test_out$conf.int[1], 2 )` and `r round( test_out$conf.int[2], 2 )`. **Based on these results with 95% confidence we can reject the hypothesis that the two price would be the same in this particular sample.**
 
 ## Robustness check / 'Heterogeneity analysis'
 

@@ -73,7 +73,7 @@ dtt <- ymd( str )
 class( dtt )
 
 # with lubridate you should use different functions to read different formats of date
-#   alternatively you can use base function: `as.Date( str_vec , '%Y/%m/%d', tz='cet')'
+#   alternatively you can use base function: `as.Date( str_vec, '%Y/%m/%d', tz='cet')'
 #
 # Automatically recognise format (in most cases)
 # Month-Day-Year
@@ -188,19 +188,19 @@ rm( list = ls())
 
 
 # GDP (millions of Dollars): using Fred database through tidyquant's tq_get package
-gdp <- tq_get( 'GDP' , get = 'economic.data', from = '1979-01-01') %>% 
-        select( date , price ) %>% 
+gdp <- tq_get( 'GDP', get = 'economic.data', from = '1979-01-01') %>% 
+        select( date, price ) %>% 
         rename( gdp = price )
 
 head( gdp )
 
 # Inflation (CPI): using Fred database through tidyquant's tq_get package
-inflat <- tq_get( 'USACPIALLMINMEI' , get = 'economic.data', from = '1978-01-01') %>% 
-  select( date , price )
+inflat <- tq_get( 'USACPIALLMINMEI', get = 'economic.data', from = '1978-01-01') %>% 
+  select( date, price )
 
 head(inflat)
 # We want year-on-year changes
-inflat <- mutate( inflat, inflat = price - lag( price , 12 ) )
+inflat <- mutate( inflat, inflat = price - lag( price, 12 ) )
 # And filter from 1979-01-01
 inflat <- inflat %>% filter( date >= '1979-01-01')
 
@@ -208,7 +208,7 @@ head(inflat)
 
 # SP500 Stock Prices
 sp500 <- read_csv('https://osf.io/fpkm4/download') %>% 
-  select( date , p_SP500 ) %>% 
+  select( date, p_SP500 ) %>% 
   rename( price =  p_SP500 )
 
 head(sp500)
@@ -217,7 +217,7 @@ head(sp500)
 ##
 # GDP:
 # Plot time-series
-ggplot( gdp , aes( x = date , y = gdp ) )+
+ggplot( gdp, aes( x = date, y = gdp ) )+
   geom_line(color = 'red',size=1) +
   labs(x='Year',y='GDP (billions)') +
   theme_bw()
@@ -226,7 +226,7 @@ ggplot( gdp , aes( x = date , y = gdp ) )+
 ##
 # Inflation 
 # Plot time-series
-ggplot( inflat , aes( x = date , y = inflat ) )+
+ggplot( inflat, aes( x = date, y = inflat ) )+
   geom_line( color = 'red', size = 1 ) +
   labs(x='Year', y='Inflation') +
   theme_bw()
@@ -236,7 +236,7 @@ ggplot( inflat , aes( x = date , y = inflat ) )+
 # SP500 prices
 
 # Plot time-series
-ggplot( sp500 , aes( x = date , y = price) )+
+ggplot( sp500, aes( x = date, y = price) )+
   geom_line( color = 'red',size=0.5) +
   labs(x='Date',y='Price ($)') +
   theme_bw()
@@ -246,7 +246,7 @@ ggplot( sp500 , aes( x = date , y = price) )+
 # De-tour: date-time variable on axis:
 
 # Yearly tickers with limits and minor breaks
-ggplot( sp500 , aes( x = date , y = price) )+
+ggplot( sp500, aes( x = date, y = price) )+
     geom_line( color = 'red',size=0.5) +
     labs(x='Date',y='Price ($)') +
     scale_x_date(date_breaks = '3 year', date_minor_breaks = '1 year',
@@ -255,7 +255,7 @@ ggplot( sp500 , aes( x = date , y = price) )+
     theme_bw()
 
 # Monthly tickers with limits and minor breaks
-ggplot( filter( sp500 , date > '2018-01-01' ) , aes( x = date , y = price) ) +
+ggplot( filter( sp500, date > '2018-01-01' ), aes( x = date, y = price) ) +
   geom_line( color = 'red',size=0.5) +
   labs(x='Date',y='Price ($)') +
   scale_x_date(date_breaks = '3 month', date_minor_breaks = '1 month',
@@ -273,7 +273,7 @@ ggplot( filter( sp500 , date > '2018-01-01' ) , aes( x = date , y = price) ) +
 ##
 # Extra:
 # Quarterly tickers are tricky: need to define a function and add to labels
-ggplot( filter( sp500 , date > '2016-01-01' ) , aes( x = date , y = price) ) +
+ggplot( filter( sp500, date > '2016-01-01' ), aes( x = date, y = price) ) +
   geom_line( color = 'red',size=0.5) +
   labs(x='Date',y='Price ($)') +
   scale_x_date(date_breaks = '6 month', date_minor_breaks = '3 month',
@@ -286,7 +286,7 @@ ggplot( filter( sp500 , date > '2016-01-01' ) , aes( x = date , y = price) ) +
 #
 
 # Base data-table is GDP
-df <- gdp %>%  transmute( time = date , gdp = gdp )
+df <- gdp %>%  transmute( time = date, gdp = gdp )
 rm( gdp )
 ##
 # 1st: Aggregate inflat to quarterly frequency:
@@ -295,17 +295,17 @@ inflat <- inflat %>% mutate( year = year( date ),
                              quarter = quarter( date ) )
 
 # Average for inflation (median or other measure is also good if reasonable)
-agg_inflat <- inflat %>% select( year, quarter , inflat ) %>% 
-  group_by( year , quarter ) %>% 
+agg_inflat <- inflat %>% select( year, quarter, inflat ) %>% 
+  group_by( year, quarter ) %>% 
   summarise( inflat = mean( inflat ) ) %>% 
   ungroup()
 
 # Add time and select variables
-agg_inflat <- agg_inflat %>% mutate( time = yq( paste0( year , '-' , quarter ) ) ) %>% 
-              select( time , inflat )
+agg_inflat <- agg_inflat %>% mutate( time = yq( paste0( year, '-', quarter ) ) ) %>% 
+              select( time, inflat )
 
 # Join to df
-df <- left_join( df , agg_inflat , by = 'time' )
+df <- left_join( df, agg_inflat, by = 'time' )
 rm( agg_inflat, inflat )
 
 ###
@@ -327,17 +327,17 @@ df <- df %>% filter( time >= ymd( '1997-10-01') )
 # NO 1: check the time-series in different graphs:
 
 # need a trick to create a new stacked data to color by a variable
-df_aux <- df %>% pivot_longer( !time, names_to = 'type' , values_to = 'values' )
+df_aux <- df %>% pivot_longer( !time, names_to = 'type', values_to = 'values' )
 
-ggplot( df_aux, aes( x = time, y = values , color = type ) ) + 
+ggplot( df_aux, aes( x = time, y = values, color = type ) ) + 
   geom_line() +
-  facet_wrap( ~ type , scales = 'free' ,
+  facet_wrap( ~ type, scales = 'free' ,
               labeller = labeller( 
                 type = c('price' = 'SP500 price',
                          'gdp'='GDP (millions)',
                          'inflat'='Inflation (%)') ),
               ncol = 1) +
-  labs( x = 'Years' , y = '' ) +
+  labs( x = 'Years', y = '' ) +
   scale_x_date(date_breaks = '3 year', date_minor_breaks = '1 year',
                date_labels = '%Y', 
                limits = ymd( c( '1997-01-01','2020-01-01' ) ) )+
@@ -362,33 +362,33 @@ rm(df_aux)
 # H0 := rho = 1
 # HA := rho < 1
 #
-pp.test( df$gdp    , lag.short = F)
-pp.test( df$inflat , lag.short = F)
-pp.test( df$price  , lag.short = F)
+pp.test( df$gdp   , lag.short = F)
+pp.test( df$inflat, lag.short = F)
+pp.test( df$price , lag.short = F)
 
 # Inflation is non-stationary, but unless we accept Type 2. The other two are clearly non-stationary.
 # Lets check percent change for gdp and price and differenced value for inflation:
-df <- df %>% mutate( dgdp    = ( gdp   - lag( gdp ,   1 ) ) / gdp * 100 ,
+df <- df %>% mutate( dgdp    = ( gdp   - lag( gdp,   1 ) ) / gdp * 100 ,
                      dinflat = inflat  - lag( inflat, 1 ),
-                     return  = ( price - lag( price , 1 ) ) / price * 100 )
+                     return  = ( price - lag( price, 1 ) ) / price * 100 )
 
 ##
 # Task
 # Check again the Philip-Perron tests!
-pp.test( df$dgdp    , lag.short = F)
-pp.test( df$dinflat , lag.short = F)
-pp.test( df$return  , lag.short = F)
+pp.test( df$dgdp   , lag.short = F)
+pp.test( df$dinflat, lag.short = F)
+pp.test( df$return , lag.short = F)
 
 
 # Visualization2:
 # NO 2: standardization - good to compare the (co)-movement
 #   !!TAKE CONCLUSION ONLY IF STATIONARY!!
-stdd <- function( x ){ ( x - mean( x , rm.na = T ) ) / sd( x , na.rm = T ) }
+stdd <- function( x ){ ( x - mean( x, rm.na = T ) ) / sd( x, na.rm = T ) }
 
-ggplot( filter(df,complete.cases(df)) , aes( x = time ) ) +
-  geom_line( aes( y = stdd( dgdp )    , color = 'dgdp' ) ) +
-  geom_line( aes( y = stdd( dinflat )  , color = 'dinflat' ) ) +
-  geom_line( aes( y = stdd( return )  , color = 'return') ) +
+ggplot( filter(df,complete.cases(df)), aes( x = time ) ) +
+  geom_line( aes( y = stdd( dgdp )   , color = 'dgdp' ) ) +
+  geom_line( aes( y = stdd( dinflat ) , color = 'dinflat' ) ) +
+  geom_line( aes( y = stdd( return ) , color = 'return') ) +
   scale_color_manual(name = 'Variable',
                      values = c( 'dgdp' = 'red', 
                                  'dinflat' = 'blue',
@@ -401,29 +401,29 @@ ggplot( filter(df,complete.cases(df)) , aes( x = time ) ) +
                date_labels = '%Y', 
                limits = ymd( c( '1997-01-01','2020-01-01' ) ) )+
   theme_bw() +
-  theme( legend.position='top' , legend.title = element_blank () ) # place legend to top and remove name
+  theme( legend.position='top', legend.title = element_blank () ) # place legend to top and remove name
 # More or less moving together!
 
 
 # For association, can check scatter plots: 
 
 # GDP and inflation
-ggplot( df , aes( x = dgdp , y = dinflat ) ) +
-  geom_point( size = 1 , color = 'red' ) +
+ggplot( df, aes( x = dgdp, y = dinflat ) ) +
+  geom_point( size = 1, color = 'red' ) +
   geom_smooth(method='lm',formula=y~x,se=F) +
   labs( x = 'GDP quarterly change (%)', y = 'Inflation YoY change (%)' ) +
   theme_bw()
 
 # GDP and SP500 returns
-ggplot( df , aes( x = dgdp , y = return ) ) +
-  geom_point( size = 1 , color = 'red' ) +
+ggplot( df, aes( x = dgdp, y = return ) ) +
+  geom_point( size = 1, color = 'red' ) +
   geom_smooth(method='lm',formula=y~x,se=F) +
   labs( x = 'GDP quarterly change (%)', y = 'SP500 quarterly returns (%)' ) +
   theme_bw()
 
 # SP500 returns and inflation
-ggplot( df , aes( x = return , y = dinflat ) ) +
-  geom_point( size = 1 , color = 'red' ) +
+ggplot( df, aes( x = return, y = dinflat ) ) +
+  geom_point( size = 1, color = 'red' ) +
   geom_smooth(method='lm',formula=y~x,se=F) +
   labs( x = 'SP500 quarterly returns (%)', y = 'Inflation YoY change (%)' ) +
   theme_bw()

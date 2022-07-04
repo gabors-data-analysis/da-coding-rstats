@@ -23,7 +23,7 @@
 # 3) Call your personalized ggplot function
 
 # 4) Run the following piece of command:
-ggplot( filter( df , city == 'Vienna' ) , aes( x = price ) ) +
+ggplot( filter( df, city == 'Vienna' ), aes( x = price ) ) +
   geom_histogram( alpha = 0.8, binwidth = 20 ) +
   labs(x='Hotel Prices in  Vienna',y='Density')+
   theme_YOURFUNCTIONNAME()

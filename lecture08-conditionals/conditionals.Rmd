@@ -21,7 +21,7 @@ The `if` statement takes a condition and if the condition evaluates to `TRUE` th
 
 Pseudo-code:
 
-```{r , eval = FALSE}
+```{r, eval = FALSE}
 if (condition) {
   command
 }
@@ -43,7 +43,7 @@ The `else` statement complements the `if` condition: if the condition evaluates 
 
 Pseudo-code:
 
-```{r , eval = FALSE}
+```{r, eval = FALSE}
 if (condition) {
   command
 } else{
@@ -68,7 +68,7 @@ It is possible to make more elaborate conditional execution with multiple `if` a
 
 Pseudo-code:
 
-```{r , eval = FALSE}
+```{r, eval = FALSE}
 if ( condition_1 ){
   command_1
 } else if ( condition_2 ){
@@ -119,7 +119,7 @@ if ( x > 0 && y > 0 ){
 Another possibility is when one works with vectors (or matrices), which does not result in one logical, but rather in a vector (or matrix) of logical. Let us consider the following simple example. Before we use them in an `if-else` statement, let us do some logical operations:
 
 ```{r}
-v <- c( 0 , 1 , 10 )
+v <- c( 0, 1, 10 )
 ```
 First, let check if elements of v larger than 0
 ```{r}
@@ -145,7 +145,7 @@ if ( any( v > 0 ) ){
 If we have more than one vector, conditionals can be tricky and the programmer must be careful at which level are the logical operations. Let us create another vector `q`.
 
 ```{r}
-q <- c( 2 , 0 , 8 )
+q <- c( 2, 0, 8 )
 ```
 
 Let us check again if elements are larger than zero or not. We have again two cases under the assumption `v` and `q` have the same elements.
@@ -228,8 +228,8 @@ wms$firm_size[ wms$emp_firm < 200 ] = 'small'
 There is a built-in `ifelse(condition,if_true,if_false)` function, which is a compact form of `if-else` statements. This is a bit harder to read, but useful with `tidyverse`. We need to use multiple `ifelse()` function as if the first is false, we need to still consider the other cases. Again as usual, try to cover all possible cases!
 
 ```{r}
-wms <- wms %>% mutate( firm_size2 = ifelse( emp_firm >= 1000 , 'large',
-                                    ifelse( wms$emp_firm < 1000 & wms$emp_firm >= 200 , 'medium',
+wms <- wms %>% mutate( firm_size2 = ifelse( emp_firm >= 1000, 'large',
+                                    ifelse( wms$emp_firm < 1000 & wms$emp_firm >= 200, 'medium',
                                     ifelse( wms$emp_firm < 200, 'small', NA_character_ ) ) ) ) 
 ```
 

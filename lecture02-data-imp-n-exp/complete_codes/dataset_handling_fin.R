@@ -61,7 +61,7 @@ df_1      <- read_csv('clean/hotels-vienna.csv')
 
 
 # delete your data
-rm( hotels_vienna , df_0, df_1 )
+rm( hotels_vienna, df_0, df_1 )
 
 
 ########
@@ -94,16 +94,16 @@ summary( df )
 # Exporting your data:
 #
 # This is a special case: data_out is now the same as data_in (no cleaning...)
-data_out <- paste0( data_in , '/export/' )
-write_csv( df , paste0( data_out , 'my_csvfile.csv' ) )
+data_out <- paste0( data_in, '/export/' )
+write_csv( df, paste0( data_out, 'my_csvfile.csv' ) )
 
 # If due to some reason you would like to export as xls(x)
 install.packages( 'writexl' )
 library( writexl )
-write_xlsx( df , paste0( data_out , 'my_csvfile.xlsx' ) )
+write_xlsx( df, paste0( data_out, 'my_csvfile.xlsx' ) )
 
 # Third option is to save as an R object
-save( df , file = paste0( data_out , 'my_rfile.RData' ) )
+save( df, file = paste0( data_out, 'my_rfile.RData' ) )
 
 ######
 # Extra: using API
@@ -150,9 +150,9 @@ df_t0 <- read_csv(paste0(data_in,'raw/hotelbookingdata.csv'))
 # Load from wed
 df_t1 <- read_csv('https://osf.io/yzntm/download')
 # Write as xlsx
-write_xlsx( df_t1 , paste0( data_out , 'hotelbookingdata.xlsx' ) )
+write_xlsx( df_t1, paste0( data_out, 'hotelbookingdata.xlsx' ) )
 # Write as .RData
-save( df_t1 , file = paste0( data_out , 'hotelbookingdata.RData' ) )
+save( df_t1, file = paste0( data_out, 'hotelbookingdata.RData' ) )
 
 
 

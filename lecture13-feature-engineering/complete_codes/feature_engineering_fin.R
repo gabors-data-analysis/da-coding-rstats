@@ -88,9 +88,9 @@ wms <- wms %>%
   select( matches( c('lean','perf','talent' ) ) ) %>% 
   select( where( is.numeric ) ) %>%
   rowMeans( na.rm = TRUE ) %>% 
-  mutate( wms , avg_score = .)
+  mutate( wms, avg_score = .)
 
-datasummary( avg_score ~ Mean + Median + SD + Min + Max + N , data = wms )
+datasummary( avg_score ~ Mean + Median + SD + Min + Max + N, data = wms )
 
 # For other type of manipulations, simply change `rowMeans` with your needed function
 
@@ -104,16 +104,16 @@ datasummary( avg_score ~ Mean + Median + SD + Min + Max + N , data = wms )
 wms <- wms %>% 
   select( matches( 'aa_' ) ) %>% 
   reduce( `+` ) %>% 
-  mutate( wms , sum_aa = .)
+  mutate( wms, sum_aa = .)
 
-datasummary( sum_aa ~ Mean + Median + SD + Min + Max + N , data = wms )
+datasummary( sum_aa ~ Mean + Median + SD + Min + Max + N, data = wms )
 
 
 ####
 # Grouping categorical
 #
 # Creating groups by continents -> reducing dimensionality of a categorical variable
-datasummary( country ~ N + Percent() , data = wms )
+datasummary( country ~ N + Percent(), data = wms )
 
 # Create continent variable with `countrycode` function
 wms <- wms %>%  mutate( continent =
@@ -122,10 +122,10 @@ wms <- wms %>%  mutate( continent =
                               destination = 'continent') )
 
 # It says 'Northern Ireland' is not detected...
-wms <- wms %>% mutate( continent = replace( continent, country == 'Northern Ireland' , 'Europe' ) )
+wms <- wms %>% mutate( continent = replace( continent, country == 'Northern Ireland', 'Europe' ) )
 
 # Check
-datasummary( continent ~ N + Percent() , data = wms )
+datasummary( continent ~ N + Percent(), data = wms )
 
 # With `countrycode`, you can create region dummies and many more, see ?countrycode
 
@@ -139,9 +139,9 @@ wms <- wms %>%  mutate( region =
                                       destination = 'region') )
 
 # It says 'Northern Ireland' is not detected...
-wms <- wms %>% mutate( region = replace( region, country == 'Northern Ireland' , 'Europe & Central Asia' ) )
+wms <- wms %>% mutate( region = replace( region, country == 'Northern Ireland', 'Europe & Central Asia' ) )
 
-datasummary( region ~ N + Percent() , data = wms )
+datasummary( region ~ N + Percent(), data = wms )
 
 ##
 # It is also possible to create these groups by hand, with fct_collapse command.
@@ -162,32 +162,32 @@ unique(wms$owner)
 ####
 # Good-to-know: labeled ordered factor variable: 
 #  labels are ordered, however difference is only in few application
-wms <- wms %>% mutate( lean1_ord = factor( lean1 , levels = 1:5, 
+wms <- wms %>% mutate( lean1_ord = factor( lean1, levels = 1:5, 
                                             labels = c('extermly poor','bad','mediocre','good','excellent'),
                                             ordered = TRUE ) )
 
 # Can easily plot
 wms %>% select( lean1_ord, avg_score ) %>% 
         group_by( lean1_ord ) %>% 
-        summarise( mavg_score = mean( avg_score , na.rm = T ) ) %>% 
-        ggplot( aes( x = lean1_ord , y = mavg_score ) ) +
-          geom_point( color = 'red' , size = 10 ) +
-          labs( x = 'Lean 1 score' , y = 'Mean average management score')+
+        summarise( mavg_score = mean( avg_score, na.rm = T ) ) %>% 
+        ggplot( aes( x = lean1_ord, y = mavg_score ) ) +
+          geom_point( color = 'red', size = 10 ) +
+          labs( x = 'Lean 1 score', y = 'Mean average management score')+
           theme_bw()
 
 ####
 # Task:
 # Create the same graph, but using talent2 instead
-wms <- wms %>% mutate( talent2_ord = factor( talent2 , levels = 1:5, 
+wms <- wms %>% mutate( talent2_ord = factor( talent2, levels = 1:5, 
                                            labels = c('extermly poor','bad','mediocre','good','excellent'),
                                            ordered = TRUE ) )
 
 wms %>% select( talent2_ord, avg_score ) %>% 
   group_by( talent2_ord ) %>% 
-  summarise( mavg_score = mean( avg_score , na.rm = T ) ) %>% 
-  ggplot( aes( x = talent2_ord , y = mavg_score ) ) +
-  geom_point( color = 'red' , size = 10 ) +
-  labs( x = 'Talent 2 score' , y = 'Mean average management score')+
+  summarise( mavg_score = mean( avg_score, na.rm = T ) ) %>% 
+  ggplot( aes( x = talent2_ord, y = mavg_score ) ) +
+  geom_point( color = 'red', size = 10 ) +
+  labs( x = 'Talent 2 score', y = 'Mean average management score')+
   theme_bw()
 
 
@@ -198,22 +198,22 @@ wms %>% select( talent2_ord, avg_score ) %>%
 
 # It is hard to get any conclusion if we plot the pattern between 
 #   average management score and number of employees
-ggplot( wms , aes( x = emp_firm , y = avg_score ) ) +
-  geom_point( color = 'red' , size = 2 , alpha = 0.6 ) +
-  labs( x = 'Number of employees' , y = 'Mean average management score')+
+ggplot( wms, aes( x = emp_firm, y = avg_score ) ) +
+  geom_point( color = 'red', size = 2, alpha = 0.6 ) +
+  labs( x = 'Number of employees', y = 'Mean average management score')+
   theme_bw()
 
 # One simple way to solve this issue:
 # Simplifying firm size: creating categories from numeric (cut() creates a factor)
-wms <- wms %>% mutate( emp_cat = cut( emp_firm , c( 0, 200, 1000, Inf ), 
+wms <- wms %>% mutate( emp_cat = cut( emp_firm, c( 0, 200, 1000, Inf ), 
                                       labels = c('small','medium','large' ) ) )
 wms %>% 
   group_by( emp_cat ) %>% 
   filter( !is.na( emp_cat ) ) %>% 
-  summarize( mavg_score = mean( avg_score , na.rm = T ) ) %>% 
-    ggplot( aes( x = emp_cat , y = mavg_score ) ) +
-      geom_point( color = 'red' , size = 10 ) +
-      labs( x = 'Firm size' , y = 'Mean average management score')+
+  summarize( mavg_score = mean( avg_score, na.rm = T ) ) %>% 
+    ggplot( aes( x = emp_cat, y = mavg_score ) ) +
+      geom_point( color = 'red', size = 10 ) +
+      labs( x = 'Firm size', y = 'Mean average management score')+
       theme_bw()
 
 ###
@@ -223,17 +223,17 @@ wms %>%
 #   After that add labels and plot a similar graph as before and explain what changed
 #   Extra: can check cut_interval() and cut_width() functions 
 
-wms <- wms %>% mutate( emp_cat2 = cut_number( emp_firm , 3 ) )
+wms <- wms %>% mutate( emp_cat2 = cut_number( emp_firm, 3 ) )
 levels( wms$emp_cat2 )
-wms <- wms %>% mutate( emp_cat2 = factor( emp_cat2 , labels = c('small','medium','large') ) )
+wms <- wms %>% mutate( emp_cat2 = factor( emp_cat2, labels = c('small','medium','large') ) )
 
 wms %>% 
   group_by( emp_cat2 ) %>% 
   filter( !is.na( emp_cat2 ) ) %>% 
-  summarize( mavg_score = mean( avg_score , na.rm = T ) ) %>% 
-  ggplot( aes( x = emp_cat2 , y = mavg_score ) ) +
-  geom_point( color = 'red' , size = 10 ) +
-  labs( x = 'Firm size' , y = 'Mean average management score')+
+  summarize( mavg_score = mean( avg_score, na.rm = T ) ) %>% 
+  ggplot( aes( x = emp_cat2, y = mavg_score ) ) +
+  geom_point( color = 'red', size = 10 ) +
+  labs( x = 'Firm size', y = 'Mean average management score')+
   theme_bw()
 
 ####
@@ -289,22 +289,22 @@ aux <- wms %>% select( matches( c('firmid','wave','lean','perf','talent' ) ) ) %
   drop_na()
 
 # add firmid wave and only PC1 from pca-s
-pca_tibble <- cbind( select( pca_tibble , PC1 ) , select( aux , firmid, wave ) )
+pca_tibble <- cbind( select( pca_tibble, PC1 ), select( aux, firmid, wave ) )
 
 # add to wms data
-wms <- left_join( wms , pca_tibble , by = c('firmid','wave' ) )
+wms <- left_join( wms, pca_tibble, by = c('firmid','wave' ) )
 
 # Compare descriptives with average score
-datasummary( avg_score + PC1 ~ Mean + Median + SD + Min + Max , data = wms )
+datasummary( avg_score + PC1 ~ Mean + Median + SD + Min + Max, data = wms )
 
 # Create a bin-scatter with PC1
 wms %>% 
   group_by( emp_cat ) %>% 
   filter( !is.na( emp_cat ) ) %>% 
-  summarize( mPC1_score = mean( PC1 , na.rm = T ) ) %>% 
-  ggplot( aes( x = emp_cat , y = mPC1_score ) ) +
-  geom_point( color = 'red' , size = 10 ) +
-  labs( x = 'Firm size' , y = 'Principal component')+
+  summarize( mPC1_score = mean( PC1, na.rm = T ) ) %>% 
+  ggplot( aes( x = emp_cat, y = mPC1_score ) ) +
+  geom_point( color = 'red', size = 10 ) +
+  labs( x = 'Firm size', y = 'Principal component')+
   theme_bw()
 
 # Notes: 
@@ -353,7 +353,7 @@ bisnode <- bisnode %>%
 #   replace missing values with the mean or median
 #   also add a flag variable for the imputed values (need to include in the model!)
 bisnode <- bisnode %>%
-  mutate( labor_avg_mod       = ifelse( is.na( labor_avg ), mean( labor_avg, na.rm = TRUE )  , labor_avg ),
+  mutate( labor_avg_mod       = ifelse( is.na( labor_avg ), mean( labor_avg, na.rm = TRUE ) , labor_avg ),
           labor_med_mod       = ifelse( is.na( labor_avg ), median( labor_avg, na.rm = TRUE ), labor_avg ),
           flag_miss_labor_avg = as.numeric( is.na( labor_avg ) ) )
 ##
@@ -364,15 +364,15 @@ bisnode <- bisnode %>%
 Nmiss <- function( x ){ sum( is.na( x ) ) }
 
 # Check how stats altered, discuss!
-datasummary( labor_avg + labor_avg_mod + labor_med_mod ~ Mean + Median + SD + N + Nmiss , data = bisnode )
+datasummary( labor_avg + labor_avg_mod + labor_med_mod ~ Mean + Median + SD + N + Nmiss, data = bisnode )
 
 ##
 # Imputing:
 # B) Using outside knowledge to replace values:
 #  negative sales should not happen, thus we can overwrite it to a small value: 1
-datasummary( sales ~ Mean + Min + Max , data = bisnode )
-bisnode <- bisnode %>% mutate( sales = ifelse( sales < 0 , 1 , sales ) )
-datasummary( sales ~ Mean + Min + Max , data = bisnode )
+datasummary( sales ~ Mean + Min + Max, data = bisnode )
+bisnode <- bisnode %>% mutate( sales = ifelse( sales < 0, 1, sales ) )
+datasummary( sales ~ Mean + Min + Max, data = bisnode )
 
 ##
 # Imputing:
@@ -387,7 +387,7 @@ bisnode <- bisnode %>%
            ifelse(. == 31, 30, .) %>%
            ifelse(is.na(.), 99, .) )
 
-datasummary( factor( ind2_cat ) ~ N + Percent() , data = bisnode )
+datasummary( factor( ind2_cat ) ~ N + Percent(), data = bisnode )
 
 ##
 # Adjusting negative sale and for log transformation:
@@ -426,7 +426,7 @@ bisnode_s <- bisnode %>% filter( comp_id %in% comp_id_f$comp_id )
 # Numeric vs factor representation:
 
 # Numeric representation (good)
-ggplot( bisnode_s , aes(x=sales_mil_log, y=default)) +
+ggplot( bisnode_s, aes(x=sales_mil_log, y=default)) +
   geom_point(size=2,  shape=20, stroke=2, color='blue') +
   geom_smooth(method = 'lm', formula = y ~ poly(x,2), color='black', se = F, size=1)+
   geom_smooth(method='loess', se=F, colour='red', size=1.5, span=0.9) +
@@ -437,7 +437,7 @@ ggplot( bisnode_s , aes(x=sales_mil_log, y=default)) +
 # Task: convert default to a factor variable and plot!
 #   what is the problem? It is a bad idea to convert to a factor?
 
-ggplot( bisnode_s , aes(x=sales_mil_log, y=factor(default))) +
+ggplot( bisnode_s, aes(x=sales_mil_log, y=factor(default))) +
   geom_point(size=2,  shape=20, stroke=2, color='blue') +
   geom_smooth(method = 'lm', formula = y ~ poly(x,2), color='black', se = F, size=1)+
   geom_smooth(method='loess', se=F, colour='red', size=1.5, span=0.9) +
@@ -496,7 +496,7 @@ w<- ggplot(bisnode_s, aes(x=d1_sales_mil_log_mod, y=default)) +
 w
 
 # Comparing pattern with and without winsorizing
-ggarrange( nw , w + scale_x_continuous(limits = c(-6,10), breaks = seq(-5,10, 5)) , nrow = 2 ) 
+ggarrange( nw, w + scale_x_continuous(limits = c(-6,10), breaks = seq(-5,10, 5)), nrow = 2 ) 
 
 
 ##

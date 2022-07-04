@@ -106,10 +106,10 @@ lfe <- lfe %>% filter( year == 2017 )
 #   and 'countryname' from lfe
 
 # a) create a new tibble with id and country name these we need to match
-countries <- distinct( world_map , region , group ) %>% rename( countryname = region ) %>% arrange() 
+countries <- distinct( world_map, region, group ) %>% rename( countryname = region ) %>% arrange() 
 
 # b) Check not-matching observations
-check <- anti_join( lfe , countries,  by = 'countryname' )
+check <- anti_join( lfe, countries,  by = 'countryname' )
 
 # c) From these there are some which has different names (good example of using " and ' in Cote d'Ivorire)
 rename_list <- tibble( old_name = c('Bahamas, The','Brunei Darussalam','Congo, Dem. Rep.',
@@ -130,7 +130,7 @@ for ( i in 1 : nrow( rename_list ) ){
 }
 
 # e) now can match the lfe data to world_map
-world_map_exp <- left_join( world_map, rename( lfe , region = countryname ) , by = 'region')
+world_map_exp <- left_join( world_map, rename( lfe, region = countryname ), by = 'region')
 
 # Show the life-expectancy
 lfe_map <- world_map_exp %>% 
@@ -158,7 +158,7 @@ lfe_map + scale_fill_gradient(low = 'red', high = 'green',
 # Scatter plot for the model
 ggplot( data = lfe, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
-  geom_smooth( method = lm , color = 'red' , formula = y ~ x ) +
+  geom_smooth( method = lm, color = 'red', formula = y ~ x ) +
   labs( x = 'Log of GDP per Capita', y = 'Life Expectancy at birth') +
   theme_bw()
 
@@ -190,13 +190,13 @@ rm( list = ls() )
 # Import Hotels-Europe data
 heu_p <- read_csv('https://osf.io/p6tyr/download')
 heu_f <- read_csv('https://osf.io/utwjs/download')
-heu <- left_join( heu_f, heu_p , by = 'hotel_id' ) 
+heu <- left_join( heu_f, heu_p, by = 'hotel_id' ) 
 rm(heu_p,heu_f)
 
 # Filter to London and Vienna as usual
 heu <- heu %>% filter( year == 2017, month == 11, weekend == 0 ) %>% 
   filter( city %in% c('London','Vienna'), city_actual %in% c( 'London','Vienna') ) %>% 
-  filter( accommodation_type == 'Hotel', stars >= 3 , stars <=4 ) %>% 
+  filter( accommodation_type == 'Hotel', stars >= 3, stars <=4 ) %>% 
   filter( price < 600 )
 
 #####
@@ -221,14 +221,14 @@ london_map_tibble <- as_tibble( fortify( london_map ) )
 london_map$id <- row.names( london_map )
 
 # Joins the data
-london_map_tibble <- as_tibble( left_join( london_map_tibble, london_map@data , by = 'id' ) )
+london_map_tibble <- as_tibble( left_join( london_map_tibble, london_map@data, by = 'id' ) )
 
 # remove and rename
 london_map <- london_map_tibble %>% rename( borough = NAME )
 rm( london_map_tibble )
 
 # Show London boroughs
-ggplot( london_map , aes( long , lat , group = borough ) ) +
+ggplot( london_map, aes( long, lat, group = borough ) ) +
   geom_polygon() + 
   geom_path( colour='white', lwd = 0.1 ) + 
   coord_equal() +
@@ -245,7 +245,7 @@ inner_boroughs <- c( 'Camden','Greenwich','Hackney','Hammersmith and Fulham','Is
 london_map <- london_map %>% mutate( inner_london = borough %in% inner_boroughs  )
 
 # Show inner-London boroughs
-iL <- ggplot( filter( london_map , inner_london ) , aes( long , lat , group = borough ) ) +
+iL <- ggplot( filter( london_map, inner_london ), aes( long, lat, group = borough ) ) +
   geom_polygon( colour = 'black', fill = NA ) + 
   geom_path( colour='white', lwd = 0.01 ) + 
   coord_equal( ) +
@@ -258,11 +258,11 @@ iL
 #   aggregating lat and long has many other options than mean(range()), may check out
 
 b_names <- aggregate( cbind(long, lat) ~ borough, 
-                      data = london_map , FUN=function( x ){ mean( range( x ) ) } ) %>% 
+                      data = london_map, FUN=function( x ){ mean( range( x ) ) } ) %>% 
   mutate( inner_london = borough %in% inner_boroughs  )
 
 # Show London boroughs with names
-iL + geom_text( data = filter( b_names, inner_london ) , aes(long, lat, label = borough), size = 2 )
+iL + geom_text( data = filter( b_names, inner_london ), aes(long, lat, label = borough), size = 2 )
 
 
 ###
@@ -273,7 +273,7 @@ iL + geom_text( data = filter( b_names, inner_london ) , aes(long, lat, label = 
 heu <- heu %>% mutate( borough =  neighbourhood )
 
 # Hand-written matching...
-#                     neighbour , borough  
+#                     neighbour, borough  
 match_london <- c(   'Blackheath', 'Lewisham',
                      'Bloomsbury','Camden',
                      'Camden Town','Camden',
@@ -314,16 +314,16 @@ for ( i in 1 : ( length( match_london ) / 2 ) ){
 
 # Calculate the average prices in each borough, London
 l_bor <- heu %>% filter( city_actual == 'London' ) %>%  group_by( borough ) %>% 
-  summarise( price = mean( price , na.rm = T ) )
+  summarise( price = mean( price, na.rm = T ) )
 
 # Check if there is perfect fit with names
 all( l_bor$borough %in% sort(unique( london_map$borough )) )
 
 # add prices to london_map
-lp <- left_join( london_map , l_bor , by = 'borough' )
+lp <- left_join( london_map, l_bor, by = 'borough' )
 
 # Create graph with prices: London
-ggplot( lp , aes( long, lat, group = borough , fill = price ) ) +
+ggplot( lp, aes( long, lat, group = borough, fill = price ) ) +
   geom_polygon( ) + 
   geom_path( colour='white', lwd=0.05 ) + 
   coord_equal( ) +
@@ -342,7 +342,7 @@ ggplot( lp , aes( long, lat, group = borough , fill = price ) ) +
 pal <- wes_palette('Zissou1', 100, type = 'continuous')
 
 # Create tibble for inner london, prices added as it is needed for graph
-b_names_il <- filter( left_join( b_names, l_bor , by = 'borough' ), inner_london )
+b_names_il <- filter( left_join( b_names, l_bor, by = 'borough' ), inner_london )
 
 # Adjust some names and coordinate (always check the scale of coordinates before adjusting)
 b_names_il$borough[ b_names_il$borough == 'Hammersmith and Fulham' ] <- 'H&F'
@@ -353,8 +353,8 @@ b_names_il$lat[ b_names_il$borough == 'K&C' ] <- b_names_il$lat[ b_names_il$boro
 
 
 # Do the graph with annotation
-iL_price <- ggplot( filter( lp , inner_london ), 
-                    aes(long, lat, group = borough , fill = price ) ) +
+iL_price <- ggplot( filter( lp, inner_london ), 
+                    aes(long, lat, group = borough, fill = price ) ) +
   geom_polygon() + 
   geom_path( colour='white', lwd=0.05 ) + 
   coord_equal() +
@@ -364,7 +364,7 @@ iL_price <- ggplot( filter( lp , inner_london ),
        fill = 'Price') +
   scale_fill_gradientn(colours=pal,
                        na.value = 'grey', name = '',
-                       limits = c( 0 , 400 )) +
+                       limits = c( 0, 400 )) +
   ggtitle('Average hotel prices: inner-London ($,2017)') +
   theme_map() 
 iL_price
@@ -448,9 +448,9 @@ V_price <-
 V_price
 
 # Show together with common legend (this is why we use `scale_fill_gradientn()`)
-cities_plot <- ggarrange( iL_price + ggtitle('Inner-London')  , 
+cities_plot <- ggarrange( iL_price + ggtitle('Inner-London'), 
                           V_price  + ggtitle('Vienna') ,
-                          ncol = 1 , common.legend = TRUE, legend='right' )
+                          ncol = 1, common.legend = TRUE, legend='right' )
 
 annotate_figure(cities_plot, top = text_grob('Average price of a hotel for one night ($)', 
                                              color = 'black', face = 'italic', size = 12))

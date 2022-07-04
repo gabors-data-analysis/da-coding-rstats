@@ -70,7 +70,7 @@ cars$type         <- fct_explicit_na(cars$type, na_level = 'Missing')
 
 # missing changed to good not missing
 cars$condition[is.na(cars$condition)] <- 'good'
-datasummary( condition ~ N + Percent() , data = cars )
+datasummary( condition ~ N + Percent(), data = cars )
 
 # same steps as in ch13, see code in ch13 for details
 cars <- cars %>% filter(Hybrid ==0) %>% dplyr::select(-Hybrid)
@@ -120,7 +120,7 @@ datasummary_skim(cars, 'numeric')
 datasummary_skim(cars, 'categorical')
 
 
-datasummary( price ~ Mean + Median + SD + P25 + P75 + Min + Max + N , data = cars )
+datasummary( price ~ Mean + Median + SD + P25 + P75 + Min + Max + N, data = cars )
 
 
 
@@ -146,7 +146,7 @@ data_test <- cars %>% filter(train == 0)
 #####################
 # Regression tree (rpart)
 
-datasummary( price + age ~ Mean + Median + P75 + P25 + Min + Max , data = cars )
+datasummary( price + age ~ Mean + Median + P75 + P25 + Min + Max, data = cars )
 
 ####
 # SIMPLEST CASE: 
@@ -215,7 +215,7 @@ rmse_cart2 <- sqrt(mean((pred_cart2 - data_test$price)^2))
 plot_helper_df$yend <- predict(cart2, plot_helper_df)
 pred_cart1t <- predict(cart1, data_train)
 
-ggplot(data = data_train, aes(x=age , y=price)) +
+ggplot(data = data_train, aes(x=age, y=price)) +
   geom_point() +
   geom_segment(data = plot_helper_df, aes(x = age, y=yend, xend=xend, yend=yend), 
                color='blue', size=1, na.rm=TRUE) +
@@ -244,7 +244,7 @@ rmse_cart3 <- sqrt(mean((pred_cart3 - data_test$price)^2))
 plot_helper_df$yend <- predict(cart3, plot_helper_df)
 pred_cart3t <- predict(cart3, data_train)
 
-ggplot(data = data_train, aes(x=age , y=price)) +
+ggplot(data = data_train, aes(x=age, y=price)) +
   geom_point() +
   geom_segment(data = plot_helper_df, aes(x = age, y=yend, xend=xend, yend=yend), color='blue', size=1, na.rm=TRUE) +
   scale_y_continuous(expand=c(0.01,0.01), limits=c(0, 20000), breaks=seq(0, 20000, by=2500)) +
@@ -257,7 +257,7 @@ ggplot(data = data_train, aes(x=age , y=price)) +
 # Competing model:
 #   OLS: Age only (Linear regression)
 
-linreg1 <- feols(model1 , data=data_train, vcov = 'hetero' )
+linreg1 <- feols(model1, data=data_train, vcov = 'hetero' )
 linreg1
 pred_linreg1 <- predict(linreg1, data_test)
 rmse_linreg1 <- sqrt(mean((pred_linreg1 - data_test$price)^2))
@@ -286,7 +286,7 @@ rmse_lowess1 <- sqrt(mean((pred_lowess1 - data_test$price)^2))
 lowess1 <- loess(model1, data=data_train)
 pred_lowess1t <- predict(lowess1, data_train)
 
-ggplot(data = data_train, aes(x=age , y=price)) +
+ggplot(data = data_train, aes(x=age, y=price)) +
   geom_point(size=1, colour='black' ) +
   labs(x = 'Age', y = 'Price') +
   coord_cartesian(xlim=c(0, 25), ylim=c(0, 20000)) +
@@ -301,14 +301,14 @@ ggplot(data = data_train, aes(x=age , y=price)) +
 #####################
 # Linear regression with multiple variables
 model2 <- formula(price ~ age + odometer + LE + XLE + SE + cond_excellent + cond_good + cylind6 + dealer+chicago)
-linreg2 <- feols(model2 , data=data_train ,vcov= 'hetero')
+linreg2 <- feols(model2, data=data_train ,vcov= 'hetero')
 linreg2
 pred_linreg2 <- predict(linreg2, data_test)
 rmse_linreg2 <- sqrt(mean((pred_linreg2 - data_test$price)^2))
 
 # add squared for age, odometer
 model3 <- formula(price ~ age + agesq+ odometer+odometersq +LE + XLE + SE + cond_excellent + cond_good + cylind6 + dealer+chicago)
-linreg3 <- feols(model3 , data=data_train,vcov='hetero')
+linreg3 <- feols(model3, data=data_train,vcov='hetero')
 linreg3
 pred_linreg3 <- predict(linreg3, data_test)
 rmse_linreg3 <- sqrt(mean((pred_linreg3 - data_test$price)^2))
@@ -399,7 +399,7 @@ tab_rmse <- tibble(
 )
 tab_rmse
 
-arrange( tab_rmse , RMSE )
+arrange( tab_rmse, RMSE )
 
 
 #############

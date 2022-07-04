@@ -28,10 +28,6 @@ library(fixest)
 library(ggpubr)
 library(scales)
 library(lubridate)
-if (!require(devtools)){
-  install.packages('devtools')
-  library(devtools)
-}
 
 
 ####
@@ -50,17 +46,17 @@ climate <- climate %>% mutate(year     = year( tempdate ),
 # Data manipulation with time-series data:
 # 1) Generate averages from sums:
 #     when dividing by N, must take into account N of days
-climate <-  climate %>% mutate( ndays = ifelse( month %in% c(1, 3, 5, 7, 8, 10, 12) , 31 ,
+climate <-  climate %>% mutate( ndays = ifelse( month %in% c(1, 3, 5, 7, 8, 10, 12), 31 ,
                                                 ifelse(month == 2,28,30 ) )
 )
 # Focus on cooling degree, heating degree 
-climate <- climate %>% mutate_at( c( 'CLDD', 'HTDD' ) , list( avg = ~./ndays) )
+climate <- climate %>% mutate_at( c( 'CLDD', 'HTDD' ), list( avg = ~./ndays) )
 
 # Drop the others
 climate <- climate %>% select(-c('DATE', 'tempdate', 'STATION', 'NAME','DX32','DX70','DX90'))
 
 # Check the descriptive
-datasummary( CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max , data = climate )
+datasummary( CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max, data = climate )
 
 
 ##
@@ -90,7 +86,7 @@ electricity <- electricity %>% mutate(lnQ = log(Q))
 
 ###
 # Merging the two data
-df <- inner_join( climate , electricity , by = 'ym' )
+df <- inner_join( climate, electricity, by = 'ym' )
 rm(electricity, climate)
 
 # Restrict the sample between years 2001 and 2017
@@ -104,7 +100,7 @@ df <- df %>% mutate( date = ymd( date ) )
 # DATA EXPLORATION
 
 # Overall descriptive
-datasummary( Q + lnQ + CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max + N , data = df )
+datasummary( Q + lnQ + CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max + N, data = df )
 
 
 # PLOT THE TIME SERIES
@@ -173,11 +169,11 @@ ggarrange(p1 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') +
 # Time-series specific analysis
 
 # 1) Serial correlation: a.k.a. Auto-correlation
-source_url( 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture18-timeseries-regression/raw_codes/ggplot.acorr.R' )
+source('ggplotacorr.R')
 
 # ACF - gives the correlation between y_t and lags: Corr(y_t,y_t-lag)
 # PACF - (Partial Autocorrelation Fnc)
-#     shows the correlation between Corr(y_t,y_t-lag) | Corr( y_t , y_t-lag-1 )
+#     shows the correlation between Corr(y_t,y_t-lag) | Corr( y_t, y_t-lag-1 )
 #     thus what is the correlation between y_t and y_t-lag if 
 #       we have controlled for the previous lags already!
 #
@@ -185,13 +181,13 @@ source_url( 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rs
 #   In ACF it means if bars within the line we have a White-Noise: Corr = 0
 
 # Log of electricity consumption
-ggplot.acorr( df$lnQ , lag.max = 24, ci= 0.95, 
+ggplotacorr( df$lnQ, lag.max = 24, ci= 0.95, 
               large.sample.size = F, horizontal = TRUE)
 # Cooling degree
-ggplot.acorr( df$CLDD_avg , lag.max = 24, ci= 0.95, 
+ggplotacorr( df$CLDD_avg, lag.max = 24, ci= 0.95, 
               large.sample.size = F, horizontal = TRUE)
 # Heating degree
-ggplot.acorr( df$HTDD_avg , lag.max = 24, ci= 0.95, 
+ggplotacorr( df$HTDD_avg, lag.max = 24, ci= 0.95, 
               large.sample.size = F, horizontal = TRUE)
 
 
@@ -205,7 +201,7 @@ df <- df %>% mutate(DlnQ=lnQ-lag(lnQ),
 # functional form investigations 
 ggplot(data = df, aes(x=DCLDD_avg, y=DlnQ)) +
   geom_point(size=1,  shape=20, stroke=2, fill='blue', color='blue') +
-  geom_smooth(method='loess', se=F, colour='black', size=1.5, span=0.9 , formula = y ~ x) +
+  geom_smooth(method='loess', se=F, colour='black', size=1.5, span=0.9, formula = y ~ x) +
   labs(x = 'Cooling degrees (Farenheit), first difference',
        y = 'ln(monthly electricity consumption), first difference') +
   scale_x_continuous(limits = c(-20,20), breaks = seq(-20,20, 10)) +
@@ -213,7 +209,7 @@ ggplot(data = df, aes(x=DCLDD_avg, y=DlnQ)) +
 
 ggplot(data = df, aes(x=DHTDD_avg, y=DlnQ)) +
   geom_point(size=1,  shape=20, stroke=2, fill='blue', color='blue') +
-  geom_smooth(method='loess', se=F, colour='black', size=1.5, span=0.9 , formula = y ~ x) +
+  geom_smooth(method='loess', se=F, colour='black', size=1.5, span=0.9, formula = y ~ x) +
   labs(x = 'Heating degrees (Farenheit), first difference',
        y = 'ln(monthly electricity consumption), first difference') +
   scale_x_continuous(limits = c(-10,10), breaks = seq(-10,10, 10)) +
@@ -230,37 +226,37 @@ ggplot(data = df, aes(x=DHTDD_avg, y=DlnQ)) +
 
 # Need to add a new variable which is telling fixest that it is a time-series data and not panel:
 #   period is changing as date, but id is the same
-df <- df %>% mutate( period = 1 : nrow( df ) , id = 1 )
+df <- df %>% mutate( period = 1 : nrow( df ), id = 1 )
 
 
 # Run reg1 with, Newey-West SE
-reg1 <- feols( DlnQ ~ DCLDD_avg + DHTDD_avg, data = df , 
-               panel.id = ~ id + period , vcov = NW(24) )
+reg1 <- feols( DlnQ ~ DCLDD_avg + DHTDD_avg, data = df, 
+               panel.id = ~ id + period, vcov = NW(24) )
 reg1
 
 # Run reg2 with, Newey-West SE
 reg2 <- feols(DlnQ ~ DCLDD_avg + DHTDD_avg + as.factor(month), data=df, 
-              panel.id = ~ id + period , vcov = NW(24) )
+              panel.id = ~ id + period, vcov = NW(24) )
 reg2 
 
 # Compare the two models
-etable( reg1 , reg2 )
+etable( reg1, reg2 )
 
 # reg3: include the lag of DlnQ:
-reg3 <- feols( DlnQ ~ l( DlnQ , 1 ) + DCLDD_avg + DHTDD_avg + as.factor(month), 
-               data=df, panel.id = ~ id + period , vcov = NW(24) )
+reg3 <- feols( DlnQ ~ l( DlnQ, 1 ) + DCLDD_avg + DHTDD_avg + as.factor(month), 
+               data=df, panel.id = ~ id + period, vcov = NW(24) )
 reg3
 
 # reg4: include the lag of heating/cooling degrees up to two lags
-reg4 <- feols( DlnQ ~ l( DCLDD_avg , 0 : 2 ) + l( DHTDD_avg , 0 : 2 ) + as.factor(month), 
-               data = df, panel.id = ~ id + period , vcov = NW(24) )
+reg4 <- feols( DlnQ ~ l( DCLDD_avg, 0 : 2 ) + l( DHTDD_avg, 0 : 2 ) + as.factor(month), 
+               data = df, panel.id = ~ id + period, vcov = NW(24) )
 reg4
 
 # Compare the results:
-etable( reg1 , reg2 , reg3 , reg4 )
+etable( reg1, reg2, reg3, reg4 )
 # Note: to be fair, one needs to use a restricted sample with 201 observations in this case!
 
-etable( reg1 , reg2 , reg3 , reg4 , drop = 'factor' , se.below = T )
+etable( reg1, reg2, reg3, reg4, drop = 'factor', se.below = T )
 
 # Task:
 # Replicate these results, but now using the same sample for each model to ensure fair comparison!
@@ -276,13 +272,13 @@ etable( reg1 , reg2 , reg3 , reg4 , drop = 'factor' , se.below = T )
 df <- df %>% mutate( DDCLDD_avg = DCLDD_avg - lag( DCLDD_avg ) ,
                      DDHTDD_avg = DHTDD_avg - lag( DHTDD_avg ) )
 
-reg_cumSE <- feols( DlnQ ~ l( DCLDD_avg , 2 ) + l( DHTDD_avg , 2 ) +
-                           l( DDCLDD_avg , 0:1 ) + l( DDHTDD_avg , 0:1 ) + as.factor(month), 
-                    data=df, panel.id = ~ id + period , vcov = NW(24) )
+reg_cumSE <- feols( DlnQ ~ l( DCLDD_avg, 2 ) + l( DHTDD_avg, 2 ) +
+                           l( DDCLDD_avg, 0:1 ) + l( DDHTDD_avg, 0:1 ) + as.factor(month), 
+                    data=df, panel.id = ~ id + period, vcov = NW(24) )
 reg_cumSE
 
 # Compare the results
-etable( reg4 , reg_cumSE )
+etable( reg4, reg_cumSE )
 # Remark - from reg4: DCLDD_avg+l(DCLDD_avg,1)+l(DCLDD_avg,2) == reg_cumSE: l(DCLDD_avg,2)
 #   extra: for reg_cumSE: l(DCLDD_avg,2) we have SE as well!
 #   same for l(DHTDD_avg,2)

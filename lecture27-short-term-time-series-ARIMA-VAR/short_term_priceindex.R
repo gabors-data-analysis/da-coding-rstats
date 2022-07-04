@@ -531,7 +531,7 @@ data_plot <- hprice %>%
 # with uncertainty fan
 conf_level_lower <- paste0(conf_level_chr, '_lower')
 conf_level_upper <- paste0(conf_level_chr, '_upper')
-ggplot(data = data_plot , aes(x = as.Date(date), y = p))+
+ggplot(data = data_plot, aes(x = as.Date(date), y = p))+
   geom_line(size = 0.8, aes(color = 'Actual')) +
   geom_line(aes(x = as.Date(date), y = p_pred, color = 'Prediction '),  size = 1) +
   geom_ribbon(aes(ymin =  get(conf_level_lower), ymax = get(conf_level_upper)), alpha=0.2,   bg='green') +
@@ -622,7 +622,7 @@ data_plot <-  left_join(hprice_all,forecast_holdout_best) %>%
   filter(year(date)>=2015)
 
 # with uncertainty fan
-ggplot(data = data_plot , aes(x = as.Date(date), y = p))+
+ggplot(data = data_plot, aes(x = as.Date(date), y = p))+
   geom_line(size = 0.8, aes(color = 'Actual')) +
   geom_line(aes(x = as.Date(date), y = p_pred, color = 'Prediction '),  size = 1) +
   geom_ribbon(aes(ymin =  get(conf_level_lower), ymax = get(conf_level_upper)), alpha=0.2,   bg='green') +

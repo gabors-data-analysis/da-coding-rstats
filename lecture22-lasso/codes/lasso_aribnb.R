@@ -118,7 +118,7 @@ data <- data %>%
     n_reviews_per_month       = ifelse(is.na(n_reviews_per_month), median(n_reviews_per_month, na.rm = T), n_reviews_per_month)
           )
 # check one flagged variable
-datasummary( factor(flag_days_since) + factor(flag_review_scores_rating) + factor(flag_reviews_per_month) ~ N , data )
+datasummary( factor(flag_days_since) + factor(flag_review_scores_rating) + factor(flag_reviews_per_month) ~ N, data )
 
 
 
@@ -310,7 +310,7 @@ set.seed(20180123)
 # create ids:
 # 1) seq_len: generate regular sequences
 # 2) sample: select random rows from a table
-holdout_ids <- sample( seq_len( nrow( data ) ) , size = smp_size )
+holdout_ids <- sample( seq_len( nrow( data ) ), size = smp_size )
 data$holdout <- 0
 data$holdout[holdout_ids] <- 1
 
@@ -345,7 +345,7 @@ for ( i in 1:8 ){
   formula <- formula(paste0(yvar,xvars))
   
   # Estimate model on the whole sample
-  model_work_data <- feols( formula , data = data_work , vcov='hetero' )
+  model_work_data <- feols( formula, data = data_work, vcov='hetero' )
   #  and get the summary statistics
   fs  <- fitstat(model_work_data,c('rmse','r2','bic'))
   BIC <- fs$bic
@@ -366,7 +366,7 @@ for ( i in 1:8 ){
   if ( i == 1 ){
     model_results <- model_add
   } else{
-    model_results <- rbind( model_results , model_add )
+    model_results <- rbind( model_results, model_add )
   }
 }
 
@@ -376,9 +376,9 @@ model_results
 
 # RMSE training vs test graph
 colors = c('Training RMSE'='green','Test RMSE' = 'blue')
-ggplot( data = model_results, aes( x = factor( Coefficients ) , group = 1 ) )+
-  geom_line(aes( y = Training_RMSE , color = 'Training RMSE'), size = 1 ) +
-  geom_line(aes( y = Test_RMSE , color = 'Test RMSE') , size = 1 )+
+ggplot( data = model_results, aes( x = factor( Coefficients ), group = 1 ) )+
+  geom_line(aes( y = Training_RMSE, color = 'Training RMSE'), size = 1 ) +
+  geom_line(aes( y = Test_RMSE, color = 'Test RMSE'), size = 1 )+
   labs(y='RMSE',x='Number of coefficients',color = '')+
   scale_color_manual(values = colors)+
   theme_bw()+
@@ -441,7 +441,7 @@ lasso_add <- tibble(Model='LASSO', Coefficients=nrow(lasso_coeffs_nz),
                     R_squared=lasso_fitstats$Rsquared, BIC = NA, 
                     Training_RMSE = NA, Test_RMSE = lasso_fitstats$RMSE )
 # Add it to final results
-model_results <- rbind( model_results , lasso_add )
+model_results <- rbind( model_results, lasso_add )
 model_results
 
 
@@ -496,13 +496,13 @@ print(nrow(elasticnet_model_nz))
 # Let us check only Models: 3, 7 and LASSO
 
 # we need to re-run Model 3 and 7 on the work data
-m3 <- feols( formula(paste0('price',modellev3)) , data = data_work, vcov = 'hetero' )
-m7 <- feols( formula(paste0('price',modellev7)) , data = data_work, vcov = 'hetero' )
+m3 <- feols( formula(paste0('price',modellev3)), data = data_work, vcov = 'hetero' )
+m7 <- feols( formula(paste0('price',modellev7)), data = data_work, vcov = 'hetero' )
 
 # Make prediction for the hold-out sample with each models
-m3_p <- predict( m3 , newdata = data_holdout )
-m7_p <- predict( m7 , newdata = data_holdout )
-mL_p <- predict( lasso_model , newdata = data_holdout )
+m3_p <- predict( m3, newdata = data_holdout )
+m7_p <- predict( m7, newdata = data_holdout )
+mL_p <- predict( lasso_model, newdata = data_holdout )
 
 # Calculate the RMSE on hold-out sample
 m3_rmse <- RMSE(m3_p,data_holdout$price)
@@ -530,9 +530,9 @@ sum
 # add the predicted values
 data_holdout$predLp <- mL_p
 
-ggplot( data_holdout , aes( y = price , x = predLp ) ) +
-  geom_point( size = 1 , color = 'blue' ) +
-  geom_abline( intercept = 0, slope = 1, size = 1, color = 'green' , linetype = 'dashed') +
+ggplot( data_holdout, aes( y = price, x = predLp ) ) +
+  geom_point( size = 1, color = 'blue' ) +
+  geom_abline( intercept = 0, slope = 1, size = 1, color = 'green', linetype = 'dashed') +
   xlim(-1,max(data_holdout$price))+
   ylim(-1,max(data_holdout$price))+
   labs(x='Predicted price (US$)',y='Price (US$)')+
@@ -550,7 +550,7 @@ ggplot( data_holdout , aes( y = price , x = predLp ) ) +
 
 
 # Use Model 7 which is similarly good to get 80% PI:
-m7_pPI <- predict( m7 , newdata = data_holdout , interval = 'predict' , level = 0.8 )
+m7_pPI <- predict( m7, newdata = data_holdout, interval = 'predict', level = 0.8 )
 
 # Save into datatable
 data_holdout$predm7p    <- m7_pPI$fit
@@ -561,10 +561,10 @@ data_holdout$pi80_h_m7p <- m7_pPI$ci_high
 # Note: we use mean as it reflects the what can you expect, but can use e.g. median or any other measure.
 #   BUT keep it simple and always use such measure which makes sense!
 
-datasummary( as.factor( n_accommodates )*( predm7p + pi80_l_m7p + pi80_h_m7p )  ~ Mean , data = data_holdout )
+datasummary( as.factor( n_accommodates )*( predm7p + pi80_l_m7p + pi80_h_m7p )  ~ Mean, data = data_holdout )
 
 # Or a tibble
-pred_persons <- data_holdout %>% select( n_accommodates , predm7p , pi80_l_m7p, pi80_h_m7p ) %>% 
+pred_persons <- data_holdout %>% select( n_accommodates, predm7p, pi80_l_m7p, pi80_h_m7p ) %>% 
                 group_by( n_accommodates ) %>% 
   summarise(fit = mean(predm7p, na.rm=TRUE), pred_lwr = mean(pi80_l_m7p, na.rm=TRUE), pred_upr = mean(pi80_h_m7p, na.rm=TRUE))
 pred_persons
@@ -592,7 +592,7 @@ ggplot(pred_persons, aes(x=factor(n_accommodates))) +
 # Plot against L1 norm
 plot(lasso_model$finalModel)
 # Plot against log of lambda
-plot(lasso_model$finalModel , xvar = 'lambda', label = TRUE)
+plot(lasso_model$finalModel, xvar = 'lambda', label = TRUE)
 
 # Using 1SE rule for selecting a more parsimonious model:
 # Get the 1SE value:
@@ -629,7 +629,7 @@ lasso_s_coeffs_nz<-lasso_s_coeffs %>%
 print(nrow(lasso_s_coeffs_nz))
 
 # Check on prediction
-mLs_p <- predict( lasso_simple , newdata = data_holdout )
+mLs_p <- predict( lasso_simple, newdata = data_holdout )
 mLs_rmse <- RMSE(mLs_p,data_holdout$price)
 # Create a table
 sum <- rbind(m3_rmse,m7_rmse,mL_rmse,mLs_rmse)

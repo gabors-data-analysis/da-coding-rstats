@@ -46,7 +46,7 @@ hotels <- hotels %>%
 # Summary statistics on price
 P95 <- function(x){ quantile(x,.95,na.rm=T)}
 datasummary( price + distance ~ Mean + SD + Min + 
-               Max + Median + P95 + N , data = hotels )
+               Max + Median + P95 + N, data = hotels )
 
 ##
 # Graphical investigation:
@@ -70,14 +70,14 @@ hotels <- hotels %>% mutate( dist2 = as.numeric( distance >= 2 ) )
 # Add the mean of the prices for both categories
 dist2 <- hotels %>% group_by( dist2 ) %>% 
             summarize( Eprice_cat2 = mean( price ) )
-hotels<-left_join( hotels , dist2 )
+hotels<-left_join( hotels, dist2 )
 
 # Recode it to a factor with 'close' and 'far' values
 hotels <- hotels %>%  mutate(dist2 = recode( dist2 ,`0` = 'Close',`1` = 'Far' ) )
 
 # Check the descriptives for the two categories:
 datasummary( dist2* distance + dist2*price ~ 
-               Mean + SD + Min + Max + N , data = hotels )
+               Mean + SD + Min + Max + N, data = hotels )
 
 # Plot the two categories
 ggplot(data = hotels) +
@@ -116,7 +116,7 @@ dist4 <- hotels %>% group_by( dist4 ) %>% summarize( Eprice_cat4 = mean( price )
 hotels<-left_join(hotels,dist4)
 
 datasummary( factor( dist4 ) * distance + factor( dist4 ) * price ~ 
-               Mean + SD + Min + Max + N , data = hotels )
+               Mean + SD + Min + Max + N, data = hotels )
 
 
 # Make a graph for each segment
@@ -169,7 +169,7 @@ dist7_new <- hotels %>% group_by(dist7_new) %>% summarize( Eprice_cat7_new = mea
 hotels<-left_join(hotels,dist7_new)
 
 datasummary( factor( dist7_new ) * distance + factor( dist7_new ) * price ~ 
-               Mean + SD + Min + Max + N , data = hotels )
+               Mean + SD + Min + Max + N, data = hotels )
 
 # Scatterplot with step function, starting point is simply at cut-off
 hotels <-hotels %>% mutate( dist7_s = 1*as.numeric(hotels$distance>=1) + 
@@ -190,8 +190,8 @@ p1 + geom_segment( data=hotels, aes(x = dist7_s, y=yend, xend=xend, yend=yend),
 #
 # LOWESS NONPARAMETRIC REGRESSION
 
-p1 + geom_smooth( aes( x = distance , y = price ) , 
-                  method = 'loess' , formula = 'y ~ x', se = F )
+p1 + geom_smooth( aes( x = distance, y = price ), 
+                  method = 'loess', formula = 'y ~ x', se = F )
 
 # Advantage: 
 #    smooth curve which represent the pattern of association pretty flexibly!
@@ -199,7 +199,7 @@ p1 + geom_smooth( aes( x = distance , y = price ) ,
 #    no measurable properties: it smooth over the observations with an 'optimal' bandwidth.
 
 # Extra: you can check the output of the model estimate for loess:
-model_loess <- loess( price ~ distance , data = hotels )
+model_loess <- loess( price ~ distance, data = hotels )
 model_loess
 summary( model_loess )
 
@@ -207,8 +207,8 @@ summary( model_loess )
 ###
 #
 # Solution: linear regression
-p1 + geom_smooth( aes( x = distance , y = price ) , 
-                  method = 'lm' , formula = 'y ~ x', se = F )
+p1 + geom_smooth( aes( x = distance, y = price ), 
+                  method = 'lm', formula = 'y ~ x', se = F )
 
 # How to quantify linear regression:
 # Remember: y = alpha + beta * x + eps
@@ -223,15 +223,15 @@ summary( base_reg )
 #      has a nice model comparison command
 
 # Simple model, with homoskedastic SE:
-reg <- feols( price ~ distance , data = hotels )
+reg <- feols( price ~ distance, data = hotels )
 reg
 
 # Simple model, with heteroskedastic robust SE:
-reg_h <- feols( price ~ distance , data = hotels , vcov = 'hetero' )
+reg_h <- feols( price ~ distance, data = hotels, vcov = 'hetero' )
 reg_h
 
 # and it is easy to compare
-etable( reg , reg_h )
+etable( reg, reg_h )
 
 ###
 # Good to know:
@@ -251,16 +251,16 @@ hotels$predprice <- reg$fitted.values
 hotels$e <- reg$residuals
 
 # Get the hotel, which is the most underpriced
-hotels %>% top_n( -1 , e )
+hotels %>% top_n( -1, e )
 # probably we are only interested in hotel_id, distance, price, prediction and error values:
-hotels %>% top_n( -1 , e ) %>% 
-  select( hotel_id, price, distance , predprice , e )
+hotels %>% top_n( -1, e ) %>% 
+  select( hotel_id, price, distance, predprice, e )
 # Interpret the result!
 
 
 # We can get the 5 most overpriced five hotels
-hotels %>% top_n( 5 , e ) %>% 
-  select( hotel_id, price, distance , predprice , e )
+hotels %>% top_n( 5, e ) %>% 
+  select( hotel_id, price, distance, predprice, e )
 
 
 # Checking the histogram of residuals: 
@@ -282,7 +282,7 @@ ggplot(data = hotels, aes (x = e)) +
 
 # create a factor variable with 4 possible values
 hotels$reg1_res <- ifelse(hotels$e >=0, 'overpriced', 'underpriced')
-hotels$reg1_res <- ifelse(hotels$e %in% tail( sort(reg$residuals, decreasing=TRUE) , 5 ) , 'bottom5',
+hotels$reg1_res <- ifelse(hotels$e %in% tail( sort(reg$residuals, decreasing=TRUE), 5 ), 'bottom5',
                           ifelse(hotels$e %in% head(sort(reg$residuals, decreasing=TRUE), 5), 'top5', hotels$reg1_res))
 
 # Create a pretty graph with the 4 factor types:
@@ -298,7 +298,7 @@ ggplot(data= hotels, aes(x = distance, y = price)) +
   geom_smooth(method='lm', size=1, se = F, formula = y ~ x )+
   coord_cartesian( xlim = c(0, 7), ylim = c(0, 400)) +
   expand_limits(x = 0.01, y = 0.01) +
-  scale_x_continuous(expand = c(0.01,0.01), limits=c(0, 7)   , breaks=seq(0, 7, by=1)) + 
+  scale_x_continuous(expand = c(0.01,0.01), limits=c(0, 7) , breaks=seq(0, 7, by=1)) + 
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0, 400), breaks = seq(0, 400, by = 50)) +
   labs(x = 'Distance to city center (miles)',y = 'Price (US dollars)')+
   geom_segment(aes(x = 2, y = 25, xend = 1.15, yend = 50), arrow = arrow(length = unit(0.1, 'cm')))+

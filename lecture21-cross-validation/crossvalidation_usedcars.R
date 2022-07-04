@@ -63,13 +63,13 @@ cars$transmission <- fct_explicit_na(cars$transmission, na_level = 'Missing')
 cars$type         <- fct_explicit_na(cars$type, na_level = 'Missing')
 
 # check frequency by fuel type
-datasummary( fuel ~ N + Percent() , data = cars)
+datasummary( fuel ~ N + Percent(), data = cars)
 
 # keep the gas-fuelled vehicles only
 cars <- cars %>% filter( fuel=='gas' )
 
 # check frequency by vehicle condition
-datasummary( condition ~ N + Percent() , data = cars )
+datasummary( condition ~ N + Percent(), data = cars )
 
 # drop vehicles in fair and new condition
 cars <- cars %>% filter(!condition %in% c('new', 'fair'))
@@ -109,7 +109,7 @@ cars <- cars %>%
 cars <- cars %>%
   mutate(cylind6 = ifelse(cylinders=='6 cylinders',1,0))
 
-datasummary( cylinders + as.factor( cylind6 ) ~ N + Percent() , data = cars )
+datasummary( cylinders + as.factor( cylind6 ) ~ N + Percent(), data = cars )
 
 
 # age: quadratic, cubic
@@ -123,21 +123,21 @@ cars <- cars %>%
 
 
 # Frequency tables: area 
-datasummary( area * price ~ N + Mean , data = cars )
+datasummary( area * price ~ N + Mean, data = cars )
 
 # focus only on Chicago
 cars <- cars %>%
   filter(area=='chicago')
 
 # condition
-datasummary( condition * price ~ N + Mean , data = cars )
+datasummary( condition * price ~ N + Mean, data = cars )
 
 # dealer
-datasummary( as.factor( dealer ) * price ~ N + Mean , data = cars )
+datasummary( as.factor( dealer ) * price ~ N + Mean, data = cars )
 
 # data summary
 datasummary( age + odometer + LE + XLE + SE + cond_likenew + cond_excellent + cond_good + cylind6 ~
-               Mean + Median + Min + Max + P25 + P75 + N , data = cars )
+               Mean + Median + Min + Max + P25 + P75 + N, data = cars )
 #####
 # 4) Histograms - check the outcome variable
 # a) price
@@ -181,8 +181,8 @@ ggplot(data = cars, aes(x=age, y=price)) +
 # Lowess vs. quadratic specification with age
 ggplot(data = cars, aes(x=age,y=price)) +
   geom_smooth( aes(colour='red'), method='loess', formula = y ~ x,se=F, size=1) +
-  geom_smooth( aes(colour='black'), method='lm', formula = y ~ poly(x,2) , se=F, size=1) +
-  geom_point( aes( y = price ) , color = 'blue', size = 1,  shape = 16, alpha = 0.8, show.legend=F, na.rm = TRUE) + 
+  geom_smooth( aes(colour='black'), method='lm', formula = y ~ poly(x,2), se=F, size=1) +
+  geom_point( aes( y = price ), color = 'blue', size = 1,  shape = 16, alpha = 0.8, show.legend=F, na.rm = TRUE) + 
   labs(x = 'Age (years)',y = 'Price (US dollars)') +
   scale_color_manual(name='', values=c('red','black'),labels=c('Lowess in age','Quadratic in age')) +
   theme_bw() +
@@ -219,7 +219,7 @@ reg5 <- feols(model5, data=cars, vcov = 'hetero')
 
 # evaluation of the models: using all the sample
 fitstat_register('k', function(x){length( x$coefficients ) - 1}, 'No. Variables')
-etable( reg1 , reg2 , reg3 , reg4 , reg5 , fitstat = c('aic','bic','rmse','r2','n','k') )
+etable( reg1, reg2, reg3, reg4, reg5, fitstat = c('aic','bic','rmse','r2','n','k') )
 
 
 
@@ -286,11 +286,11 @@ for( i in 1 : length(cv) ){
   m_comp[ i ] <- length( get( models[i] )$coefficient  - 1 ) 
 }
 
-m_comp <- tibble( model = models , 
+m_comp <- tibble( model = models, 
                   complexity = m_comp,
                   RMSE = rmse_cv )
 
-ggplot( m_comp , aes( x = complexity , y = RMSE ) ) +
+ggplot( m_comp, aes( x = complexity, y = RMSE ) ) +
   geom_point(color='red',size=2) +
   geom_line(color='blue',size=0.5)+
   labs(x='Number of explanatory variables',y='Averaged RMSE on test samples',
@@ -405,7 +405,7 @@ reg4log <- feols(model4log, data=cars, vcov = 'hetero')
 reg5log <- feols(model5log, data=cars, vcov = 'hetero')
 
 # evaluation of the models
-etable( reg1log , reg2log , reg3log , reg4log , reg5log , fitstat = c('aic','bic','rmse','r2','n','k') )
+etable( reg1log, reg2log, reg3log, reg4log, reg5log, fitstat = c('aic','bic','rmse','r2','n','k') )
 
 #####################
 # Cross-validation for LOG
@@ -460,7 +460,7 @@ pred3_new_log <- predict(pred3l, newdata = new,se.fit = TRUE, interval = 'predic
 pred3_new_log 
 
 # get log model rmse
-cars$lnp2 <- predict( pred3l , cars )
+cars$lnp2 <- predict( pred3l, cars )
 rmse3_log <- RMSE(cars$lnp2,cars$lnprice)
 rmse3_log
 
@@ -471,7 +471,7 @@ lnp2_new_lev <- exp(pred3_new_log[1])*exp((rmse3_log^2)/2)
 # Check the RMSE to compare with the level model:
 rmse3_log2lvl <- RMSE(cars$lnplev,cars$price)
 
-tibble( level = rmse3 , log = rmse3_log2lvl )
+tibble( level = rmse3, log = rmse3_log2lvl )
 
 ## Create the 80% PI and the 95% PI as well
 # prediction for new observation
@@ -492,7 +492,7 @@ lnplev_PIhigh80 <- exp(lnp2_PIhigh80)*exp(rmse3_log^2/2)
 # summary of predictions and PI
 sum <- matrix( c( pred3_new_log[1], lnp2_PIlow ,lnp2_PIhigh, lnp2_PIlow80, lnp2_PIhigh80,
                   lnp2_new_lev, lnplev_PIlow, lnplev_PIhigh, lnplev_PIlow80, lnplev_PIhigh80,
-                  pred3_new[1], pred3_new[3], pred3_new[4], pred3_new80[3], pred3_new80[4]) , nrow = 5 ,ncol = 3)
+                  pred3_new[1], pred3_new[3], pred3_new[4], pred3_new80[3], pred3_new80[4]), nrow = 5 ,ncol = 3)
 
 colnames(sum) <- c('Model in logs', 'Recalculated to level','Original in level')
 rownames(sum) <- c('Predicted', 'PI_low(95%)', 'PI_high(95%)','PI_low(80%)', 'PI_high(80%)')

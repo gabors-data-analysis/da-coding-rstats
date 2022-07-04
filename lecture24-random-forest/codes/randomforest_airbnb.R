@@ -84,7 +84,7 @@ airbnb <- airbnb %>% mutate(n_accommodates_copy = n_accommodates)
 # basic descr stat -------------------------------------------
 skimr::skim(airbnb)
 datasummary(price~Mean+Median+P25+P75+N,data=airbnb)
-datasummary( f_room_type + f_property_type ~ N + Percent() , data = airbnb )
+datasummary( f_room_type + f_property_type ~ N + Percent(), data = airbnb )
 
 # create train and holdout samples -------------------------------------------
 # train is where we do it all, incl CV
@@ -163,7 +163,7 @@ rf_model_1 <- train(
 )
 })
 rf_model_1
-# save( rf_model_1 , file = 'rf_model_1.RData' )
+# save( rf_model_1, file = 'rf_model_1.RData' )
 # load(url(paste0(path_url,'rf_model_1.RData?raw=true')))
 
 # more complicated model - using random forest
@@ -179,7 +179,7 @@ rf_model_2 <- train(
 )
 })
 rf_model_2
-# save( rf_model_2 , file = 'rf_model_2.RData' )
+# save( rf_model_2, file = 'rf_model_2.RData' )
 # load(url(paste0(path_url,'rf_model_2.RData?raw=true')))
 
 
@@ -223,7 +223,7 @@ summary(results)
 # variable importance plot
 # 1) full varimp plot, full
 # 2) varimp plot grouped
-# 3) varimp plot , top 10
+# 3) varimp plot, top 10
 # 4) varimp plot  w copy, top 10
 
 
@@ -506,7 +506,7 @@ system.time({
 })
 gbm_model
 gbm_model$finalModel
-# save( gbm_model , file = 'gbm_model.RData' )
+# save( gbm_model, file = 'gbm_model.RData' )
 # load(url(paste0(path_url,'gbm_model.RData?raw=true')))
 
 

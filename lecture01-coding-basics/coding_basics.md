@@ -131,7 +131,7 @@ any variable name, but always keep in mind the three requirements:
 
 3.  short names
 
--   good: `myStr`, `my_string` , `m_string`
+-   good: `myStr`, `my_string`, `m_string`
 -   bad: `my_new_string_i_will_use`, this is just hard to write out
     every time, and the probability of making coding mistakes are
     getting larger
@@ -179,9 +179,12 @@ guidance on how to format your code:
     readable. E.g. as we will see functions use parenthesis `()`,
     indexing brackets `[]`, conditionals and loops curly brackets `{}`.
     It is a good practice to use a space after opening and before
-    closing.
-2.  In R you can break your code into multiple lines. Use these
-    linebreaks to make your code more easily readable.
+    closing a parenthesis/brackets. Furthermore, after an input we use a
+    comma directly and after that use a space before the next input or
+    the closing bracket, but not double spacing: before and after the
+    comma.
+2.  In R you can break your code into multiple lines. Use these line
+    breaks to make your code more easily readable.
 3.  In the future we will see many embedded commands, meaning you use a
     command within a command. If it is rather complex use spacing and
     line break together to make it easier to follow.
@@ -191,6 +194,13 @@ guidance on how to format your code:
 **Note:** too much formatting will increase the chance of making a
 coding error and your commands will not run or even worse, it will run,
 but not as you wish. Try to keep a good balance!
+
+**Good-to-know:** there are some general advice specific to `tidyverse`
+approach on how to format and which style to use, that can be found
+[here](https://style.tidyverse.org/) if one is interested in more-depth
+on this topic. Also there is a general or base-R coding style called
+[‘linter for R’](https://github.com/r-lib/lintr), which may be useful
+when doing more hard-core programming in R.
 
 ## R-objects
 

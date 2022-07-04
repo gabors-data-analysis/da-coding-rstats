@@ -53,7 +53,7 @@ rm(hotels_europe_price,hotels_europe_features)
 # A) Data management:
 #   a) get the needed sample:
 vienna <- europe %>% filter(accommodation_type=='Hotel') %>%
-  filter( year == 2017, month == 11 , weekend == 0) %>% 
+  filter( year == 2017, month == 11, weekend == 0) %>% 
   filter(city_actual=='Vienna') %>%
   filter(stars>=3 & stars<=4) %>% filter(!is.na(stars)) %>%
   filter(price<=600)
@@ -67,11 +67,11 @@ vienna <- vienna %>% mutate( lnprice = log( price ) )
 # Summary statistics on price and log of price
 P95 <- function(x){ quantile(x,.95,na.rm=T)}
 datasummary( price + lnprice + distance + stars + rating ~ 
-               Mean + SD + Min + Max + Median + P95 + N , data = vienna )
+               Mean + SD + Min + Max + Median + P95 + N, data = vienna )
 
 # Look at the scatter plots - with the visual inspection we can decide which transformation to use!
 # p1: distance vs price
-p1 <- ggplot( data = vienna , aes( x = distance, y = lnprice )) +
+p1 <- ggplot( data = vienna, aes( x = distance, y = lnprice )) +
   geom_point( color = 'red', size = 2, shape = 16, ) + 
   geom_smooth( method = 'loess', formula = y ~ x) +
   labs(x = 'Distance to city center (miles)',y = 'Log of price (US dollars)')
@@ -79,7 +79,7 @@ p1
 # Log for price, Distance: check linear spline with knots at 1 and 4
 
 # p2: stars vs price
-p2 <- ggplot( data = vienna , aes( x = stars, y = lnprice )) +
+p2 <- ggplot( data = vienna, aes( x = stars, y = lnprice )) +
   geom_point( color = 'red', size = 2, shape = 16, ) + 
   geom_smooth( method = 'loess', formula = y ~ x) +
   labs(x = 'Star of the Hotel',y = 'Log of price (US dollars)')
@@ -90,7 +90,7 @@ p2
 ##
 # Task: plot p3: rating vs price
 # What can you infer?
-p3 <- ggplot( data = vienna , aes( x = rating, y = lnprice )) +
+p3 <- ggplot( data = vienna, aes( x = rating, y = lnprice )) +
   geom_point( color = 'red', size = 2, shape = 16, ) + 
   geom_smooth( method = 'loess', formula = y ~ x) +
   labs(x = 'Ratings of the hotel',y = 'Log of price (US dollars)')
@@ -113,15 +113,15 @@ association_figs
 # II) Running regressions:
 
 # Baseline A: use only rating with heteroscedastic SE
-reg0 <- feols( lnprice ~ rating, data = vienna , vcov = 'hetero')
+reg0 <- feols( lnprice ~ rating, data = vienna, vcov = 'hetero')
 reg0
 
 # Baseline B: use only distance with heteroscedastic SE
-reg1 <- feols( lnprice ~ distance , data = vienna , vcov = 'hetero' )
+reg1 <- feols( lnprice ~ distance, data = vienna, vcov = 'hetero' )
 reg1
 
 # Multiple regression with both rating and distance
-reg2 <- feols( lnprice ~ distance + rating , data = vienna , vcov = 'hetero' )
+reg2 <- feols( lnprice ~ distance + rating, data = vienna, vcov = 'hetero' )
 reg2
 
 # Add the number of stars to out model:
@@ -133,21 +133,21 @@ vienna <- vienna %>% mutate( star3 = as.numeric( stars == 3 ),
 ###
 # Task: add stars as dummies to the model with heteroscedastic SE
 # 
-reg3 <- feols( lnprice ~ distance + rating + star3 + star35 , data = vienna , vcov = 'hetero' )
+reg3 <- feols( lnprice ~ distance + rating + star3 + star35, data = vienna, vcov = 'hetero' )
 reg3
 
 # Discuss what the coefficients mean for star3 and star35! What about star4?
 
 # Compare the results
-etable( reg0 , reg1 , reg2 , reg3 )
+etable( reg0, reg1, reg2, reg3 )
 
 # More complex models: this is the art of our profession: find the good knot points 
 #     (again this is why we do scatter plots)
 reg4 <- feols( lnprice ~ lspline(distance, c(1,4)) + lspline(rating, 3.5) + star3 + star35 ,
-               data = vienna , vcov = 'hetero' )
+               data = vienna, vcov = 'hetero' )
 
 
-etable( reg2 , reg3 , reg4 )
+etable( reg2, reg3, reg4 )
 
 
 ####
@@ -163,8 +163,8 @@ corr_term <- exp( mean( vienna$lnprice_resid ) / 2 )
 vienna$price_hat <- exp( vienna$lnprice_hat ) * corr_term
 
 # List of 5 best deals
-vienna %>%  top_n( -5 , lnprice_resid) %>% select( hotel_id , price , price_hat, lnprice , lnprice_hat ,
-                                                   lnprice_resid , distance , stars , rating )
+vienna %>%  top_n( -5, lnprice_resid) %>% select( hotel_id, price, price_hat, lnprice, lnprice_hat ,
+                                                   lnprice_resid, distance, stars, rating )
 # Why the 5 best lnprice_resid is the same as if we have used price_hat? Discuss!
 
 ##
@@ -187,7 +187,7 @@ ggplot(data = vienna, aes(x = lnprice_hat, y = lnprice)) +
 # 2) residual - yhat graph: it needs to be flat
 ggplot(data = vienna, aes(x = lnprice_hat, y = lnprice_resid)) +
   geom_point(color = 'red', size = 2 ) + 
-  geom_smooth( method='lm', colour='blue', se=F , formula = y~x) +
+  geom_smooth( method='lm', colour='blue', se=F, formula = y~x) +
   labs(x = 'ln(Predicted hotel price, US dollars)',y = 'Residuals')+
   theme_bw() 
 
@@ -203,7 +203,7 @@ ggplot(data = vienna, aes(x = lnprice_hat, y = lnprice_resid)) +
 # Confidence interval for the E(Y|X):
 # 1) predict the outcomes with predict command and use the se.fit = T, 
 #     this will give you the standard errors for the conditional expectation!
-pred_CI <- predict( reg4 , newdata = vienna , se.fit=T , interval = 'confidence' )
+pred_CI <- predict( reg4, newdata = vienna, se.fit=T, interval = 'confidence' )
 
 # Add the CI values to vienna dataset
 vienna <- vienna %>% mutate( CI_up  = pred_CI$ci_high,
@@ -211,18 +211,18 @@ vienna <- vienna %>% mutate( CI_up  = pred_CI$ci_high,
 
 # Why we usually do not use such graphs, when evaluating multiple regression results:
 ggplot( data = vienna ) +
-  geom_point( aes( x = distance, y = lnprice ) , color = 'blue', size = 2 ) + 
-  geom_line( aes( x = distance , y = lnprice_hat ) , color = 'red' , size = 1 ) +
-  geom_line( aes( x = distance , y = CI_up ) , color = 'red' , size = .5 , linetype = 'dashed' ) +
-  geom_line( aes( x = distance , y = CI_low ) , color = 'red' , size = .5 , linetype = 'dashed' ) +
+  geom_point( aes( x = distance, y = lnprice ), color = 'blue', size = 2 ) + 
+  geom_line( aes( x = distance, y = lnprice_hat ), color = 'red', size = 1 ) +
+  geom_line( aes( x = distance, y = CI_up ), color = 'red', size = .5, linetype = 'dashed' ) +
+  geom_line( aes( x = distance, y = CI_low ), color = 'red', size = .5, linetype = 'dashed' ) +
   labs(x = 'Distance to city center (miles)',y = 'Log of price (US dollars)')
 
 ###
 # Price a new hotel with the model
 #
 # However you can predict any (new) potential variable
-new_hotel_vienna <- tibble( distance = 2.5 , star3 = 0 , star35 = 0, rating = 3.2 )
-pred_CI_new <- predict( reg4 , newdata = new_hotel_vienna , se.fit=T , interval = 'confidence' )
+new_hotel_vienna <- tibble( distance = 2.5, star3 = 0, star35 = 0, rating = 3.2 )
+pred_CI_new <- predict( reg4, newdata = new_hotel_vienna, se.fit=T, interval = 'confidence' )
 pred_CI_new
 
 # Note: you are not really looking for log-price, hence the correction
@@ -236,10 +236,10 @@ pred_CI_new
 
 ####
 # Prediction interval: considers the inherent error as well!
-pred_PI <- predict( reg4 , newdata = vienna , se.fit=T , interval = 'prediction' )
+pred_PI <- predict( reg4, newdata = vienna, se.fit=T, interval = 'prediction' )
 
 # Check for our new hotel
-pred_PI_new <- predict( reg4 , newdata = new_hotel_vienna , se.fit=T , interval = 'prediction' )
+pred_PI_new <- predict( reg4, newdata = new_hotel_vienna, se.fit=T, interval = 'prediction' )
 
 # Unfortunately, by default it is called 'ci' here as well...
 pred_PI_new
@@ -251,7 +251,7 @@ pred_PI_new <- pred_PI_new %>% mutate( pred_price = exp( fit ) * corr_term,
 pred_PI_new
 
 # Let us compare the two results for our newly predicted hote:
-our_hotel_price <- tibble( price = pred_CI_new$pred_price , 
+our_hotel_price <- tibble( price = pred_CI_new$pred_price, 
                            CI_low = pred_CI_new$CI_low ,
                            CI_up = pred_CI_new$CI_up,
                            PI_low = pred_PI_new$PI_low ,
@@ -266,7 +266,7 @@ our_hotel_price
 ###
 # Task:
 #   There is a new hotel with the following feature values that you would like to price
-#       distance = 0.25 , star3 = 0 , star35 = 0, rating = 4.1
+#       distance = 0.25, star3 = 0, star35 = 0, rating = 4.1
 #   Now, you use polynomials rather than piecewise linear spline up to 3rd order for distance and rating. 
 #     Use dummies for stars and use heteroskedastic robust SE!
 #   Estimate the model, and check the distance and ratings against the residuals for the LEVELS.
@@ -326,17 +326,17 @@ vienna_m_time <- vienna_m_time %>% filter( hotel_id %in% four_freq_id )
 m_form <- formula( lnprice ~ lspline(distance, c(1,4)) + lspline(rating, 3.5) + star3 + star35 )
 
 # Our main model: 2017/11 in a weekday
-regt_0 <- feols( m_form , vcov = 'hetero', data = filter( vienna_m_time ,  year == 2017, month == 11 , weekend == 0 ) )
+regt_0 <- feols( m_form, vcov = 'hetero', data = filter( vienna_m_time,  year == 2017, month == 11, weekend == 0 ) )
 
 # Alternatively 1) 2017/11 on a weekend
-regt_1 <- feols( m_form , vcov = 'hetero', data = filter( vienna_m_time ,  year == 2017, month == 11 , weekend == 1 ) )
+regt_1 <- feols( m_form, vcov = 'hetero', data = filter( vienna_m_time,  year == 2017, month == 11, weekend == 1 ) )
 # Alternatively 2) 2017 December, holiday
-regt_2 <- feols( m_form , vcov = 'hetero', data = filter( vienna_m_time ,  year == 2017, month == 12 , holiday == 1 ) )
+regt_2 <- feols( m_form, vcov = 'hetero', data = filter( vienna_m_time,  year == 2017, month == 12, holiday == 1 ) )
 # Alternatively 2) 2018 June, weekend
-regt_3 <- feols( m_form , vcov = 'hetero', data = filter( vienna_m_time ,  year == 2018, month == 6 , weekend == 1 ) )
+regt_3 <- feols( m_form, vcov = 'hetero', data = filter( vienna_m_time,  year == 2018, month == 6, weekend == 1 ) )
 
 # Compare the results:
-etable( regt_0 , regt_1 , regt_2 , regt_3 ,
+etable( regt_0, regt_1, regt_2, regt_3 ,
         headers = c('2017/11 weekday','2017/11 on a weekend',
                     '2017 December, holiday','2018 June, weekend') )
 
@@ -362,13 +362,13 @@ vienna_h_vs_a <- europe %>% filter( accommodation_type=='Hotel' | accommodation_
 # Note: here we can not compare the same observations as they are inherently different!
 
 # Run regression for the hotels
-regh <- feols(  m_form , vcov = 'hetero', data = filter( vienna_h_vs_a ,  accommodation_type=='Hotel' ) )
+regh <- feols(  m_form, vcov = 'hetero', data = filter( vienna_h_vs_a,  accommodation_type=='Hotel' ) )
 
 # Run regression for the apartments
-rega <- feols(  m_form , vcov = 'hetero', data = filter( vienna_h_vs_a ,  accommodation_type == 'Apartment' ) )
+rega <- feols(  m_form, vcov = 'hetero', data = filter( vienna_h_vs_a,  accommodation_type == 'Apartment' ) )
 
 # Compare the results:
-etable( regh , rega , headers = c('Hotels','Apartments') )
+etable( regh, rega, headers = c('Hotels','Apartments') )
 
 ##
 # Task: 3) Compare different cities:
@@ -387,22 +387,22 @@ etable( regh , rega , headers = c('Hotels','Apartments') )
 # E.g. uses our original sample:
 
 set.seed( 123 )
-ID_train <- sample( 1 : dim( vienna )[ 1 ] , 150 )
-ID_test  <- setdiff(  1 : dim( vienna )[ 1 ] , ID_train )
-vienna_train <- vienna[ ID_train , ]
+ID_train <- sample( 1 : dim( vienna )[ 1 ], 150 )
+ID_test  <- setdiff(  1 : dim( vienna )[ 1 ], ID_train )
+vienna_train <- vienna[ ID_train, ]
 # Note that you do not know the test sample in the competition!
-vienna_test <- vienna[ ID_test , ]
+vienna_test <- vienna[ ID_test, ]
 
 # Let us use two competing models:
 # model 1: simple multivariate model
-pred_m1 <- feols( lnprice ~ distance + rating + star3 + star35 , vcov = 'hetero' , data = vienna_train )
+pred_m1 <- feols( lnprice ~ distance + rating + star3 + star35, vcov = 'hetero', data = vienna_train )
 
 # model 2: multivariate model with linear splines
-pred_m2 <- feols( m_form , vcov = 'hetero' , data = vienna_train )
+pred_m2 <- feols( m_form, vcov = 'hetero', data = vienna_train )
 
 # Now let us use these models on our test sample to predict the values
-pred_m1_test <- predict( pred_m1 , newdata = vienna_test )
-pred_m2_test <- predict( pred_m2 , newdata = vienna_test )
+pred_m1_test <- predict( pred_m1, newdata = vienna_test )
+pred_m2_test <- predict( pred_m2, newdata = vienna_test )
 
 # Create a tibble to compare the results
 pred_compare <- tibble( actual_lnprice = vienna_test$lnprice ,
@@ -411,20 +411,20 @@ pred_compare <- tibble( actual_lnprice = vienna_test$lnprice ,
 
 # If you want to visualize
 ggplot( pred_compare ) +
-  geom_point( aes( x = actual_lnprice , y = m1_lnprice) , color = 'red' , size = 2 ) +
-  geom_point( aes( x = actual_lnprice , y = m2_lnprice) , color = 'blue' , size = 2 ) +
-  geom_line( aes( x = actual_lnprice , y = actual_lnprice ), color = 'black' , size = 1 ) +
-  labs( x = 'Actual log price' , y = 'Predicted log prices' ) +
+  geom_point( aes( x = actual_lnprice, y = m1_lnprice), color = 'red', size = 2 ) +
+  geom_point( aes( x = actual_lnprice, y = m2_lnprice), color = 'blue', size = 2 ) +
+  geom_line( aes( x = actual_lnprice, y = actual_lnprice ), color = 'black', size = 1 ) +
+  labs( x = 'Actual log price', y = 'Predicted log prices' ) +
   coord_cartesian( xlim = c(4, 5.5), ylim = c(4, 5.5)) +
   theme_bw()
 
 # Evaluate according to RMSE measure:
-rmse <- function( y , y_hat){
+rmse <- function( y, y_hat){
   sqrt( sum( ( y - y_hat )^2 ) )
 }
 # The two rmse values:
-rmse( pred_compare$actual_lnprice , pred_compare$m1_lnprice )
-rmse( pred_compare$actual_lnprice , pred_compare$m2_lnprice )
+rmse( pred_compare$actual_lnprice, pred_compare$m1_lnprice )
+rmse( pred_compare$actual_lnprice, pred_compare$m2_lnprice )
 
 # Therefore model 2 wins this competition according to RMSE measure.
 

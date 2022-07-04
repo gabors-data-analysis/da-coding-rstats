@@ -97,8 +97,8 @@ datasummary_skim(bisnode, type='categorical')
 #   and show a graph for winsorizing
 #
 
-ggplot( data = bisnode , aes( x = default ) ) +
-  geom_histogram( aes( y = ..count.. / sum( count ) ) , size = 0.1 , fill = 'navyblue',
+ggplot( data = bisnode, aes( x = default ) ) +
+  geom_histogram( aes( y = ..count.. / sum( count ) ), size = 0.1, fill = 'navyblue',
                   bins = 3)+
   labs(y='Probabilities',x='0: Exists, 1: Defaults')+
   ylim(0,1) +
@@ -191,7 +191,7 @@ interactions2 <- c('sales_mil_log*age', 'sales_mil_log*female',
 X1 <- c('sales_mil_log', 'sales_mil_log_sq', 'd1_sales_mil_log_mod', 'profit_loss_year_pl', 'ind2_cat')
 X2 <- c('sales_mil_log', 'sales_mil_log_sq', 'd1_sales_mil_log_mod', 'profit_loss_year_pl',
         'fixed_assets_bs','share_eq_bs','curr_liab_bs ',   'curr_liab_bs_flag_high ', 
-        'curr_liab_bs_flag_error',  'age','foreign_management' , 'ind2_cat')
+        'curr_liab_bs_flag_error',  'age','foreign_management', 'ind2_cat')
 X3 <- c('sales_mil_log', 'sales_mil_log_sq', firm, engvar,                   d1)
 X4 <- c('sales_mil_log', 'sales_mil_log_sq', firm, engvar, engvar2, engvar3, d1, hr, qualityvars)
 X5 <- c('sales_mil_log', 'sales_mil_log_sq', firm, engvar, engvar2, engvar3, d1, hr, qualityvars, interactions1, interactions2)
@@ -210,7 +210,7 @@ rfvars  <-  c('sales_mil', 'd1_sales_mil_log', rawvars, hr, firm, qualityvars)
 
 # Linear probability model
 ols_modelx2 <- feols(formula(paste0('default ~', paste0(X2, collapse = ' + '))),
-                     data = bisnode , vcov = 'hetero')
+                     data = bisnode, vcov = 'hetero')
 summary(ols_modelx2)
 
 # Logit model
@@ -394,9 +394,9 @@ cm1b
 
 # calculating the probabilities
 cm1b_p <- cm1b / sum(cm1b)
-cm1b_p <- cbind( cm1b_p , c( sum(cm1b_p[1,]), sum(cm1b_p[2,]) ) )
-cm1b_p <- rbind( cm1b_p , c( sum(cm1b_p[,1]), sum(cm1b_p[,2]), sum(cm1b_p[,3]) ) )
-cm1b_p <- round( cm1b_p*100 , 1 )
+cm1b_p <- cbind( cm1b_p, c( sum(cm1b_p[1,]), sum(cm1b_p[2,]) ) )
+cm1b_p <- rbind( cm1b_p, c( sum(cm1b_p[,1]), sum(cm1b_p[,2]), sum(cm1b_p[,3]) ) )
+cm1b_p <- round( cm1b_p*100, 1 )
 cm1b_p
 
 
@@ -634,7 +634,7 @@ cm_object3 <- confusionMatrix(holdout_prediction,data_holdout$default_f)
 cm3 <- cm_object3$table
 cm3
 # in pctg
-round( cm3 / sum(cm3) * 100 , 1 )
+round( cm3 / sum(cm3) * 100, 1 )
 
 
 
@@ -692,7 +692,7 @@ tune_grid <- expand.grid(
 # getModelInfo('ranger')
 set.seed(13505)
 rf_model_p <- train(
-  formula(paste0('default_f ~ ', paste0(rfvars , collapse = ' + '))),
+  formula(paste0('default_f ~ ', paste0(rfvars, collapse = ' + '))),
   method = 'ranger',
   data = data_train,
   tuneGrid = tune_grid,
@@ -775,7 +775,7 @@ roc_obj_holdout <- roc(data_holdout$default, data_holdout[, 'rf_p_prediction', d
 as.numeric(roc_obj_holdout$auc)
 
 # Get expected loss on holdout with optimal threshold
-holdout_treshold <- coords(roc_obj_holdout, x = best_tresholds[['rf_p']] , input= 'threshold',
+holdout_treshold <- coords(roc_obj_holdout, x = best_tresholds[['rf_p']], input= 'threshold',
                            ret='all', transpose = FALSE)
 expected_loss_holdout <- (holdout_treshold$fp*FP + holdout_treshold$fn*FN)/length(data_holdout$default)
 expected_loss_holdout
@@ -819,7 +819,7 @@ train_control$verboseIter <- TRUE
 
 set.seed(13505)
 rf_model_f <- train(
-  formula(paste0('default_f ~ ', paste0(rfvars , collapse = ' + '))),
+  formula(paste0('default_f ~ ', paste0(rfvars, collapse = ' + '))),
   method = 'ranger',
   data = data_train,
   tuneGrid = tune_grid,

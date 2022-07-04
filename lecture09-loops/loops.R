@@ -13,7 +13,7 @@ for ( i in 1 : 5 ){
 }
 
 # Case 2) 
-for ( i in seq( 50 , 58 ) ){
+for ( i in seq( 50, 58 ) ){
   print( i )
 }
 
@@ -23,12 +23,12 @@ for ( i in c(10,9,-10,8) ){
 }
 
 # Play around with lists
-for ( i in list( 2 , 'a' , TRUE , sqrt( 2 ) ) ){
+for ( i in list( 2, 'a', TRUE, sqrt( 2 ) ) ){
   print( i )
 }
 
 # Create a loop which gives the cumulative sum:
-v <- c( 10 , 6 , 5 , 32 , 45 , 23 )
+v <- c( 10, 6, 5, 32, 45, 23 )
 cs_v <- v
 for ( i in 2 : length( v ) ){
   cs_v[ i ] <- cs_v[ i - 1 ] + cs_v[ i ]
@@ -69,7 +69,7 @@ iter_num <- 10000
 tic('Sloppy way')
 q <- c()
 for ( i in 1 : iter_num ){
-  q <- c( q , i )
+  q <- c( q, i )
 }
 toc()
 
@@ -113,14 +113,14 @@ if ( flag ) {
 # Exercise sp500
 library(tidyverse)
 # Load data
-sp500 <- read_csv('https://osf.io/h64z2/download' , na = c('', '#N/A') )
+sp500 <- read_csv('https://osf.io/h64z2/download', na = c('', '#N/A') )
 # Filter out missing and create a year variable
 sp500 <- sp500 %>% filter( !is.na( VALUE ) ) %>% 
-  mutate( year = format( DATE , '%Y' ) ) 
+  mutate( year = format( DATE, '%Y' ) ) 
 
 # Get unique years and create tibble
 years <- unique( sp500$year )
-return_yearly <- tibble( years = years , return = NA )
+return_yearly <- tibble( years = years, return = NA )
 
 # Initialize
 aux <- sp500$VALUE[ sp500$year == years[ 1 ] ]

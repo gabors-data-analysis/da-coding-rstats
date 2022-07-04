@@ -211,7 +211,7 @@ ggplot(data = df, aes(x = ln_gdppc, y = lifeexp)) +
   scale_size(range = c(1, 15)) +
   coord_cartesian(ylim = c(50, 85)) +
   labs(x = 'ln(GDP per capita, thousand US dollars) ',y = 'Life expectancy  (years)')+
-  annotate('text', x = c( 4.5 , 2.7 , 2 ), y = c( 78 , 80 , 67 ), label = c( 'USA', 'China', 'India' ) , size=5)+
+  annotate('text', x = c( 4.5, 2.7, 2 ), y = c( 78, 80, 67 ), label = c( 'USA', 'China', 'India' ), size=5)+
   theme_bw()
 
 
@@ -246,10 +246,10 @@ best5 <-
 # Show again the scatter plot with bests and worst
 ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
   geom_point( color='blue') +
-  geom_smooth( method = lm , color = 'red' ) +
-  annotate('text', x = worst5$ln_gdppc, y = worst5$lifeexp - 1 , label = worst5$country ,
+  geom_smooth( method = lm, color = 'red' ) +
+  annotate('text', x = worst5$ln_gdppc, y = worst5$lifeexp - 1, label = worst5$country ,
            color = 'purple') +
-  annotate('text', x = best5$ln_gdppc, y = best5$lifeexp + 1 , label = best5$country ,
+  annotate('text', x = best5$ln_gdppc, y = best5$lifeexp + 1, label = best5$country ,
            color = 'green') +
   theme_bw()
 

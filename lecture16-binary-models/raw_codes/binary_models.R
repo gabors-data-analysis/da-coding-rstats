@@ -78,7 +78,7 @@ datasummary( stayshealthy + smoking + ever_smoked + female +
 # Linear probability models of good health at endline and smoking
 
 # 1st model:current smoker on RHS
-lpm1 <- feols( stayshealthy ~ smoking , data = share , vcov = 'hetero' )
+lpm1 <- feols( stayshealthy ~ smoking, data = share, vcov = 'hetero' )
 lpm1
 
 # Get the predicted values
@@ -113,12 +113,12 @@ ggplot(data = share, label=smoking) +
 
 ##
 # 2nd model: current smoker and ever smoked on RHS
-lpm2 <- feols( stayshealthy ~ smoking + ever_smoked , data = share , vcov = 'hetero' )
+lpm2 <- feols( stayshealthy ~ smoking + ever_smoked, data = share, vcov = 'hetero' )
 lpm2
 
 # Compare models:
 #   - good to know: digits = 3 also works, but it does not rounds, but uses floor()
-etable( lpm1 , lpm2,
+etable( lpm1, lpm2,
         digits='r3')
 
 ####
@@ -135,7 +135,7 @@ share <- share %>%
 # Education
 ggplot(data = share, aes(x=eduyears, y=stayshealthy)) +
   geom_point(aes(x = eduyears, y = stayshealthy, size=weight), color='blue', shape = 16, alpha=0.8, show.legend=F, na.rm=TRUE)  +
-  geom_smooth(method='loess', color='red', se = F , formula = y ~ x) +
+  geom_smooth(method='loess', color='red', se = F, formula = y ~ x) +
   scale_x_continuous(expand = c(0.01,0.01), limits = c(0,25), breaks = seq(0,25,4))+
   scale_y_continuous(expand = c(0.01,0.01), limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(x = 'Years of education',y = 'Probability of staying healthy ') +
@@ -143,7 +143,7 @@ ggplot(data = share, aes(x=eduyears, y=stayshealthy)) +
 
 # Income groups
 ggplot(data = share, aes(x=income10, y=stayshealthy)) +
-  geom_smooth(method='loess', color='red', se = F , formula = y ~ x) +
+  geom_smooth(method='loess', color='red', se = F, formula = y ~ x) +
   scale_x_continuous(expand = c(0.01,0.01), limits = c(1,10), breaks = seq(1,10,1))+
   scale_y_continuous(expand = c(0.01,0.01), limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(x = 'Income group within country (deciles)',y = 'Probability of staying healthy ') +
@@ -151,7 +151,7 @@ ggplot(data = share, aes(x=income10, y=stayshealthy)) +
 
 # Age
 ggplot(data = share, aes(x=age, y=stayshealthy)) +
-  geom_smooth(method='loess', color='red', se = F , formula = y ~ x) +
+  geom_smooth(method='loess', color='red', se = F, formula = y ~ x) +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,1), breaks = seq(0,1,0.2), labels = scales::percent) +
   labs(x = 'Age at interview (years)',y = 'Probability of staying healthy') +
   theme_bw() 
@@ -185,12 +185,12 @@ etable(lpm1, lpm2, lpm3, drop='country', digits='r3' )
 # predicted probabilities
 share$pred_lpm <- predict( lpm3 )
 # Make a descriptive summary of the predictions with 3 digits
-datasummary( pred_lpm ~ min + max + mean + median + sd , 
+datasummary( pred_lpm ~ min + max + mean + median + sd, 
              data = share, fmt='%.3f'  )
 
 # Show the predicted probabilities' distribution (ggplot)
-ggplot( share , aes( x = pred_lpm ) ) +
-  geom_histogram( aes( y = ..density.. ), fill = 'navyblue' , color = 'grey90', binwidth=0.02) +
+ggplot( share, aes( x = pred_lpm ) ) +
+  geom_histogram( aes( y = ..density.. ), fill = 'navyblue', color = 'grey90', binwidth=0.02) +
   coord_cartesian( xlim = c(0, 1.2) ) +
   labs(x = 'Predicted probability of staying healthy (LPM)',y = 'Percent')+
   scale_y_continuous(expand = c(0.00,0.0), limits = c(0,3), breaks = seq(0, 3, 0.5)) +
@@ -212,11 +212,11 @@ share <- share %>%
 
 # Top 1%
 datasummary( smoking+ever_smoked+female+age+eduyears+income10+bmi+exerc~
-              mean + median + sd , data = filter( share , q100_pred_lpm==100 ) ) 
+              mean + median + sd, data = filter( share, q100_pred_lpm==100 ) ) 
 
 # Bottom 1%
 datasummary(smoking+ever_smoked+female+age+eduyears+income10+bmi+exerc~
-              mean + median + sd , data = filter( share , q100_pred_lpm==1 ) ) 
+              mean + median + sd, data = filter( share, q100_pred_lpm==1 ) ) 
 
 
 # You may change the variable names to remove...
@@ -235,11 +235,11 @@ rm(lpm3)
 # To have pretty outcomes, we need to create spline variables
 aux_1 <- lspline(share$eduyears, c(8,18))
 aux_2 <- lspline(share$bmi, c(35))
-share <- share %>% add_column( eduyears_l8   = aux_1[ , 1 ],
-                               eduyears_8n18 = aux_1[ , 2 ],
-                               eduyears_m18  = aux_1[ , 3 ],
-                               bmi_l35       = aux_2[ , 1 ],
-                               bmi_m35       = aux_2[ , 2 ] )
+share <- share %>% add_column( eduyears_l8   = aux_1[, 1 ],
+                               eduyears_8n18 = aux_1[, 2 ],
+                               eduyears_m18  = aux_1[, 3 ],
+                               bmi_l35       = aux_2[, 1 ],
+                               bmi_m35       = aux_2[, 2 ] )
 rm(aux_1,aux_2)
 
 model_formula <- formula( stayshealthy ~ smoking + ever_smoked + female + age + 
@@ -252,14 +252,14 @@ model_formula <- formula( stayshealthy ~ smoking + ever_smoked + female + age +
 #                            income10 + lspline(bmi, c(35)) + exerc + as.factor(country_str) )
 
 # lpm (repeating the previous regression)
-lpm <-feols( model_formula , data=share, vcov = 'hetero')
+lpm <-feols( model_formula, data=share, vcov = 'hetero')
 etable(lpm, drop='country', digits='r3')
 # Save predictions
 share$pred_lpm <- predict( lpm )
 
 # logit coefficients:
 #   alternatively: familiy='binomial' automatically gives you logit, but not probit...
-logit_model <- feglm( model_formula , data = share, family = binomial( link = 'logit' ) )
+logit_model <- feglm( model_formula, data = share, family = binomial( link = 'logit' ) )
 etable(logit_model, drop='country', digits='r3')
 
 
@@ -272,23 +272,23 @@ summary( logit_marg )
 
 ##
 # Probit coefficients: replicate logit, but now use 'probit'
-probit_model <- feglm( model_formula , data=share, family = binomial( link = 'probit' ) )
+probit_model <- feglm( model_formula, data=share, family = binomial( link = 'probit' ) )
 etable(probit_model,drop=c('country'))
 
 # predicted probabilities 
-share$pred_probit<- predict( probit_model , type = 'response' )
+share$pred_probit<- predict( probit_model, type = 'response' )
 
 # probit marginal differences
 probit_marg <- marginaleffects(  probit_model )
 summary( probit_marg )
 
 # Comparing predictions from the three models
-datasummary(pred_lpm + pred_logit + pred_probit ~ min + P25 + Median + Mean + P75 + Max , data = share )
+datasummary(pred_lpm + pred_logit + pred_probit ~ min + P25 + Median + Mean + P75 + Max, data = share )
 
 ##
 # a) Creating a model summary output for base models
 etable( lpm, logit_model, probit_model,
-        drop='country', digits='r3' , fitstat = c('r2','pr2'))
+        drop='country', digits='r3', fitstat = c('r2','pr2'))
 
 ##
 # b) To include marginal effects (on average...), we need modelsummary:
@@ -312,7 +312,7 @@ modelsummary( list( 'LPM' = lpm, 'logit coeffs' = logit_model,
 fitstat_register('modr2', function(x){
   y <- x$fitted.values + x$residuals
   ss_res <- sum(x$residual^2,na.rm=T)
-  ss_tot <- sum( (y - mean( y , na.rm = T ) )^2 , na.rm = T )
+  ss_tot <- sum( (y - mean( y, na.rm = T ) )^2, na.rm = T )
   1 - ss_res/ss_tot }, 'R2')
 # Log-loss 
 fitstat_register('logloss', function(x){
@@ -438,9 +438,9 @@ intervals = c(0, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.7
 
 # Create binned data:
 binned_data <- share %>%
-  mutate( prob_bin = cut( pred_logit , breaks = intervals, include.lowest = TRUE ) ) %>%
+  mutate( prob_bin = cut( pred_logit, breaks = intervals, include.lowest = TRUE ) ) %>%
   group_by( prob_bin, .drop=FALSE ) %>%
-  summarise( mean_prob   = mean( pred_logit ) , 
+  summarise( mean_prob   = mean( pred_logit ), 
              mean_actual = mean( stayshealthy ) ,
              n = n() )
 

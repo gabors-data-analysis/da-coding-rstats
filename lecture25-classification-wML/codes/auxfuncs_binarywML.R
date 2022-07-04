@@ -27,7 +27,7 @@ createRocPlot <- function(r, file_name,  myheight_small = 5.625, mywidth_small =
 }
 
 
-create_calibration_plot <- function(data, prob_var, actual_var, y_lab = "Actual event probability" , n_bins = 10, breaks = NULL) {
+create_calibration_plot <- function(data, prob_var, actual_var, y_lab = "Actual event probability", n_bins = 10, breaks = NULL) {
   
   if (is.null(breaks)) {
     breaks <- seq(0,1,length.out = n_bins + 1)
@@ -72,7 +72,7 @@ createLossPlot <- function(r, best_coords,  myheight_small = 5.625, mywidth_smal
   loss_plot <- ggplot(data = all_coords, aes(x = threshold, y = loss)) +
     geom_line(color='red', size=0.7) +
     scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, by = 0.1)) +
-    geom_vline(xintercept = t , color = 'blue' ) +
+    geom_vline(xintercept = t, color = 'blue' ) +
     annotate(geom = "text", x = t, y= min(all_coords$loss),
              label=paste0("best threshold: ", round(t,2)),
              colour='blue', angle=90, vjust = -1, hjust = -0.5, size = 7) +

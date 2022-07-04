@@ -75,7 +75,7 @@ Naming convention in programming broadly speaking has two big branches. One is u
   * good: `myString`
   * bad: `1-my-string!` as it uses invalid characters. E.g. never start with a number and avoid special characters such as -,.!~=&^%$, etc.
 3. short names
-  * good: `myStr`, `my_string` , `m_string`
+  * good: `myStr`, `my_string`, `m_string`
   * bad: `my_new_string_i_will_use`, this is just hard to write out every time, and the probability of making coding mistakes are getting larger
 4. (+1) try to avoid already defined *function names* or already *existing variables*. We will see what are they and it is always advised not to re-define variables. It is just a source of confusion and will make debugging much harder.
 
@@ -98,12 +98,14 @@ Unfortunately in Rstudio, there is no quick way to comment out multiple lines wi
 
 Finally, how you structure your code indeed matters a lot. Here is some guidance on how to format your code:
 
-1. Use spacing as you learn R. It will make your code much more readable. E.g. as we will see functions use parenthesis `()`, indexing brackets `[]`, conditionals and loops curly brackets `{}`. It is a good practice to use a space after opening and before closing.
-2. In R you can break your code into multiple lines. Use these linebreaks to make your code more easily readable.
+1. Use spacing as you learn R. It will make your code much more readable. E.g. as we will see functions use parenthesis `()`, indexing brackets `[]`, conditionals and loops curly brackets `{}`. It is a good practice to use a space after opening and before closing a parenthesis/brackets. Furthermore, after an input we use a comma directly and after that use a space before the next input or the closing bracket, but not double spacing: before and after the comma.
+2. In R you can break your code into multiple lines. Use these line breaks to make your code more easily readable.
 3. In the future we will see many embedded commands, meaning you use a command within a command. If it is rather complex use spacing and line break together to make it easier to follow.
 4. If you are using functions, conditionals, or loops it is advised to increase the indent accordingly.
 
 **Note:** too much formatting will increase the chance of making a coding error and your commands will not run or even worse, it will run, but not as you wish. Try to keep a good balance!
+
+**Good-to-know:** there are some general advice specific to `tidyverse` approach on how to format and which style to use, that can be found [here](https://style.tidyverse.org/) if one is interested in more-depth on this topic. Also there is a general or base-R coding style called ['linter for R'](https://github.com/r-lib/lintr), which may be useful when doing more hard-core programming in R.
 
 
 ## R-objects

@@ -47,7 +47,7 @@ data <- data %>%
 
 
 #Room type as factor
-datasummary(room_type ~ N + Percent() , data = data )
+datasummary(room_type ~ N + Percent(), data = data )
 data <- data %>%
   mutate(f_room_type = factor(room_type))
 
@@ -128,7 +128,7 @@ data <- data %>%
 #####################
 ### look at price ###
 #####################
-datasummary( price ~ Mean + Median + Min + Max + P25 + P75 , data = data )
+datasummary( price ~ Mean + Median + Min + Max + P25 + P75, data = data )
 data <- data %>%
   mutate(ln_price = log(price))
 data <- data %>%
@@ -223,8 +223,8 @@ data <- data %>%
   )
 
 # Look at data
-datasummary( id ~ N , data = data )
-datasummary_skim( data , 'categorical' )
+datasummary( id ~ N, data = data )
+datasummary_skim( data, 'categorical' )
 
 
 # where do we have missing variables now?
