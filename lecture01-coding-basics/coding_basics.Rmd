@@ -44,12 +44,12 @@ On the other hand R-project creates the folder structure when initialized and se
 
 Running simple codes is great, but in many cases, we want to write elaborate multistage commands. In this case, we can create `variables`, which will store information in the memory and can be called later.
 
-E.g. we can save the command 'Hello world!' into a variable, that we call `myString` in the following way:
+E.g. we can save the command 'Hello world!' into a variable, that we call `message_world` in the following way:
 
 ```{r}
-myString <- 'Hello world!'
+message_world <- 'Hello world!'
 ```
-If you run this piece of command, seemingly nothing happens - or at least in the console window does not print out anything only runs the command. However, a new variable shows up in the `Environment` window under the `Values` section, which says: 'myString' and 'Hello world!'. It shows that there is a `variable` stored in the memory with the name of `myString`. 
+If you run this piece of command, seemingly nothing happens - or at least in the console window does not print out anything only runs the command. However, a new variable shows up in the `Environment` window under the `Values` section, which says: 'message_world' and 'Hello world!'. It shows that there is a `variable` stored in the memory with the name of `message_world`. 
 
 *Fun fact:* the assignment operator `<-` is somewhat a unique feature of R. Many programming languages use instead `=` to define variables. In many cases `=` works as well in R, but in some other cases it does not, s we stick with the assignment operator of `<-`. We will see when covering functions when `=` does not work, but if you can not wait until then, you may check out [this StackOverflow thread](https://stackoverflow.com/questions/1741820/what-are-the-differences-between-and-assignment-operators-in-r).
 
@@ -57,7 +57,7 @@ If you run this piece of command, seemingly nothing happens - or at least in the
 
 You can call this variable via typing in and running:
 ```{r}
-myString
+message_world
 ```
 
 ## Coding 101
@@ -69,15 +69,12 @@ Always keep in mind you write your code not only for the computer or for some sp
 Naming convention in programming broadly speaking has two big branches. One is utilizing capital letters, the other one the underscore. Both of them are good but try not to mix them. You are completely free to use any variable name, but always keep in mind the three requirements:
 
 1. human-readable: 
-  * good: `my_string` refers to a variable that includes a string, `myString` is also OK, but rather old school, now using a '_' is more common than capital letters.
-  * bad: `m3st96k` does not reveal much about the possible content
+  * good: `message_world` refers to a variable that includes a probably string message.
+  * bad: `messageWorld` is not preferred (called camelCase). It is rather an old school convention which is now rarely used. `m3st96k` does not reveal much about the possible content
 2. computer-readable:
-  * good: `my_string`
-  * bad: `1-my-string!` as it uses invalid characters. E.g. never start with a number and avoid special characters such as -,.!~=&^%$, etc.
-3. short names
-  * good: `my_str`, `my_string`, `m_string`
-  * bad: `my_new_string_i_will_use`, this is just hard to write out every time, and the probability of making coding mistakes are getting larger
-4. (+1) try to avoid already defined *function names* or already *existing variables*. We will see what are they and it is always advised not to re-define variables. It is just a source of confusion and will make debugging much harder.
+  * good: `messageWorld`
+  * bad: `message-to-world!` as it uses invalid characters. E.g. never start with a number and avoid special characters such as -,.!~=&^%$, etc.
+3. (+1) try to avoid already defined *function names* or already *existing variables*. We will see what are they and it is always advised not to re-define variables. It is just a source of confusion and will make debugging much harder.
 
 ### Commenting your script
 
@@ -110,7 +107,7 @@ Finally, how you structure your code indeed matters a lot. Here is some guidance
 
 ## R-objects
 
-We have already created an R-object, `mySrting` a single-valued variable, which included a *character R-object*. We call *R-object* the type of value stored in a variable. It is the smallest element in R. To collect all types, let us create a detailed list here:
+We have already created an R-object, `message_world` a single-valued variable, which included a *character R-object*. We call *R-object* the type of value stored in a variable. It is the smallest element in R. To collect all types, let us create a detailed list here:
 
 **R-objects**:
 
@@ -216,7 +213,7 @@ which computes the square root of 4.
 
 One may be interested in the type of the R-object saved in a variable. As it turns out it is easy to get this information with the function of `typeof`:
 ```{r}
-typeof(myString)
+typeof(message_world)
 typeof(a)
 ```
  When working with numeric values and one wants to make sure the numeric has certain type, it can force R to save accordingly:
@@ -234,7 +231,7 @@ In general base R using `as.*type*()` to turn a value (or variable) into a certa
 
 In some cases you would like to decide if a variable has certain type. Base R functions can be characterized as `is.*type*()` to provide a logical answare to this question:
 ```{r}
-is.character(myString)
+is.character(message_world)
 is.logical(2==3)
 is.double(doub_val)
 is.integer(int_val)

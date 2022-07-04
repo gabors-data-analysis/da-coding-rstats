@@ -71,18 +71,18 @@ elaborate multistage commands. In this case, we can create `variables`,
 which will store information in the memory and can be called later.
 
 E.g. we can save the command ‘Hello world!’ into a variable, that we
-call `myString` in the following way:
+call `message_world` in the following way:
 
 ``` r
-myString <- 'Hello world!'
+message_world <- 'Hello world!'
 ```
 
 If you run this piece of command, seemingly nothing happens - or at
 least in the console window does not print out anything only runs the
 command. However, a new variable shows up in the `Environment` window
-under the `Values` section, which says: ‘myString’ and ‘Hello world!’.
-It shows that there is a `variable` stored in the memory with the name
-of `myString`.
+under the `Values` section, which says: ‘message_world’ and ‘Hello
+world!’. It shows that there is a `variable` stored in the memory with
+the name of `message_world`.
 
 *Fun fact:* the assignment operator `<-` is somewhat a unique feature of
 R. Many programming languages use instead `=` to define variables. In
@@ -98,7 +98,7 @@ and `alt+-` for windows.
 You can call this variable via typing in and running:
 
 ``` r
-myString
+message_world
 ```
 
     ## [1] "Hello world!"
@@ -119,25 +119,20 @@ any variable name, but always keep in mind the three requirements:
 
 1.  human-readable:
 
--   good: `my_string` refers to a variable that includes a string,
-    `myString` is also OK, but rather old school, now using a ’\_’ is
-    more common than capital letters.
--   bad: `m3st96k` does not reveal much about the possible content
+-   good: `message_world` refers to a variable that includes a probably
+    string message.
+-   bad: `messageWorld` is not preferred (called camelCase). It is
+    rather an old school convention which is now rarely used. `m3st96k`
+    does not reveal much about the possible content
 
 2.  computer-readable:
 
--   good: `my_string`
--   bad: `1-my-string!` as it uses invalid characters. E.g. never start
-    with a number and avoid special characters such as -,.!\~=&^%$, etc.
+-   good: `messageWorld`
+-   bad: `message-to-world!` as it uses invalid characters. E.g. never
+    start with a number and avoid special characters such as
+    -,.!\~=&^%$, etc.
 
-3.  short names
-
--   good: `my_str`, `my_string`, `m_string`
--   bad: `my_new_string_i_will_use`, this is just hard to write out
-    every time, and the probability of making coding mistakes are
-    getting larger
-
-4.  (+1) try to avoid already defined *function names* or already
+3.  (+1) try to avoid already defined *function names* or already
     *existing variables*. We will see what are they and it is always
     advised not to re-define variables. It is just a source of confusion
     and will make debugging much harder.
@@ -202,7 +197,7 @@ when doing more hard-core programming in R.
 
 ## R-objects
 
-We have already created an R-object, `mySrting` a single-valued
+We have already created an R-object, `message_world` a single-valued
 variable, which included a *character R-object*. We call *R-object* the
 type of value stored in a variable. It is the smallest element in R. To
 collect all types, let us create a detailed list here:
@@ -391,7 +386,7 @@ As it turns out it is easy to get this information with the function of
 `typeof`:
 
 ``` r
-typeof(myString)
+typeof(message_world)
 ```
 
     ## [1] "character"
@@ -444,7 +439,7 @@ Base R functions can be characterized as `is.*type*()` to provide a
 logical answare to this question:
 
 ``` r
-is.character(myString)
+is.character(message_world)
 ```
 
     ## [1] TRUE
