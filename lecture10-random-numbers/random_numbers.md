@@ -48,10 +48,10 @@ If we would like to have 5 randomly drawn numbers from a uniform
 distribution between 0 and 1, we can run the following code:
 
 ``` r
-runif( 5 , min = 0 , max = 1)
+runif( 5, min = 0, max = 1)
 ```
 
-    ## [1] 0.7240127 0.7271296 0.5900146 0.9942719 0.3826112
+    ## [1] 0.26070668 0.27004785 0.17635193 0.02415626 0.27703152
 
 Note that if you re-run this piece of code it will result in different
 values. Naturally, the question emerges, how to write a code, which will
@@ -60,7 +60,7 @@ you can *set the seed* for the random number generation:
 
 ``` r
 set.seed(1234)
-runif( 5 , min = 0 , max = 1)
+runif( 5, min = 0, max = 1)
 ```
 
     ## [1] 0.1137034 0.6222994 0.6092747 0.6233794 0.8609154
@@ -84,12 +84,12 @@ can set the mean and the standard deviation.
 
 ``` r
 n <- 10000
-y <- rnorm( n , mean = 1 , sd = 2 )
+y <- rnorm( n, mean = 1, sd = 2 )
 df <- tibble( rnd_norm = y )
-ggplot( df , aes( x = rnd_norm ) ) +
-  geom_histogram( aes( y = ..density.. ) , fill = 'navyblue', bins = 30 ) +
-  stat_function( fun = dnorm , args = list( mean = 1 , sd = 2 ) ,
-                 color = 'red' , size = 1.5 )+
+ggplot( df, aes( x = rnd_norm ) ) +
+  geom_histogram( aes( y = ..density.. ), fill = 'navyblue', bins = 30 ) +
+  stat_function( fun = dnorm, args = list( mean = 1, sd = 2 ),
+                 color = 'red', size = 1.5 )+
   labs(x='X',y='Density')
 ```
 
@@ -124,11 +124,11 @@ normal distribution.
 
 ``` r
 # Create a empirical histogram of height with theoretical normal
-emp_height <- ggplot( df , aes( x = height ) ) +
+emp_height <- ggplot( df, aes( x = height ) ) +
   geom_histogram( aes( y = ..density.. ), binwidth = 0.03, 
                  fill = 'navyblue', alpha = 0.6 ) +
   stat_function( fun = dnorm, color = 'red',  
-                 args = with( df, c( mean = mean( height , na.rm = T ), sd = sd( height , na.rm = T ) ) ) ) + 
+                 args = with( df, c( mean = mean( height, na.rm = T ), sd = sd( height, na.rm = T ) ) ) ) + 
   labs(x='Height (meters)', y='Density' ) +
     theme_bw()
 
@@ -147,16 +147,16 @@ attention to incomes less than 1000 thousand $.
 ``` r
 # Calculate the empirical mean and standard deviation 
 #   (see eg.: https://en.wikipedia.org/wiki/Log-normal_distribution)
-mu <- with( filter( df , hhincome < 1000 ), 
+mu <- with( filter( df, hhincome < 1000 ), 
             log( mean( hhincome )^2 / sqrt( var( hhincome ) + mean( hhincome )^2 ) ) )
-sigma <- with( filter( df , hhincome < 1000 ),
+sigma <- with( filter( df, hhincome < 1000 ),
                sqrt( log( var( hhincome ) / mean( hhincome )^2 + 1 ) ) )
 
-emp_inc <- ggplot( filter( df , hhincome < 1000 ) , aes( x = hhincome ) ) +
+emp_inc <- ggplot( filter( df, hhincome < 1000 ), aes( x = hhincome ) ) +
   geom_histogram( aes( y = ..density.. ), binwidth = 10,
                  fill = 'navyblue', alpha = 0.6 ) +
   stat_function( fun = dlnorm, colour= 'red',  
-                 args = c( mean = mu , sd =  sigma ) ) + 
+                 args = c( mean = mu, sd =  sigma ) ) + 
   labs(x='Income (thousand $)', y='Density' ) +
     theme_bw()
 
@@ -173,17 +173,17 @@ same as for the empirical distributions.
 
 ``` r
 set.seed(123)
-artif <- tibble( height_art = rnorm( nrow( df ) , mean( df$height , na.rm = T ), 
-                                                 sd = sd( df$height , na.rm = T ) ) ,
-                inc_art = rlnorm( nrow( df ) , meanlog = mu , sdlog = sigma ) )
+artif <- tibble( height_art = rnorm( nrow( df ), mean( df$height, na.rm = T ), 
+                                                 sd = sd( df$height, na.rm = T ) ),
+                inc_art = rlnorm( nrow( df ), meanlog = mu, sdlog = sigma ) )
 ```
 
 We can compare these artificial random variables with the truly observed
 variables. Let us start with height.
 
 ``` r
-emp_height + geom_histogram( data = artif, aes( x = height_art , y = ..density.. ), 
-                             binwidth = 0.03, boundary = 1.3 , 
+emp_height + geom_histogram( data = artif, aes( x = height_art, y = ..density.. ), 
+                             binwidth = 0.03, boundary = 1.3, 
                  fill = 'orange', alpha = 0.3 )
 ```
 
@@ -194,7 +194,7 @@ The artificial variable is much closer to the theoretical distribution.
 The income can be checked similarly.
 
 ``` r
-emp_inc + geom_histogram( data = artif , aes( x = inc_art , y = ..density.. ), binwidth = 10,
+emp_inc + geom_histogram( data = artif, aes( x = inc_art, y = ..density.. ), binwidth = 10,
                           fill = 'orange', alpha = 0.3 ) +
         xlim(0,500)
 ```
@@ -217,14 +217,15 @@ do the manipulations with only those parts. Later we will use this
 extensively in many cases hidden in our models, therefore it is useful
 to have an idea of how to get a random sample.
 
-The most commonly used function is
-`sample_n( df , size , replace = FALSE )`, where `df` is the original
+The function offered by the tidyverse (or dplyr) package is
+`slice_sample( df, n = size, raplece = F )`, where `df` is the original
 tibble and `size` is a non-negative integer giving the number of
 observations (rows) to choose and `replace` decides if one observation
 (or row) can be used multiple times or not. Usually, this last input is
 neglected as we want to get a random sample **without** replacement. A
-good exception is *bootstrapping*, where we resample with replacement to
-always has the same number of observations as the original data.
+good exception is *bootstrapping*, where we resample with replacement
+wich allows to have the same number of observations as the original
+data.
 
 To show how this method works, let us use the **`sp500`** data and get a
 randomly selected sub-sample with 100 observations, without replacement.
@@ -246,7 +247,7 @@ head(sp500)
 
 ``` r
 set.seed(123)
-sp500_ss <- sample_n( sp500 , 100 )
+sp500_ss <- slice_sample( sp500, n = 100 )
 head(sp500_ss)
 ```
 
@@ -264,14 +265,12 @@ Note that we have used here `set.seed` purposefully, to be able to
 replicate the results.
 
 **Good-to-know:** As usual with R there are many other options to get a
-random sample. In our experience, `sample_n` is the most commonly used
-with tibbles. However, there is a newer release for tidyverse (dplyr to
-be specific), which has the function of `slice_sample( df , n = size )`,
-which does the same, but it is newer and will be maintained. Also in
-many cases people use the base-R function, which is called
-`sample(x,size,replace=F)`, but here you can not support tibbles in `x`,
-but vectors. Also good to know about `sample.int(n,size=n,replace=F)`,
-which is similarly a base-R function and it provides you random *index
-values*, therefore if you want to select observations through indexing
-(e.g. use the same indexes for multiple vectors/tibbles), then you may
-want to use that.
+random sample. In our experience, `sample_n( df, size )` is the most
+commonly used, however it is now getting depreciated in `tidyverse`.
+Also in many cases people use the base-R function, which is called
+`sample( x, size, replace = F )`, but here you can not support tibbles
+in `x`, but vectors. Also good to know about
+`sample.int( n, size = n, replace = F )`, which is similarly a base-R
+function and it provides you random *index values*, therefore if you
+want to select observations through indexing (e.g. use the same indexes
+for multiple vectors/tibbles), then you may want to use that.
