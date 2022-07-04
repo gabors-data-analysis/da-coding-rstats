@@ -31,7 +31,7 @@ The `for` loop repeats the same command multiple times.
 Pseudo-code:
 
 ```{r, eval = FALSE}
-for ( i in vector ) {
+for (i in vector) {
   do_something_i_times
 }
 ```
@@ -41,8 +41,8 @@ The iteration process is defined inside parentheses after `for` command, while t
 Lets take a simple example:
 
 ```{r}
-for( i in c(1,3,5) ){
-  print( i )
+for(i in c(1,3,5)){
+  print(i)
 }
 ```
 
@@ -50,7 +50,7 @@ Which, prints out the vector's values. The vector, which is provided for the for
 
 ```{r }
 k <- 0
-for ( i in 1 : 100 ) {
+for (i in 1 : 100) {
   k <- k + i
 }
 k
@@ -58,7 +58,7 @@ k
 
 But many other definitions for the `vector` are possible. The most commonly used are `seq` or `seq_along` functions, but lists or basically anything can be used.
 
-**Task:** Build a cumulative sum function and calculate the cumulative sum for `v<-c( 10, 6, 5, 32, 45, 23 )!` At the end check with a conditional statement if the last value in the vector is the same as if you have been used `cumsum()` function! Hints: define `cs_v` variable before and then use a for-loop with indexing.
+**Task:** Build a cumulative sum function and calculate the cumulative sum for `v<-c(10, 6, 5, 32, 45, 23)!` At the end check with a conditional statement if the last value in the vector is the same as if you have been used `cumsum()` function! Hints: define `cs_v` variable before and then use a for-loop with indexing.
 
 ## Computational issues
 
@@ -77,15 +77,15 @@ iter_num <- 10000
 # Sloppy way to do loops:
 tic('Sloppy way')
 q <- c()
-for ( i in 1 : iter_num ){
-  q <- c( q, i )
+for (i in 1 : iter_num){
+  q <- c(q, i)
 }
 toc()
 
 # Proper way
 tic('Good way')
-r <- double( length = iter_num )
-for ( i in 1 : iter_num ){
+r <- double(length = iter_num)
+for (i in 1 : iter_num){
   r[ i ] <- i
 }
 toc()
@@ -103,9 +103,9 @@ A simple example is to print out `x` until it is smaller than 10.
 ```{r}
 
 x <- 0
-while ( x < 10 ) {
+while (x < 10) {
   x <- x + 1
-  print( x )
+  print(x)
 }
 x
 ```
@@ -126,8 +126,8 @@ The next chunk of code defines `max_iter`, as the maximum number of iterations f
 max_iter <- 10000
 flag <- FALSE
 x <- 0
-for ( i in 1 : max_iter ){
-  if ( x < 10 ){
+for (i in 1 : max_iter){
+  if (x < 10){
     x <- x + 1 
   } else{
     flag <- TRUE
@@ -135,7 +135,7 @@ for ( i in 1 : max_iter ){
   }
 }
 x
-if ( flag ) {
+if (flag) {
   print('Successful iteration!')
 }else{
   print('Did not satisfied stopping criterion!')
@@ -156,10 +156,10 @@ To exercise for-loops, we use the `sp-500` data to calculate yearly returns.
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
 # Load data
-sp500 <- read_csv('https://osf.io/h64z2/download', na = c('', '#N/A') )
+sp500 <- read_csv('https://osf.io/h64z2/download', na = c('', '#N/A'))
 # Filter out missing and create a year variable
-sp500 <- sp500 %>% filter( !is.na( VALUE ) ) %>% 
-                  mutate( year = format( DATE, '%Y' ) ) 
+sp500 <- sp500 %>% filter(!is.na(VALUE)) %>% 
+                  mutate(year = format(DATE, '%Y')) 
 # Note: later we will learn to convert date format to year more elegantly
 
 ```
@@ -171,19 +171,19 @@ $return_t = \frac{price_t - price_{t-1}}{price_{t-1}}$
 where $t$ stands for the last day's price at year $t$.
 
 ```{r}
-years <- unique( sp500$year )
-return_yearly <- tibble( years = years, return = NA )
+years <- unique(sp500$year)
+return_yearly <- tibble(years = years, return = NA)
 
 aux <- sp500$VALUE[ sp500$year == years[ 1 ] ]
-lyp <- aux[ length( aux ) ]
-rm( aux )
-for ( i in 2 : length( years ) ){
+lyp <- aux[ length(aux) ]
+rm(aux)
+for (i in 2 : length(years)){
   # get the values for specific year
   value_year_i <- sp500$VALUE[ sp500$year == years[ i ] ]
   # last day's price
   ldp <- value_year_i[ length(value_year_i) ]
   # calculate the return
-  return_yearly$return[ i ] <- ( ldp - lyp ) / lyp * 100
+  return_yearly$return[ i ] <- (ldp - lyp) / lyp * 100
   # save this years last value as last year value
   lyp <- ldp
 }

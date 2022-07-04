@@ -25,7 +25,7 @@ ggplotacorr <- function(data, lag.max = 24, ci = 0.95, large.sample.size = TRUE,
   df2$pacfstd <- sqrt(1/N)
   
   if(large.sample.size == TRUE) {
-    plot.acf <- ggplot(data = df1, aes( x = lag, y = acf)) +
+    plot.acf <- ggplot(data = df1, aes(x = lag, y = acf)) +
       geom_area(aes(x = lag, y = qnorm((1+ci)/2)*acfstd), fill = "#B9CFE7") +
       geom_area(aes(x = lag, y = -qnorm((1+ci)/2)*acfstd), fill = "#B9CFE7") +
       geom_col(fill = "#4373B6", width = 0.7) +
@@ -46,7 +46,7 @@ ggplotacorr <- function(data, lag.max = 24, ci = 0.95, large.sample.size = TRUE,
       theme_bw()
   }
   else {
-    plot.acf <- ggplot(data = df1, aes( x = lag, y = acf)) +
+    plot.acf <- ggplot(data = df1, aes(x = lag, y = acf)) +
       geom_col(fill = "#4373B6", width = 0.7) +
       geom_hline(yintercept = qnorm((1+ci)/2)/sqrt(N), 
                  colour = "sandybrown",

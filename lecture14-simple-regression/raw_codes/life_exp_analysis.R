@@ -35,7 +35,7 @@ require(scales)
 
 # Call the data from github
 my_url <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture14-simple-regression/data/clean/WDI_lifeexp_clean.csv'
-df     <- read_csv( my_url )
+df     <- read_csv(my_url)
 
 
 
@@ -50,7 +50,7 @@ df %>%
   geom_histogram(bins=20)+
   theme_bw()
 
-datasummary_skim( df )
+datasummary_skim(df)
 
 ######
 # Create new variable: Total GDP = GDP per Capita * Populatio
@@ -75,7 +75,7 @@ datasummary_skim( df )
 
 
 # 2) Change the scale for Total GDP for checking log-transformation
-# Tip: you can use `scale_x_continuous( trans = log_trans() )` with scales package
+# Tip: you can use `scale_x_continuous(trans = log_trans())` with scales package
 #     to make your graph pretty, use: breaks = c(1,2,5,10,20,50,100,200,500,1000,10000)
 #   this is good as you can check without creating a new variable
 
@@ -211,7 +211,7 @@ ggplot(data = df, aes(x = ln_gdppc, y = lifeexp)) +
   scale_size(range = c(1, 15)) +
   coord_cartesian(ylim = c(50, 85)) +
   labs(x = 'ln(GDP per capita, thousand US dollars) ',y = 'Life expectancy  (years)')+
-  annotate('text', x = c( 4.5, 2.7, 2 ), y = c( 78, 80, 67 ), label = c( 'USA', 'China', 'India' ), size=5)+
+  annotate('text', x = c(4.5, 2.7, 2), y = c(78, 80, 67), label = c('USA', 'China', 'India'), size=5)+
   theme_bw()
 
 
@@ -244,9 +244,9 @@ worst5 <-
 best5 <- 
 
 # Show again the scatter plot with bests and worst
-ggplot( data = df, aes( x = ln_gdppc, y = lifeexp ) ) + 
-  geom_point( color='blue') +
-  geom_smooth( method = lm, color = 'red' ) +
+ggplot(data = df, aes(x = ln_gdppc, y = lifeexp)) + 
+  geom_point(color='blue') +
+  geom_smooth(method = lm, color = 'red') +
   annotate('text', x = worst5$ln_gdppc, y = worst5$lifeexp - 1, label = worst5$country ,
            color = 'purple') +
   annotate('text', x = best5$ln_gdppc, y = best5$lifeexp + 1, label = best5$country ,

@@ -119,19 +119,20 @@ any variable name, but always keep in mind the three requirements:
 
 1.  human-readable:
 
--   good: `myString` or `my_string` refers to a variable that includes a
-    string, but
+-   good: `my_string` refers to a variable that includes a string,
+    `myString` is also OK, but rather old school, now using a ’\_’ is
+    more common than capital letters.
 -   bad: `m3st96k` does not reveal much about the possible content
 
 2.  computer-readable:
 
--   good: `myString`
+-   good: `my_string`
 -   bad: `1-my-string!` as it uses invalid characters. E.g. never start
     with a number and avoid special characters such as -,.!\~=&^%$, etc.
 
 3.  short names
 
--   good: `myStr`, `my_string`, `m_string`
+-   good: `my_str`, `my_string`, `m_string`
 -   bad: `my_new_string_i_will_use`, this is just hard to write out
     every time, and the probability of making coding mistakes are
     getting larger
@@ -178,11 +179,8 @@ guidance on how to format your code:
 1.  Use spacing as you learn R. It will make your code much more
     readable. E.g. as we will see functions use parenthesis `()`,
     indexing brackets `[]`, conditionals and loops curly brackets `{}`.
-    It is a good practice to use a space after opening and before
-    closing a parenthesis/brackets. Furthermore, after an input we use a
-    comma directly and after that use a space before the next input or
-    the closing bracket, but not double spacing: before and after the
-    comma.
+    It is a good practice to use a space after an input of a function,
+    index or element of a list that we will discuss later this lecture.
 2.  In R you can break your code into multiple lines. Use these line
     breaks to make your code more easily readable.
 3.  In the future we will see many embedded commands, meaning you use a
@@ -290,7 +288,7 @@ a == b
 Check if a modified variable is the same as the other,
 
 ``` r
-( a + 1 ) == b
+(a + 1) == b
 ```
 
     ## [1] TRUE

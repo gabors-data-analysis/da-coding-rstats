@@ -14,7 +14,7 @@
 #                                                     #
 #######################################################
 
-theme_bluewhite <- function( base_size = 11, base_family = '') {
+theme_bluewhite <- function(base_size = 11, base_family = '') {
   # Inherit the basic properties of theme_bw
   theme_bw() %+replace% 
     # Replace the following items:

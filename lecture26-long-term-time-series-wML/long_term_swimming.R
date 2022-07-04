@@ -78,7 +78,7 @@ daily_agg <- daily_agg %>%
 #   need to know the US state specific schools
 daily_agg <- daily_agg %>% 
   mutate(school_off = ((day>15 & month==5 & day <=30) | (month==6 |  month==7) |
-                         (day<15 & month==8) | (day>20 & month==12) ))
+                         (day<15 & month==8) | (day>20 & month==12)))
 
 # Add a trend variable (1 to number of observations)
 daily_agg <- daily_agg %>% 
@@ -92,7 +92,7 @@ daily_agg <- daily_agg %>%
   mutate(isHoliday = ifelse(date %in% holidays,1,0))
 
 # Summary stat
-datasummary_skim( daily_agg )
+datasummary_skim(daily_agg)
 
 
 
@@ -123,7 +123,7 @@ daily_agg <-
 mydays <- c('Mon','Tue','Wed',
             'Thu','Fri','Sat',
             'Sun')
-daily_agg$dow_abb   <-factor(   mydays[daily_agg$dow],  levels=mydays)
+daily_agg$dow_abb   <-factor(  mydays[daily_agg$dow],  levels=mydays)
 daily_agg$month_abb <-factor(month.abb[daily_agg$month],levels=month.abb)
 
 ################################
@@ -143,8 +143,8 @@ ggplot(data=daily_agg[daily_agg$year==2015,], aes(x=date, y=QUANTITY)) +
   theme_bw() +
   scale_x_date(breaks = as.Date(c('2015-01-01','2015-04-01','2015-07-01','2015-10-01','2016-01-01')),
                labels = date_format('%d%b%Y'),
-               date_minor_breaks = '1 month' ) +
-  labs( x = 'Date (day)', y='Daily ticket sales' ) +
+               date_minor_breaks = '1 month') +
+  labs(x = 'Date (day)', y='Daily ticket sales') +
   scale_color_discrete(name = '')
 
 # Daily ticket sales 2010 - 2014
@@ -154,19 +154,19 @@ ggplot(data=daily_agg[(daily_agg$year>=2010) & (daily_agg$year<=2014),], aes(x=d
   scale_x_date(breaks = as.Date(c('2010-01-01','2011-01-01','2012-01-01','2013-01-01','2014-01-01','2015-01-01')),
                labels = date_format('%d%b%Y'),
                minor_breaks = '3 months') +
-  labs( x = 'Date (day)', y='Daily ticket sales' ) +
+  labs(x = 'Date (day)', y='Daily ticket sales') +
   scale_color_discrete(name = '')
 
 # Monthly box-plots for ticket sales
 ggplot(data=daily_agg, aes(x=month_abb, y=QUANTITY)) +
   theme_bw() +
-  labs( x = 'Date (month)', y='Daily ticket sales' ) +
+  labs(x = 'Date (month)', y='Daily ticket sales') +
   geom_boxplot(color='red',outlier.color = 'green', outlier.alpha = 0.9, outlier.size = 1)
 
 # Daily box-plots for ticket sales
 ggplot(data=daily_agg, aes(x=dow_abb, y=QUANTITY)) +
   theme_bw() +
-  labs( x = 'Day of the week', y='Daily ticket sales' ) +
+  labs(x = 'Day of the week', y='Daily ticket sales') +
   geom_boxplot(color='red',outlier.color = 'green', outlier.alpha = 0.9, outlier.size = 1)
   #geom_boxplot(color='red', outlier.shape = NA)
 
@@ -323,7 +323,7 @@ rmse_CV
 # prophet -  multiplicative option -- tried but produced much worse results (~34. RMSE)
 
 
-model_prophet <- prophet( fit=F, 
+model_prophet <- prophet(fit=F, 
                           seasonality.mode = 'additive', 
                           yearly.seasonality = 'auto',
                           weekly.seasonality = 'auto',
@@ -332,7 +332,7 @@ model_prophet <- prophet( fit=F,
 
 model_prophet <-  add_country_holidays(model_prophet, 'US')
 model_prophet <- fit.prophet(model_prophet, df= data.frame(ds = data_train$date,
-                                                           y = data_train$QUANTITY ))
+                                                           y = data_train$QUANTITY))
 
 cv_pred <- cross_validation(model_prophet, initial = 365, period = 365, horizon = 365, units = 'days')
 rmse_prophet_cv <- performance_metrics(cv_pred, rolling_window = 1)$rmse
@@ -361,27 +361,27 @@ rmse_monthly <- data_holdout %>%
   summarise(
     RMSE = RMSE(QUANTITY, y_hat_5),
     RMSE_norm= RMSE(QUANTITY, y_hat_5)/mean(QUANTITY)
-            ) 
+           ) 
 # Values
 rmse_monthly
 # Graph
 ggplot(rmse_monthly, aes(x = month, y = RMSE_norm)) +
   geom_col(bg='red', color='red') +
-  labs( x = 'Date (month)', y='RMSE (normalized by monthly sales)' ) +
+  labs(x = 'Date (month)', y='RMSE (normalized by monthly sales)') +
     theme_bw() 
 
 # Prediction on training sample
 ggplot(data=data_holdout, aes(x=date, y=QUANTITY)) +
-  geom_line(aes(size='Actual', colour='Actual', linetype = 'Actual') ) +
+  geom_line(aes(size='Actual', colour='Actual', linetype = 'Actual')) +
   geom_line(aes(y=y_hat_5, size='Predicted' ,colour='Predicted',  linetype= 'Predicted')) +
   scale_y_continuous(expand = c(0,0))+
   scale_x_date(expand=c(0,0), breaks = as.Date(c('2016-01-01','2016-03-01','2016-05-01','2016-07-01','2016-09-01','2016-11-01', '2017-01-01')),
                labels = date_format('%d%b%Y'),
-               date_minor_breaks = '1 month' )+
+               date_minor_breaks = '1 month')+
   scale_color_manual(values=c('red','blue'), name='')+
   scale_size_manual(name='', values=c(0.4,0.7))+
   scale_linetype_manual(name = '', values=c('solid', 'twodash')) +
-  labs( x = 'Date (day)', y='Daily ticket sales' ) +
+  labs(x = 'Date (day)', y='Daily ticket sales') +
   theme_bw() +
   theme(legend.position=c(0.7,0.8),
       legend.direction = 'horizontal',
@@ -389,12 +389,12 @@ ggplot(data=data_holdout, aes(x=date, y=QUANTITY)) +
       legend.key.width = unit(.8, 'cm'),
       legend.key.height = unit(.3, 'cm')) + 
   guides(linetype = guide_legend(override.aes = list(size = 0.8))
-         )
+        )
 
 
 # Prediction on hold-out sample
 ggplot(data=data_holdout %>% filter(month==8), aes(x=date, y=QUANTITY)) +
-  geom_line(aes(size='Actual', colour='Actual', linetype = 'Actual') ) +
+  geom_line(aes(size='Actual', colour='Actual', linetype = 'Actual')) +
   geom_line(aes(y=y_hat_5, size='Predicted' ,colour='Predicted',  linetype= 'Predicted')) +
   geom_ribbon(aes(ymin=QUANTITY,ymax=y_hat_5), fill='green', alpha=0.3) +
   scale_y_continuous(expand = c(0.01,0.01), limits = c(0,150))+
@@ -404,7 +404,7 @@ ggplot(data=data_holdout %>% filter(month==8), aes(x=date, y=QUANTITY)) +
   scale_color_manual(values=c('red','blue'), name='')+
   scale_size_manual(name='', values=c(0.4,0.7))+
   scale_linetype_manual(name = '', values=c('solid', 'twodash')) +
-  labs( x = 'Date (day)', y='Daily ticket sales' ) +
+  labs(x = 'Date (day)', y='Daily ticket sales') +
   theme_bw() +
   theme(legend.position=c(0.7,0.8),
         legend.direction = 'horizontal',
@@ -412,5 +412,5 @@ ggplot(data=data_holdout %>% filter(month==8), aes(x=date, y=QUANTITY)) +
         legend.key.width = unit(.8, 'cm'),
         legend.key.height = unit(.2, 'cm')) + 
   guides(linetype = guide_legend(override.aes = list(size = 0.6))
-  )
+ )
 

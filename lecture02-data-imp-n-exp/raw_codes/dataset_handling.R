@@ -19,10 +19,10 @@
 #                                #
 ##################################
 
-rm( list = ls() )
+rm(list = ls())
 # Tidyverse includes readr package 
 #  which we use for importing data!
-library( tidyverse )
+library(tidyverse)
 
 
 
@@ -55,13 +55,13 @@ df_0      <- read_csv(paste0(data_in,'clean/hotels-vienna.csv'))
 getwd()
 
 # after that, you can set your working directory by:
-setwd( data_in )
+setwd(data_in)
 # and simply call the data
 df_1      <- read_csv('clean/hotels-vienna.csv')
 
 
 # delete your data
-rm( hotels_vienna, df_0, df_1 )
+rm(hotels_vienna, df_0, df_1)
 
 
 ########
@@ -81,29 +81,29 @@ df <- read_csv(url('https://osf.io/y6jvb/download'))
 # Quick check on the data:
 
 # glimpse on data
-glimpse( df )
+glimpse(df)
 
 # Check some of the first observations
-head( df )
+head(df)
 
 # Have a built in summary for the variables
-summary( df )
+summary(df)
 
 
 ###########################
 # Exporting your data:
 #
 # This is a special case: data_out is now the same as data_in (no cleaning...)
-data_out <- paste0( data_in, '/export/' )
-write_csv( df, paste0( data_out, 'my_csvfile.csv' ) )
+data_out <- paste0(data_in, '/export/')
+write_csv(df, paste0(data_out, 'my_csvfile.csv'))
 
 # If due to some reason you would like to export as xls(x)
-install.packages( 'writexl' )
-library( writexl )
-write_xlsx( df, paste0( data_out, 'my_csvfile.xlsx' ) )
+install.packages('writexl')
+library(writexl)
+write_xlsx(df, paste0(data_out, 'my_csvfile.xlsx'))
 
 # Third option is to save as an R object
-save( df, file = paste0( data_out, 'my_rfile.RData' ) )
+save(df, file = paste0(data_out, 'my_rfile.RData'))
 
 ######
 # Extra: using API

@@ -52,11 +52,11 @@ if (!require(rpart.plot)){
 
 #####
 # DATA IMPORT
-cars <- read_csv( 'https://osf.io/7gvz9/download' )
+cars <- read_csv('https://osf.io/7gvz9/download')
 # convert to factor
 cars <- cars %>% mutate_if(is.character, factor)
 
-glimpse( cars )
+glimpse(cars)
 
 # SAMPLE DESIGN
 
@@ -70,7 +70,7 @@ cars$type         <- fct_explicit_na(cars$type, na_level = 'Missing')
 
 # missing changed to good not missing
 cars$condition[is.na(cars$condition)] <- 'good'
-datasummary( condition ~ N + Percent(), data = cars )
+datasummary(condition ~ N + Percent(), data = cars)
 
 # same steps as in ch13, see code in ch13 for details
 cars <- cars %>% filter(Hybrid ==0) %>% dplyr::select(-Hybrid)
@@ -120,7 +120,7 @@ datasummary_skim(cars, 'numeric')
 datasummary_skim(cars, 'categorical')
 
 
-datasummary( price ~ Mean + Median + SD + P25 + P75 + Min + Max + N, data = cars )
+datasummary(price ~ Mean + Median + SD + P25 + P75 + Min + Max + N, data = cars)
 
 
 
@@ -146,7 +146,7 @@ data_test <- cars %>% filter(train == 0)
 #####################
 # Regression tree (rpart)
 
-datasummary( price + age ~ Mean + Median + P75 + P25 + Min + Max, data = cars )
+datasummary(price + age ~ Mean + Median + P75 + P25 + Min + Max, data = cars)
 
 ####
 # SIMPLEST CASE: 
@@ -160,7 +160,7 @@ cart1 <- train(
   data = data_train, 
   method = 'rpart2',
   trControl = trainControl(method='none'),
-  tuneGrid= data.frame(maxdepth=1) )
+  tuneGrid= data.frame(maxdepth=1))
 
 # Summary
 summary(cart1$finalModel)
@@ -202,9 +202,9 @@ rpart.plot(cart2$finalModel, tweak=1.2, digits=-1, extra=1)
 # Put it into a tibble
 tab_cart2 <- tibble(
   'Category' = c('Age 1-4', 'Age 5-7','Age 8-12','Age 13 or more'),
-  'Count' = c( summary(cart2)$frame$n[7], summary(cart2)$frame$n[6], summary(cart2)$frame$n[4], summary(cart2)$frame$n[3]),
+  'Count' = c(summary(cart2)$frame$n[7], summary(cart2)$frame$n[6], summary(cart2)$frame$n[4], summary(cart2)$frame$n[3]),
   'Average_price' = c(summary(cart2)$frame$yval[7], summary(cart2)$frame$yval[6], summary(cart2)$frame$yval[4], summary(cart2)$frame$yval[3])
-  )
+ )
 tab_cart2
 # Calculate RMSE
 pred_cart2 <- predict(cart2, data_test)
@@ -257,7 +257,7 @@ ggplot(data = data_train, aes(x=age, y=price)) +
 # Competing model:
 #   OLS: Age only (Linear regression)
 
-linreg1 <- feols(model1, data=data_train, vcov = 'hetero' )
+linreg1 <- feols(model1, data=data_train, vcov = 'hetero')
 linreg1
 pred_linreg1 <- predict(linreg1, data_test)
 rmse_linreg1 <- sqrt(mean((pred_linreg1 - data_test$price)^2))
@@ -287,7 +287,7 @@ lowess1 <- loess(model1, data=data_train)
 pred_lowess1t <- predict(lowess1, data_train)
 
 ggplot(data = data_train, aes(x=age, y=price)) +
-  geom_point(size=1, colour='black' ) +
+  geom_point(size=1, colour='black') +
   labs(x = 'Age', y = 'Price') +
   coord_cartesian(xlim=c(0, 25), ylim=c(0, 20000)) +
   geom_smooth(method='loess', colour='darkblue', se=F, size=1.5) +
@@ -373,7 +373,7 @@ rmse_cart6 <- sqrt(mean((pred_cart6 - data_test$price)^2))
 
 ###
 # take the last model (large tree) and prune (cut back)
-pfit <-prune(cart6$finalModel, cp=0.005 )
+pfit <-prune(cart6$finalModel, cp=0.005)
 summary(pfit)
 
 # Tree graph
@@ -399,7 +399,7 @@ tab_rmse <- tibble(
 )
 tab_rmse
 
-arrange( tab_rmse, RMSE )
+arrange(tab_rmse, RMSE)
 
 
 #############
@@ -410,7 +410,7 @@ cart4_var_imp
 # Make it pretty for the plot
 cart4_var_imp_df <-
   data.frame(varname = rownames(cart4_var_imp),imp = cart4_var_imp$Overall) %>%
-  mutate(varname = gsub('cond_', 'Condition:', varname) ) %>%
+  mutate(varname = gsub('cond_', 'Condition:', varname)) %>%
   arrange(desc(imp)) %>%
   mutate(imp_percentage = imp/sum(imp))
 
@@ -447,7 +447,7 @@ cart4 <- train(
 cart4_var_imp <- varImp(cart4)$importance
 cart4_var_imp_df <-
     data.frame(varname = rownames(cart4_var_imp),imp = cart4_var_imp$Overall) %>%
-    mutate(varname = gsub('cond_', 'Condition:', varname) ) %>%
+    mutate(varname = gsub('cond_', 'Condition:', varname)) %>%
     arrange(desc(imp)) %>%
     mutate(imp_percentage = imp/sum(imp))
   

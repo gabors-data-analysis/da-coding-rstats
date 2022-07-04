@@ -58,7 +58,7 @@ if (!{require(wesanderson)}){
 #     Visualize Life-expectancy #
 #################################
 
-rm( list = ls() )
+rm(list = ls())
 
 # Use the US map -> but it includes many other maps! (check ?map_data())
 world_map <- map_data('world')
@@ -71,25 +71,25 @@ world_map <- map_data('world')
 # It will convert Map of World:
 #   - unscaled, with guides and axis labels
 wm <- world_map %>% 
-  ggplot( aes(x = long, y = lat, group = group ) ) +
-  geom_polygon( fill = 'white', color = 'black')
+  ggplot(aes(x = long, y = lat, group = group)) +
+  geom_polygon(fill = 'white', color = 'black')
 wm
 
 # Set coordinates are equally distanced
 # For different projection can check: 
 #   https://rdrr.io/cran/mapproj/man/mapproject.html  
-wm + coord_equal( ) 
+wm + coord_equal() 
 
 # theme_map() is great for maps as it removes all ticks
-wm + coord_equal( ) + theme_map()
+wm + coord_equal() + theme_map()
 
 # Add countries as a filler:
 # Note: important to remove legend!
 world_map %>% 
-  ggplot( aes( x = long, y = lat,
-               group = group, fill = region ) ) +
-  geom_polygon( ) + 
-  coord_equal( ) + 
+  ggplot(aes(x = long, y = lat,
+               group = group, fill = region)) +
+  geom_polygon() + 
+  coord_equal() + 
   theme_map() + 
   theme(legend.position = 'none')
 
@@ -100,19 +100,19 @@ world_map %>%
 lfe <- read_csv('https://osf.io/sh9mu/download')
 
 # take year 2017 only
-lfe <- lfe %>% filter( year == 2017 )
+lfe <- lfe %>% filter(year == 2017)
 
 # We need to match the 'region' variable from world_map 
 #   and 'countryname' from lfe
 
 # a) create a new tibble with id and country name these we need to match
-countries <- distinct( world_map, region, group ) %>% rename( countryname = region ) %>% arrange() 
+countries <- distinct(world_map, region, group) %>% rename(countryname = region) %>% arrange() 
 
 # b) Check not-matching observations
-check <- anti_join( lfe, countries,  by = 'countryname' )
+check <- anti_join(lfe, countries,  by = 'countryname')
 
 # c) From these there are some which has different names (good example of using " and ' in Cote d'Ivorire)
-rename_list <- tibble( old_name = c('Bahamas, The','Brunei Darussalam','Congo, Dem. Rep.',
+rename_list <- tibble(old_name = c('Bahamas, The','Brunei Darussalam','Congo, Dem. Rep.',
                                     'Congo, Rep.',"Cote d'Ivoire",'Egypt, Arab Rep.',
                                     'Gambia, The','Iran, Islamic Rep.','Kyrgyz Republic',
                                     'Lao PDR','Micronesia, Fed. Sts.','Russian Federation',
@@ -122,22 +122,22 @@ rename_list <- tibble( old_name = c('Bahamas, The','Brunei Darussalam','Congo, D
                                     'Republic of Congo','Ivory Coast','Egypt','Gambia',
                                     'Iran','Kyrgyzstan','Laos','Micronesia','Russia',
                                     'Slovakia','Saint Lucia','Saint Vincent','Trinidad',
-                                    'UK','USA','Yemen' ) )
+                                    'UK','USA','Yemen'))
 
 # d) re-set country names in lfe
-for ( i in 1 : nrow( rename_list ) ){
+for (i in 1 : nrow(rename_list)){
   lfe$countryname[ lfe$countryname == rename_list$old_name[ i ] ] <- rename_list$new_name[ i ]
 }
 
 # e) now can match the lfe data to world_map
-world_map_exp <- left_join( world_map, rename( lfe, region = countryname ), by = 'region')
+world_map_exp <- left_join(world_map, rename(lfe, region = countryname), by = 'region')
 
 # Show the life-expectancy
 lfe_map <- world_map_exp %>% 
-  ggplot( aes( x = long, y = lat,
-               group = group, fill = lifeexp ) ) +
-  geom_polygon( ) + 
-  coord_equal( ) + 
+  ggplot(aes(x = long, y = lat,
+               group = group, fill = lifeexp)) +
+  geom_polygon() + 
+  coord_equal() + 
   theme_map() 
 lfe_map
 
@@ -156,10 +156,10 @@ lfe_map + scale_fill_gradient(low = 'red', high = 'green',
 
 # Reminder:
 # Scatter plot for the model
-ggplot( data = lfe, aes( x = ln_gdppc, y = lifeexp ) ) + 
-  geom_point( color='blue') +
-  geom_smooth( method = lm, color = 'red', formula = y ~ x ) +
-  labs( x = 'Log of GDP per Capita', y = 'Life Expectancy at birth') +
+ggplot(data = lfe, aes(x = ln_gdppc, y = lifeexp)) + 
+  geom_point(color='blue') +
+  geom_smooth(method = lm, color = 'red', formula = y ~ x) +
+  labs(x = 'Log of GDP per Capita', y = 'Life Expectancy at birth') +
   theme_bw()
 
 
@@ -168,9 +168,9 @@ ggplot( data = lfe, aes( x = ln_gdppc, y = lifeexp ) ) +
 # ggplot has `geom_map` object, which can be use along with `map_id`
 #  to show the same projection, we use coord_map() with 'albers' projection
 lfe %>% 
-  ggplot(aes( fill = lfe_res, map_id = countryname ) ) +
-  geom_map( map = world_map ) +
-  expand_limits( x = world_map$long, y = world_map$lat ) +
+  ggplot(aes(fill = lfe_res, map_id = countryname)) +
+  geom_map(map = world_map) +
+  expand_limits(x = world_map$long, y = world_map$lat) +
   coord_map('albers', lat0 = 0, lat1 = 0) +
   scale_fill_gradient(low = 'red', high = 'green',
                       name = 'Deviance from Life Exp.') +
@@ -184,20 +184,20 @@ lfe %>%
 #     and in Vienna             #
 #################################
 
-rm( list = ls() )
+rm(list = ls())
 
 ###
 # Import Hotels-Europe data
 heu_p <- read_csv('https://osf.io/p6tyr/download')
 heu_f <- read_csv('https://osf.io/utwjs/download')
-heu <- left_join( heu_f, heu_p, by = 'hotel_id' ) 
+heu <- left_join(heu_f, heu_p, by = 'hotel_id') 
 rm(heu_p,heu_f)
 
 # Filter to London and Vienna as usual
-heu <- heu %>% filter( year == 2017, month == 11, weekend == 0 ) %>% 
-  filter( city %in% c('London','Vienna'), city_actual %in% c( 'London','Vienna') ) %>% 
-  filter( accommodation_type == 'Hotel', stars >= 3, stars <=4 ) %>% 
-  filter( price < 600 )
+heu <- heu %>% filter(year == 2017, month == 11, weekend == 0) %>% 
+  filter(city %in% c('London','Vienna'), city_actual %in% c('London','Vienna')) %>% 
+  filter(accommodation_type == 'Hotel', stars >= 3, stars <=4) %>% 
+  filter(price < 600)
 
 #####
 # 1) Visualize London Boroughs
@@ -209,46 +209,46 @@ setwd()
 #   https://data.london.gov.uk/dataset/statistical-gis-boundary-files-london
 # Import shp file for London
 # Note: you always need an 'shx' and 'dbf' file with the same name to read
-london_map <- readOGR( 'data_map/London_Borough_Excluding_MHW.shp' )
+london_map <- readOGR('data_map/London_Borough_Excluding_MHW.shp')
 # It imports as a 'S4 object'
 head(london_map@data,2)
 
 # Convert 'S4 object' to a data_frame, then to a tibble.
 # Note: it only converts the variables needed for a ggplot (fortify is a func of ggplot2)
-london_map_tibble <- as_tibble( fortify( london_map ) )
+london_map_tibble <- as_tibble(fortify(london_map))
 
 # allocate an id variable to the 'S4 object' to match remaining data
-london_map$id <- row.names( london_map )
+london_map$id <- row.names(london_map)
 
 # Joins the data
-london_map_tibble <- as_tibble( left_join( london_map_tibble, london_map@data, by = 'id' ) )
+london_map_tibble <- as_tibble(left_join(london_map_tibble, london_map@data, by = 'id'))
 
 # remove and rename
-london_map <- london_map_tibble %>% rename( borough = NAME )
-rm( london_map_tibble )
+london_map <- london_map_tibble %>% rename(borough = NAME)
+rm(london_map_tibble)
 
 # Show London boroughs
-ggplot( london_map, aes( long, lat, group = borough ) ) +
+ggplot(london_map, aes(long, lat, group = borough)) +
   geom_polygon() + 
-  geom_path( colour='white', lwd = 0.1 ) + 
+  geom_path(colour='white', lwd = 0.1) + 
   coord_equal() +
   ggtitle('London Boroughs') +
   theme_map()
 
 # Define inner-London boroughs 
 #   Note: City of London officially is not inner-London
-inner_boroughs <- c( 'Camden','Greenwich','Hackney','Hammersmith and Fulham','Islington','Kensington and Chelsea',
+inner_boroughs <- c('Camden','Greenwich','Hackney','Hammersmith and Fulham','Islington','Kensington and Chelsea',
                      'Lambeth','Lewisham','Southwark','Tower Hamlets','Wandsworth','Westminster',
                      'City of London')
 
 # Defining inner boroughs for inner London
-london_map <- london_map %>% mutate( inner_london = borough %in% inner_boroughs  )
+london_map <- london_map %>% mutate(inner_london = borough %in% inner_boroughs )
 
 # Show inner-London boroughs
-iL <- ggplot( filter( london_map, inner_london ), aes( long, lat, group = borough ) ) +
-  geom_polygon( colour = 'black', fill = NA ) + 
-  geom_path( colour='white', lwd = 0.01 ) + 
-  coord_equal( ) +
+iL <- ggplot(filter(london_map, inner_london), aes(long, lat, group = borough)) +
+  geom_polygon(colour = 'black', fill = NA) + 
+  geom_path(colour='white', lwd = 0.01) + 
+  coord_equal() +
   ggtitle('Inner-London Borough') +
   theme_map()
 iL
@@ -257,12 +257,12 @@ iL
 # Create a tibble with one name and one point
 #   aggregating lat and long has many other options than mean(range()), may check out
 
-b_names <- aggregate( cbind(long, lat) ~ borough, 
-                      data = london_map, FUN=function( x ){ mean( range( x ) ) } ) %>% 
-  mutate( inner_london = borough %in% inner_boroughs  )
+b_names <- aggregate(cbind(long, lat) ~ borough, 
+                      data = london_map, FUN=function(x){ mean(range(x)) }) %>% 
+  mutate(inner_london = borough %in% inner_boroughs )
 
 # Show London boroughs with names
-iL + geom_text( data = filter( b_names, inner_london ), aes(long, lat, label = borough), size = 2 )
+iL + geom_text(data = filter(b_names, inner_london), aes(long, lat, label = borough), size = 2)
 
 
 ###
@@ -270,11 +270,11 @@ iL + geom_text( data = filter( b_names, inner_london ), aes(long, lat, label = b
 #
 # a) Create a borough variable 
 #   !! Important: need to match with london_map borough !!
-heu <- heu %>% mutate( borough =  neighbourhood )
+heu <- heu %>% mutate(borough =  neighbourhood)
 
 # Hand-written matching...
 #                     neighbour, borough  
-match_london <- c(   'Blackheath', 'Lewisham',
+match_london <- c(  'Blackheath', 'Lewisham',
                      'Bloomsbury','Camden',
                      'Camden Town','Camden',
                      'Canary Wharf','Tower Hamlets',
@@ -308,25 +308,25 @@ match_london <- c(   'Blackheath', 'Lewisham',
                      'West End','Camden',
                      'White City','Hammersmith and Fulham')
 
-for ( i in 1 : ( length( match_london ) / 2 ) ){
+for (i in 1 : (length(match_london) / 2)){
   heu$borough[ heu$borough == match_london[ i*2 - 1 ] ] <- match_london[ i *2 ]
 }
 
 # Calculate the average prices in each borough, London
-l_bor <- heu %>% filter( city_actual == 'London' ) %>%  group_by( borough ) %>% 
-  summarise( price = mean( price, na.rm = T ) )
+l_bor <- heu %>% filter(city_actual == 'London') %>%  group_by(borough) %>% 
+  summarise(price = mean(price, na.rm = T))
 
 # Check if there is perfect fit with names
-all( l_bor$borough %in% sort(unique( london_map$borough )) )
+all(l_bor$borough %in% sort(unique(london_map$borough)))
 
 # add prices to london_map
-lp <- left_join( london_map, l_bor, by = 'borough' )
+lp <- left_join(london_map, l_bor, by = 'borough')
 
 # Create graph with prices: London
-ggplot( lp, aes( long, lat, group = borough, fill = price ) ) +
-  geom_polygon( ) + 
-  geom_path( colour='white', lwd=0.05 ) + 
-  coord_equal( ) +
+ggplot(lp, aes(long, lat, group = borough, fill = price)) +
+  geom_polygon() + 
+  geom_path(colour='white', lwd=0.05) + 
+  coord_equal() +
   labs(x = 'lat', y = 'lon',
        fill = 'Price') +
   scale_fill_gradient(low = 'green',high = 'red', # colors
@@ -342,7 +342,7 @@ ggplot( lp, aes( long, lat, group = borough, fill = price ) ) +
 pal <- wes_palette('Zissou1', 100, type = 'continuous')
 
 # Create tibble for inner london, prices added as it is needed for graph
-b_names_il <- filter( left_join( b_names, l_bor, by = 'borough' ), inner_london )
+b_names_il <- filter(left_join(b_names, l_bor, by = 'borough'), inner_london)
 
 # Adjust some names and coordinate (always check the scale of coordinates before adjusting)
 b_names_il$borough[ b_names_il$borough == 'Hammersmith and Fulham' ] <- 'H&F'
@@ -353,18 +353,18 @@ b_names_il$lat[ b_names_il$borough == 'K&C' ] <- b_names_il$lat[ b_names_il$boro
 
 
 # Do the graph with annotation
-iL_price <- ggplot( filter( lp, inner_london ), 
-                    aes(long, lat, group = borough, fill = price ) ) +
+iL_price <- ggplot(filter(lp, inner_london), 
+                    aes(long, lat, group = borough, fill = price)) +
   geom_polygon() + 
-  geom_path( colour='white', lwd=0.05 ) + 
+  geom_path(colour='white', lwd=0.05) + 
   coord_equal() +
-  geom_text( data = b_names_il ,
-             aes( long, lat, label = borough ), size = 2 ) +
+  geom_text(data = b_names_il ,
+             aes(long, lat, label = borough), size = 2) +
   labs(x = 'lat', y = 'lon',
        fill = 'Price') +
   scale_fill_gradientn(colours=pal,
                        na.value = 'grey', name = '',
-                       limits = c( 0, 400 )) +
+                       limits = c(0, 400)) +
   ggtitle('Average hotel prices: inner-London ($,2017)') +
   theme_map() 
 iL_price
@@ -404,8 +404,8 @@ match_vienna <- c('17. Hernals','Hernals',
                   'Schonbrunn','Meidling')
 
 # Rename the variable: if ugly name from vienna_map, use the pretty name instead!
-for ( i in 1 : ( length( match_vienna ) / 2 ) ){
-  if ( match_vienna[ i*2 - 1 ] %in% c('Landstrasse','Rudolfsheim-Funfhaus','Wahring') ){
+for (i in 1 : (length(match_vienna) / 2)){
+  if (match_vienna[ i*2 - 1 ] %in% c('Landstrasse','Rudolfsheim-Funfhaus','Wahring')){
     heu$borough[ heu$borough == match_vienna[ i*2 - 1 ] ] <- match_vienna[ i*2 - 1 ]
     vienna_map$district[ vienna_map$district ==  match_vienna[ i *2 ] ] <-  match_vienna[ i*2 - 1 ]
   } else{
@@ -448,9 +448,9 @@ V_price <-
 V_price
 
 # Show together with common legend (this is why we use `scale_fill_gradientn()`)
-cities_plot <- ggarrange( iL_price + ggtitle('Inner-London'), 
+cities_plot <- ggarrange(iL_price + ggtitle('Inner-London'), 
                           V_price  + ggtitle('Vienna') ,
-                          ncol = 1, common.legend = TRUE, legend='right' )
+                          ncol = 1, common.legend = TRUE, legend='right')
 
 annotate_figure(cities_plot, top = text_grob('Average price of a hotel for one night ($)', 
                                              color = 'black', face = 'italic', size = 12))

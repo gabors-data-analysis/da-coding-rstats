@@ -35,7 +35,7 @@ data <- read_csv('https://osf.io/7n96w/download')
 
 
 # keep if property type is Apartment, House or Townhouse
-datasummary(property_type ~ N + Percent(), data = data )
+datasummary(property_type ~ N + Percent(), data = data)
 
 data <- data %>%
   filter(property_type %in% c("Apartment", "House", "Townhouse"))
@@ -47,7 +47,7 @@ data <- data %>%
 
 
 #Room type as factor
-datasummary(room_type ~ N + Percent(), data = data )
+datasummary(room_type ~ N + Percent(), data = data)
 data <- data %>%
   mutate(f_room_type = factor(room_type))
 
@@ -57,7 +57,7 @@ data$f_room_type2 <- factor(ifelse(data$f_room_type== "Entire home/apt", "Entire
                                           ifelse(data$f_room_type== "Shared room", "Shared", "."))))
 
 # cancellation policy as factor
-datasummary(cancellation_policy ~ N + Percent(), data = data )
+datasummary(cancellation_policy ~ N + Percent(), data = data)
 # if cancellation policy is super strict 30 or 60, rename it as strict
 data <- data %>%
   mutate(
@@ -66,7 +66,7 @@ data <- data %>%
     f_cancellation_policy = factor(cancellation_policy))
 
 # bed_type and neighbourhood_cleansed as factors
-datasummary(bed_type ~ N + Percent(), data = data )
+datasummary(bed_type ~ N + Percent(), data = data)
 # rename to Couch
 data <- data %>%
   mutate(
@@ -128,7 +128,7 @@ data <- data %>%
 #####################
 ### look at price ###
 #####################
-datasummary( price ~ Mean + Median + Min + Max + P25 + P75, data = data )
+datasummary(price ~ Mean + Median + Min + Max + P25 + P75, data = data)
 data <- data %>%
   mutate(ln_price = log(price))
 data <- data %>%
@@ -142,11 +142,11 @@ data <- data %>%
          ln_accommodates2=log(n_accommodates)^2,
          ln_beds = log(n_beds),
          ln_number_of_reviews = log(n_number_of_reviews+1)
-        )
+       )
 
 # Pool accomodations with 0,1,2,10 bathrooms
 data <- data %>%
-  mutate(f_bathroom = cut(n_bathrooms, c(0,1,2,10), labels=c(0,1,2), right = F) )
+  mutate(f_bathroom = cut(n_bathrooms, c(0,1,2,10), labels=c(0,1,2), right = F))
 
 # Pool num of reviews to 3 categories: none, 1-51 and >51
 data <- data %>%
@@ -158,7 +158,7 @@ data <- data %>%
   mutate(f_minimum_nights= cut(n_minimum_nights, c(1,2,3,max(data$n_minimum_nights)), labels=c(1,2,3), right = F))
 
 # Change Infinite values with NaNs
-for (j in 1:ncol(data) ) data.table::set(data, which(is.infinite(data[[j]])), j, NA)
+for (j in 1:ncol(data)) data.table::set(data, which(is.infinite(data[[j]])), j, NA)
 
 
 #------------------------------------------------------------------------------------------------
@@ -183,7 +183,7 @@ data <- data %>%
     f_minimum_nights=ifelse(is.na(f_minimum_nights),1, f_minimum_nights),
     f_number_of_reviews=ifelse(is.na(f_number_of_reviews),1, f_number_of_reviews),
     ln_beds=ifelse(is.na(ln_beds),0, ln_beds),
-  ) 
+ ) 
 
 # 3. drop columns when many missing not important
 to_drop <- c("usd_cleaning_fee", "p_host_response_rate")
@@ -204,7 +204,7 @@ data <- data %>%
     flag_reviews_per_month=ifelse(is.na(n_reviews_per_month),1, 0),
     n_reviews_per_month =  ifelse(is.na(n_reviews_per_month), median(n_reviews_per_month, na.rm = T), n_reviews_per_month),
     flag_n_number_of_reviews=ifelse(n_number_of_reviews==0,1, 0)
-  )
+ )
 table(data$flag_days_since)
 
 # redo features
@@ -220,11 +220,11 @@ data <- data %>%
     ln_days_since=ifelse(is.na(ln_days_since),0, ln_days_since),
     ln_days_since2=ifelse(is.na(ln_days_since2),0, ln_days_since2),
     ln_days_since3=ifelse(is.na(ln_days_since3),0, ln_days_since3),
-  )
+ )
 
 # Look at data
-datasummary( id ~ N, data = data )
-datasummary_skim( data, 'categorical' )
+datasummary(id ~ N, data = data)
+datasummary_skim(data, 'categorical')
 
 
 # where do we have missing variables now?

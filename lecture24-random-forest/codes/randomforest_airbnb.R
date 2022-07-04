@@ -84,7 +84,7 @@ airbnb <- airbnb %>% mutate(n_accommodates_copy = n_accommodates)
 # basic descr stat -------------------------------------------
 skimr::skim(airbnb)
 datasummary(price~Mean+Median+P25+P75+N,data=airbnb)
-datasummary( f_room_type + f_property_type ~ N + Percent(), data = airbnb )
+datasummary(f_room_type + f_property_type ~ N + Percent(), data = airbnb)
 
 # create train and holdout samples -------------------------------------------
 # train is where we do it all, incl CV
@@ -119,7 +119,7 @@ X1  <- c('n_accommodates*f_property_type',  'f_room_type*f_property_type',  'f_r
          'd_airconditioning*f_property_type', 'd_cats*f_property_type', 'd_dogs*f_property_type')
 # with boroughs
 X2  <- c('f_property_type*f_neighbourhood_cleansed', 'f_room_type*f_neighbourhood_cleansed',
-         'n_accommodates*f_neighbourhood_cleansed' )
+         'n_accommodates*f_neighbourhood_cleansed')
 
 
 predictors_1 <- c(basic_vars)
@@ -163,7 +163,7 @@ rf_model_1 <- train(
 )
 })
 rf_model_1
-# save( rf_model_1, file = 'rf_model_1.RData' )
+# save(rf_model_1, file = 'rf_model_1.RData')
 # load(url(paste0(path_url,'rf_model_1.RData?raw=true')))
 
 # more complicated model - using random forest
@@ -179,7 +179,7 @@ rf_model_2 <- train(
 )
 })
 rf_model_2
-# save( rf_model_2, file = 'rf_model_2.RData' )
+# save(rf_model_2, file = 'rf_model_2.RData')
 # load(url(paste0(path_url,'rf_model_2.RData?raw=true')))
 
 
@@ -193,7 +193,7 @@ rf_model_2
 #     method = 'ranger',
 #     trControl = train_control,
 #     importance = 'impurity'
-#   )
+#  )
 #})
 #rf_model_2auto 
 
@@ -204,7 +204,7 @@ results <- resamples(
   list(
     model_1  = rf_model_1,
     model_2  = rf_model_2
-  )
+ )
 )
 summary(results)
 
@@ -230,8 +230,8 @@ summary(results)
 rf_model_2_var_imp <- ranger::importance(rf_model_2$finalModel)/1000
 rf_model_2_var_imp_df <-
   data.frame(varname = names(rf_model_2_var_imp),imp = rf_model_2_var_imp) %>%
-  mutate(varname = gsub('f_neighbourhood_cleansed', 'Borough:', varname) ) %>%
-  mutate(varname = gsub('f_room_type', 'Room type:', varname) ) %>%
+  mutate(varname = gsub('f_neighbourhood_cleansed', 'Borough:', varname)) %>%
+  mutate(varname = gsub('f_room_type', 'Room type:', varname)) %>%
   arrange(desc(imp)) %>%
   mutate(imp_percentage = imp/sum(imp))
 
@@ -328,7 +328,7 @@ pdp_n_acc <- pdp::partial(rf_model_2, pred.var = 'n_accommodates',
                           train = data_train)
 
 pdp_n_acc %>%
-  autoplot( ) +
+  autoplot() +
   geom_point(color='red', size=2) +
   geom_line(color='red', size=1) +
   ylab('Predicted price') +
@@ -342,7 +342,7 @@ pdp_n_roomtype <- pdp::partial(rf_model_2, pred.var = 'f_room_type',
                                pred.grid = distinct_(data_holdout, 'f_room_type'), 
                                train = data_train)
 pdp_n_roomtype %>%
-  autoplot( ) +
+  autoplot() +
   geom_point(color='red', size=4) +
   ylab('Predicted price') +
   xlab('Room type') +
@@ -367,7 +367,7 @@ a <- data_holdout_w_prediction %>%
     rmse = RMSE(predicted_price, price),
     mean_price = mean(price),
     rmse_norm = RMSE(predicted_price, price) / mean(price)
-  )
+ )
 
 
 b <- data_holdout_w_prediction %>%
@@ -379,7 +379,7 @@ b <- data_holdout_w_prediction %>%
     rmse = RMSE(predicted_price, price),
     mean_price = mean(price),
     rmse_norm = rmse / mean_price
-  )
+ )
 
 c <- data_holdout_w_prediction %>%
   filter(f_property_type %in% c('Apartment', 'House')) %>%
@@ -388,7 +388,7 @@ c <- data_holdout_w_prediction %>%
     rmse = RMSE(predicted_price, price),
     mean_price = mean(price),
     rmse_norm = rmse / mean_price
-  )
+ )
 
 
 d <- data_holdout_w_prediction %>%
@@ -396,7 +396,7 @@ d <- data_holdout_w_prediction %>%
     rmse = RMSE(predicted_price, price),
     mean_price = mean(price),
     rmse_norm = RMSE(predicted_price, price) / mean(price)
-  )
+ )
 
 # Save output
 colnames(a) <- c('', 'RMSE', 'Mean price', 'RMSE/price')
@@ -506,7 +506,7 @@ system.time({
 })
 gbm_model
 gbm_model$finalModel
-# save( gbm_model, file = 'gbm_model.RData' )
+# save(gbm_model, file = 'gbm_model.RData')
 # load(url(paste0(path_url,'gbm_model.RData?raw=true')))
 
 

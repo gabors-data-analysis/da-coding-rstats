@@ -42,7 +42,7 @@ d <- a*c/b*c
 # Or create logical R-object:
 a == b
 2 == 3
-( a + 1 ) == b
+(a + 1) == b
 # negation:
 a != b
 
@@ -128,7 +128,7 @@ inf_val <- Inf
 # Rounding issues
 sqrt(2)^2  == 2
 # and fix it:
-round( sqrt(2)^2 ) == 2
+round(sqrt(2)^2) == 2
 
 
 ####

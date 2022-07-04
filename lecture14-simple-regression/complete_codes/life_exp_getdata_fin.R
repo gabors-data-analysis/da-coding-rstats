@@ -15,7 +15,7 @@
 rm(list=ls())
 
 # Call packages
-if ( !require(WDI) ){
+if (!require(WDI)){
   install.packages('WDI')
   library(WDI)
 }

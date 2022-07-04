@@ -86,7 +86,7 @@ source('auxfuncs_binarywML.R')
 # loading cleaned data
 load(url('https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/partIII-case-studies/case5-predicting-firm-exit/data/bisnode_firms_clean.RData?raw=true'))
 
-glimpse( bisnode )
+glimpse(bisnode)
 
 # Summary
 skimr::skim(bisnode)
@@ -97,8 +97,8 @@ datasummary_skim(bisnode, type='categorical')
 #   and show a graph for winsorizing
 #
 
-ggplot( data = bisnode, aes( x = default ) ) +
-  geom_histogram( aes( y = ..count.. / sum( count ) ), size = 0.1, fill = 'navyblue',
+ggplot(data = bisnode, aes(x = default)) +
+  geom_histogram(aes(y = ..count.. / sum(count)), size = 0.1, fill = 'navyblue',
                   bins = 3)+
   labs(y='Probabilities',x='0: Exists, 1: Defaults')+
   ylim(0,1) +
@@ -305,7 +305,7 @@ for (model_name in names(logit_model_vars)) {
     data      = data_train,
     family    = binomial,
     trControl = train_control
-  )
+ )
 
   # Save the results to list
   logit_models[[model_name]] <- glm_model
@@ -333,7 +333,7 @@ system.time({
     trControl = train_control,
     tuneGrid = grid,
     na.action=na.exclude
-  )
+ )
 })
 
 # Save the results
@@ -394,9 +394,9 @@ cm1b
 
 # calculating the probabilities
 cm1b_p <- cm1b / sum(cm1b)
-cm1b_p <- cbind( cm1b_p, c( sum(cm1b_p[1,]), sum(cm1b_p[2,]) ) )
-cm1b_p <- rbind( cm1b_p, c( sum(cm1b_p[,1]), sum(cm1b_p[,2]), sum(cm1b_p[,3]) ) )
-cm1b_p <- round( cm1b_p*100, 1 )
+cm1b_p <- cbind(cm1b_p, c(sum(cm1b_p[1,]), sum(cm1b_p[2,])))
+cm1b_p <- rbind(cm1b_p, c(sum(cm1b_p[,1]), sum(cm1b_p[,2]), sum(cm1b_p[,3])))
+cm1b_p <- round(cm1b_p*100, 1)
 cm1b_p
 
 
@@ -634,7 +634,7 @@ cm_object3 <- confusionMatrix(holdout_prediction,data_holdout$default_f)
 cm3 <- cm_object3$table
 cm3
 # in pctg
-round( cm3 / sum(cm3) * 100, 1 )
+round(cm3 / sum(cm3) * 100, 1)
 
 
 
@@ -657,7 +657,7 @@ rf_for_graph <-
     formula = default_f ~ sales_mil + profit_loss_year+ foreign_management,
     data = data_for_graph,
     control = rpart.control(cp = 0.0028, minbucket = 100)
-  )
+ )
 
 rpart.plot(rf_for_graph, tweak=1, digits=2, extra=107, under = TRUE)
 

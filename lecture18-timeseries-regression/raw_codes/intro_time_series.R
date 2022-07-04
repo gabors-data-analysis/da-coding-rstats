@@ -36,27 +36,27 @@ library(lubridate)
 # 1st source: climate data  (cooling degree days etc, by month)
 climate <- read_csv('https://osf.io/g3tj7/download')
 # and convert them into date format as well: here we have an easier implemented format
-climate <- climate %>% mutate( tempdate = ym( DATE ) )
+climate <- climate %>% mutate(tempdate = ym(DATE))
 
 # Add the same variables
-climate <- climate %>% mutate(year     = year( tempdate ),
-                              month    = month( tempdate ) ,
-                              ym       = format( tempdate, '%Ym%m'))
+climate <- climate %>% mutate(year     = year(tempdate),
+                              month    = month(tempdate) ,
+                              ym       = format(tempdate, '%Ym%m'))
 
 # Data manipulation with time-series data:
 # 1) Generate averages from sums:
 #     when dividing by N, must take into account N of days
-climate <-  climate %>% mutate( ndays = ifelse( month %in% c(1, 3, 5, 7, 8, 10, 12), 31 ,
-                                                ifelse(month == 2,28,30 ) )
+climate <-  climate %>% mutate(ndays = ifelse(month %in% c(1, 3, 5, 7, 8, 10, 12), 31 ,
+                                                ifelse(month == 2,28,30))
 )
 # Focus on cooling degree, heating degree 
-climate <- climate %>% mutate_at( c( 'CLDD', 'HTDD' ), list( avg = ~./ndays) )
+climate <- climate %>% mutate_at(c('CLDD', 'HTDD'), list(avg = ~./ndays))
 
 # Drop the others
 climate <- climate %>% select(-c('DATE', 'tempdate', 'STATION', 'NAME','DX32','DX70','DX90'))
 
 # Check the descriptive
-datasummary( CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max, data = climate )
+datasummary(CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max, data = climate)
 
 
 ##
@@ -64,18 +64,18 @@ datasummary( CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max, data = climat
 electricity <- read_csv('https://osf.io/wbef4/download')
 
 # Convert 'MY' variable into numeric format
-electricity <- electricity %>% mutate( date = parse_date_time( as.character( MY ), orders = 'my' ) )
+electricity <- electricity %>% mutate(date = parse_date_time(as.character(MY), orders = 'my'))
 
 # Convert it into date-time
-electricity <- electricity %>% mutate( date = ymd( date ) )
+electricity <- electricity %>% mutate(date = ymd(date))
 
 # We can create different time variables:
 # year -> the actual year
 # month -> the actual month
 # format -> create your own format
-electricity <- electricity %>% mutate(year  = year( date ),
-                                      month = month( date ),
-                                      ym    = format( electricity$date,'%Ym%m') )
+electricity <- electricity %>% mutate(year  = year(date),
+                                      month = month(date),
+                                      ym    = format(electricity$date,'%Ym%m'))
 
 # Remove MY, year and month variables
 electricity <- electricity %>% select(-c('MY','year','month'))
@@ -86,21 +86,21 @@ electricity <- electricity %>% mutate(lnQ = log(Q))
 
 ###
 # Merging the two data
-df <- inner_join( climate, electricity, by = 'ym' )
+df <- inner_join(climate, electricity, by = 'ym')
 rm(electricity, climate)
 
 # Restrict the sample between years 2001 and 2017
-df <- df %>% filter( year >= 2001 & year <= 2017)
+df <- df %>% filter(year >= 2001 & year <= 2017)
 
 # Ensure date is a date format
-df <- df %>% mutate( date = ymd( date ) )
+df <- df %>% mutate(date = ymd(date))
 
 
 ##
 # DATA EXPLORATION
 
 # Overall descriptive
-datasummary( Q + lnQ + CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max + N, data = df )
+datasummary(Q + lnQ + CLDD_avg + HTDD_avg ~ Mean + Median + SD + Min + Max + N, data = df)
 
 
 # PLOT THE TIME SERIES
@@ -151,18 +151,18 @@ p4
 
 # Plot all of them together - reset the labels
 ggarrange(p1 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') + 
-               theme( axis.title = element_text( size = 8 ),
-                      axis.text = element_text( size = 8 ) ) ,
+               theme(axis.title = element_text(size = 8),
+                      axis.text = element_text(size = 8)) ,
           p2 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') + 
-            theme( axis.title = element_text( size = 8 ),
-                   axis.text = element_text( size = 8 ) ) ,
+            theme(axis.title = element_text(size = 8),
+                   axis.text = element_text(size = 8)) ,
           p3 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') + 
-            theme( axis.title = element_text( size = 8 ),
-                   axis.text = element_text( size = 8 ) ) ,
+            theme(axis.title = element_text(size = 8),
+                   axis.text = element_text(size = 8)) ,
           p4 + scale_x_date(date_breaks = '3 years', date_labels = '%Y') + 
-            theme( axis.title = element_text( size = 8 ),
-                   axis.text = element_text( size = 8 ) ) ,
-          hjust = -0.6, ncol = 2, nrow = 2 ) 
+            theme(axis.title = element_text(size = 8),
+                   axis.text = element_text(size = 8)) ,
+          hjust = -0.6, ncol = 2, nrow = 2) 
 
 
 ####
@@ -173,7 +173,7 @@ source('ggplotacorr.R')
 
 # ACF - gives the correlation between y_t and lags: Corr(y_t,y_t-lag)
 # PACF - (Partial Autocorrelation Fnc)
-#     shows the correlation between Corr(y_t,y_t-lag) | Corr( y_t, y_t-lag-1 )
+#     shows the correlation between Corr(y_t,y_t-lag) | Corr(y_t, y_t-lag-1)
 #     thus what is the correlation between y_t and y_t-lag if 
 #       we have controlled for the previous lags already!
 #
@@ -181,13 +181,13 @@ source('ggplotacorr.R')
 #   In ACF it means if bars within the line we have a White-Noise: Corr = 0
 
 # Log of electricity consumption
-ggplotacorr( df$lnQ, lag.max = 24, ci= 0.95, 
+ggplotacorr(df$lnQ, lag.max = 24, ci= 0.95, 
               large.sample.size = F, horizontal = TRUE)
 # Cooling degree
-ggplotacorr( df$CLDD_avg, lag.max = 24, ci= 0.95, 
+ggplotacorr(df$CLDD_avg, lag.max = 24, ci= 0.95, 
               large.sample.size = F, horizontal = TRUE)
 # Heating degree
-ggplotacorr( df$HTDD_avg, lag.max = 24, ci= 0.95, 
+ggplotacorr(df$HTDD_avg, lag.max = 24, ci= 0.95, 
               large.sample.size = F, horizontal = TRUE)
 
 
@@ -195,7 +195,7 @@ ggplotacorr( df$HTDD_avg, lag.max = 24, ci= 0.95,
 df <- df %>% mutate(DlnQ=lnQ-lag(lnQ),
                         DCLDD_avg=CLDD_avg-lag(CLDD_avg),
                         DHTDD_avg=HTDD_avg-lag(HTDD_avg)
-                        )
+                       )
 
 ##
 # functional form investigations 
@@ -220,43 +220,43 @@ ggplot(data = df, aes(x=DHTDD_avg, y=DlnQ)) +
 #
 # reg1: DlnQ = alpha + beta_1 * DCLDD_avg + beta_2 * DHTDD_avg
 # reg2: DlnQ = alpha + beta_1 * DCLDD_avg + beta_2 * DHTDD_avg + months
-# reg3: DlnQ = alpha + gamma * lag( DlnQ ) + beta_1 * DCLDD_avg + beta_2 * DHTDD_avg + months
+# reg3: DlnQ = alpha + gamma * lag(DlnQ) + beta_1 * DCLDD_avg + beta_2 * DHTDD_avg + months
 # reg4: DlnQ = alpha + beta_1 * DCLDD_avg + beta_2 * DHTDD_avg + months + 2 LAGS of DCLDD_avg and DHTDD_avg
 # reg_cumSE: use reg4 but estimate standard errors for the cumulative effect
 
 # Need to add a new variable which is telling fixest that it is a time-series data and not panel:
 #   period is changing as date, but id is the same
-df <- df %>% mutate( period = 1 : nrow( df ), id = 1 )
+df <- df %>% mutate(period = 1 : nrow(df), id = 1)
 
 
 # Run reg1 with, Newey-West SE
-reg1 <- feols( DlnQ ~ DCLDD_avg + DHTDD_avg, data = df, 
-               panel.id = ~ id + period, vcov = NW(24) )
+reg1 <- feols(DlnQ ~ DCLDD_avg + DHTDD_avg, data = df, 
+               panel.id = ~ id + period, vcov = NW(24))
 reg1
 
 # Run reg2 with, Newey-West SE
 reg2 <- feols(DlnQ ~ DCLDD_avg + DHTDD_avg + as.factor(month), data=df, 
-              panel.id = ~ id + period, vcov = NW(24) )
+              panel.id = ~ id + period, vcov = NW(24))
 reg2 
 
 # Compare the two models
-etable( reg1, reg2 )
+etable(reg1, reg2)
 
 # reg3: include the lag of DlnQ:
-reg3 <- feols( DlnQ ~ l( DlnQ, 1 ) + DCLDD_avg + DHTDD_avg + as.factor(month), 
-               data=df, panel.id = ~ id + period, vcov = NW(24) )
+reg3 <- feols(DlnQ ~ l(DlnQ, 1) + DCLDD_avg + DHTDD_avg + as.factor(month), 
+               data=df, panel.id = ~ id + period, vcov = NW(24))
 reg3
 
 # reg4: include the lag of heating/cooling degrees up to two lags
-reg4 <- feols( DlnQ ~ l( DCLDD_avg, 0 : 2 ) + l( DHTDD_avg, 0 : 2 ) + as.factor(month), 
-               data = df, panel.id = ~ id + period, vcov = NW(24) )
+reg4 <- feols(DlnQ ~ l(DCLDD_avg, 0 : 2) + l(DHTDD_avg, 0 : 2) + as.factor(month), 
+               data = df, panel.id = ~ id + period, vcov = NW(24))
 reg4
 
 # Compare the results:
-etable( reg1, reg2, reg3, reg4 )
+etable(reg1, reg2, reg3, reg4)
 # Note: to be fair, one needs to use a restricted sample with 201 observations in this case!
 
-etable( reg1, reg2, reg3, reg4, drop = 'factor', se.below = T )
+etable(reg1, reg2, reg3, reg4, drop = 'factor', se.below = T)
 
 # Task:
 # Replicate these results, but now using the same sample for each model to ensure fair comparison!
@@ -269,16 +269,16 @@ etable( reg1, reg2, reg3, reg4, drop = 'factor', se.below = T )
 ####
 # Trick to estimate SE on the cumulative effect
 # 1) create double differenced variable
-df <- df %>% mutate( DDCLDD_avg = DCLDD_avg - lag( DCLDD_avg ) ,
-                     DDHTDD_avg = DHTDD_avg - lag( DHTDD_avg ) )
+df <- df %>% mutate(DDCLDD_avg = DCLDD_avg - lag(DCLDD_avg) ,
+                     DDHTDD_avg = DHTDD_avg - lag(DHTDD_avg))
 
-reg_cumSE <- feols( DlnQ ~ l( DCLDD_avg, 2 ) + l( DHTDD_avg, 2 ) +
-                           l( DDCLDD_avg, 0:1 ) + l( DDHTDD_avg, 0:1 ) + as.factor(month), 
-                    data=df, panel.id = ~ id + period, vcov = NW(24) )
+reg_cumSE <- feols(DlnQ ~ l(DCLDD_avg, 2) + l(DHTDD_avg, 2) +
+                           l(DDCLDD_avg, 0:1) + l(DDHTDD_avg, 0:1) + as.factor(month), 
+                    data=df, panel.id = ~ id + period, vcov = NW(24))
 reg_cumSE
 
 # Compare the results
-etable( reg4, reg_cumSE )
+etable(reg4, reg_cumSE)
 # Remark - from reg4: DCLDD_avg+l(DCLDD_avg,1)+l(DCLDD_avg,2) == reg_cumSE: l(DCLDD_avg,2)
 #   extra: for reg_cumSE: l(DCLDD_avg,2) we have SE as well!
 #   same for l(DHTDD_avg,2)

@@ -24,10 +24,10 @@
 #                                       #
 #########################################
 
-rm( list= ls())
+rm(list= ls())
 
 # Load packages
-library( tidyverse )
+library(tidyverse)
 # ggthemes is providing many built in themes for ggplot
 # install.library('ggthemes')
 library(ggthemes)
@@ -47,15 +47,15 @@ library(devtools)
 # import the prices and features of hotels
 heu_price   <- read_csv('https://osf.io/p6tyr/download')
 heu_feature <- read_csv('https://osf.io/utwjs/download')
-df <- left_join( heu_feature, heu_price, by = 'hotel_id' )
+df <- left_join(heu_feature, heu_price, by = 'hotel_id')
 
 # filter
-df <- df %>% filter( year == 2017, month == 11, weekend == 0 ) %>% 
-  filter( city %in% c('Vienna','London'),  city_actual %in% c('Vienna','London') ) %>% 
-  filter( accommodation_type == 'Hotel', stars >= 3 & stars <= 4 ) %>% 
-  filter( price <= 600 )
+df <- df %>% filter(year == 2017, month == 11, weekend == 0) %>% 
+  filter(city %in% c('Vienna','London'),  city_actual %in% c('Vienna','London')) %>% 
+  filter(accommodation_type == 'Hotel', stars >= 3 & stars <= 4) %>% 
+  filter(price <= 600)
 
-rm( heu_price, heu_feature )
+rm(heu_price, heu_feature)
 
 
 #####
@@ -71,8 +71,8 @@ rm( heu_price, heu_feature )
 # and many others...
 #
 
-ggplot( filter( df, city == 'Vienna' ), aes( x = price ) ) +
-  geom_histogram( alpha = 0.8, binwidth = 20, color='white',
+ggplot(filter(df, city == 'Vienna'), aes(x = price)) +
+  geom_histogram(alpha = 0.8, binwidth = 20, color='white',
                   fill = 'navyblue') +
   labs(x='Hotel Prices in  Vienna',y='Density')+
   theme_bw()
@@ -93,8 +93,8 @@ ggplot( filter( df, city == 'Vienna' ), aes( x = price ) ) +
 source('theme_bluewhite.R')
 
 # Using our new imported theme
-ggplot( filter( df, city == 'Vienna' ), aes( x = price ) ) +
-  geom_histogram( alpha = 0.8, binwidth = 20 ) +
+ggplot(filter(df, city == 'Vienna'), aes(x = price)) +
+  geom_histogram(alpha = 0.8, binwidth = 20) +
   labs(x='Hotel Prices in  Vienna',y='Density')+
   theme_bluewhite()
 
@@ -103,8 +103,8 @@ ggplot( filter( df, city == 'Vienna' ), aes( x = price ) ) +
 # 3) Manipulating the axis:
 #
 # create a ggplot variable
-f1 <- ggplot( filter( df, city == 'Vienna' ), aes( x = price ) ) +
-  geom_histogram( alpha = 0.8, binwidth = 20, color='white',
+f1 <- ggplot(filter(df, city == 'Vienna'), aes(x = price)) +
+  geom_histogram(alpha = 0.8, binwidth = 20, color='white',
                   fill = 'navyblue') +
   labs(x='Hotel Prices in  Vienna',y='Density')+
   theme_bw()
@@ -115,9 +115,9 @@ f1
 #   2) if discrete/categorical variable: `scale_()_discrete`
 
 #   a) limit -> changes the limit
-f1 + scale_x_continuous( limits = c( 0, 300 ) )
+f1 + scale_x_continuous(limits = c(0, 300))
 #   b) set tickers, called 'breaks'
-f1 + scale_x_continuous( limits = c( 0, 300 ), breaks = c( 0, 100, 150, 200, 250, 300 )  )
+f1 + scale_x_continuous(limits = c(0, 300), breaks = c(0, 100, 150, 200, 250, 300) )
 
 ##
 # Task: - use only one graph!
@@ -137,28 +137,28 @@ f1 + scale_x_continuous( limits = c( 0, 300 ), breaks = c( 0, 100, 150, 200, 250
 
 # create a variable yval which sets the height of the line(s)
 yval <- 60
-f1 <- f1 + geom_segment( aes(x = mean( df$price, na.rm = T ), y = 0, 
-                             xend = mean( df$price, na.rm = T ), yend = yval) ,
-                         color = 'red', size = 1 )
+f1 <- f1 + geom_segment(aes(x = mean(df$price, na.rm = T), y = 0, 
+                             xend = mean(df$price, na.rm = T), yend = yval) ,
+                         color = 'red', size = 1)
 f1
 
 # add annotation which says it is the mean
 f1 <- f1 + 
-  annotate( 'text', x = mean( df$price, na.rm = T ) + 20 ,
+  annotate('text', x = mean(df$price, na.rm = T) + 20 ,
             y = yval - 5, label = 'Mean', color = 'red')
 f1
 
 # Calculate the median as a 50th percentile 
-#   (if you wish to add other percentiles as well, otherwise, just use `median` ) 
+#   (if you wish to add other percentiles as well, otherwise, just use `median`) 
 
-median_price <- quantile( df$price, .50)
+median_price <- quantile(df$price, .50)
 # Add both of them to the figure
 f1 <- f1 + 
-  annotate( 'text', x = median_price + 10, y = yval + 5 ,
+  annotate('text', x = median_price + 10, y = yval + 5 ,
             label = 'Median', color = 'blue') +
-  geom_segment( aes(x = median_price, y = 0, 
+  geom_segment(aes(x = median_price, y = 0, 
                     xend = median_price, yend = yval) ,
-                color = 'blue', size = 1 )
+                color = 'blue', size = 1)
 f1
 
 # Task: 
@@ -179,15 +179,15 @@ f1
 # Summarize hotels which are close/medium or far away from the city-center:
 
 # Let create a new factor variable
-df <- df %>% mutate( dis_f = cut( distance, breaks=c(-1,2,4,100), 
-                                  labels = c('close','medium','far') ) )
+df <- df %>% mutate(dis_f = cut(distance, breaks=c(-1,2,4,100), 
+                                  labels = c('close','medium','far')))
 
 # We are curious about how these hotels distribute in the cities
 # Summarize the number of close/medium/far hotels
 
 ds0 <- df %>% 
-  group_by( city, dis_f ) %>% 
-  summarise( numObs = n())
+  group_by(city, dis_f) %>% 
+  summarise(numObs = n())
 ds0
 
 ## Do the plot:
@@ -240,7 +240,7 @@ f4 + stat_summary(fun=mean, geom='point', shape=20, size=5, color='red', fill='r
 #   violin plots adds a kernel density estimator to the boxplot in a neat way
 # 
 ggplot(df, aes(y = price, x = city)) +
-  geom_violin( size=1,  width = 0.5, color = 'blue', 
+  geom_violin(size=1,  width = 0.5, color = 'blue', 
                fill = 'lightblue', trim = T, show.legend=F, alpha = 0.3) +
   geom_boxplot(color = 'black', fill='lightblue', 
                size = 0.5, width = 0.1, alpha = 0.5,  outlier.shape = NA) +

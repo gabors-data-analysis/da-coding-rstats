@@ -61,7 +61,7 @@ df_old2 <- data.frame(id=c(1,2,3,4,5,6),
                       grade=c('A','A+','B','B-','B+','A'))
 
 # remove unnecessary variables
-rm( df_old1, df_old2 )
+rm(df_old1, df_old2)
 
 # Fun fact: due to this heritage in many cases data variables are 
 #   named as 'df' standing for data_frame variable.
@@ -86,7 +86,7 @@ df[ 2, ]
 # If you want to have a specific cell (observation and variable)
 df[ 2, 1 ]
 # You can select multiple rows for multiple variables:
-df[ 1:3, c( 1, 3 ) ]
+df[ 1:3, c(1, 3) ]
 
 # Note that all these still result in a tibble variable
 # if you want specific values: aka vectors in with one R-object type'
@@ -144,14 +144,14 @@ df$grade[ df$age >= 25 & df$age < 35 ]
 # 3) Find the ages of these observations
 # Extra: use the `which()` function to find these values instead
 #     which function is handy if you are interested in the index values itself, but using logicals
-df$id[ is.na( df$age ) ]
+df$id[ is.na(df$age) ]
 df$id[ df$grade == 'A' | df$grade == 'A+' ]
 # which function
 ?which
-which( is.na( df$age ) )
-which( !is.na( df$age ) )
-df$id[ which( df$grade == 'A' | df$grade == 'A+' ) ]
-df$age[ which( df$grade == 'A' | df$grade == 'A+' ) ]
+which(is.na(df$age))
+which(!is.na(df$age))
+df$id[ which(df$grade == 'A' | df$grade == 'A+') ]
+df$age[ which(df$grade == 'A' | df$grade == 'A+') ]
 
 
 
@@ -167,22 +167,22 @@ df$age[ 1 ] + df$age[ 2 ] + df$age[ 3 ]
 # there is an easy help built in R
 ?sum
 # and one can use this function easily:
-sum( df$age[ 1 : 3 ] )
+sum(df$age[ 1 : 3 ])
 
 # What happens if there is a NA in the data?
-sum( df$age )
+sum(df$age)
 # One can get rid of the NA if add a further argument to the function:
-sum( df$age, na.rm = TRUE )
+sum(df$age, na.rm = TRUE)
 # With logical indexing
-sum( df$age[ !is.na( df$age ) ] )
+sum(df$age[ !is.na(df$age) ])
 # Not to confuse with the logical indexing itself!
-sum( !is.na( df$age ) )
+sum(!is.na(df$age))
 
 # And there are many other functions....
 # calculate the mean
-mean( df$age, na.rm = TRUE )
+mean(df$age, na.rm = TRUE)
 # Standard deviation of age
-sd( df$age, na.rm = TRUE )
+sd(df$age, na.rm = TRUE)
 
 ##
 # Task:
@@ -193,12 +193,12 @@ sd( df$age, na.rm = TRUE )
 #   - what are the potential solutions? Name at least two of them!
 logID <- df$grade == 'B+' | df$grade == 'B' | df$grade == 'B-' | df$grade == 'C'
 new_group <- df$age[ logID ]
-mean( df$age[ logID ], na.rm = TRUE )
-sd( df$age[ logID ], na.rm = TRUE ) 
+mean(df$age[ logID ], na.rm = TRUE)
+sd(df$age[ logID ], na.rm = TRUE) 
 # What happens if using NOT A or A+
 logNID <- !(df$grade == 'A' | df$grade == 'A+')
 
-all( logID == logNID )
+all(logID == logNID)
 
 
 #########
@@ -226,13 +226,13 @@ df$gender <- gender
 #   without any warning.
 # 2) `add_column()` function recommended by tidyverse, and it will result in error if there is any problem
 # e.g. the following will result in an error, as it is already exists
-add_column( df, gender = gender )
+add_column(df, gender = gender)
 # but with 'new' you can add it to our tibble.
-df <- add_column( df, gender_new = gender )
+df <- add_column(df, gender_new = gender)
 
 # to remove a variable, we will use the `select()` function with a negation. 
 #   This can be seen as a quasy-logical operation:
-df <- select( df, -gender_new )
+df <- select(df, -gender_new)
 
 # Later we will discuss `select()` function more in details.
 # Alternatively a base-R command is to replace with an empty vector: `df$gender_new <- c()`
@@ -240,7 +240,7 @@ df <- select( df, -gender_new )
 ##
 # Add rows
 # To add a new observation or raw, you can use `add_row()` function from tidyverse:
-df <- add_row( df, id = 7, age = 25, grade = 'C+', gender = 'M' )
+df <- add_row(df, id = 7, age = 25, grade = 'C+', gender = 'M')
 df
 # Note: if variable is not supplied as input, it will be NA. 
 #   Furthermore you can specify where to add the row with `.before = ` input command.
@@ -257,17 +257,17 @@ df <- df[df$id != 7, ]
 # We will use football data to practice the following manipulations
 #   Note: there are some modification to the dataset for demonstartive purposes
 
-rm( list = ls() )
+rm(list = ls())
 
 # url for modified dataset
 path_url <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/lecture03-tibbles/data/'
 # Football managers and played games
-games  <- read_csv( paste0( path_url, 'games.csv') )
+games  <- read_csv(paste0(path_url, 'games.csv'))
 
 ##
 # Wide format: from tidy to non-tidy format
 #   in some rare cases it is useful to work with wide format:
-wide_format <- pivot_wider( games, names_from = team, values_from = manager_games )
+wide_format <- pivot_wider(games, names_from = team, values_from = manager_games)
 
 
 ##
@@ -276,20 +276,20 @@ wide_format <- pivot_wider( games, names_from = team, values_from = manager_game
 #   note many dataset are in wide format, thus it is practical to know how to create a long-format
 # To convert back to longer format:
 # first we need a new variable, which contains the team names
-name_teams  <- unique( games$team )
-long_format <- pivot_longer( wide_format, name_teams, names_to = 'team', values_to = 'manager_games')
+name_teams  <- unique(games$team)
+long_format <- pivot_longer(wide_format, name_teams, names_to = 'team', values_to = 'manager_games')
 
 ##
 # Task: 
 #  Remove missing values, use is.na() function 
 # and check with 'all_equal()' function if it is the same as games tibble
-long_format <- long_format[ !is.na( long_format$manager_games ), ]
+long_format <- long_format[ !is.na(long_format$manager_games), ]
 
-all_equal( games, long_format )
+all_equal(games, long_format)
 
 ##
 # Good-to-know: previously 'spread()' and 'gather()' functions were used
-rm(wide_format,name_team,long_format)
+rm(wide_format, name_teams, long_format)
 
 
 
@@ -302,38 +302,38 @@ rm(wide_format,name_team,long_format)
 # For more see e.g.: Chapter 13 in Hadley's book: https://r4ds.had.co.nz/relational-data.html
 
 # Get football managers and earned points via games
-points <- read_csv(paste0( path_url, 'points.csv') )
+points <- read_csv(paste0(path_url, 'points.csv'))
 
 
 # Left-join by team, manager_id and manager_name:
 #   games is the tibble which will get the new variables from points
 #     if id variables are missing, it will be removed
-lj <- left_join( games, points, by = c('team','manager_id','manager_name') )
+lj <- left_join(games, points, by = c('team','manager_id','manager_name'))
 
 # Right-join by team, manager_id and manager_name:
 #   points is the tibble which will get the new variables from points
 #     if id variables are missing, it will be removed
-rj <- right_join( games, points, by = c('team','manager_id','manager_name') )
+rj <- right_join(games, points, by = c('team','manager_id','manager_name'))
 
 # Can check if they are the same or not
 all_equal(lj,rj)
 # Note: right_join and left_join is the same if you switch the first input in one of them
 
 # Full-join will take all the possible observations and create an extend the tibble 
-fj <- full_join( games, points, by = c('team','manager_id','manager_name') )
+fj <- full_join(games, points, by = c('team','manager_id','manager_name'))
 
 # Inner-join will take only values which are in both tibbles
-ij <- inner_join( games, points, by = c('team','manager_id','manager_name') )
+ij <- inner_join(games, points, by = c('team','manager_id','manager_name'))
 
 
 # Importance of the key-variables or identifiers:
 # Case 1)
 #   No unique identifier: create multiple new variables and observations
-lj2 <- left_join( games, points, by = c('team') )
+lj2 <- left_join(games, points, by = c('team'))
 all_equal(lj,lj2)
 # Case 2)
 #   Unique identifier, but unmatched variable: create new variable
-lj3 <- left_join( games, points, by = c('team','manager_id') )
+lj3 <- left_join(games, points, by = c('team','manager_id'))
 all_equal(lj,lj3)
 
 ##
@@ -341,13 +341,13 @@ all_equal(lj,lj3)
 #   try out 'semi_join()' and 'anti_join()' functions with proper identifiers
 #   try out what happens if you change the order of input in both cases
 
-sj <- semi_join( games, points, by = c('team','manager_id','manager_name') )
+sj <- semi_join(games, points, by = c('team','manager_id','manager_name'))
 all_equal(sj,ij)
-sj2 <- semi_join( points, games, by = c('team','manager_id','manager_name') )
+sj2 <- semi_join(points, games, by = c('team','manager_id','manager_name'))
 all_equal(sj2,sj)
-aj <- anti_join( games, points, by = c('team','manager_id','manager_name') )
+aj <- anti_join(games, points, by = c('team','manager_id','manager_name'))
 aj
-aj2 <- anti_join( points, games, by = c('team','manager_id','manager_name') )
+aj2 <- anti_join(points, games, by = c('team','manager_id','manager_name'))
 aj2
 
 ##

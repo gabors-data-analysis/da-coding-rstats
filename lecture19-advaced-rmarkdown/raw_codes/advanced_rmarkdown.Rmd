@@ -12,7 +12,7 @@ output:
 # knitr::opts_chunk$set(dev = "png", dpi = 300, fig.retina = 1)
 
 # clear memory
-rm( list = ls() )
+rm(list = ls())
 
 # packages
 library(tidyverse)
@@ -46,17 +46,17 @@ HERE COMES THE MOTIVATION FOR WHY THIS IS A MEANINGFUL PROJECT AND WHAT IS THE M
 
 ## Importing Data and Cleaning
 cps <- read_csv('https://osf.io/4ay9x/download', 
-                name_repair = 'minimal' )
-cps <- cps %>% rename( 'id' = '' )
+                name_repair = 'minimal')
+cps <- cps %>% rename('id' = '')
 
 # Select observations
 cps <- cps %>% filter(uhours>=20 & earnwke>0 & age>=24 & age<=64 & grade92>=44)
 
 # Create new variables
-cps <- cps %>% mutate(female = as.numeric( sex == 2  ),
-                      female_fac = factor( ifelse( female == 1, 'female', 'male' ) ),
+cps <- cps %>% mutate(female = as.numeric(sex == 2 ),
+                      female_fac = factor(ifelse(female == 1, 'female', 'male')),
                       w = earnwke / uhours,
-                      lnw = log( w ) )
+                      lnw = log(w))
 
 ```
 
@@ -115,14 +115,14 @@ P05 <- function(x){quantile(x,0.05,na.rm=T)}
 
 
 # Distribution of earnings by gender: wage and log-wage
-datasummary( ( `gender` = female_fac ) * ( ( `wage` = w ) + ( `log-wage` = lnw ) ) ~
+datasummary((`gender` = female_fac) * ((`wage` = w) + (`log-wage` = lnw)) ~
              Mean + Median + SD + P05 + P95 + Max + Min, data = filter(cps, age>=40 & age<=60),
-             title = ' \\label{tab:wage_desc}Descriptive statistics of hourly wage by gender' ) %>% 
+             title = ' \\label{tab:wage_desc}Descriptive statistics of hourly wage by gender') %>% 
     kable_styling(latex_options = c('HOLD_position'))
 
 # Good-to-know: 
-#   if output is larger than the page's width, use: kable_styling(latex_options ='scale_down') )
-#   if output is longer than the page's lenght, use: kable_styling( font_size = X ), where X is positive integer.
+#   if output is larger than the page's width, use: kable_styling(latex_options ='scale_down'))
+#   if output is longer than the page's lenght, use: kable_styling(font_size = X), where X is positive integer.
 
 ```
 
@@ -134,38 +134,38 @@ As the focus is the price difference, Figure \ref{fig:wage_dist} shows the condi
 
 ```{r show two graphs, echo=FALSE, warning=FALSE, fig.width=8, fig.height = 3, fig.align="center", fig.cap = "\\label{fig:wage_dist} Density plot of hourly wage and log-wage by gender"}
 # Wage-pretty
-gw <- ggplot( data = filter(cps, age>=40 & age<=60), aes( x = w, color= female_fac ) ) +
-        geom_density( bw = 10 ) +
-        labs( x = 'Wage', y = 'Density', color = '',
+gw <- ggplot(data = filter(cps, age>=40 & age<=60), aes(x = w, color= female_fac)) +
+        geom_density(bw = 10) +
+        labs(x = 'Wage', y = 'Density', color = '',
               caption = 'Hourly wage') +
-        scale_color_manual( name='', 
+        scale_color_manual(name='', 
                             values=c(color[1],color[2]),
-                            labels=c('Female','Male') ) +
-        scale_x_continuous( limits = c(0, 100) , breaks = seq(0,  100, by = 25)) +
-        scale_y_continuous( limits = c(0, 0.03), breaks = seq(0, 0.03, by = 0.01)) +
-        annotate('text',x = 55, y = 0.020, label = 'Male' , color = color[2], size = 4 ) +
-        annotate('text',x = 25, y = 0.025, label = 'Female', color = color[1], size = 4 ) +
-        theme_bg( ) +
+                            labels=c('Female','Male')) +
+        scale_x_continuous(limits = c(0, 100) , breaks = seq(0,  100, by = 25)) +
+        scale_y_continuous(limits = c(0, 0.03), breaks = seq(0, 0.03, by = 0.01)) +
+        annotate('text',x = 55, y = 0.020, label = 'Male' , color = color[2], size = 4) +
+        annotate('text',x = 25, y = 0.025, label = 'Female', color = color[1], size = 4) +
+        theme_bg() +
         theme(legend.position = 'none', plot.caption = element_text(hjust = 0.5))
 
 # Log-wage pretty
-glnw <- ggplot( data = filter( cps, age>=40 & age<=60), aes( x = lnw, color= female_fac ) ) +
-          geom_density( bw = .25 ) +
-          labs( x = 'Log-Wage', y = 'Density', color = '',
+glnw <- ggplot(data = filter(cps, age>=40 & age<=60), aes(x = lnw, color= female_fac)) +
+          geom_density(bw = .25) +
+          labs(x = 'Log-Wage', y = 'Density', color = '',
                 caption = 'Hourly log-wage') +
-          scale_color_manual( name='', 
+          scale_color_manual(name='', 
                               values=c(color[1],color[2]),
-                              labels=c('Female','Male') ) +
-          scale_x_continuous( limits = c(-1, 6), breaks = seq(-1,  6, by = 1)) +
-          scale_y_continuous( limits = c(0, 0.8), breaks = seq(0, 0.8, by = 0.2)) +
-          annotate('text',x = 5, y = 0.65, label = 'Male' , color = color[2], size = 4 ) +
-          annotate('text',x = 2, y = 0.65, label = 'Female', color = color[1], size = 4 ) +
-          theme_bg( ) +
+                              labels=c('Female','Male')) +
+          scale_x_continuous(limits = c(-1, 6), breaks = seq(-1,  6, by = 1)) +
+          scale_y_continuous(limits = c(0, 0.8), breaks = seq(0, 0.8, by = 0.2)) +
+          annotate('text',x = 5, y = 0.65, label = 'Male' , color = color[2], size = 4) +
+          annotate('text',x = 2, y = 0.65, label = 'Female', color = color[1], size = 4) +
+          theme_bg() +
           theme(legend.position = 'none', plot.caption = element_text(hjust = 0.5))
 
 
 # Plot together
-ggarrange( gw, glnw, ncol = 2, nrow = 1)
+ggarrange(gw, glnw, ncol = 2, nrow = 1)
 
 ```
 
@@ -192,21 +192,21 @@ I have run several models, from simply regressing female variables on log wages 
 # Polynomials of age
 cps <- cps %>% mutate(agesq = age^2,
                       agecu = age^3,
-                      agequ = age^4 )
+                      agequ = age^4)
 
 # Education dummies
-cps <- cps %>% mutate( ed_MA      = as.numeric(grade92==44),
+cps <- cps %>% mutate(ed_MA      = as.numeric(grade92==44),
                        ed_Profess = as.numeric(grade92==45),
-                       ed_PhD     = as.numeric(grade92==46) )
+                       ed_PhD     = as.numeric(grade92==46))
 
 # Pre-determined demographics: create features
-cps <- cps %>% mutate(white = as.numeric( race == 1 ),
-                      afram = as.numeric( race == 2 ),
-                      asian = as.numeric( race == 4 ),
-                      hisp  = as.numeric( !is.na(ethnic) ),
+cps <- cps %>% mutate(white = as.numeric(race == 1),
+                      afram = as.numeric(race == 2),
+                      asian = as.numeric(race == 4),
+                      hisp  = as.numeric(!is.na(ethnic)),
                       othernonw = as.numeric(white==0 & afram==0 & asian==0 & hisp==0),
-                      nonUSborn = as.numeric( prcitshp=='Foreign Born, US Cit By Naturalization' 
-                                              | prcitshp=='Foreign Born, Not a US Citizen') )
+                      nonUSborn = as.numeric(prcitshp=='Foreign Born, US Cit By Naturalization' 
+                                              | prcitshp=='Foreign Born, Not a US Citizen'))
 
 
 # Potentially important (confounder) family background variables
@@ -264,8 +264,8 @@ reg4_e <- feols(lnw ~ female + age + afram + hisp +
                       agesq + agecu + agequ + uhoursqu + uhourscu + uhourssq, data=cps_f,vcov = 'HC1')
 
 # Naming the coefficients for pretty output
-alpha  <- round( reg4_e$coeftable[1,1], 2 )
-b1     <- round( reg4_e$coeftable[2,1], 2 )
+alpha  <- round(reg4_e$coeftable[1,1], 2)
+b1     <- round(reg4_e$coeftable[2,1], 2)
 ```
 
 The preferred model was the largest, where I have conditioned on ...
@@ -292,15 +292,15 @@ groupConf <- list('Age and Education' = c('age','ed_'),
                   'Union member' = c('union'),
                   'Not born in USA' = c('nonUSborn'),
                   'Age in polynomial' = c('agesq','agecu','agequ'),
-                  'Hours in polynomial' = c('uhourssq','uhourscu','uhoursqu') )
+                  'Hours in polynomial' = c('uhourssq','uhourscu','uhoursqu'))
 
-varname_report <- c('female' = 'Female' )
+varname_report <- c('female' = 'Female')
 
 # Note: coefstat = 'confint' is just an example, usually you need to report se.
 style_noHeaders = style.tex(var.title = '', fixef.title = '', stats.title = ' ')
 
 
-kable( etable( reg1_e, reg2_e, reg3_e, reg4_e ,
+kable(etable(reg1_e, reg2_e, reg3_e, reg4_e ,
                 title = 'Gender wage gap',
                 depvar = F,
                 keep = 'Female',
@@ -311,7 +311,7 @@ kable( etable( reg1_e, reg2_e, reg3_e, reg4_e ,
                 digits.stats = 3,
                 se.below = T,
                 se.row = F,
-                fitstat = c('r2','n') ), 
+                fitstat = c('r2','n')), 
         col.names = c('(1)','(2)','(3)','(4)'),
        'latex', booktabs = TRUE,
        caption = '\\label{tab:model_res}Models to uncover gender wage gap') %>% 
@@ -322,7 +322,7 @@ kable( etable( reg1_e, reg2_e, reg3_e, reg4_e ,
 
 ### Hypothesis testing 
 
-All the aforementioned models show that the results are statistically different from zero. To show that, I have run a two-sided hypothesis test: $$H_0:=\beta_1 = 0$$ $$H_A:=\beta_1 \neq 0$$ using or preferred model (4). I have the t-statistic as `r round( reg4_e$coeftable[2,3], 2 )` and the p-value as `r round( reg4_e$coeftable[2,4], 2 )`, which confirms the conclusion: the probability of making a Type I is almost zero.
+All the aforementioned models show that the results are statistically different from zero. To show that, I have run a two-sided hypothesis test: $$H_0:=\beta_1 = 0$$ $$H_A:=\beta_1 \neq 0$$ using or preferred model (4). I have the t-statistic as `r round(reg4_e$coeftable[2,3], 2)` and the p-value as `r round(reg4_e$coeftable[2,4], 2)`, which confirms the conclusion: the probability of making a Type I is almost zero.
 
 
 ## Robustness check / 'Heterogeneity analysis'

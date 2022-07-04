@@ -1,7 +1,7 @@
 ############
 # Helper functions for Bisnode analysis
 
-twoClassSummaryExtended <- function (data, lev = NULL, model = NULL)
+twoClassSummaryExtended <- function(data, lev = NULL, model = NULL)
 {
   lvls <- levels(data$obs)
   rmse <- sqrt(mean((data[, lvls[1]] - ifelse(data$obs == lev[2], 0, 1))^2))

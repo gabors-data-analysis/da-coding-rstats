@@ -50,64 +50,64 @@ source_url('https://raw.githubusercontent.com/gabors-data-analysis/da_case_studi
 
 # Import data (there is a column without a name, hence name_repair input and rename)
 cps <- read_csv('https://osf.io/4ay9x/download', 
-                name_repair = 'minimal' )
-cps <- cps %>% rename( 'id' = '' )
+                name_repair = 'minimal')
+cps <- cps %>% rename('id' = '')
 
 # Select observations
 cps <- cps %>% filter(uhours>=20 & earnwke>0 & age>=24 & age<=64 & grade92>=44)
 glimpse(cps)
 
 # Check the number of observations for each state
-datasummary( state ~ N + Percent(), data = cps)
+datasummary(state ~ N + Percent(), data = cps)
 
 # Check occupations
-datasummary( factor( occ2012 ) ~ N + Percent(), data = cps)
+datasummary(factor(occ2012) ~ N + Percent(), data = cps)
 
 # Create new variables
-cps <- cps %>% mutate(female     = as.numeric( sex == 2  ),
-                      female_fac = factor( ifelse( female == 1, 'female', 'male' ) ),
+cps <- cps %>% mutate(female     = as.numeric(sex == 2 ),
+                      female_fac = factor(ifelse(female == 1, 'female', 'male')),
                       w = earnwke / uhours,
-                      lnw = log( w ) )
+                      lnw = log(w))
 
 
 # Distribution of earnings
-datasummary( earnwke + uhours + w ~ Mean + Median + P25 + P75 + Max + Min + N, data = cps )
+datasummary(earnwke + uhours + w ~ Mean + Median + P25 + P75 + Max + Min + N, data = cps)
 
 # Distribution of earnings by gender 
-datasummary( female_fac * ( earnwke + uhours + w + lnw ) ~ Mean + Median + P25 + P75 + Max + Min + N, data = cps )
+datasummary(female_fac * (earnwke + uhours + w + lnw) ~ Mean + Median + P25 + P75 + Max + Min + N, data = cps)
 
 
 # Show wage and log-wage conditional distributions (pretty on purpose -> only copy to Rmd)
-gw <- ggplot( data = cps, aes( x = w, color= female_fac ) ) +
-        geom_density( bw = 10 ) +
-        labs( x = 'Wage', y = 'Density', color = '') +
-        scale_color_manual( name='', 
+gw <- ggplot(data = cps, aes(x = w, color= female_fac)) +
+        geom_density(bw = 10) +
+        labs(x = 'Wage', y = 'Density', color = '') +
+        scale_color_manual(name='', 
                             values=c(color[2],color[1]),
-                            labels=c('Female','Male') ) +
+                            labels=c('Female','Male')) +
         scale_x_continuous(expand = c(0.01, 0.01), limits = c(0, 100) , breaks = seq(0,  100, by = 25)) +
         scale_y_continuous(expand = c(0.0, 0.0) , limits = c(0, 0.03), breaks = seq(0, 0.03, by = 0.01)) +
-        annotate( 'text', x = 55, y = 0.020, label = 'Male' , color = color[1], size = 4 ) +
-        annotate( 'text', x = 25, y = 0.025, label = 'Female', color = color[2], size = 4 ) +
-        theme_bg( ) +
+        annotate('text', x = 55, y = 0.020, label = 'Male' , color = color[1], size = 4) +
+        annotate('text', x = 25, y = 0.025, label = 'Female', color = color[2], size = 4) +
+        theme_bg() +
         theme(legend.position = 'none')
 gw
 
-glnw <- ggplot( data = cps, aes( x = lnw, color= female_fac ) ) +
-          geom_density( bw = .25 ) +
-          labs( x = 'Log-Wage', y = 'Density', color = '') +
-          scale_color_manual( name='', 
+glnw <- ggplot(data = cps, aes(x = lnw, color= female_fac)) +
+          geom_density(bw = .25) +
+          labs(x = 'Log-Wage', y = 'Density', color = '') +
+          scale_color_manual(name='', 
                               values=c(color[2],color[1]),
-                              labels=c('Female','Male') ) +
+                              labels=c('Female','Male')) +
           scale_x_continuous(expand = c(0.01, 0.01), limits = c(-1, 6), breaks = seq(-1,  6, by = 1)) +
           scale_y_continuous(expand = c(0.0, 0.0) , limits = c(0, 0.8), breaks = seq(0, 0.8, by = 0.2)) +
-          annotate( 'text', x = 5, y = 0.6, label = 'Male', color = color[1], size = 4 ) +
-          annotate( 'text', x = 2, y = 0.6, label = 'Female', color = color[2], size = 4 ) +
-          theme_bg( ) +
+          annotate('text', x = 5, y = 0.6, label = 'Male', color = color[1], size = 4) +
+          annotate('text', x = 2, y = 0.6, label = 'Female', color = color[2], size = 4) +
+          theme_bg() +
           theme(legend.position = 'none')
 glnw
 
 # Plot together
-ggarrange( gw, glnw, nrow = 1, ncol = 2 )
+ggarrange(gw, glnw, nrow = 1, ncol = 2)
 
 ################################################################
 # Models to understand earnings:
@@ -117,12 +117,12 @@ ggarrange( gw, glnw, nrow = 1, ncol = 2 )
 #     reg2 := lnw ~ female + age
 #     reg3 := age ~ female (to show bias)
 
-reg1 <- feols( lnw ~ female       , data=cps, vcov = 'hetero')
-reg2 <- feols( lnw ~ female + age , data=cps, vcov = 'hetero')
-reg3 <- feols( age ~ female       , data=cps, vcov = 'hetero')
+reg1 <- feols(lnw ~ female       , data=cps, vcov = 'hetero')
+reg2 <- feols(lnw ~ female + age , data=cps, vcov = 'hetero')
+reg3 <- feols(age ~ female       , data=cps, vcov = 'hetero')
 
 # Compare the results
-etable( reg1, reg2, reg3, headers = c('Omitted','Complete','Auxillary') )
+etable(reg1, reg2, reg3, headers = c('Omitted','Complete','Auxillary'))
 
 # Kernel density to show age distribution -> one source of the bias
 ggplot(data = cps, aes(x=age, y = stat(density), color = female_fac)) +
@@ -133,8 +133,8 @@ ggplot(data = cps, aes(x=age, y = stat(density), color = female_fac)) +
                      labels=c('Male','Female')) +
   scale_x_continuous(expand = c(0.01, 0.01), limits = c(24, 64), breaks = seq(25, 65, by = 5)) +
   scale_y_continuous(expand = c(0.0, 0.0), limits = c(0, 0.04), breaks = seq(0, 0.04, by = 0.01)) +
-  annotate('text',x = 55, y = 0.020, label = 'Male', color = color[1], size = 4 ) +
-  annotate('text',x = 55, y = 0.03, label = 'Female', color = color[2], size = 4 ) +
+  annotate('text',x = 55, y = 0.020, label = 'Male', color = color[1], size = 4) +
+  annotate('text',x = 55, y = 0.03, label = 'Female', color = color[2], size = 4) +
   theme_bg()
 
 
@@ -145,7 +145,7 @@ ggplot(data = cps, aes(x=age, y = stat(density), color = female_fac)) +
 
 cps <- cps %>% mutate(agesq = age^2,
                       agecu = age^3,
-                      agequ = age^4 )
+                      agequ = age^4)
 
 # Adjusted models
 reg4 <- feols(lnw ~ female                             , data=cps, vcov = 'HC1')
@@ -154,7 +154,7 @@ reg6 <- feols(lnw ~ female + age + agesq               , data=cps, vcov = 'HC1')
 reg7 <- feols(lnw ~ female + age + agesq + agecu + agequ, data=cps, vcov = 'HC1')
 
 # show results
-etable( reg4, reg5, reg6, reg7)
+etable(reg4, reg5, reg6, reg7)
 
 
 ####
@@ -162,15 +162,15 @@ etable( reg4, reg5, reg6, reg7)
 #    education
 
 # create education dummies
-cps <- cps %>% mutate( ed_MA      = as.numeric(grade92==44),
+cps <- cps %>% mutate(ed_MA      = as.numeric(grade92==44),
                        ed_Profess = as.numeric(grade92==45),
-                       ed_PhD     = as.numeric(grade92==46) )
+                       ed_PhD     = as.numeric(grade92==46))
 
-reg8  <- feols( lnw ~ female                      , data=cps, vcov = 'HC1')
-reg9  <- feols( lnw ~ female + ed_Profess + ed_PhD, data=cps, vcov = 'HC1')
-reg10 <- feols( lnw ~ female + ed_MA + ed_PhD     , data=cps, vcov = 'HC1')
+reg8  <- feols(lnw ~ female                      , data=cps, vcov = 'HC1')
+reg9  <- feols(lnw ~ female + ed_Profess + ed_PhD, data=cps, vcov = 'HC1')
+reg10 <- feols(lnw ~ female + ed_MA + ed_PhD     , data=cps, vcov = 'HC1')
 
-etable(reg8, reg9, reg6, reg10 )
+etable(reg8, reg9, reg6, reg10)
 
 
 
@@ -183,7 +183,7 @@ reg11 <- feols(lnw ~ age                     , data=cps %>% filter(female==1), v
 reg12 <- feols(lnw ~ age                     , data=cps %>% filter(female==0), vcov = 'HC1')
 reg13 <- feols(lnw ~ female + age + age*female, data=cps,                       vcov = 'HC1')
 
-etable(reg11, reg12, reg13 )
+etable(reg11, reg12, reg13)
 
 ###
 # As it it significant we can check for higher orders of age as well!
@@ -195,7 +195,7 @@ reg16 <- feols(lnw ~ age + agesq + agecu + agequ
                + female + female*age + female*agesq 
                + female*agecu + female*agequ     , data=cps, vcov = 'HC1')
 
-etable(reg14, reg15, reg16 )
+etable(reg14, reg15, reg16)
 # Note: R2 is somewhat better, but we are after the coefficient!
 
 ###
@@ -207,19 +207,19 @@ etable(reg14, reg15, reg16 )
 # Prediction with linear models:
 # Males
 data_m <- cps %>% filter(female==0)
-pred_m <- predict( reg13, newdata = data_m, se.fit=T, interval = 'confidence', level = 0.95 )
-data_m <- data_m %>% mutate( lin_fit      = pred_m$fit,
+pred_m <- predict(reg13, newdata = data_m, se.fit=T, interval = 'confidence', level = 0.95)
+data_m <- data_m %>% mutate(lin_fit      = pred_m$fit,
                              lin_fit_CIup = pred_m$ci_high,
-                             lin_fit_CIlo = pred_m$ci_low )
+                             lin_fit_CIlo = pred_m$ci_low)
 
 # Females
 data_f <- cps %>% filter(female==1)
-pred_f <- predict( reg13, newdata = data_f, se.fit=T, interval = 'confidence', level = 0.95 )
-data_f <- data_f %>% mutate( lin_fit      = pred_f$fit,
+pred_f <- predict(reg13, newdata = data_f, se.fit=T, interval = 'confidence', level = 0.95)
+data_f <- data_f %>% mutate(lin_fit      = pred_f$fit,
                              lin_fit_CIup = pred_f$ci_high,
-                             lin_fit_CIlo = pred_f$ci_low )
+                             lin_fit_CIlo = pred_f$ci_low)
 
-pred_lin <- ggplot( )+
+pred_lin <- ggplot()+
   geom_line(data=data_m,aes(x=age,y=lin_fit),colour=color[1],linetype=1, lwd=0.8)+
   geom_line(data=data_m,aes(x=age,y=lin_fit_CIup), colour=color[1], linetype= 'dashed', lwd=0.3)+
   geom_line(data=data_m,aes(x=age,y=lin_fit_CIlo), colour=color[1], linetype= 'dashed', lwd=0.3)+
@@ -238,18 +238,18 @@ pred_lin
 # Prediction with polynomials:
 
 # Males
-pred_m <- predict( reg16, newdata = data_m, se.fit=T, interval = 'confidence', level = 0.95 )
-data_m <- data_m %>% mutate( poly_fit      = pred_m$fit,
+pred_m <- predict(reg16, newdata = data_m, se.fit=T, interval = 'confidence', level = 0.95)
+data_m <- data_m %>% mutate(poly_fit      = pred_m$fit,
                              poly_fit_CIup = pred_m$ci_high,
-                             poly_fit_CIlo = pred_m$ci_low )
+                             poly_fit_CIlo = pred_m$ci_low)
 
 # Females
-pred_f <- predict( reg16, newdata = data_f, se.fit=T, interval = 'confidence', level = 0.95 )
-data_f <- data_f %>% mutate( poly_fit      = pred_f$fit,
+pred_f <- predict(reg16, newdata = data_f, se.fit=T, interval = 'confidence', level = 0.95)
+data_f <- data_f %>% mutate(poly_fit      = pred_f$fit,
                              poly_fit_CIup = pred_f$ci_high,
-                             poly_fit_CIlo = pred_f$ci_low )
+                             poly_fit_CIlo = pred_f$ci_low)
 
-pred_poly <- ggplot( )+
+pred_poly <- ggplot()+
   geom_line(data=data_m,aes(x=age,y=poly_fit),colour=color[1],linetype=1, lwd=0.8)+
   geom_line(data=data_m,aes(x=age,y=poly_fit_CIup), colour=color[1], linetype= 'dashed', lwd=0.3)+
   geom_line(data=data_m,aes(x=age,y=poly_fit_CIlo), colour=color[1], linetype= 'dashed', lwd=0.3)+
@@ -265,7 +265,7 @@ pred_poly <- ggplot( )+
 pred_poly
 
 # Show them vertically aligned
-ggarrange( pred_lin, pred_poly, ncol = 1, nrow = 2 )
+ggarrange(pred_lin, pred_poly, ncol = 1, nrow = 2)
 
 
 
@@ -278,13 +278,13 @@ cps <- cps %>% filter(age>=40 & age<=60)
 
 
 # Pre-determined demographics: create features
-cps <- cps %>% mutate(white = as.numeric( race == 1 ),
-                      afram = as.numeric( race == 2 ),
-                      asian = as.numeric( race == 4 ),
+cps <- cps %>% mutate(white = as.numeric(race == 1),
+                      afram = as.numeric(race == 2),
+                      asian = as.numeric(race == 4),
                       hisp  = !is.na(ethnic),
                       othernonw = as.numeric(white==0 & afram==0 & asian==0 & hisp==0),
-                      nonUSborn = as.numeric( prcitshp=='Foreign Born, US Cit By Naturalization' 
-                                              | prcitshp=='Foreign Born, Not a US Citizen') )
+                      nonUSborn = as.numeric(prcitshp=='Foreign Born, US Cit By Naturalization' 
+                                              | prcitshp=='Foreign Born, Not a US Citizen'))
 
 
 # Potentially important (confounder) family background variables
@@ -339,7 +339,7 @@ reg4_e <- feols(lnw ~ female + age + afram + hisp +
                       agesq + agecu + agequ + uhoursqu + uhourscu + uhourssq, data=cps,vcov = 'HC1')
 
 # Simple comparison table
-etable( reg1_e, reg2_e, reg3_e, reg4_e, drop = 'factor' )
+etable(reg1_e, reg2_e, reg3_e, reg4_e, drop = 'factor')
 
 # As we are interested in one parameter (female coeff) -> lets make a pretty regression output!
 #   we can specify multiple 'control' groups and show YES/NO in etable
@@ -353,16 +353,16 @@ groupConf <- list('Age and Education' = c('age','ed_'),
                   'Union member' = c('union'),
                   'Not born in USA' = c('nonUSborn'),
                   'Age in polynomial' = c('agesq','agecu','agequ'),
-                  'Hours in polynomial' = c('uhourssq','uhourscu','uhoursqu') )
+                  'Hours in polynomial' = c('uhourssq','uhourscu','uhoursqu'))
 
 # Note: if you use factors then 'keepFactors = F' will do this automatically for each factor variable
 
-varname_report <- c('female' = 'Female' )
+varname_report <- c('female' = 'Female')
 
 # Note: etable uses string manipulations, thus you do not need to write everything out 
 #   (but should deal with care e.g. in case of age in polynomials!)
 
-etable( reg1_e, reg2_e, reg3_e, reg4_e ,
+etable(reg1_e, reg2_e, reg3_e, reg4_e ,
         title = 'Gender wage gap',            # Add a title
         headers = c('(1)','(2)','(3)','(4)'), # Name of the models
         depvar = F,                           # Hide the dependent variable from the header
@@ -375,7 +375,7 @@ etable( reg1_e, reg2_e, reg3_e, reg4_e ,
         se.below = T,                         # Show standard errors below the coefficients
         se.row = F,                           # Hide Type of SE used from summary stat part
         fitstat = c('r2','n')                 # Reported statistics (R2 and Num obs.)
-        )
+       )
 
 # Note: if you use 'keep', then you have to use the same name as you specified in 'dict'.
 #   also if you use 'drop' you have to take care!

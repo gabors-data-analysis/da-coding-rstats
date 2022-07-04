@@ -45,53 +45,53 @@ library(modelsummary)
 
 ###
 ## Import data
-bpp_orig <- read_csv( 'https://osf.io/yhbr5/download' )
+bpp_orig <- read_csv('https://osf.io/yhbr5/download')
 
 # Check the variables
 glimpse(bpp_orig)
 
 ## Create our key variable: price differences
-bpp_orig <- mutate( bpp_orig, p_diff = price_online - price )
+bpp_orig <- mutate(bpp_orig, p_diff = price_online - price)
 
 ####
 ## DESCRIPTIVE STATISTICS
 #
 # Check all the variables in tibble by a quick built-in summary statistics
-datasummary_skim( bpp_orig )
+datasummary_skim(bpp_orig)
 # alternatively - base R command: 
-summary( bpp_orig )
+summary(bpp_orig)
 
 # Get a better idea about the key variables:
 # use `datasummary()` function:
-# datasummary( in_rows ~ in_columns, data = df ), 
+# datasummary(in_rows ~ in_columns, data = df), 
 #   where in_rows OR in_columns are variables and the other is a descriptive function
-datasummary( price + price_online + p_diff ~ 
+datasummary(price + price_online + p_diff ~ 
                Mean + Median + SD + Min + Max + P25 + P75 + N + PercentMissing, 
-             data = bpp_orig )
+             data = bpp_orig)
 
 # Or put the descriptives into rows and variables into columns:
-datasummary( Mean + Median + SD + Min + Max + P25 + P75 + N + PercentMissing ~
+datasummary(Mean + Median + SD + Min + Max + P25 + P75 + N + PercentMissing ~
                price + price_online + p_diff, 
-             data = bpp_orig )
+             data = bpp_orig)
 ##
 # next let us check the price differences for each countries.
 # here comes 'factor' variables into picture:
 
 # lets create a new variable country_f which is a factor variable:
-bpp_orig <- mutate( bpp_orig, country_f = factor(COUNTRY) )
+bpp_orig <- mutate(bpp_orig, country_f = factor(COUNTRY))
 
 # With datasummary it is super easy to check, we only need to use '*'
 # always make sure one of the variable is factor!
-datasummary( country_f * p_diff ~ Mean + Median, data = bpp_orig )
+datasummary(country_f * p_diff ~ Mean + Median, data = bpp_orig)
 
 
 # Lets say we are interested in the prices as well for each countries.
 # In this case we need to use parenthesis in a clever way:
 #   for each country show the differences and levels
-datasummary( country_f * ( p_diff + price + price_online ) ~ Mean + Median, data = bpp_orig )
+datasummary(country_f * (p_diff + price + price_online) ~ Mean + Median, data = bpp_orig)
 
 # for each variable, show the different countries:
-datasummary( ( country_f * p_diff ) + ( country_f * price  ) ~ Mean + Median, data = bpp_orig )
+datasummary((country_f * p_diff) + (country_f * price ) ~ Mean + Median, data = bpp_orig)
 
 ##
 # Task
@@ -106,23 +106,23 @@ datasummary( ( country_f * p_diff ) + ( country_f * price  ) ~ Mean + Median, da
 # To do this we need to understand `function` in R
   # Lets check the 'range' as an external function to the descriptive
 # Our first function - explain each part, especially the output
-range_ds <- function( x ){ 
-                max( x, na.rm = T ) - min( x, na.rm = T ) 
+range_ds <- function(x){ 
+                max(x, na.rm = T) - min(x, na.rm = T) 
 }
 # Later we will discuss functions more in details!
 
-datasummary( price + price_online + p_diff ~ 
+datasummary(price + price_online + p_diff ~ 
                Mean + Median + SD + Min + Max + P25 +
                P75 + N + PercentMissing + range_ds, 
-             data = bpp_orig )
+             data = bpp_orig)
 
 # Extra example: the 'mode'
 mode_ds <- function(v){
-  uniqv <- unique( v )
-  uniqv[ which.max( tabulate( match( v, uniqv ) ) ) ]
+  uniqv <- unique(v)
+  uniqv[ which.max(tabulate(match(v, uniqv))) ]
 }
-datasummary( price + price_online + p_diff ~ 
-               Mean + Median + mode_ds, data = bpp_orig )
+datasummary(price + price_online + p_diff ~ 
+               Mean + Median + mode_ds, data = bpp_orig)
 
 ##################
 ## VISUALIZATION
@@ -135,10 +135,10 @@ datasummary( price + price_online + p_diff ~
 
 # Check the empirical distribution:  histogram.
 #   simple - built in histogram with `geom_histogram()`
-ggplot( data = bpp_orig ) +
-  geom_histogram( aes( x = price ), fill = 'navyblue' ) +
+ggplot(data = bpp_orig) +
+  geom_histogram(aes(x = price), fill = 'navyblue') +
   labs(x = 'Price',
-       y = 'Count' )
+       y = 'Count')
 # Lets just ignore the warning, we will discuss it later!
 
 ##
@@ -147,55 +147,55 @@ ggplot( data = bpp_orig ) +
 #     may check without that filter!
 # for reasons of this check the discussion in the book, Chapter 6.
 bpp <- bpp_orig %>%  
-  filter( is.na(sale_online) ) %>%
+  filter(is.na(sale_online)) %>%
   filter(!is.na(price)) %>%
   filter(!is.na(price_online)) %>% 
-  filter( PRICETYPE == 'Regular Price' )
+  filter(PRICETYPE == 'Regular Price')
 
 # Check our newly created data:
-datasummary( price + price_online + p_diff ~ 
+datasummary(price + price_online + p_diff ~ 
                Mean + Median + SD + Min + Max + P25 + P75 + N, 
-             data = bpp )
+             data = bpp)
 
 # Drop obvious errors: price is larger than $1000
 bpp <- bpp %>% 
-  filter( price < 1000 )
+  filter(price < 1000)
 
 # Check again our datatable:
-datasummary( price + price_online + p_diff ~ 
+datasummary(price + price_online + p_diff ~ 
                Mean + Median + SD + Min + Max + P25 + P75 + N, 
-             data = bpp )
+             data = bpp)
 
 # Histogram for filtered data
-ggplot( data = bpp ) +
-  geom_histogram( aes( x = price ), fill = 'navyblue' ) +
+ggplot(data = bpp) +
+  geom_histogram(aes(x = price), fill = 'navyblue') +
   labs(x = 'Price',
-       y = 'Count' )
+       y = 'Count')
 
 ##
 # Role of number of bins (or binwidth)
 
 # Play with the number of Bins:
 # 1) approx ok
-ggplot( data = bpp ) +
-  geom_histogram( aes( x = price ), fill = 'navyblue',
-                  bins = 50 ) +
+ggplot(data = bpp) +
+  geom_histogram(aes(x = price), fill = 'navyblue',
+                  bins = 50) +
   labs(x = 'Price',
-       y = 'Count' )
+       y = 'Count')
 
 # 2) too many
-ggplot( data = bpp ) +
-  geom_histogram( aes( x = price ), fill = 'navyblue',
-                  bins = 150 ) +
+ggplot(data = bpp) +
+  geom_histogram(aes(x = price), fill = 'navyblue',
+                  bins = 150) +
   labs(x = 'Price',
-       y = 'Count' )
+       y = 'Count')
 
 # 3) too few
-ggplot( data = bpp ) +
-  geom_histogram( aes( x = price ), fill = 'navyblue',
-                  bins = 5 ) +
+ggplot(data = bpp) +
+  geom_histogram(aes(x = price), fill = 'navyblue',
+                  bins = 5) +
   labs(x = 'Price',
-       y = 'Count' )
+       y = 'Count')
 ##
 # Task:
 # Play with the binwidth - instead of `bins=`, use `binwidth=`
@@ -219,11 +219,11 @@ ggplot( data = bpp ) +
 #   until now we have used count (counted the number of observations in each bin)
 #   the other possibility is to use relative frequency instead:
 #   you need to add `y = ..density..` to the aesthetics:
-ggplot( data = bpp ) +
-  geom_histogram( aes(  y = ..density.., x = price ), fill = 'navyblue',
-                  bins = 50 ) +
+ggplot(data = bpp) +
+  geom_histogram(aes( y = ..density.., x = price), fill = 'navyblue',
+                  bins = 50) +
   labs(x = 'Price',
-       y = 'Relative Frequency' )
+       y = 'Relative Frequency')
 
 
 ##
@@ -231,18 +231,18 @@ ggplot( data = bpp ) +
 #
 # Histogram or kernel density? Kernel is the smooth line instead of using bars.
 # Now, let us name our ggplot:
-my_graph <- ggplot( data = bpp ) +
-            geom_density( aes( x = price ), color = 'red' , bw = 20 ) +
+my_graph <- ggplot(data = bpp) +
+            geom_density(aes(x = price), color = 'red' , bw = 20) +
             labs(x = 'Price',
-                 y = 'Relative Frequency' )
+                 y = 'Relative Frequency')
 
 # to make it visible we need to call it
 my_graph
 
 # Cool stuff about ggplot, is that we can add (later as well) new geometric object to it.
 # e.g. we can add a histogram:
-my_graph + geom_histogram( aes(  y = ..density.., x = price ), fill = 'navyblue', 
-                           alpha = 0.4, binwidth = 20 )
+my_graph + geom_histogram(aes( y = ..density.., x = price), fill = 'navyblue', 
+                           alpha = 0.4, binwidth = 20)
 # note alpha governs the opaqueness of the object
 
 ###
@@ -254,10 +254,10 @@ my_graph + geom_histogram( aes(  y = ..density.., x = price ), fill = 'navyblue'
 
 
 # Check for price differences
-chck <- bpp %>% filter( p_diff > 500 | p_diff < -500 )
+chck <- bpp %>% filter(p_diff > 500 | p_diff < -500)
 # Drop them
-bpp <- bpp %>% filter( p_diff < 500 & p_diff > -500 )
-rm( chck )
+bpp <- bpp %>% filter(p_diff < 500 & p_diff > -500)
+rm(chck)
 
 ###
 # Comparing different countries via graphs
@@ -267,19 +267,19 @@ rm( chck )
 #   1) if you only use one type of x or y, you can put it into the `aes()` of the ggplot. Otherwise not.
 #   2) use 'fill=' in `aes()`, to define different groups. 
 
-ggplot( data = bpp, aes( x = p_diff, fill = country_f ) ) +
-  geom_histogram( aes( y = ..density.. ), alpha =0.4, bins = 15 ) +
-  labs( x = 'Price', y = 'Relative Frequency' ,
-        fill = 'Country' ) +
+ggplot(data = bpp, aes(x = p_diff, fill = country_f)) +
+  geom_histogram(aes(y = ..density..), alpha =0.4, bins = 15) +
+  labs(x = 'Price', y = 'Relative Frequency' ,
+        fill = 'Country') +
   xlim(-4,4)
 
 
 # 2) Use the extra command `facet_wrap(~country_f)` to create multiple plots for each country at once!
 
-ggplot( data = bpp, aes( x = p_diff, fill = country_f ) ) +
-  geom_histogram( aes( y = ..density.. ), alpha =0.4, bins = 15 ) +
-  labs( x = 'Price', y = 'Relative Frequency' ,
-        fill = 'Country' ) +
+ggplot(data = bpp, aes(x = p_diff, fill = country_f)) +
+  geom_histogram(aes(y = ..density..), alpha =0.4, bins = 15) +
+  labs(x = 'Price', y = 'Relative Frequency' ,
+        fill = 'Country') +
   facet_wrap(~country_f)+
   xlim(-4,4)
 
@@ -325,17 +325,17 @@ ggplot( data = bpp, aes( x = p_diff, fill = country_f ) ) +
 #             between price_online - price = 0
 #       HA: the avg price diff is non 0.
 
-t.test( bpp$p_diff, mu = 0 )
+t.test(bpp$p_diff, mu = 0)
 
 # Test 2: The online prices are smaller or equal to offline prices
 #   H0: price_online - price = 0
 #   HA: price_online - price >  0
-t.test( bpp$p_diff, mu = 0, alternative = 'greater' )
+t.test(bpp$p_diff, mu = 0, alternative = 'greater')
 
 # Test 3: The online prices are larger or equal to offline prices
 #   H0: price_online - price = 0
 #   HA: price_online - price <  0
-t.test( bpp$p_diff, mu = 0, alternative = 'less' )
+t.test(bpp$p_diff, mu = 0, alternative = 'less')
 
 ###
 # summarise and group_by functions intidyverse:
@@ -343,23 +343,23 @@ t.test( bpp$p_diff, mu = 0, alternative = 'less' )
 # Let us create multiple hypothesis tests:
 #   check the hypothesis that online prices are the same as offline for each country!
 testing <- bpp %>% 
-  select( country_f, p_diff ) %>% 
-  group_by( country_f ) %>% 
-  summarise( mean_pdiff = mean( p_diff ) ,
+  select(country_f, p_diff) %>% 
+  group_by(country_f) %>% 
+  summarise(mean_pdiff = mean(p_diff) ,
              se_pdiff = 1/sqrt(n())*sd(p_diff),
-             num_obs = n() )
+             num_obs = n())
 
 testing
 
 # Testing in R is easy if one understands the theory!
 # t_stat: with this H0 and t-test: 
-testing <- mutate( testing, t_stat = mean_pdiff / se_pdiff )
+testing <- mutate(testing, t_stat = mean_pdiff / se_pdiff)
 testing
 # Built-in p-value calculation with `pt()` function:
-testing <- mutate( testing, p_val = pt( -abs( t_stat ), df = num_obs - 1 ) )
+testing <- mutate(testing, p_val = pt(-abs(t_stat), df = num_obs - 1))
 testing
 # round it to 4 digits:
-testing <- mutate( testing,  p_val = round( p_val, digit = 4 ) )
+testing <- mutate(testing,  p_val = round(p_val, digit = 4))
 testing
 
 ##
@@ -371,18 +371,18 @@ testing
 #   relation between two variables
 
 # Association between online and retail prices: geom_point() will add dots to the graph
-ggplot( bpp, aes( x = price_online, y = price ) )+
-  geom_point( color = 'red' )+
-  labs( x = 'Price online', y = 'Price retail' )
+ggplot(bpp, aes(x = price_online, y = price))+
+  geom_point(color = 'red')+
+  labs(x = 'Price online', y = 'Price retail')
 
 # You can add a line (regression line to be specific), 
 #   by `geom_smooth()` function. It is a great function, 
 #     we now focus on `method=lm` which says it is a linear relation (linear model) 
 #     and formula, which identifies y and x. We will discuss these more in details later.
-ggplot( bpp, aes( x = price_online, y = price ) )+
-  geom_point( color = 'red' )+
-  labs( x = 'Price online', y = 'Price retail' )+
-  geom_smooth(method = 'lm',formula = y ~ x, color = 'blue' )
+ggplot(bpp, aes(x = price_online, y = price))+
+  geom_point(color = 'red')+
+  labs(x = 'Price online', y = 'Price retail')+
+  geom_smooth(method = 'lm',formula = y ~ x, color = 'blue')
 
 ##
 # Bin-scatter:
@@ -404,20 +404,20 @@ ggplot( bpp, aes( x = price_online, y = price ) )+
 # Bin-scatter
 # 1) 'easy way': using equal distances and calculate mean for y
 #   use `stat_summary_bin()`
-ggplot( bpp, aes( x = price_online, y = price ) )+
-  stat_summary_bin( fun = 'mean', bins = 10, 
+ggplot(bpp, aes(x = price_online, y = price))+
+  stat_summary_bin(fun = 'mean', bins = 10, 
                     geom = 'point', color = 'red',
-                    size = 2 )
+                    size = 2)
 
 # 2) 'easy way': using equal distances
 #   group by countries, explain facet_wrap additional inputs!
-ggplot( bpp, aes( x = price_online, y = price ,
-                   color = country_f ) )+
-  stat_summary_bin( fun = 'mean', bins = 10, 
-                    geom = 'point',  size = 2 ) +
-  labs( x = 'Price online', y = 'Price offline', 
-        color = 'Country' ) +
-  facet_wrap(~country_f,scales = 'free',ncol = 2 )+
+ggplot(bpp, aes(x = price_online, y = price ,
+                   color = country_f))+
+  stat_summary_bin(fun = 'mean', bins = 10, 
+                    geom = 'point',  size = 2) +
+  labs(x = 'Price online', y = 'Price offline', 
+        color = 'Country') +
+  facet_wrap(~country_f,scales = 'free',ncol = 2)+
   theme(legend.position = 'none')+
   geom_smooth(method='lm',formula = y~x, se=F)
 
@@ -433,51 +433,51 @@ ggplot( bpp, aes( x = price_online, y = price ,
 
 # check in the tibble variable!
 bpp$price_online_10b <- bpp$price_online %>% 
-  cut_number( 10 )
+  cut_number(10)
 
 # b) Select these new intervals and the y-variable
 #   then group by the intervals and calculate some descriptive statistics!
 #     from these descriptive statistics we can choose which to show on the y-axis!
 bs_summary <- bpp %>% 
-  select( price, price_online_10b ) %>% 
-  group_by( price_online_10b ) %>% 
-  summarise_all( lst(p_min=min,p_max=max,
+  select(price, price_online_10b) %>% 
+  group_by(price_online_10b) %>% 
+  summarise_all(lst(p_min=min,p_max=max,
                      p_mean = mean, 
                      p_median = median,
                      p_sd = sd,
-                     p_num_obs = length ))
+                     p_num_obs = length))
 bs_summary
 
 # c) Recode the interval variable (factor type) to new numeric variables for creating a graph
 # separate into three parts: (, lower_bound, upper_bound (and the remaining)
 bs_summary <- bs_summary %>% 
-  separate( price_online_10b, 
+  separate(price_online_10b, 
             into = c('trash','lower_bound',
-                     'upper_bound' ), 
-            sep = '[^0-9\\.]' )
+                     'upper_bound'), 
+            sep = '[^0-9\\.]')
 
 # transform to numeric and drop trash
 bs_summary <- bs_summary %>% 
-  mutate( lower_bound = as.numeric(lower_bound) ) %>% 
-  mutate( upper_bound = as.numeric(upper_bound)) %>% 
-  select( -trash )
+  mutate(lower_bound = as.numeric(lower_bound)) %>% 
+  mutate(upper_bound = as.numeric(upper_bound)) %>% 
+  select(-trash)
 
 # Use the mid-point as x-axis values
 bs_summary <- bs_summary %>% 
-  mutate( mid_point = ( lower_bound + upper_bound ) / 2 )
+  mutate(mid_point = (lower_bound + upper_bound) / 2)
 
 bs_summary
 
 # Bin-scatter plot with same number of observations within each bin:
 # mid-value for x-axis and mean for y-axis:
-ggplot( bs_summary, aes( x = mid_point, y = p_mean ) ) +
-  geom_point( size = 2, color = 'red' ) +
-  labs( x = 'Online prices', y = 'Retail prices' )
+ggplot(bs_summary, aes(x = mid_point, y = p_mean)) +
+  geom_point(size = 2, color = 'red') +
+  labs(x = 'Online prices', y = 'Retail prices')
 
 # Add x and y limits to check smaller values
-ggplot( bs_summary, aes( x = mid_point, y = p_mean ) ) +
-  geom_point( size = 2, color = 'red' ) +
-  labs( x = 'Online prices', y = 'Retail prices' )+
+ggplot(bs_summary, aes(x = mid_point, y = p_mean)) +
+  geom_point(size = 2, color = 'red') +
+  labs(x = 'Online prices', y = 'Retail prices')+
   xlim(0,100)+
   ylim(0,100)
 
@@ -488,31 +488,31 @@ ggplot( bs_summary, aes( x = mid_point, y = p_mean ) ) +
 # covariance and correlation for mean-dependence
 
 # Covariance
-cov( bpp$price, bpp$price_online )
+cov(bpp$price, bpp$price_online)
 
 ##
 # Task:
 # Check if it is symmetric!
-cov( bpp$price_online, bpp$price )
+cov(bpp$price_online, bpp$price)
 
 
 # Correlation
-cor( bpp$price, bpp$price_online )
+cor(bpp$price, bpp$price_online)
 
 ##
 # Make a correlation table, including correlation for each country
 corr_table <- bpp %>% 
-  select( country_f, price, price_online ) %>% 
-  group_by( country_f ) %>% 
-  summarise( correlation = cor( price,price_online) )
+  select(country_f, price, price_online) %>% 
+  group_by(country_f) %>% 
+  summarise(correlation = cor(price,price_online))
 
 corr_table
 
 # Graph to show the correlation pattern by each country:
 # fct_reorder will reorder the countries by their correlation
-ggplot( corr_table, aes( x = correlation ,
-                          y = fct_reorder( country_f, correlation ) ) ) +
-  geom_point( color = 'red', size = 2 )+
+ggplot(corr_table, aes(x = correlation ,
+                          y = fct_reorder(country_f, correlation))) +
+  geom_point(color = 'red', size = 2)+
   labs(y='Countries',x='Correlation')
 
 

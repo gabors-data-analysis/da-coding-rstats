@@ -95,7 +95,7 @@ hprice <- hprice %>%
     p=pn,
     u=us,
     emp=emps
-  )
+ )
 
 # Create logs, lags, differences and trend + monthly dummmies
 hprice <- hprice %>%
@@ -109,11 +109,11 @@ hprice <- hprice %>%
     du     = difference(u, lag=1, order_by = date),
     lnemp = log(emp),
     dlnemp = difference(lnemp, lag=1, order_by = date)
-  ) %>%
+ ) %>%
   mutate(
     trend = 1:nrow(hprice),
     month = as.factor(month(date))
-  )
+ )
 
 # Save as time-series tibble
 hprice <- hprice %>% as_tsibble(index=date)
@@ -318,7 +318,7 @@ models_1_4 <- data_tr %>%
         m2 = m2,
         m3 = m3,
         m4 = m4
-  )
+ )
 # RMSE measures on the training sample
 rmse_train_1_4 <- models_1_4 %>%
   get_RMSE_from_model()
@@ -377,7 +377,7 @@ forecast_6 <- model_6 %>%
   left_join(hprice[,c('date','p')]) %>%
   left_join(rmse_train_6) %>%
   group_by(.id, .model) %>%
-  mutate(p_pred = exp(lnp_pred)*exp((RMSE**2)/2) ) %>%
+  mutate(p_pred = exp(lnp_pred)*exp((RMSE**2)/2)) %>%
   mutate(e = p - p_pred) %>%
   ungroup()
 # Compute MSE for folds
@@ -442,7 +442,7 @@ aux$dp_pred <- aux$.mean[,1]
 
 # Take the error
 forecast_var <- aux %>%
-  select( -.mean ) %>% 
+  select(-.mean) %>% 
   select(.id, .model, date, dp_pred) %>%
   left_join(hprice[,c('date','p','p_lag')]) %>%
   group_by(.id, .model) %>%
