@@ -11,7 +11,7 @@ To get a copy: [Inspection copy for instructors](https://www.cambridge.org/highe
 
 ## Status
 
-This is version 0.1.
+This is version 0.2. (2022-07-11)
 
 Comments are really welcome in email or as a GitHub issue. 
 
