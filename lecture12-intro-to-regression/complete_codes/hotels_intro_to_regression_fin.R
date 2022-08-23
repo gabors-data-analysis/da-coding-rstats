@@ -112,10 +112,6 @@ hotels <- hotels %>% mutate(dist4 = 0.5
                              + 2.5*as.numeric(hotels$distance>=3))
 
 # Add mean values for price given each group
-dist4 <- hotels %>% group_by(dist4) %>% summarize(Eprice_cat4 = mean(price))
-hotels<-left_join(hotels,dist4)
-
-# Alternative method in one step
 hotels <- hotels %>% group_by(dist4) %>% mutate(Eprice_cat4 = mean(price)) %>% ungroup()
 
 datasummary(factor(dist4) * distance + factor(dist4) * price ~ 
@@ -168,8 +164,7 @@ hotels <- hotels %>% mutate(dist7_new = 0.5 +
                                1*as.numeric(hotels$distance>=4) + 
                                1*as.numeric(hotels$distance>=5) + 
                                1*as.numeric(hotels$distance>=6))  
-dist7_new <- hotels %>% group_by(dist7_new) %>% summarize(Eprice_cat7_new = mean(price))
-hotels<-left_join(hotels,dist7_new)
+dist7_new <- hotels %>% group_by(dist7_new) %>% summarize(Eprice_cat7_new = mean(price)) %>% ungroup()
 
 datasummary(factor(dist7_new) * distance + factor(dist7_new) * price ~ 
                Mean + SD + Min + Max + N, data = hotels)
