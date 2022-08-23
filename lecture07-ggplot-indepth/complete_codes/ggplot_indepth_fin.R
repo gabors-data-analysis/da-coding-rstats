@@ -146,24 +146,27 @@ f1 + scale_x_continuous(limits = c(0, 500) ,
 # a) Add mean and median as lines and annotate them!
 #
 # add a line as the mean:
+m_price <- df %>% filter( city == 'Vienna' ) %>% 
+                  summarize( mean = mean( price , na.rm = T) )
 
 # create a variable yval which sets the height of the line(s)
 yval <- 60
-f1 <- f1 + geom_segment(aes(x = mean(df$price, na.rm = T), y = 0, 
-                    xend = mean(df$price, na.rm = T), yend = yval) ,
+f1 <- f1 + geom_segment(aes(x = m_price$mean, y = 0, 
+                    xend = m_price$mean, yend = yval) ,
                     color = 'red', size = 1)
 f1
 
 # add annotation which says it is the mean
 f1 <- f1 + 
-  annotate('text', x = mean(df$price, na.rm = T) + 20 ,
+  annotate('text', x = m_price$mean + 20 ,
             y = yval - 5, label = 'Mean', color = 'red')
 f1
 
 # Calculate the median as a 50th percentile 
 #   (if you wish to add other percentiles as well, otherwise, just use `median`) 
 
-median_price <- quantile(df$price, .50)
+# Different way to calculate median
+median_price <- quantile(df$price[ df$city == 'Vienna' ], .50)
 # Add both of them to the figure
 f1 <- f1 + 
       annotate('text', x = median_price + 10, y = yval + 5 ,
@@ -179,9 +182,9 @@ f1
 #   here we have redefined the variable f1, however when developing a code
 #   it has several drawbacks to redefine a variable! Discuss!
 
-pctg95_price <- quantile(df$price, .95)
+pctg95_price <- quantile(df$price[ df$city == 'Vienna' ], .95)
 f2 <- f1 + 
-      annotate('text', x = pctg95_price - 45, y = yval - 5 ,
+      annotate('text', x = pctg95_price + 25, y = yval +2 ,
                 label = '95th percentile', color = 'green') +
       geom_segment(aes(x = pctg95_price, y = 0, 
                         xend = pctg95_price, yend = yval) ,
