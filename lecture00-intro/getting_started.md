@@ -29,7 +29,7 @@ Different windows:
 Before jumping into coding, it is **strongly advised to set R not to
 save your working environment**. It is a good starting habit not to rely
 on this as it may confuse later. To do this one need to go to the
-‘Preferences’ -\> ‘R General’ tab and untick ‘Restore .RData into
+‘Preferences’ -&gt; ‘R General’ tab and untick ‘Restore .RData into
 workspace at startup’ and set ‘Save workspace to .RData on exit’ to
 ‘Never’.
 [Here](https://r4ds.had.co.nz/workflow-projects.html#what-is-real) is
@@ -108,6 +108,11 @@ install.packages('tidyverse')
 
 ``` r
 library(ggplot2)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 4.1.3
+
+``` r
 ggplot(diamonds, aes(cut)) + geom_bar()
 ```
 
@@ -143,8 +148,8 @@ Open
 [`test_Rmarkdown.Rmd`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture00-intro/test_Rmarkdown.Rmd)
 and knit with **both** output options:
 
--   output: pdf_document
--   output: html_document
+-   output: pdf\_document
+-   output: html\_document
 
 ## Version control: Git and GitHub
 

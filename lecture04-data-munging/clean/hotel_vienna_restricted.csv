@@ -1,0 +1,218 @@
+country,city_actual,rating_count,distance,center1label,distance_alter,center2label,neighbourhood,price,price_night,city,stars,ratingta,ratingta_count,acc_type,ratings,scarce_room,hotel_id,offer,offer_cat,year,month,weekend,holiday,nnights
+Austria,Vienna,122,1.9,City centre,4.7,Donauturm,Margareten,383,price for 1 night,Vienna,3,4,382,Hotel,4,1,22193,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,404,0,City centre,2.8,Donauturm,Innere Stadt,242,price for 1 night,Vienna,4,4.5,2165,Hotel,4.8,0,22050,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,56,0.1,City centre,2.7,Donauturm,Innere Stadt,231,price for 1 night,Vienna,4,4.5,282,Hotel,4.4,0,22031,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,123,0.5,City centre,2.4,Donauturm,Innere Stadt,223,price for 1 night,Vienna,4,3.5,276,Hotel,3.5,1,22051,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,81,0.3,City centre,3,Donauturm,Innere Stadt,219,price for 1 night,Vienna,4,4.5,392,Hotel,4.5,1,21972,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,124,0.2,City centre,2.6,Donauturm,Innere Stadt,218,price for 1 night,Vienna,4,5,1112,Hotel,4.6,1,22011,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,115,0.1,City centre,2.7,Donauturm,Innere Stadt,218,price for 1 night,Vienna,4,4.5,475,Hotel,4.5,0,22012,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,178,2.9,City centre,0.6,Donauturm,Donaustadt,208,price for 1 night,Vienna,4,4,1085,Hotel,4.1,1,21930,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,317,0.8,City centre,3.5,Donauturm,Wieden,197,price for 1 night,Vienna,4,4.5,1840,Hotel,4.8,1,22391,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,45,2.1,City centre,3,Donauturm,Wahring,185,price for 1 night,Vienna,4,4,142,Hotel,4.4,1,22382,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,123,1,City centre,3.7,Donauturm,Neubau,184,price for 1 night,Vienna,4,4.5,2431,Hotel,4.6,0,22250,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,323,0.5,City centre,3.3,Donauturm,Kaerntner Strasse,182,price for 1 night,Vienna,4,4.5,327,Hotel,4.5,0,22097,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,467,0.5,City centre,3.3,Donauturm,Innere Stadt,179,price for 1 night,Vienna,4,4.5,423,Hotel,4.4,1,22016,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,144,1.5,City centre,4.3,Donauturm,Margareten,174,price for 1 night,Vienna,4,4.5,1650,Hotel,4.3,0,22198,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,212,2.2,City centre,3.8,Donauturm,Vienna,172,price for 1 night,Vienna,4,4,401,Hotel,4.1,1,22359,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,81,0.3,City centre,2.5,Donauturm,Innere Stadt,169,price for 1 night,Vienna,4,4.5,561,Hotel,4.5,1,22042,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,313,0.3,City centre,3.1,Donauturm,Kaerntner Strasse,169,price for 1 night,Vienna,4,4,760,Hotel,4.1,1,22095,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,303,0.8,City centre,2.7,Donauturm,Landstrasse,169,price for 1 night,Vienna,4,4,1208,Hotel,4.1,0,22120,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,703,0.6,City centre,2.8,Donauturm,Innere Stadt,166,price for 1 night,Vienna,4,4,1592,Hotel,4.3,1,22037,1,15-50% offer,2017,11,0,0,1
+Austria,Schwechat,923,11,City centre,11,Donauturm,Schwechat,166,price for 1 night,Vienna,4,4,2400,Hotel,4,0,22318,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,148,0.4,City centre,2.7,Donauturm,Innere Stadt,163,price for 1 night,Vienna,4,4,388,Hotel,4.1,1,22028,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,47,0.3,City centre,3.1,Donauturm,Innere Stadt,158,price for 1 night,Vienna,3,4,232,Hotel,4.3,1,22009,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,21,0.4,City centre,2.9,Donauturm,Innere Stadt,157,price for 1 night,Vienna,3,4.5,146,Hotel,4.4,1,21988,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,650,0.7,City centre,3.5,Donauturm,Innere Stadt,157,price for 1 night,Vienna,4,4.5,1380,Hotel,4.5,0,22018,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,168,0.1,City centre,2.8,Donauturm,Innere Stadt,157,price for 1 night,Vienna,4,4,392,Hotel,4.1,1,22021,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,184,0.3,City centre,2.6,Donauturm,Innere Stadt,156,price for 1 night,Vienna,3,4.5,1347,Hotel,4.5,1,21968,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,910,3.6,City centre,6.2,Donauturm,Schonbrunn,156,price for 1 night,Vienna,4,4,1122,Hotel,4.3,0,22303,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,184,0.2,City centre,3,Donauturm,Kaerntner Strasse,153,price for 1 night,Vienna,4,4,700,Hotel,4.1,1,22093,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,271,0.3,City centre,3,Donauturm,Innere Stadt,152,price for 1 night,Vienna,4,4,261,Hotel,4.3,0,21973,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,342,0.9,City centre,3.4,Donauturm,Josefstadt,152,price for 1 night,Vienna,4,4,1461,Hotel,4.3,0,22077,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,104,0.5,City centre,2.3,Donauturm,Leopoldstadt,151,price for 1 night,Vienna,4,4.5,1272,Hotel,4.6,0,22187,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,161,1,City centre,2.7,Donauturm,Alsergrund,150,price for 1 night,Vienna,4,4.5,617,Hotel,4.6,0,21907,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,391,0.2,City centre,2.6,Donauturm,Innere Stadt,149,price for 1 night,Vienna,4,4,1516,Hotel,4,0,21986,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,653,0.3,City centre,2.7,Donauturm,Innere Stadt,149,price for 1 night,Vienna,4,4.5,930,Hotel,4.4,1,22052,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,336,0.1,City centre,2.9,Donauturm,Innere Stadt,146,price for 1 night,Vienna,4,4,714,Hotel,4.4,0,21980,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,95,0.3,City centre,2.8,Donauturm,Innere Stadt,146,price for 1 night,Vienna,4,4.5,770,Hotel,4.5,1,22019,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,249,0.9,City centre,2.5,Donauturm,Landstrasse,145,price for 1 night,Vienna,3.5,4.5,730,Hotel,4.3,0,22126,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,512,0.1,City centre,2.8,Donauturm,Kaerntner Strasse,142,price for 1 night,Vienna,4,4,837,Hotel,4.4,0,22101,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,210,0.8,City centre,3.6,Donauturm,Mariahilf,140,price for 1 night,Vienna,4,5,1495,Hotel,4.8,1,22223,1,15-50% offer,2017,11,0,0,1
+Austria,Schwechat,73,7.8,City centre,8,Donauturm,Schwechat,140,price for 1 night,Vienna,4,4,127,Hotel,3.5,1,22321,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,34,0.2,City centre,2.9,Donauturm,Innere Stadt,139,price for 1 night,Vienna,4,3.5,54,Hotel,3.5,1,22061,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,316,0.2,City centre,2.6,Donauturm,Innere Stadt,138,price for 1 night,Vienna,4,4.5,463,Hotel,4.5,0,21977,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,386,0.3,City centre,2.5,Donauturm,Innere Stadt,138,price for 1 night,Vienna,4,4,273,Hotel,4.3,0,21996,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,250,0.5,City centre,2.3,Donauturm,Leopoldstadt,138,price for 1 night,Vienna,4,4,1023,Hotel,4,0,22158,0,0% no offer,2017,11,0,0,1
+Austria,Schwechat,122,7.7,City centre,7.9,Donauturm,Schwechat,137,price for 1 night,Vienna,4,3.5,191,Hotel,3.7,1,22319,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,156,1.9,City centre,4.5,Donauturm,Rudolfsheim-Funfhaus,136,price for 1 night,Vienna,3,4.5,1452,Hotel,4.5,0,22277,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,110,0.3,City centre,2.6,Donauturm,Innere Stadt,135,price for 1 night,Vienna,3,3.5,162,Hotel,3.9,0,22013,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,280,1.2,City centre,3.9,Donauturm,Wieden,135,price for 1 night,Vienna,4,4,1121,Hotel,4.5,0,22394,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,171,0.6,City centre,3,Donauturm,Landstrasse,134,price for 1 night,Vienna,4,4.5,343,Hotel,4.3,1,22138,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,16,0.6,City centre,2.2,Donauturm,Leopoldstadt,134,price for 1 night,Vienna,3.5,4.5,70,Hotel,4,1,22155,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,125,0.8,City centre,3.5,Donauturm,Wieden,134,price for 1 night,Vienna,4,4.5,615,Hotel,4.5,0,22397,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,319,0.3,City centre,2.6,Donauturm,Innere Stadt,133,price for 1 night,Vienna,4,4,466,Hotel,4.3,1,21970,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,281,1,City centre,3.2,Donauturm,Landstrasse,132,price for 1 night,Vienna,4,4,1403,Hotel,4.1,0,22142,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,258,0.7,City centre,3.4,Donauturm,Mariahilf,131,price for 1 night,Vienna,4,4,682,Hotel,4.1,0,22214,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,12,6.6,City centre,9.4,Donauturm,Vienna,130,price for 1 night,Vienna,3,4,20,Hotel,4.4,1,22353,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,248,1.3,City centre,4.1,Donauturm,Margareten,129,price for 1 night,Vienna,4,4,372,Hotel,4.1,0,22206,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,251,0.8,City centre,2.9,Donauturm,Alsergrund,128,price for 1 night,Vienna,4,4,829,Hotel,4,0,21913,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,267,0.6,City centre,2.3,Donauturm,Leopoldstadt,128,price for 1 night,Vienna,4,4,1437,Hotel,4.1,0,22144,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,426,0.8,City centre,3.1,Donauturm,Innere Stadt,127,price for 1 night,Vienna,4,4,840,Hotel,4,0,22026,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,15,0.9,City centre,3.6,Donauturm,Wieden,126,price for 1 night,Vienna,3.5,NA,NA,Hotel,4.5,1,22389,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,47,1.2,City centre,3.7,Donauturm,Wieden,125,price for 1 night,Vienna,4,4.5,229,Hotel,4.4,0,22395,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,73,0.5,City centre,3.1,Donauturm,Innere Stadt,123,price for 1 night,Vienna,4,3.5,47,Hotel,4.1,1,21971,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,54,0.8,City centre,3.5,Donauturm,Neubau,122,price for 1 night,Vienna,3,4,143,Hotel,3.9,1,22254,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,544,1.7,City centre,4.3,Donauturm,Neubau,122,price for 1 night,Vienna,4,4,978,Hotel,4.3,0,22255,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,140,0.3,City centre,2.5,Donauturm,Innere Stadt,121,price for 1 night,Vienna,3.5,4.5,557,Hotel,4.5,1,21985,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,134,1.7,City centre,4.3,Donauturm,Rudolfsheim-Funfhaus,121,price for 1 night,Vienna,4,4,7,Hotel,3.9,0,22296,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,320,0.3,City centre,2.5,Donauturm,Innere Stadt,120,price for 1 night,Vienna,3,3.5,515,Hotel,3.9,0,21987,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,139,1.9,City centre,1.9,Donauturm,Leopoldstadt,120,price for 1 night,Vienna,4,4,807,Hotel,4.5,0,22190,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,530,0.9,City centre,3.4,Donauturm,Josefstadt,119,price for 1 night,Vienna,4,4,1358,Hotel,4,0,22076,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,158,1,City centre,3.6,Donauturm,Wieden,118,price for 1 night,Vienna,4,4,436,Hotel,4.1,0,22388,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,75,0.5,City centre,2.3,Donauturm,Leopoldstadt,117,price for 1 night,Vienna,4,4.5,836,Hotel,4.4,1,22189,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,124,2,City centre,3.4,Donauturm,Vienna,117,price for 1 night,Vienna,4,4,192,Hotel,4,0,22328,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,247,0.4,City centre,2.6,Donauturm,Innere Stadt,116,price for 1 night,Vienna,4,4.5,1274,Hotel,4.4,1,22032,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,84,2.7,City centre,3.7,Donauturm,Vienna,116,price for 1 night,Vienna,4,4,493,Hotel,4,0,22358,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,211,0.1,City centre,2.7,Donauturm,Innere Stadt,115,price for 1 night,Vienna,4,4.5,211,Hotel,4.3,1,21975,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,765,0.9,City centre,3.5,Donauturm,Josefstadt,115,price for 1 night,Vienna,4,4.5,2150,Hotel,4.5,0,22088,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,388,0.5,City centre,2.3,Donauturm,Innere Stadt,114,price for 1 night,Vienna,4,4,836,Hotel,4,0,22054,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,77,0.2,City centre,2.9,Donauturm,Graben,113,price for 1 night,Vienna,3,4,259,Hotel,4.4,0,21965,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,603,1,City centre,1.8,Donauturm,Leopoldstadt,113,price for 1 night,Vienna,4,4.5,1516,Hotel,4.5,1,22159,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,374,0.8,City centre,2.1,Donauturm,Leopoldstadt,113,price for 1 night,Vienna,3,4.5,1686,Hotel,4.5,0,22176,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,6,0.8,City centre,3.6,Donauturm,Neubau,113,price for 1 night,Vienna,3,NA,NA,Hotel,3.7,1,22248,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,505,0.2,City centre,2.9,Donauturm,Innere Stadt,112,price for 1 night,Vienna,4,4,607,Hotel,4,0,21995,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,354,0.9,City centre,3.4,Donauturm,Josefstadt,110,price for 1 night,Vienna,3,4,419,Hotel,4.1,0,22071,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,340,0.6,City centre,3.2,Donauturm,Landstrasse,110,price for 1 night,Vienna,4,4.5,2718,Hotel,4.3,0,22104,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,109,1.3,City centre,3.3,Donauturm,Landstrasse,110,price for 1 night,Vienna,3,3.5,529,Hotel,3.7,1,22136,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,328,0.9,City centre,3.6,Donauturm,Neubau,110,price for 1 night,Vienna,4,4.5,2436,Hotel,4.4,0,22249,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,77,1.6,City centre,4,Donauturm,Wieden,110,price for 1 night,Vienna,3.5,4.5,116,Hotel,4.5,0,22386,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,112,0.8,City centre,3.6,Donauturm,Wieden,110,price for 1 night,Vienna,3,4,263,Hotel,3.9,0,22399,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,173,1.5,City centre,3.8,Donauturm,Landstrasse,109,price for 1 night,Vienna,4,4,666,Hotel,4.1,0,22123,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,98,1.4,City centre,4,Donauturm,Neubau,109,price for 1 night,Vienna,4,4,582,Hotel,4,0,22259,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,160,3.5,City centre,6.2,Donauturm,Vienna,109,price for 1 night,Vienna,4,3.5,386,Hotel,4,0,22335,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,175,0.3,City centre,2.5,Donauturm,Innere Stadt,108,price for 1 night,Vienna,3,3.5,234,Hotel,3.5,1,22023,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,468,1,City centre,1.9,Donauturm,Leopoldstadt,106,price for 1 night,Vienna,3,4.5,1449,Hotel,4.5,1,22177,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,527,0.8,City centre,2,Donauturm,Leopoldstadt,106,price for 1 night,Vienna,4,4,739,Hotel,4.1,1,22182,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,30,4.1,City centre,6.8,Donauturm,Schonbrunn,106,price for 1 night,Vienna,3,3,69,Hotel,3.7,1,22309,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,162,1.4,City centre,4.1,Donauturm,Mariahilf,105,price for 1 night,Vienna,4,4.5,716,Hotel,4.4,0,22226,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,359,1.7,City centre,4.3,Donauturm,Neubau,105,price for 1 night,Vienna,4,4,816,Hotel,4,0,22256,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,54,1.2,City centre,3.9,Donauturm,Neubau,105,price for 1 night,Vienna,3,4.5,412,Hotel,4.1,1,22260,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,114,0.7,City centre,2.6,Donauturm,Landstrasse,104,price for 1 night,Vienna,3,3,72,Hotel,3.4,1,22125,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,57,0.9,City centre,2.4,Donauturm,Alsergrund,103,price for 1 night,Vienna,4,3.5,251,Hotel,3.9,1,21906,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,194,1,City centre,3.4,Donauturm,Josefstadt,102,price for 1 night,Vienna,4,4,346,Hotel,4,0,22078,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,208,1.5,City centre,1.4,Donauturm,Leopoldstadt,102,price for 1 night,Vienna,3.5,4,281,Hotel,3.9,0,22166,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,28,5.3,City centre,7.6,Donauturm,Vienna,102,price for 1 night,Vienna,3,4.5,204,Hotel,4,0,22349,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,92,2.1,City centre,4.9,Donauturm,Schonbrunn,101,price for 1 night,Vienna,3,4.5,187,Hotel,4.5,0,22301,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,637,0.8,City centre,2,Donauturm,Leopoldstadt,100,price for 1 night,Vienna,4,4,584,Hotel,4,1,22183,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,58,1.5,City centre,4.3,Donauturm,Margareten,100,price for 1 night,Vienna,3.5,4.5,15,Hotel,4.5,0,22201,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,581,1.7,City centre,4.4,Donauturm,Mariahilf,100,price for 1 night,Vienna,3.5,4.5,1414,Hotel,4.5,0,22227,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,98,1.6,City centre,4.3,Donauturm,Mariahilf,100,price for 1 night,Vienna,4,3.5,372,Hotel,3.7,0,22236,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,74,2.7,City centre,4.2,Donauturm,Vienna,100,price for 1 night,Vienna,3.5,4,282,Hotel,4.4,1,22364,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,77,1.2,City centre,3.7,Donauturm,Wieden,100,price for 1 night,Vienna,3,4,149,Hotel,4,1,22401,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,112,1,City centre,3.7,Donauturm,Wieden,100,price for 1 night,Vienna,4,4.5,1006,Hotel,4.4,1,22407,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,441,1.7,City centre,4.2,Donauturm,Favoriten,99,price for 1 night,Vienna,3.5,4.5,630,Hotel,4.4,0,21940,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,183,1.5,City centre,1.6,Donauturm,Leopoldstadt,99,price for 1 night,Vienna,3,4.5,491,Hotel,4.5,0,22145,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,264,1,City centre,3.8,Donauturm,Mariahilf,99,price for 1 night,Vienna,4,4,1228,Hotel,4,1,22224,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,305,1.8,City centre,4.4,Donauturm,Neubau,99,price for 1 night,Vienna,3,4,1171,Hotel,4.1,0,22241,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,308,1.7,City centre,4.4,Donauturm,Neubau,99,price for 1 night,Vienna,4,4,612,Hotel,4.1,0,22253,1,15-50% offer,2017,11,0,0,1
+Austria,Schwechat,26,7.7,City centre,7.9,Donauturm,Schwechat,99,price for 1 night,Vienna,3,3.5,191,Hotel,3.7,0,22320,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,88,0.5,City centre,2.6,Donauturm,Innere Stadt,98,price for 1 night,Vienna,3,3.5,66,Hotel,3.7,1,21984,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,100,0.8,City centre,3.5,Donauturm,Neubau,98,price for 1 night,Vienna,4,4,650,Hotel,3.7,1,22239,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,72,3.1,City centre,5.9,Donauturm,Vienna,97,price for 1 night,Vienna,4,4,277,Hotel,4,0,22340,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,94,3.6,City centre,1.2,Donauturm,Donaustadt,95,price for 1 night,Vienna,4,4,228,Hotel,4.3,0,21926,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,572,1.5,City centre,3.9,Donauturm,Wieden,95,price for 1 night,Vienna,4,4,1003,Hotel,4.1,1,22402,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,169,1,City centre,3.4,Donauturm,Josefstadt,94,price for 1 night,Vienna,3,4,452,Hotel,4.1,1,22084,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,125,1.1,City centre,3.9,Donauturm,Mariahilf,93,price for 1 night,Vienna,4,4,410,Hotel,4,1,22219,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,140,2.9,City centre,5.6,Donauturm,Schonbrunn,92,price for 1 night,Vienna,4,4,753,Hotel,4.1,0,22312,1,1-15% offer,2017,11,0,0,1
+Austria,Schwechat,333,11,City centre,11,Donauturm,Schwechat,92,price for 1 night,Vienna,3,4,196,Hotel,4.3,0,22317,0,0% no offer,2017,11,0,0,1
+Austria,Voesendorf,115,7.1,City centre,9.9,Donauturm,Voesendorf,92,price for 1 night,Vienna,4,3.5,545,Hotel,3.7,0,22378,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,291,1.3,City centre,3.9,Donauturm,Wieden,92,price for 1 night,Vienna,3,4,688,Hotel,4.3,0,22390,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,525,1.9,City centre,4.2,Donauturm,Favoriten,91,price for 1 night,Vienna,4,4.5,741,Hotel,4.5,0,21946,0,0% no offer,2017,11,0,0,1
+Austria,Schwechat,39,6.7,City centre,8.2,Donauturm,Schwechat,91,price for 1 night,Vienna,3,3.5,161,Hotel,3.5,0,22323,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,34,0.9,City centre,3.7,Donauturm,Wieden,91,price for 1 night,Vienna,3,3.5,383,Hotel,3.5,1,22398,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,89,4.6,City centre,7.4,Donauturm,Vienna,90,price for 1 night,Vienna,3,3,78,Hotel,3,1,22363,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,422,1.6,City centre,1.2,Donauturm,Leopoldstadt,89,price for 1 night,Vienna,3,4,1580,Hotel,4.1,0,22179,1,15-50% offer,2017,11,0,0,1
+Austria,Voesendorf,38,7,City centre,9.7,Donauturm,Voesendorf,89,price for 1 night,Vienna,4,3,73,Hotel,3.5,0,22377,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,92,0.9,City centre,3.3,Donauturm,Josefstadt,88,price for 1 night,Vienna,3,4,509,Hotel,4.4,1,22072,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,330,3.4,City centre,0.9,Donauturm,Donaustadt,87,price for 1 night,Vienna,3,3.5,423,Hotel,3.7,1,21933,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,90,0.9,City centre,1.9,Donauturm,Leopoldstadt,87,price for 1 night,Vienna,3,3.5,314,Hotel,3.5,0,22188,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,45,1.9,City centre,4.7,Donauturm,Mariahilf,87,price for 1 night,Vienna,4,4,290,Hotel,3.5,0,22235,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,12,2.4,City centre,3.9,Donauturm,Vienna,87,price for 1 night,Vienna,3,4,30,Hotel,4,1,22362,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,136,1.8,City centre,1,Donauturm,Leopoldstadt,86,price for 1 night,Vienna,4,3.5,326,Hotel,4,0,22149,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,303,1.4,City centre,4.2,Donauturm,Margareten,86,price for 1 night,Vienna,4,3.5,1708,Hotel,3.9,0,22203,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,85,1.3,City centre,4.1,Donauturm,Mariahilf,86,price for 1 night,Vienna,3,4,383,Hotel,4,1,22212,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,72,1.6,City centre,4,Donauturm,Wieden,86,price for 1 night,Vienna,3,4,89,Hotel,4.3,0,22387,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,53,1.4,City centre,2.5,Donauturm,Alsergrund,85,price for 1 night,Vienna,4,3.5,629,Hotel,3.7,0,21901,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,18,1.7,City centre,2.6,Donauturm,Alsergrund,85,price for 1 night,Vienna,4,4,62,Hotel,4.1,0,21917,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,13,0.8,City centre,2.1,Donauturm,Landstrasse,85,price for 1 night,Vienna,3,3.5,183,Hotel,3.5,1,22130,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,24,3.1,City centre,5.9,Donauturm,Schonbrunn,85,price for 1 night,Vienna,3,3,114,Hotel,2.7,1,22310,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,168,3,City centre,3.2,Donauturm,Wahring,85,price for 1 night,Vienna,4,3.5,553,Hotel,4,0,22384,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,152,1.5,City centre,1.4,Donauturm,Leopoldstadt,84,price for 1 night,Vienna,3,4,1249,Hotel,3.9,0,22162,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,3,0.8,City centre,2.2,Donauturm,Leopoldstadt,84,price for 1 night,Vienna,3,4,92,Hotel,2.2,1,22185,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,239,1.6,City centre,4.3,Donauturm,Mariahilf,84,price for 1 night,Vienna,4,4,561,Hotel,4.3,0,22237,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,186,1.9,City centre,2.7,Donauturm,Wahring,84,price for 1 night,Vienna,3,4.5,982,Hotel,4.4,0,22380,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,55,1.7,City centre,2.5,Donauturm,Alsergrund,83,price for 1 night,Vienna,3,4,52,Hotel,4,0,21902,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,113,2.1,City centre,4.8,Donauturm,Rudolfsheim-Funfhaus,83,price for 1 night,Vienna,3,4,260,Hotel,4.1,0,22289,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,18,2.6,City centre,5.4,Donauturm,Schonbrunn,83,price for 1 night,Vienna,3.5,NA,NA,Hotel,4.5,1,22311,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,45,3.9,City centre,6.6,Donauturm,Vienna,83,price for 1 night,Vienna,4,3.5,121,Hotel,4,0,22343,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,33,1.2,City centre,2.8,Donauturm,Alsergrund,82,price for 1 night,Vienna,4,3.5,219,Hotel,3.9,1,21903,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,181,1.4,City centre,3.1,Donauturm,Landstrasse,82,price for 1 night,Vienna,4,4,395,Hotel,4,0,22117,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,359,1.7,City centre,3.3,Donauturm,Landstrasse,82,price for 1 night,Vienna,4,4,717,Hotel,4.1,1,22118,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,267,1.6,City centre,1.7,Donauturm,Leopoldstadt,82,price for 1 night,Vienna,3,4,727,Hotel,4.1,0,22169,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,39,1.1,City centre,3.9,Donauturm,Mariahilf,82,price for 1 night,Vienna,3,3.5,78,Hotel,3.9,0,22229,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,484,1.8,City centre,4.5,Donauturm,Mariahilf,82,price for 1 night,Vienna,4,4,1150,Hotel,3.9,0,22230,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,1541,2.4,City centre,5.2,Donauturm,Schonbrunn,82,price for 1 night,Vienna,3.5,4.5,1245,Hotel,4.5,0,22306,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,183,2.6,City centre,5.4,Donauturm,Schonbrunn,82,price for 1 night,Vienna,4,4,1148,Hotel,4.4,0,22307,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,189,1.7,City centre,3.8,Donauturm,17. Hernals,81,price for 1 night,Vienna,4,3.5,708,Hotel,3.9,0,21897,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,54,2.4,City centre,4.9,Donauturm,Rudolfsheim-Funfhaus,81,price for 1 night,Vienna,3,4.5,635,Hotel,4.1,1,22281,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,21,3.7,City centre,6.4,Donauturm,Vienna,81,price for 1 night,Vienna,3.5,3,12,Hotel,4.1,1,22334,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,44,1.4,City centre,4.2,Donauturm,Mariahilf,80,price for 1 night,Vienna,3,3.5,170,Hotel,3.9,0,22218,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,83,4.1,City centre,6,Donauturm,Ottakring,80,price for 1 night,Vienna,4,4,265,Hotel,4,0,22271,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,81,2.1,City centre,4.8,Donauturm,Rudolfsheim-Funfhaus,80,price for 1 night,Vienna,3,4,464,Hotel,4.1,1,22279,1,15-50% offer,2017,11,0,0,1
+Austria,Schwechat,161,6.3,City centre,6.9,Donauturm,Schwechat,80,price for 1 night,Vienna,3,3.5,247,Hotel,3.2,0,22322,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,102,1.4,City centre,3.6,Donauturm,Josefstadt,79,price for 1 night,Vienna,3,3.5,127,Hotel,3.5,1,22064,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,79,1.3,City centre,3.3,Donauturm,Landstrasse,79,price for 1 night,Vienna,4,3.5,77,Hotel,3.7,1,22140,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,122,0.9,City centre,1.9,Donauturm,Leopoldstadt,79,price for 1 night,Vienna,3,4,290,Hotel,3.7,0,22157,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,77,0.8,City centre,2.8,Donauturm,Alsergrund,78,price for 1 night,Vienna,3,3.5,120,Hotel,3.9,1,21919,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,76,0.9,City centre,2.8,Donauturm,Alsergrund,78,price for 1 night,Vienna,3,3.5,161,Hotel,4,1,21920,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,171,3.2,City centre,4.5,Donauturm,Vienna,78,price for 1 night,Vienna,3,4,811,Hotel,4.3,0,22354,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,20,0.9,City centre,2.8,Donauturm,Alsergrund,77,price for 1 night,Vienna,3,3.5,97,Hotel,3.7,0,21918,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,77,4.2,City centre,1.5,Donauturm,Donaustadt,77,price for 1 night,Vienna,3,4,158,Hotel,3.9,1,21924,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,193,3.9,City centre,1.9,Donauturm,Donaustadt,77,price for 1 night,Vienna,3,3,91,Hotel,2.7,0,21925,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,161,1.9,City centre,4.6,Donauturm,Mariahilf,77,price for 1 night,Vienna,3,4,2102,Hotel,4,0,22222,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,144,2.8,City centre,5.5,Donauturm,Rudolfsheim-Funfhaus,77,price for 1 night,Vienna,3,4,241,Hotel,4,0,22286,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,78,1.8,City centre,4.5,Donauturm,Rudolfsheim-Funfhaus,77,price for 1 night,Vienna,4,3,212,Hotel,3.9,0,22293,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,26,3.7,City centre,5,Donauturm,Vienna,77,price for 1 night,Vienna,3,3.5,21,Hotel,4,1,22348,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,362,2.1,City centre,4.6,Donauturm,Favoriten,76,price for 1 night,Vienna,3,4,269,Hotel,4.4,0,21943,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,141,1.6,City centre,4.2,Donauturm,Neubau,76,price for 1 night,Vienna,3,3.5,265,Hotel,3.5,0,22246,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,34,3.3,City centre,4.6,Donauturm,Vienna,76,price for 1 night,Vienna,3,4,61,Hotel,3.7,1,22355,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,1122,1.7,City centre,4.1,Donauturm,Favoriten,75,price for 1 night,Vienna,3.5,4.5,573,Hotel,4.4,0,21941,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,461,0.7,City centre,2.2,Donauturm,Leopoldstadt,75,price for 1 night,Vienna,3,4,827,Hotel,4.1,0,22184,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,100,2.6,City centre,5.4,Donauturm,Schonbrunn,75,price for 1 night,Vienna,4,3.5,309,Hotel,3.7,0,22302,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,65,4.8,City centre,7.3,Donauturm,Vienna,74,price for 1 night,Vienna,4,4,73,Hotel,3.9,1,22341,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,53,1.5,City centre,4,Donauturm,Wieden,73,price for 1 night,Vienna,3,3,293,Hotel,3.4,1,22403,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,821,1.7,City centre,4.2,Donauturm,Favoriten,71,price for 1 night,Vienna,4,4,31,Hotel,4,0,21959,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,136,1.8,City centre,4.4,Donauturm,Rudolfsheim-Funfhaus,70,price for 1 night,Vienna,4,3.5,1020,Hotel,3.9,0,22275,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,525,2.1,City centre,4.8,Donauturm,Rudolfsheim-Funfhaus,69,price for 1 night,Vienna,4,3.5,399,Hotel,3.7,0,22288,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,147,3.7,City centre,6.4,Donauturm,Vienna,69,price for 1 night,Vienna,4,3.5,320,Hotel,3.7,0,22342,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,43,0.9,City centre,3.2,Donauturm,Josefstadt,68,price for 1 night,Vienna,3,3.5,182,Hotel,3.7,1,22090,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,84,0.9,City centre,2.1,Donauturm,Leopoldstadt,68,price for 1 night,Vienna,3,4,129,Hotel,4,1,22165,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,38,3.6,City centre,6.2,Donauturm,Schonbrunn,68,price for 1 night,Vienna,3,4,116,Hotel,3.5,1,22299,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,69,4.5,City centre,5.2,Donauturm,Vienna,68,price for 1 night,Vienna,4,3.5,87,Hotel,4,1,22356,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,82,1.8,City centre,4.5,Donauturm,Margareten,67,price for 1 night,Vienna,3,4,909,Hotel,4,0,22205,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,160,1.8,City centre,3.4,Donauturm,Landstrasse,66,price for 1 night,Vienna,3,3.5,203,Hotel,3.9,0,22119,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,275,1.1,City centre,1.7,Donauturm,Leopoldstadt,66,price for 1 night,Vienna,3,4,407,Hotel,4,1,22170,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,225,3.6,City centre,6.1,Donauturm,Rudolfsheim-Funfhaus,66,price for 1 night,Vienna,4,3.5,388,Hotel,3.7,1,22285,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,33,3.9,City centre,6.4,Donauturm,Vienna,66,price for 1 night,Vienna,3,3.5,129,Hotel,3.7,0,22331,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,242,1,City centre,1.9,Donauturm,Leopoldstadt,63,price for 1 night,Vienna,3,3,183,Hotel,3.4,1,22152,1,1-15% offer,2017,11,0,0,1
+Austria,Vienna,80,2,City centre,4.7,Donauturm,Margareten,63,price for 1 night,Vienna,3,3.5,335,Hotel,3.5,0,22199,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,65,2,City centre,4.8,Donauturm,Schonbrunn,63,price for 1 night,Vienna,3,3.5,199,Hotel,3.7,0,22300,0,0% no offer,2017,11,0,0,1
+Austria,Vienna,203,1.1,City centre,2.7,Donauturm,Alsergrund,60,price for 1 night,Vienna,4,4,359,Hotel,4.1,1,21912,1,1-15% offer,2017,11,0,0,1
+Austria,Fischamend,366,13,City centre,13,Donauturm,Fischamend,59,price for 1 night,Vienna,3,2.5,243,Hotel,3,0,21964,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,128,1.6,City centre,3.7,Donauturm,Josefstadt,59,price for 1 night,Vienna,3,4,967,Hotel,3.9,1,22075,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,169,1.4,City centre,4.1,Donauturm,Wieden,58,price for 1 night,Vienna,3,3,135,Hotel,3.2,0,22408,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,79,3.7,City centre,6.3,Donauturm,Schonbrunn,56,price for 1 night,Vienna,3,4,177,Hotel,3.5,0,22304,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,194,2,City centre,4.5,Donauturm,Favoriten,54,price for 1 night,Vienna,3,4,522,Hotel,3.5,0,21935,1,50%-75% offer,2017,11,0,0,1
+Austria,Vienna,63,1.1,City centre,3.4,Donauturm,Josefstadt,54,price for 1 night,Vienna,3,3,85,Hotel,3.2,1,22080,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,69,3.1,City centre,5.2,Donauturm,Ottakring,52,price for 1 night,Vienna,3,3.5,193,Hotel,3.5,0,22268,1,15-50% offer,2017,11,0,0,1
+Austria,Vienna,50,3.9,City centre,6.6,Donauturm,Vienna,50,price for 1 night,Vienna,3,4,12,Hotel,3.9,0,22344,1,15-50% offer,2017,11,0,0,1
