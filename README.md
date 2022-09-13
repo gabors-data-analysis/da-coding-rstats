@@ -2,11 +2,16 @@
 Introduction to Data Analysis with R - lecture materials
 by [Ágoston Reguly](https://regulyagoston.github.io/) (CEU) with [Gábor Békés](https://sites.google.com/site/bekesg/) ([CEU](https://people.ceu.edu/gabor_bekes), [KRTK](https://kti.krtk.hu/en/kutatok/gabor-bekes/5896/), [CEPR](https://voxeu.org/users/gaborbekes0)) 
 
-This course material is a supplement to ***Data Analysis for Business, Economics, and Policy** 
-by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan),  Cambridge University Press, 2021*
+This course material is a supplement to **[Data Analysis for Business, Economics, and Policy](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20)**  by Gábor Békés (CEU) and Gábor Kézdi (U. Michigan),  Cambridge University Press, 2021.
 
-*Textbook* information: see the textbook's website [gabors-data-analysis.com](https://gabors-data-analysis.com/) or visit [Cambridge University Press](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20)    
-To get a copy: [Inspection copy for instructors](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20/examination-copy/personal-details) or [Order online](https://gabors-data-analysis.com/order)
+*Textbook* information: see the textbook's website [**gabors-data-analysis.com**](https://gabors-data-analysis.com/) or visit [Cambridge University Press](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20)
+
+To get a copy: [Inspection copy for instructors](https://www.cambridge.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20/examination-copy/personal-details) or [buy from Amazon](https://www.amazon.com/Data-Analysis-Business-Economics-Policy-dp-1108716202/dp/1108716202/ref=mt_other?_encoding=UTF8&me=&qid=) or [order online around the globe](https://gabors-data-analysis.com/order)   
+
+
+## Acknowledgments
+
+We thank [CEU Department of Econimics and Business](https://economics.ceu.edu/) for financial support. 
 
 
 ## Status
