@@ -23,7 +23,7 @@ The lecture (partially) uses the following case studies:
 
 
 ## Learning outcomes
-After successfully completing [`feature_engineering.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering.R), students should be able:
+PART I: after successfully completing [`feature_engineering_part_I.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering_part_I.R), students should be able:
 
 - How to create a new variable from multiple already existing variables by calculating the mean or the sum
 - Create groups of a categorical variable
@@ -34,6 +34,9 @@ After successfully completing [`feature_engineering.R`](https://github.com/gabor
   - `cut`, `cut_numbers`, and others to convert a continuous variable into an ordered factor variable
 - Create dummy variables from a factor variable with `fastDummies` package
 - Extra: introduction to principal component analysis with `prcomp()`
+
+PART II: after successfully completing [`feature_engineering_part_II.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering_part_II.R), students should be able:
+
 - Imputing values
   - replacing with mean or median
   - using outside knowledge (or other variables)
@@ -47,9 +50,9 @@ After successfully completing [`feature_engineering.R`](https://github.com/gabor
 
 ## Datasets used
 
-- [wms-management-survey](https://gabors-data-analysis.com/datasets/#wms-management-survey)
-- [bisnode-firms](https://gabors-data-analysis.com/datasets/#bisnode-firms)
-- [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna) as homework.
+- Part I: [wms-management-survey](https://gabors-data-analysis.com/datasets/#wms-management-survey)
+- Part II: [bisnode-firms](https://gabors-data-analysis.com/datasets/#bisnode-firms)
+- Homework: [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna)
 
 ## Lecture Time
 
@@ -85,6 +88,8 @@ Use [hotels-vienna](https://gabors-data-analysis.com/datasets/#hotels-vienna) da
 ## File structure
   
   - [raw_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/) includes codes, which are ready to use during the course but requires some live coding in class.
-    - [`feature_engineering.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering.R), is the main material for this lecture.
+    - [`feature_engineering_part_I.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering_part_I.R), is covering the first part for this lecture.
+    - [`feature_engineering_part_II.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering_part_II.R), is covering the second part for this lecture.
   - [complete_codes](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/complete_codes/) includes code with solutions for 
-    - [`feature_engineering.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering.R) as [`feature_engineering_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/complete_codes/feature_engineering_fin.R)
+    - [`feature_engineering_part_I.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering_part_I.R) as [`feature_engineering__part_I_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/complete_codes/feature_engineering_part_II_fin.R)
+    - [`feature_engineering_part_II.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/raw_codes/feature_engineering_part_II.R) as [`feature_engineering__part_II_fin.R`](https://github.com/gabors-data-analysis/da-coding-rstats/blob/main/lecture13-feature-engineering/complete_codes/feature_engineering_part_II_fin.R)
