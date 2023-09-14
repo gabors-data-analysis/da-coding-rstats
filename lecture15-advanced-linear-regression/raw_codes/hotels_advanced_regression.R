@@ -159,7 +159,7 @@ vienna$lnprice_resid <- reg4$residuals
 # Note we are interested in real price values not in logs:
 # the first term is straight forward, however the second exp(reg4$ssr /2) is a correction term 
 #   which is needed when dealing with log to exp transformation. Later in DA3 it will be discussed.
-corr_term <- exp(mean(vienna$lnprice_resid) / 2)
+corr_term <- exp(var(vienna$lnprice_resid) / 2)
 vienna$price_hat <- exp(vienna$lnprice_hat) * corr_term
 
 # List of 5 best deals
