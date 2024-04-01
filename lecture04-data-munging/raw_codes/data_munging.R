@@ -39,15 +39,16 @@ library(tidyverse)
 raw_df <- read_csv('https://osf.io/yzntm/download')
 
 # as this is a large file you may want to save it:
-# data_dir <- paste0(getwd(), '/data/')
-# write_csv(raw_df, paste0(data_dir, '/raw/hotelbookingdata.csv'))
+data_dir <- paste0(getwd(), '/GitHub/da-coding-rstats/lecture04-data-munging/')
+write_csv(raw_df, paste0(data_dir, '/raw/hotelbookingdata.csv'))
 
 # Have glimpse on data
 glimpse(raw_df)
+view(raw_df)
 
 ###
 # 1) Adding a new variable:
-#  let us add nnights variable, which shows the number of nights spent in the hotel
+#  let us add nights variable, which shows the number of nights spent in the hotel
 #   as the data was collected in such way, it is 1 for each observations.
 
 # to create a new variable, you can use `mutate()` function from tidyverse - dplyr
@@ -82,7 +83,7 @@ df$accommodationtype
 df <- separate(df, accommodationtype, '@' ,
                 into = c('garbage','acc_type'))
 
-# Check the two new variable, and that `accommodationtype` is removed.
+# Check the two new variables, and that `accommodationtype` is removed.
 
 # We can remove the variable garbage, as we will not need it any more.
 df <- select(df, -garbage)
@@ -114,8 +115,17 @@ is.factor(df$acc_type)
 #   2) check with `typeof()`
 #   3) convert the variable into a numeric variable
 
+df <- separate(df, guestreviewsrating, '/', into = c('lb_guest_reviews', 'hb_guest_reviews'))
 
+typeof(df$lb_guest_reviews)
+typeof(df$hb_guest_reviews)
 
+df <- mutate(df,
+             lb_guest_reviews = as.numeric(lb_guest_reviews),
+            hb_guest_reviews = as.numeric(hb_guest_reviews))
+
+typeof(df$lb_guest_reviews)
+typeof(df$hb_guest_reviews)
 
 ####
 # Good-to-know:
@@ -149,7 +159,18 @@ df <- mutate(df,
 #  1) use separate() command instead of mutate and gsub (utilize that the decimals are not changing)
 #  2) do not forget to change the type! 
 
+df <- separate(df,center1distance, ' ', 
+               into = c('distance'))
+df <- separate(df,center2distance, ' ', 
+               into = c('distance2'))
 
+df <- mutate(df, 
+             distance = as.numeric(distance),
+             distance2 = as.numeric(distance2))
+
+typeof(df$distance)
+typeof(df$distance2)
+typeof(select(df,distance, distance2))
 ###
 ## Rename variables
 # with tidy approach it is recommended to use human-readable vector names as well!
@@ -163,6 +184,12 @@ df <- rename(df, rating_count = rating_reviewcount,
 #       stars = starrating,
 #       city = s_city
 
+df <- rename(df, 
+             ratingta_count = rating2_ta_reviewcount,
+             country = addresscountryname,
+             stars = starrating,
+             city = s_city
+             )
 
 
 ####
@@ -190,7 +217,8 @@ df <- filter(df, !is.na(ratings))
 ##
 # Task:
 # Do the same for missing id-s and argue what to do with them! 
-
+table(df$hotel_id, useNA = 'ifany')
+filter(df,is.na(hotel_id))
 
 ###
 ## Correcting wrongly documented observations:
@@ -234,7 +262,13 @@ df <- filter(df, !duplicated( select(df, country,hotel_id,
 #       - with Hotel types which has stars between 3 and 4
 #       - and drop observations which has price more than 1000 EUR.
 
-
+hotel_vienna <- filter(df,
+             city == 'Vienna',
+             year == 2017 & month == 11 & weekend == 0,
+             acc_type == 'Hotel',
+             stars >= 3 & stars <=4,
+             price < 1000
+             )
 
 ###
 # Pipes in tidyverse
@@ -266,4 +300,8 @@ hotel_vienna <- arrange(hotel_vienna, desc(price))
 
 
 # Task: writing out csv as clean data
+
+data_out <- getwd()
+write_csv(hotel_vienna, paste0(data_out,
+                               '/GitHub/da-coding-rstats/lecture04-data-munging/clean/hotel_vienna_restricted.csv'))
 

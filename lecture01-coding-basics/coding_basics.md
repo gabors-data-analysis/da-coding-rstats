@@ -80,7 +80,7 @@ message_world <- 'Hello world!'
 If you run this piece of command, seemingly nothing happens - or at
 least in the console window does not print out anything only runs the
 command. However, a new variable shows up in the `Environment` window
-under the `Values` section, which says: ‘message_world’ and ‘Hello
+under the `Values` section, which says: ‘message\_world’ and ‘Hello
 world!’. It shows that there is a `variable` stored in the memory with
 the name of `message_world`.
 
@@ -207,7 +207,7 @@ collect all types, let us create a detailed list here:
 -   *character* - also known as a string. Any variable which contains
     letters, special characters, or numbers between `''` or `""` marks.
     When creating a character, decide if you use `'` or `"` and use them
-    consistently. Here we use `'`. Note: when want to display a ’ or ”
+    consistently. Here we use `'`. Note: when want to display a ’ or "
     character, you can do it by using the other to define as a
     character.
 -   *numeric* - any numeric value, broadly speaking is called *double*.
@@ -362,6 +362,8 @@ provide you an answer with examples. E.g.:
 ``` r
 ?rm
 ```
+
+    ## starting httpd help server ... done
 
 **Good to know:** If you would like to remove all variables in the
 environment you can run `rm(list=ls())` command. This specifies an input
