@@ -61,7 +61,7 @@ if (!require(glmnet)){
 ########################################
 #####
 # Load data
-url_data <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/partIII-case-studies/case2-airbnb-lasso/data/airbnb_hackney_workfile_adj_book1.csv'
+url_data <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/refs/heads/main/lecture22-lasso/data/airbnb_hackney_workfile_adj_book1.csv'
 data <- read_csv(url_data) %>% 
   mutate_if(is.character, factor)
 
