@@ -67,7 +67,7 @@ if (!require(gbm)){
 
 
 # Used area
-path_url <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/partIII-case-studies/case4-random-forest-airbnb/data/'
+path_url <- 'https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/refs/heads/main/lecture24-random-forest/data/'
 airbnb <- read_csv(paste0(path_url,'airbnb_london_workfile_adj_book.csv')) %>%
   mutate_if(is.character, factor) %>%
   filter(!is.na(price))

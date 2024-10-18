@@ -84,8 +84,7 @@ source('auxfuncs_binarywML.R')
 #     https://github.com/gabors-data-analysis/da_case_studies/blob/master/ch17-predicting-firm-exit/ch17-firm-exit-data-prep.R
 #
 # loading cleaned data
-load(url('https://raw.githubusercontent.com/gabors-data-analysis/da-coding-rstats/main/partIII-case-studies/case5-predicting-firm-exit/data/bisnode_firms_clean.RData?raw=true'))
-
+load(url('https://github.com/gabors-data-analysis/da-coding-rstats/raw/refs/heads/main/lecture25-classification-wML/data/bisnode_firms_clean.RData'))
 glimpse(bisnode)
 
 # Summary
